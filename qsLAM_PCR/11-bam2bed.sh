@@ -44,10 +44,20 @@ for i in bwa/*.bam; do
             }
         }' | awk -F "\t" '{if(($3-$2)<1000){print}}' > "bam2bed/${out_prefix}.bed"
         
-        # Remove duplicates
+        # Remove duplicates - with debug steps
+        echo "Debug: Before sort and uniq"
+        cut -f 1,2,3,6 "bam2bed/${out_prefix}.bed" | head -n 3
+
+        echo "Debug: After sort and uniq -c"
+        cut -f 1,2,3,6 "bam2bed/${out_prefix}.bed" | sort | uniq -c | head -n 3
+
+        # Modified awk command with explicit field references
         cut -f 1,2,3,6 "bam2bed/${out_prefix}.bed" | \
-        sort -u | \
-        awk '{print $1"\t"$2"\t"$3"\t.\t.\t"$4}' > "bam2bed/${out_prefix}.rmdup.bed"
+        sort | uniq -c | \
+        awk '{print $2"\t"$3"\t"$4"\t.\t"$1"\t"$5"\t"$1}' > "bam2bed/${out_prefix}.rmdup.bed"
+
+        echo "Debug: Final output"
+        head -n 3 "bam2bed/${out_prefix}.rmdup.bed"
         
         # Cleanup temporary files
         rm -f "bam2bed/${out_prefix}.temp" "bam2bed/${out_prefix}.sorted.bam"

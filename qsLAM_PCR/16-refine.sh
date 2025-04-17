@@ -9,9 +9,9 @@
 #BSUB -o output.%J     # output file name in which %J is replaced by the job ID
 
 
-module load bedtools/2.25.0
-module load conda3
-source activate r_env
+# module load bedtools/2.25.0
+# module load conda3
+# source activate r_env
 
 for d in `seq 8 8`
 do

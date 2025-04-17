@@ -54,9 +54,20 @@
         pkgs.rPackages.org_Hs_eg_db
         pkgs.rPackages.TxDb_Hsapiens_UCSC_hg19_knownGene
         pkgs.rPackages.BSgenome_Hsapiens_UCSC_hg19
+        pkgs.rPackages.openxlsx
+        pkgs.rPackages.bedr
+
+        pkgs.htslib
+        pkgs.bedops
       ];
       
       shellHook = ''
+        # Create a directory for local binaries if it doesn't exist
+        mkdir -p $HOME/.local/bin
+        
+        # Create symlink for bedops
+        ln -sf $(which bedops-typical) $HOME/.local/bin/bedops
+
         pipx install cutadapt
         export PATH="$PATH:$HOME/.local/bin"
       '';
