@@ -9,8 +9,8 @@
 #BSUB -o output.%J     # output file name in which %J is replaced by the job ID
 
 
-module load bedtools
-#module load R/3.5.1
+# module load bedtools
+# module load R/3.5.1
 
 for d in `seq 0 10`
 do

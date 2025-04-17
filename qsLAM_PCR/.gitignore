@@ -1,0 +1,9 @@
+cutPrimer/
+fastqc/
+rawdata/
+newFastq/
+reference/
+bwa/
+bam2bed/
+bed2wig/
+bed2peak_*/

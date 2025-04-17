@@ -8,9 +8,7 @@
 #BSUB -e errors.%J     # error file name in which %J is replaced by the job ID
 #BSUB -o output.%J     # output file name in which %J is replaced by the job ID
 
-
-
-module load fastqc/0.11.2
+# module load fastqc/0.11.2
 
 if [ ! -d fastqc/beforeCutAdapt ]; then mkdir -p fastqc/beforeCutAdapt; fi 
 for i in `ls -1 rawdata/ | grep fastq.gz`
