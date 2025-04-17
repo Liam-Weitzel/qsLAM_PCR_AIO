@@ -25,6 +25,7 @@
       };
     in pkgs.mkShell {
       packages = [
+        pkgs.util-linux
         pkgs.fastqc
         pkgs.samtools
         pkgs.bwa
