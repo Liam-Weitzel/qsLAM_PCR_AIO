@@ -1,2 +1,9 @@
+__pycache__/
+**/__pycache__/
+*.py[cod]
+**/*.py[cod]
 .direnv/
-ignored-files.zip
+**/.direnv/
+.git/
+.DS_Store
+Thumbs.db
