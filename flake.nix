@@ -14,6 +14,7 @@
     in {
       devShells.${system}.default = pkgs.mkShell {
         packages = [
+          pkgs.qtcreator
           pkgs.python312
           pkgs.python312Packages.pyinstaller
           pkgs.python312Packages.pyside6
