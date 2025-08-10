@@ -209,7 +209,7 @@ class UIFunctions(MainWindow):
     def uiDefinitions(self):
         def dobleClickMaximizeRestore(event):
             # IF DOUBLE CLICK CHANGE STATUS
-            if event.type() == QEvent.MouseButtonDblClick:
+            if event.type() == QEvent.MouseButtonDblClick and Settings.ENABLE_CUSTOM_TITLE_BAR:
                 QTimer.singleShot(250, lambda: UIFunctions.maximize_restore(self))
         self.ui.titleRightInfo.mouseDoubleClickEvent = dobleClickMaximizeRestore
 
