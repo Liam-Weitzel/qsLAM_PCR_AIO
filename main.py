@@ -79,6 +79,9 @@ class MainWindow(QMainWindow):
             UIFunctions.toggleRightBox(self, True)
         widgets.settingsTopBtn.clicked.connect(openCloseRightBox)
 
+        # SETUP BUTTONS
+        widgets.createButton.clicked.connect(self.buttonClick)
+
         # SHOW APP
         # ///////////////////////////////////////////////////////////////
         self.show()
@@ -96,26 +99,29 @@ class MainWindow(QMainWindow):
         # GET BUTTON CLICKED
         btn = self.sender()
         btnName = btn.objectName()
+        
+        print(btnName)
 
+        # NAVIGATION BUTTONS
         if btnName == "btn_projectManager":
             widgets.stackedWidget.setCurrentWidget(widgets.projectManager)
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
-
-        if btnName == "btn_setupView":
+        elif btnName == "btn_setupView":
             widgets.stackedWidget.setCurrentWidget(widgets.setupView)
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
-
-        if btnName == "btn_runView":
+        elif btnName == "btn_runView":
             widgets.stackedWidget.setCurrentWidget(widgets.runView)
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
-
-        if btnName == "btn_analysisView":
+        elif btnName == "btn_analysisView":
             widgets.stackedWidget.setCurrentWidget(widgets.analysisView)
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
+        # SETUP BUTTONS
+        elif btnName == "createButton":
+            print("Create new project clicked")
 
     # RESIZE EVENTS
     # ///////////////////////////////////////////////////////////////

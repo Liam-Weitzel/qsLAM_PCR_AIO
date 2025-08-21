@@ -232,10 +232,11 @@ QTableWidget::item{
 	gridline-color: rgb(220, 220, 220);
 }
 QTableWidget::item:selected{
-	background-color: #00216D;
+	background-color: rgb(134, 210, 237);
+	color: rgb(0, 0, 0);
 }
 QHeaderView::section{
-	background-color: rgb(245, 245, 245);
+	background-color: #86D2ED;
 	max-width: 30px;
 	border: 1px solid rgb(204, 204, 204);
 	border-style: none;
@@ -247,11 +248,9 @@ QTableWidget::horizontalHeader {
 }
 QHeaderView::section:horizontal
 {
-    border: 1px solid rgb(245, 245, 245);
-	background-color: rgb(245, 245, 245);
+	background-color: #01216D;
 	padding: 3px;
-	border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
+	color: white;
 }
 QHeaderView::section:vertical
 {
@@ -297,19 +296,19 @@ QPlainTextEdit:focus {
 
 QScrollBar:horizontal {
     border: none;
-    background: rgb(52, 59, 72);
+    background: rgb(170, 170, 170);
     height: 8px;
     margin: 0px 21px 0 21px;
 	border-radius: 0px;
 }
 QScrollBar::handle:horizontal {
-    background: rgb(189, 147, 249);
+    background: #01216D;
     min-width: 25px;
 	border-radius: 4px
 }
 QScrollBar::add-line:horizontal {
     border: none;
-    background: rgb(55, 63, 77);
+    background: rgb(170, 170, 170);
     width: 20px;
 	border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
@@ -318,7 +317,7 @@ QScrollBar::add-line:horizontal {
 }
 QScrollBar::sub-line:horizontal {
     border: none;
-    background: rgb(55, 63, 77);
+    background: rgb(170, 170, 170);
     width: 20px;
 	border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
@@ -335,19 +334,19 @@ QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal
 }
 QScrollBar:vertical {
     border: none;
-    background: rgb(52, 59, 72);
+    background: rgb(170, 170, 170);
     width: 8px;
     margin: 21px 0 21px 0;
     border-radius: 0px;
 }
 QScrollBar::handle:vertical {
-    background: rgb(189, 147, 249);
+    background: #01216D;
     min-height: 25px;
     border-radius: 4px
 }
 QScrollBar::add-line:vertical {
     border: none;
-    background: rgb(55, 63, 77);
+    background: rgb(170, 170, 170);
     height: 20px;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
@@ -356,7 +355,7 @@ QScrollBar::add-line:vertical {
 }
 QScrollBar::sub-line:vertical {
     border: none;
-    background: rgb(55, 63, 77);
+    background: rgb(170, 170, 170);
     height: 20px;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
@@ -372,26 +371,46 @@ QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
 }
 
 QCheckBox::indicator {
-    border: 3px solid rgb(52, 59, 72);
-    width: 15px;
-    height: 15px;
-    border-radius: 10px;
-    background: rgb(44, 49, 60);
+    border: 2px solid rgb(52, 59, 72);
+    width: 13px;
+    height: 13px;
+    border-radius: 5px;
+    background: rgb(255, 255, 255);
 }
 QCheckBox::indicator:hover {
-    border: 3px solid rgb(58, 66, 81);
+    border: 2px solid rgb(134, 210, 237);
 }
 QCheckBox::indicator:checked {
-    background: 3px solid rgb(52, 59, 72);
-    border: 3px solid rgb(52, 59, 72);
+    background: 3px solid rgb(230, 230, 230);
+    border: 2px solid rgb(52, 59, 72);
     background-image: url(:/icons/images/icons/cil-check-alt.png);
 }
+QCheckBox::indicator:checked:hover {
+    border: 2px solid rgb(134, 210, 237);
+}
 QRadioButton::indicator {
-    border: 3px solid rgb(52, 59, 72);
-    width: 15px;
-    height: 15px;
-    border-radius: 10px;
-    background: rgb(44, 49, 60);
+    border: 2px solid rgb(52, 59, 72);
+    width: 13px;
+    height: 13px;
+    border-radius: 7px;
+    background: rgb(255, 255, 255);
+}
+QRadioButton::indicator:hover {
+    border: 2px solid rgb(134, 210, 237);
+}
+QRadioButton::indicator:checked {
+    background: 2px solid rgb(230, 230, 230);
+    border: 2px solid rgb(52, 59, 72);
+    background-image: url(:/icons/images/icons/cil-check-alt.png);
+}
+QRadioButton::indicator:checked:hover {
+    border: 2px solid rgb(134, 210, 237);
+}
+QCommandLinkButton {
+    background: rgb(255, 255, 255);
+}
+QCommandLinkButton:hover {
+    border: 300px solid rgb(134, 210, 237);
 }
 </string>
    </property>
@@ -536,7 +555,6 @@ QRadioButton::indicator {
                <family>Segoe UI Semibold</family>
                <pointsize>12</pointsize>
                <italic>false</italic>
-               <fontweight></fontweight>
               </font>
              </property>
              <property name="text">
@@ -1954,7 +1972,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                              <bool>false</bool>
                             </property>
                             <attribute name="horizontalHeaderVisible">
-                             <bool>false</bool>
+                             <bool>true</bool>
                             </attribute>
                             <attribute name="horizontalHeaderCascadingSectionResizes">
                              <bool>true</bool>
@@ -2226,7 +2244,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                <cursorShape>PointingHandCursor</cursorShape>
                               </property>
                               <property name="styleSheet">
-                               <string notr="true">background-color: rgb(52, 59, 72);</string>
+                               <string notr="true">background-color: rgb(255, 255, 255);</string>
                               </property>
                               <property name="text">
                                <string>Open</string>
@@ -2246,7 +2264,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                </size>
                               </property>
                               <property name="styleSheet">
-                               <string notr="true">background-color: rgb(33, 37, 43);</string>
+                               <string notr="true">background-color: rgb(255, 255, 255);</string>
                               </property>
                               <property name="text">
                                <string/>
@@ -2328,7 +2346,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
                           </property>
                           <item>
                            <layout class="QGridLayout" name="gridLayout_2">
-                            <item row="0" column="0">
+                            <item row="3" column="1">
+                             <widget class="QLineEdit" name="lineEdit_2"/>
+                            </item>
+                            <item row="1" column="0">
                              <widget class="QLabel" name="label">
                               <property name="text">
                                <string>LTR Primer Sequence</string>
@@ -2336,17 +2357,53 @@ li.checked::marker { content: &quot;\2612&quot;; }
                              </widget>
                             </item>
                             <item row="1" column="1">
-                             <widget class="QLineEdit" name="lineEdit_2"/>
-                            </item>
-                            <item row="0" column="1">
                              <widget class="QLineEdit" name="lineEdit"/>
                             </item>
-                            <item row="1" column="0">
+                            <item row="3" column="0">
                              <widget class="QLabel" name="label_2">
                               <property name="text">
                                <string>Adapter Sequence</string>
                               </property>
                              </widget>
+                            </item>
+                            <item row="0" column="0" colspan="2">
+                             <spacer name="verticalSpacer">
+                              <property name="orientation">
+                               <enum>Qt::Orientation::Vertical</enum>
+                              </property>
+                              <property name="sizeHint" stdset="0">
+                               <size>
+                                <width>20</width>
+                                <height>10</height>
+                               </size>
+                              </property>
+                             </spacer>
+                            </item>
+                            <item row="2" column="0" colspan="2">
+                             <spacer name="verticalSpacer_2">
+                              <property name="orientation">
+                               <enum>Qt::Orientation::Vertical</enum>
+                              </property>
+                              <property name="sizeHint" stdset="0">
+                               <size>
+                                <width>20</width>
+                                <height>10</height>
+                               </size>
+                              </property>
+                             </spacer>
+                            </item>
+                            <item row="4" column="0" colspan="2">
+                             <spacer name="verticalSpacer_3">
+                              <property name="orientation">
+                               <enum>Qt::Orientation::Vertical</enum>
+                              </property>
+                              <property name="sizeHint" stdset="0">
+                               <size>
+                                <width>20</width>
+                                <height>10</height>
+                               </size>
+                              </property>
+                             </spacer>
                             </item>
                            </layout>
                           </item>
@@ -2415,16 +2472,30 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                   <layout class="QVBoxLayout" name="verticalLayout_19">
                                    <item>
                                     <layout class="QGridLayout" name="gridLayout_4">
-                                     <item row="1" column="1">
-                                      <widget class="QLineEdit" name="backwardReadInput"/>
-                                     </item>
-                                     <item row="0" column="1">
-                                      <widget class="QLineEdit" name="forwardReadInput"/>
-                                     </item>
-                                     <item row="2" column="1">
+                                     <item row="5" column="1">
                                       <widget class="QLineEdit" name="referenceGenomeInput"/>
                                      </item>
-                                     <item row="2" column="0">
+                                     <item row="1" column="0">
+                                      <widget class="QLabel" name="forwardReadLabel">
+                                       <property name="text">
+                                        <string>Forward read</string>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item row="3" column="0">
+                                      <widget class="QLabel" name="backwardReadLabel">
+                                       <property name="text">
+                                        <string>Backward read</string>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item row="1" column="1">
+                                      <widget class="QLineEdit" name="forwardReadInput"/>
+                                     </item>
+                                     <item row="3" column="1">
+                                      <widget class="QLineEdit" name="backwardReadInput"/>
+                                     </item>
+                                     <item row="5" column="0">
                                       <widget class="QLabel" name="referenceGenomeLabel">
                                        <property name="text">
                                         <string>Reference genome
@@ -2432,19 +2503,57 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                        </property>
                                       </widget>
                                      </item>
-                                     <item row="1" column="0">
-                                      <widget class="QLabel" name="backwardReadLabel">
-                                       <property name="text">
-                                        <string>Backward read</string>
+                                     <item row="6" column="0" colspan="2">
+                                      <spacer name="verticalSpacer_13">
+                                       <property name="orientation">
+                                        <enum>Qt::Orientation::Vertical</enum>
                                        </property>
-                                      </widget>
+                                       <property name="sizeHint" stdset="0">
+                                        <size>
+                                         <width>20</width>
+                                         <height>10</height>
+                                        </size>
+                                       </property>
+                                      </spacer>
                                      </item>
-                                     <item row="0" column="0">
-                                      <widget class="QLabel" name="forwardReadLabel">
-                                       <property name="text">
-                                        <string>Forward read</string>
+                                     <item row="4" column="0" colspan="2">
+                                      <spacer name="verticalSpacer_12">
+                                       <property name="orientation">
+                                        <enum>Qt::Orientation::Vertical</enum>
                                        </property>
-                                      </widget>
+                                       <property name="sizeHint" stdset="0">
+                                        <size>
+                                         <width>20</width>
+                                         <height>10</height>
+                                        </size>
+                                       </property>
+                                      </spacer>
+                                     </item>
+                                     <item row="2" column="0" colspan="2">
+                                      <spacer name="verticalSpacer_11">
+                                       <property name="orientation">
+                                        <enum>Qt::Orientation::Vertical</enum>
+                                       </property>
+                                       <property name="sizeHint" stdset="0">
+                                        <size>
+                                         <width>20</width>
+                                         <height>10</height>
+                                        </size>
+                                       </property>
+                                      </spacer>
+                                     </item>
+                                     <item row="0" column="0" colspan="2">
+                                      <spacer name="verticalSpacer_10">
+                                       <property name="orientation">
+                                        <enum>Qt::Orientation::Vertical</enum>
+                                       </property>
+                                       <property name="sizeHint" stdset="0">
+                                        <size>
+                                         <width>20</width>
+                                         <height>10</height>
+                                        </size>
+                                       </property>
+                                      </spacer>
                                      </item>
                                     </layout>
                                    </item>
@@ -2490,47 +2599,54 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                   <layout class="QVBoxLayout" name="verticalLayout_19">
                                    <item>
                                     <layout class="QGridLayout" name="gridLayout_5">
-                                     <item row="0" column="1">
-                                      <widget class="QLineEdit" name="ipAddressInput"/>
+                                     <item row="9" column="1" colspan="3">
+                                      <widget class="QLineEdit" name="referenceGenomeInput_2"/>
                                      </item>
-                                     <item row="0" column="0">
-                                      <widget class="QLabel" name="ipAddressLabel">
-                                       <property name="text">
-                                        <string>IP address</string>
-                                       </property>
-                                      </widget>
+                                     <item row="1" column="3">
+                                      <widget class="QLineEdit" name="portNumberInput"/>
                                      </item>
-                                     <item row="0" column="2">
+                                     <item row="7" column="1" colspan="3">
+                                      <widget class="QLineEdit" name="backwardReadInput_2"/>
+                                     </item>
+                                     <item row="1" column="2">
                                       <widget class="QLabel" name="portNumberLabel">
                                        <property name="text">
                                         <string>Port</string>
                                        </property>
                                       </widget>
                                      </item>
-                                     <item row="0" column="3">
-                                      <widget class="QLineEdit" name="portNumberInput"/>
-                                     </item>
-                                     <item row="2" column="1" colspan="3">
-                                      <widget class="QLineEdit" name="forwardReadInput_2"/>
-                                     </item>
-                                     <item row="3" column="1" colspan="3">
-                                      <widget class="QLineEdit" name="backwardReadInput_2"/>
-                                     </item>
-                                     <item row="2" column="0">
-                                      <widget class="QLabel" name="forwardReadLabel_2">
-                                       <property name="text">
-                                        <string>Forward read</string>
-                                       </property>
-                                      </widget>
-                                     </item>
-                                     <item row="3" column="0">
+                                     <item row="7" column="0">
                                       <widget class="QLabel" name="backwardReadLabel_2">
                                        <property name="text">
                                         <string>Backward read</string>
                                        </property>
                                       </widget>
                                      </item>
-                                     <item row="4" column="0">
+                                     <item row="1" column="0">
+                                      <widget class="QLabel" name="ipAddressLabel">
+                                       <property name="text">
+                                        <string>IP address</string>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item row="3" column="0" colspan="4">
+                                      <widget class="QCheckBox" name="dontSendData">
+                                       <property name="text">
+                                        <string>Don't send input data to remote server. I already have the input data mounted correctly in the docker container</string>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item row="5" column="1" colspan="3">
+                                      <widget class="QLineEdit" name="forwardReadInput_2"/>
+                                     </item>
+                                     <item row="5" column="0">
+                                      <widget class="QLabel" name="forwardReadLabel_2">
+                                       <property name="text">
+                                        <string>Forward read</string>
+                                       </property>
+                                      </widget>
+                                     </item>
+                                     <item row="9" column="0">
                                       <widget class="QLabel" name="referenceGenomeLabel_2">
                                        <property name="text">
                                         <string>Reference genome
@@ -2538,15 +2654,86 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                        </property>
                                       </widget>
                                      </item>
-                                     <item row="4" column="1" colspan="3">
-                                      <widget class="QLineEdit" name="referenceGenomeInput_2"/>
+                                     <item row="1" column="1">
+                                      <widget class="QLineEdit" name="ipAddressInput"/>
                                      </item>
-                                     <item row="1" column="0" colspan="4">
-                                      <widget class="QCheckBox" name="dontSendData">
-                                       <property name="text">
-                                        <string>Don't send input data to remote server. I already have the input data mounted correctly in the docker container</string>
+                                     <item row="10" column="0" colspan="4">
+                                      <spacer name="verticalSpacer_9">
+                                       <property name="orientation">
+                                        <enum>Qt::Orientation::Vertical</enum>
                                        </property>
-                                      </widget>
+                                       <property name="sizeHint" stdset="0">
+                                        <size>
+                                         <width>20</width>
+                                         <height>10</height>
+                                        </size>
+                                       </property>
+                                      </spacer>
+                                     </item>
+                                     <item row="8" column="0" colspan="4">
+                                      <spacer name="verticalSpacer_8">
+                                       <property name="orientation">
+                                        <enum>Qt::Orientation::Vertical</enum>
+                                       </property>
+                                       <property name="sizeHint" stdset="0">
+                                        <size>
+                                         <width>20</width>
+                                         <height>10</height>
+                                        </size>
+                                       </property>
+                                      </spacer>
+                                     </item>
+                                     <item row="6" column="0" colspan="4">
+                                      <spacer name="verticalSpacer_7">
+                                       <property name="orientation">
+                                        <enum>Qt::Orientation::Vertical</enum>
+                                       </property>
+                                       <property name="sizeHint" stdset="0">
+                                        <size>
+                                         <width>20</width>
+                                         <height>10</height>
+                                        </size>
+                                       </property>
+                                      </spacer>
+                                     </item>
+                                     <item row="4" column="0" colspan="4">
+                                      <spacer name="verticalSpacer_6">
+                                       <property name="orientation">
+                                        <enum>Qt::Orientation::Vertical</enum>
+                                       </property>
+                                       <property name="sizeHint" stdset="0">
+                                        <size>
+                                         <width>20</width>
+                                         <height>10</height>
+                                        </size>
+                                       </property>
+                                      </spacer>
+                                     </item>
+                                     <item row="2" column="0" colspan="4">
+                                      <spacer name="verticalSpacer_5">
+                                       <property name="orientation">
+                                        <enum>Qt::Orientation::Vertical</enum>
+                                       </property>
+                                       <property name="sizeHint" stdset="0">
+                                        <size>
+                                         <width>20</width>
+                                         <height>10</height>
+                                        </size>
+                                       </property>
+                                      </spacer>
+                                     </item>
+                                     <item row="0" column="0" colspan="4">
+                                      <spacer name="verticalSpacer_4">
+                                       <property name="orientation">
+                                        <enum>Qt::Orientation::Vertical</enum>
+                                       </property>
+                                       <property name="sizeHint" stdset="0">
+                                        <size>
+                                         <width>20</width>
+                                         <height>10</height>
+                                        </size>
+                                       </property>
+                                      </spacer>
                                      </item>
                                     </layout>
                                    </item>
@@ -2654,6 +2841,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                           </property>
                           <item>
                            <widget class="QDialogButtonBox" name="buttonBox">
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(255, 255, 255);</string>
+                            </property>
                             <property name="standardButtons">
                              <set>QDialogButtonBox::StandardButton::Help|QDialogButtonBox::StandardButton::Reset|QDialogButtonBox::StandardButton::RestoreDefaults|QDialogButtonBox::StandardButton::Save</set>
                             </property>
