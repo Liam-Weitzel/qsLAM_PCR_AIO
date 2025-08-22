@@ -16,10 +16,8 @@
         packages = [
           pkgs.qtcreator
           pkgs.python312
-          pkgs.python312Packages.pyinstaller
           pkgs.python312Packages.pyside6
-          pkgs.python312Packages.requests
-          pkgs.python312Packages.docker
+          pkgs.python312Packages.httpx
         ];
 
         shellHook = ''

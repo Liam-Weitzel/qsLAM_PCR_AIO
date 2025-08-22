@@ -1,0 +1,65 @@
+name: Build
+
+on:
+  push:
+    branches: [ '**' ]
+  pull_request:
+    branches: [ '**' ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python 3.12
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install PySide6 httpx
+
+    - name: Convert main.ui to ui_main.py
+      run: |
+        pyside6-uic main.ui -o modules/ui_main.py
+
+    - name: Convert resources.qrc to resources_rc.py
+      run: |
+        pyside6-rcc resources.qrc -o modules/resources_rc.py
+
+    - name: Patch ui_main.py Import
+      run: |
+        sed -i 's/^import resources_rc$/from .resources_rc import */' modules/ui_main.py
+
+    - name: Upload ui_main.py Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ui_main
+        path: modules/ui_main.py
+
+    - name: Upload resources_rc.py Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: resources_rc
+        path: modules/resources_rc.py
+
+    - name: Run pyside6-deploy
+      run: |
+        pyside6-deploy -f
+
+    - name: Upload Build Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: pyside6-deploy
+        path: qsLAM_PCR_AIO.bin
+
+    - name: Upload pysidedeploy.spec Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: pysidedeploy-spec
+        path: pysidedeploy.spec

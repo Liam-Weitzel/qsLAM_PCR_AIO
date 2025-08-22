@@ -17,8 +17,7 @@
 import sys
 import os
 import platform
-import requests
-import docker
+import httpx
 import json
 
 # IMPORT / GUI AND MODULES AND WIDGETS
