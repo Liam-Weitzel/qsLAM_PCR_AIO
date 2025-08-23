@@ -79,7 +79,7 @@ class MainWindow(QMainWindow):
         widgets.settingsTopBtn.clicked.connect(openCloseRightBox)
 
         # SETUP BUTTONS
-        widgets.createButton.clicked.connect(self.buttonClick)
+        widgets.createRunButton.clicked.connect(self.buttonClick)
 
         # SHOW APP
         # ///////////////////////////////////////////////////////////////
@@ -119,7 +119,7 @@ class MainWindow(QMainWindow):
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
         # SETUP BUTTONS
-        elif btnName == "createButton":
+        elif btnName == "createRunButton":
             print("Create new project clicked")
 
     # RESIZE EVENTS

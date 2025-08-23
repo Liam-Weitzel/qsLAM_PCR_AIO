@@ -15,13 +15,12 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QAbstractButton, QAbstractItemView, QAbstractScrollArea, QApplication,
-    QCheckBox, QCommandLinkButton, QDialogButtonBox, QFrame,
-    QGridLayout, QHBoxLayout, QHeaderView, QLabel,
-    QLineEdit, QMainWindow, QProgressBar, QPushButton,
-    QRadioButton, QSizePolicy, QSpacerItem, QStackedWidget,
-    QTableWidget, QTableWidgetItem, QTextBrowser, QTextEdit,
-    QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QCheckBox,
+    QFrame, QGridLayout, QHBoxLayout, QHeaderView,
+    QLabel, QLineEdit, QMainWindow, QProgressBar,
+    QPushButton, QRadioButton, QSizePolicy, QSpacerItem,
+    QStackedWidget, QTableWidget, QTableWidgetItem, QTextBrowser,
+    QTextEdit, QVBoxLayout, QWidget)
 from .resources_rc import *
 
 class Ui_MainWindow(object):
@@ -473,6 +472,7 @@ class Ui_MainWindow(object):
         font1 = QFont()
         font1.setFamilies([u"Segoe UI Semibold"])
         font1.setPointSize(12)
+        font1.setBold(True)
         font1.setItalic(False)
         self.titleLeftApp.setFont(font1)
         self.titleLeftApp.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
@@ -887,7 +887,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_16.setContentsMargins(0, 0, 0, 0)
         self.frame_div_content_1 = QFrame(self.row_1)
         self.frame_div_content_1.setObjectName(u"frame_div_content_1")
-        self.frame_div_content_1.setMinimumSize(QSize(0, 110))
+        self.frame_div_content_1.setMinimumSize(QSize(0, 50))
         self.frame_div_content_1.setMaximumSize(QSize(16777215, 110))
         self.frame_div_content_1.setFrameShape(QFrame.Shape.NoFrame)
         self.frame_div_content_1.setFrameShadow(QFrame.Shadow.Raised)
@@ -901,20 +901,71 @@ class Ui_MainWindow(object):
         self.frame_content_wid_1.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_9 = QHBoxLayout(self.frame_content_wid_1)
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
-        self.createButton = QCommandLinkButton(self.frame_content_wid_1)
-        self.createButton.setObjectName(u"createButton")
+        self.createRunButton = QPushButton(self.frame_content_wid_1)
+        self.createRunButton.setObjectName(u"createRunButton")
+        self.createRunButton.setMinimumSize(QSize(50, 30))
+        self.createRunButton.setFont(font)
+        self.createRunButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.createRunButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon4 = QIcon()
+        icon4.addFile(u":/icons/images/icons/cil-library-add.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.createRunButton.setIcon(icon4)
 
-        self.horizontalLayout_9.addWidget(self.createButton)
+        self.horizontalLayout_9.addWidget(self.createRunButton)
 
-        self.deleteButton = QCommandLinkButton(self.frame_content_wid_1)
-        self.deleteButton.setObjectName(u"deleteButton")
+        self.selectRunButton = QPushButton(self.frame_content_wid_1)
+        self.selectRunButton.setObjectName(u"selectRunButton")
+        self.selectRunButton.setMinimumSize(QSize(50, 30))
+        self.selectRunButton.setFont(font)
+        self.selectRunButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.selectRunButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon5 = QIcon()
+        icon5.addFile(u":/icons/images/icons/cil-input.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.selectRunButton.setIcon(icon5)
 
-        self.horizontalLayout_9.addWidget(self.deleteButton)
+        self.horizontalLayout_9.addWidget(self.selectRunButton)
 
-        self.exportButton = QCommandLinkButton(self.frame_content_wid_1)
-        self.exportButton.setObjectName(u"exportButton")
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.horizontalLayout_9.addWidget(self.exportButton)
+        self.horizontalLayout_9.addItem(self.horizontalSpacer_4)
+
+        self.label_5 = QLabel(self.frame_content_wid_1)
+        self.label_5.setObjectName(u"label_5")
+
+        self.horizontalLayout_9.addWidget(self.label_5)
+
+        self.label_6 = QLabel(self.frame_content_wid_1)
+        self.label_6.setObjectName(u"label_6")
+
+        self.horizontalLayout_9.addWidget(self.label_6)
+
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_9.addItem(self.horizontalSpacer_3)
+
+        self.refreshRunButton = QPushButton(self.frame_content_wid_1)
+        self.refreshRunButton.setObjectName(u"refreshRunButton")
+        self.refreshRunButton.setMinimumSize(QSize(50, 30))
+        self.refreshRunButton.setFont(font)
+        self.refreshRunButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.refreshRunButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon6 = QIcon()
+        icon6.addFile(u":/icons/images/icons/cil-reload.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.refreshRunButton.setIcon(icon6)
+
+        self.horizontalLayout_9.addWidget(self.refreshRunButton)
+
+        self.deleteRunButton = QPushButton(self.frame_content_wid_1)
+        self.deleteRunButton.setObjectName(u"deleteRunButton")
+        self.deleteRunButton.setMinimumSize(QSize(50, 30))
+        self.deleteRunButton.setFont(font)
+        self.deleteRunButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.deleteRunButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon7 = QIcon()
+        icon7.addFile(u":/icons/images/icons/cil-remove.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.deleteRunButton.setIcon(icon7)
+
+        self.horizontalLayout_9.addWidget(self.deleteRunButton)
 
 
         self.verticalLayout_17.addWidget(self.frame_content_wid_1)
@@ -943,15 +994,9 @@ class Ui_MainWindow(object):
         self.runsTable.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         __qtablewidgetitem3 = QTableWidgetItem()
         self.runsTable.setHorizontalHeaderItem(3, __qtablewidgetitem3)
-        if (self.runsTable.rowCount() < 23):
-            self.runsTable.setRowCount(23)
-        font4 = QFont()
-        font4.setPointSize(10)
-        font4.setBold(True)
-        font4.setUnderline(False)
+        if (self.runsTable.rowCount() < 22):
+            self.runsTable.setRowCount(22)
         __qtablewidgetitem4 = QTableWidgetItem()
-        __qtablewidgetitem4.setFont(font4);
-        __qtablewidgetitem4.setBackground(QColor(0, 33, 109));
         self.runsTable.setVerticalHeaderItem(0, __qtablewidgetitem4)
         __qtablewidgetitem5 = QTableWidgetItem()
         self.runsTable.setVerticalHeaderItem(1, __qtablewidgetitem5)
@@ -996,23 +1041,13 @@ class Ui_MainWindow(object):
         __qtablewidgetitem25 = QTableWidgetItem()
         self.runsTable.setVerticalHeaderItem(21, __qtablewidgetitem25)
         __qtablewidgetitem26 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(22, __qtablewidgetitem26)
+        self.runsTable.setItem(0, 0, __qtablewidgetitem26)
         __qtablewidgetitem27 = QTableWidgetItem()
-        self.runsTable.setItem(0, 0, __qtablewidgetitem27)
+        self.runsTable.setItem(0, 1, __qtablewidgetitem27)
         __qtablewidgetitem28 = QTableWidgetItem()
-        self.runsTable.setItem(0, 1, __qtablewidgetitem28)
+        self.runsTable.setItem(0, 2, __qtablewidgetitem28)
         __qtablewidgetitem29 = QTableWidgetItem()
-        self.runsTable.setItem(0, 2, __qtablewidgetitem29)
-        __qtablewidgetitem30 = QTableWidgetItem()
-        self.runsTable.setItem(0, 3, __qtablewidgetitem30)
-        __qtablewidgetitem31 = QTableWidgetItem()
-        self.runsTable.setItem(1, 0, __qtablewidgetitem31)
-        __qtablewidgetitem32 = QTableWidgetItem()
-        self.runsTable.setItem(1, 1, __qtablewidgetitem32)
-        __qtablewidgetitem33 = QTableWidgetItem()
-        self.runsTable.setItem(1, 2, __qtablewidgetitem33)
-        __qtablewidgetitem34 = QTableWidgetItem()
-        self.runsTable.setItem(1, 3, __qtablewidgetitem34)
+        self.runsTable.setItem(0, 3, __qtablewidgetitem29)
         self.runsTable.setObjectName(u"runsTable")
         sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy3.setHorizontalStretch(0)
@@ -1095,27 +1130,31 @@ class Ui_MainWindow(object):
         self.gridLayout.setContentsMargins(-1, -1, -1, 0)
         self.importRunButton = QPushButton(self.row_3)
         self.importRunButton.setObjectName(u"importRunButton")
-        self.importRunButton.setMinimumSize(QSize(150, 30))
+        self.importRunButton.setMinimumSize(QSize(50, 30))
         self.importRunButton.setFont(font)
         self.importRunButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.importRunButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon4 = QIcon()
-        icon4.addFile(u":/icons/images/icons/cil-folder-open.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.importRunButton.setIcon(icon4)
+        icon8 = QIcon()
+        icon8.addFile(u":/icons/images/icons/cil-cloud-download.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.importRunButton.setIcon(icon8)
 
-        self.gridLayout.addWidget(self.importRunButton, 1, 2, 1, 1)
+        self.gridLayout.addWidget(self.importRunButton, 0, 1, 1, 1)
 
-        self.importRunInput = QLineEdit(self.row_3)
-        self.importRunInput.setObjectName(u"importRunInput")
-        self.importRunInput.setMinimumSize(QSize(0, 30))
-        self.importRunInput.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.exportRunButton = QPushButton(self.row_3)
+        self.exportRunButton.setObjectName(u"exportRunButton")
+        self.exportRunButton.setMinimumSize(QSize(50, 30))
+        self.exportRunButton.setFont(font)
+        self.exportRunButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.exportRunButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon9 = QIcon()
+        icon9.addFile(u":/icons/images/icons/cil-cloud-upload.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.exportRunButton.setIcon(icon9)
 
-        self.gridLayout.addWidget(self.importRunInput, 1, 0, 1, 1)
+        self.gridLayout.addWidget(self.exportRunButton, 0, 3, 1, 1)
 
-        self.importRunLabel = QLabel(self.row_3)
-        self.importRunLabel.setObjectName(u"importRunLabel")
+        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout.addWidget(self.importRunLabel, 0, 0, 1, 1)
+        self.gridLayout.addItem(self.horizontalSpacer_5, 0, 0, 1, 1)
 
 
         self.horizontalLayout_12.addLayout(self.gridLayout)
@@ -1372,11 +1411,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addWidget(self.label_3, 0, 0, 1, 1)
 
-        self.commandLinkButton = QCommandLinkButton(self.row_21)
-        self.commandLinkButton.setObjectName(u"commandLinkButton")
-
-        self.gridLayout_3.addWidget(self.commandLinkButton, 0, 1, 1, 1)
-
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.gridLayout_3.addItem(self.horizontalSpacer, 0, 2, 1, 1)
@@ -1395,6 +1429,18 @@ class Ui_MainWindow(object):
 
         self.gridLayout_3.addItem(self.horizontalSpacer_2, 1, 2, 1, 1)
 
+        self.dockerGuideButton = QPushButton(self.row_21)
+        self.dockerGuideButton.setObjectName(u"dockerGuideButton")
+        self.dockerGuideButton.setMinimumSize(QSize(50, 30))
+        self.dockerGuideButton.setFont(font)
+        self.dockerGuideButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.dockerGuideButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon10 = QIcon()
+        icon10.addFile(u":/icons/images/icons/cil-external-link.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.dockerGuideButton.setIcon(icon10)
+
+        self.gridLayout_3.addWidget(self.dockerGuideButton, 0, 1, 1, 1)
+
 
         self.verticalLayout_191.addLayout(self.gridLayout_3)
 
@@ -1403,20 +1449,65 @@ class Ui_MainWindow(object):
 
         self.row_31 = QFrame(self.setupView)
         self.row_31.setObjectName(u"row_31")
-        self.row_31.setMinimumSize(QSize(0, 25))
-        self.row_31.setMaximumSize(QSize(16777215, 25))
+        self.row_31.setMinimumSize(QSize(0, 35))
+        self.row_31.setMaximumSize(QSize(16777215, 35))
         self.row_31.setFrameShape(QFrame.Shape.StyledPanel)
         self.row_31.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_121 = QHBoxLayout(self.row_31)
         self.horizontalLayout_121.setSpacing(0)
         self.horizontalLayout_121.setObjectName(u"horizontalLayout_121")
         self.horizontalLayout_121.setContentsMargins(0, 0, 0, 0)
-        self.buttonBox = QDialogButtonBox(self.row_31)
-        self.buttonBox.setObjectName(u"buttonBox")
-        self.buttonBox.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        self.buttonBox.setStandardButtons(QDialogButtonBox.StandardButton.Help|QDialogButtonBox.StandardButton.Reset|QDialogButtonBox.StandardButton.RestoreDefaults|QDialogButtonBox.StandardButton.Save)
+        self.resetButton = QPushButton(self.row_31)
+        self.resetButton.setObjectName(u"resetButton")
+        self.resetButton.setMinimumSize(QSize(50, 30))
+        self.resetButton.setFont(font)
+        self.resetButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.resetButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon11 = QIcon()
+        icon11.addFile(u":/icons/images/icons/cil-fire.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.resetButton.setIcon(icon11)
 
-        self.horizontalLayout_121.addWidget(self.buttonBox)
+        self.horizontalLayout_121.addWidget(self.resetButton)
+
+        self.restoreDefaultsButton = QPushButton(self.row_31)
+        self.restoreDefaultsButton.setObjectName(u"restoreDefaultsButton")
+        self.restoreDefaultsButton.setMinimumSize(QSize(50, 30))
+        self.restoreDefaultsButton.setFont(font)
+        self.restoreDefaultsButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.restoreDefaultsButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon12 = QIcon()
+        icon12.addFile(u":/icons/images/icons/cil-file.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.restoreDefaultsButton.setIcon(icon12)
+
+        self.horizontalLayout_121.addWidget(self.restoreDefaultsButton)
+
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_121.addItem(self.horizontalSpacer_6)
+
+        self.saveButton = QPushButton(self.row_31)
+        self.saveButton.setObjectName(u"saveButton")
+        self.saveButton.setMinimumSize(QSize(50, 30))
+        self.saveButton.setFont(font)
+        self.saveButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.saveButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon13 = QIcon()
+        icon13.addFile(u":/icons/images/icons/cil-save.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.saveButton.setIcon(icon13)
+
+        self.horizontalLayout_121.addWidget(self.saveButton)
+
+        self.helpButton = QPushButton(self.row_31)
+        self.helpButton.setObjectName(u"helpButton")
+        self.helpButton.setMinimumSize(QSize(50, 30))
+        self.helpButton.setFont(font)
+        self.helpButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.helpButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon14 = QIcon()
+        icon14.addFile(u":/icons/images/icons/cil-map.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.helpButton.setIcon(icon14)
+
+        self.horizontalLayout_121.addWidget(self.helpButton)
 
 
         self.verticalLayout1.addWidget(self.row_31)
@@ -1630,11 +1721,11 @@ class Ui_MainWindow(object):
         self.creditsLabel = QLabel(self.bottomBar)
         self.creditsLabel.setObjectName(u"creditsLabel")
         self.creditsLabel.setMaximumSize(QSize(16777215, 16))
-        font5 = QFont()
-        font5.setFamilies([u"Segoe UI"])
-        font5.setBold(False)
-        font5.setItalic(False)
-        self.creditsLabel.setFont(font5)
+        font4 = QFont()
+        font4.setFamilies([u"Segoe UI"])
+        font4.setBold(False)
+        font4.setItalic(False)
+        self.creditsLabel.setFont(font4)
         self.creditsLabel.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.horizontalLayout_5.addWidget(self.creditsLabel)
@@ -1671,7 +1762,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.stackedWidget.setCurrentIndex(1)
-        self.stackedWidget_2.setCurrentIndex(1)
+        self.stackedWidget_2.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1719,9 +1810,12 @@ class Ui_MainWindow(object):
         self.closeAppBtn.setToolTip(QCoreApplication.translate("MainWindow", u"Close", None))
 #endif // QT_CONFIG(tooltip)
         self.closeAppBtn.setText("")
-        self.createButton.setText(QCoreApplication.translate("MainWindow", u"Create new run", None))
-        self.deleteButton.setText(QCoreApplication.translate("MainWindow", u"Delete run", None))
-        self.exportButton.setText(QCoreApplication.translate("MainWindow", u"Export run", None))
+        self.createRunButton.setText(QCoreApplication.translate("MainWindow", u"Create", None))
+        self.selectRunButton.setText(QCoreApplication.translate("MainWindow", u"Select", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Currently Selected Run:", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"NONE", None))
+        self.refreshRunButton.setText(QCoreApplication.translate("MainWindow", u"Refresh", None))
+        self.deleteRunButton.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
         ___qtablewidgetitem = self.runsTable.horizontalHeaderItem(0)
         ___qtablewidgetitem.setText(QCoreApplication.translate("MainWindow", u"Name", None));
         ___qtablewidgetitem1 = self.runsTable.horizontalHeaderItem(1)
@@ -1731,7 +1825,7 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem3 = self.runsTable.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Last Run Timestamp", None));
         ___qtablewidgetitem4 = self.runsTable.verticalHeaderItem(0)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"Column headers", None));
+        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
         ___qtablewidgetitem5 = self.runsTable.verticalHeaderItem(1)
         ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
         ___qtablewidgetitem6 = self.runsTable.verticalHeaderItem(2)
@@ -1774,33 +1868,21 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem24.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
         ___qtablewidgetitem25 = self.runsTable.verticalHeaderItem(21)
         ___qtablewidgetitem25.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem26 = self.runsTable.verticalHeaderItem(22)
-        ___qtablewidgetitem26.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
 
         __sortingEnabled = self.runsTable.isSortingEnabled()
         self.runsTable.setSortingEnabled(False)
-        ___qtablewidgetitem27 = self.runsTable.item(0, 0)
-        ___qtablewidgetitem27.setText(QCoreApplication.translate("MainWindow", u"Name", None));
-        ___qtablewidgetitem28 = self.runsTable.item(0, 1)
-        ___qtablewidgetitem28.setText(QCoreApplication.translate("MainWindow", u"Creation Timestamp", None));
-        ___qtablewidgetitem29 = self.runsTable.item(0, 2)
-        ___qtablewidgetitem29.setText(QCoreApplication.translate("MainWindow", u"Progress", None));
-        ___qtablewidgetitem30 = self.runsTable.item(0, 3)
-        ___qtablewidgetitem30.setText(QCoreApplication.translate("MainWindow", u"Last Run Timestamp", None));
-        ___qtablewidgetitem31 = self.runsTable.item(1, 0)
-        ___qtablewidgetitem31.setText(QCoreApplication.translate("MainWindow", u"test", None));
-        ___qtablewidgetitem32 = self.runsTable.item(1, 1)
-        ___qtablewidgetitem32.setText(QCoreApplication.translate("MainWindow", u"test", None));
-        ___qtablewidgetitem33 = self.runsTable.item(1, 2)
-        ___qtablewidgetitem33.setText(QCoreApplication.translate("MainWindow", u"test", None));
-        ___qtablewidgetitem34 = self.runsTable.item(1, 3)
-        ___qtablewidgetitem34.setText(QCoreApplication.translate("MainWindow", u"test", None));
+        ___qtablewidgetitem26 = self.runsTable.item(0, 0)
+        ___qtablewidgetitem26.setText(QCoreApplication.translate("MainWindow", u"test", None));
+        ___qtablewidgetitem27 = self.runsTable.item(0, 1)
+        ___qtablewidgetitem27.setText(QCoreApplication.translate("MainWindow", u"test", None));
+        ___qtablewidgetitem28 = self.runsTable.item(0, 2)
+        ___qtablewidgetitem28.setText(QCoreApplication.translate("MainWindow", u"test", None));
+        ___qtablewidgetitem29 = self.runsTable.item(0, 3)
+        ___qtablewidgetitem29.setText(QCoreApplication.translate("MainWindow", u"test", None));
         self.runsTable.setSortingEnabled(__sortingEnabled)
 
-        self.importRunButton.setText(QCoreApplication.translate("MainWindow", u"Open", None))
-        self.importRunInput.setText("")
-        self.importRunInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Type here", None))
-        self.importRunLabel.setText(QCoreApplication.translate("MainWindow", u"Import run", None))
+        self.importRunButton.setText(QCoreApplication.translate("MainWindow", u"Import", None))
+        self.exportRunButton.setText(QCoreApplication.translate("MainWindow", u"Export", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"LTR Primer Sequence", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Adapter Sequence", None))
         self.forwardReadLabel.setText(QCoreApplication.translate("MainWindow", u"Forward read", None))
@@ -1815,9 +1897,13 @@ class Ui_MainWindow(object):
         self.referenceGenomeLabel_2.setText(QCoreApplication.translate("MainWindow", u"Reference genome\n"
 "(Leave blank for H19)", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"  Docker setup", None))
-        self.commandLinkButton.setText(QCoreApplication.translate("MainWindow", u"Not sure what to pick?", None))
         self.radioButton.setText(QCoreApplication.translate("MainWindow", u"Local", None))
         self.radioButton_2.setText(QCoreApplication.translate("MainWindow", u"Remote", None))
+        self.dockerGuideButton.setText(QCoreApplication.translate("MainWindow", u"Not sure what to pick?", None))
+        self.resetButton.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
+        self.restoreDefaultsButton.setText(QCoreApplication.translate("MainWindow", u"Restore Defaults", None))
+        self.saveButton.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.helpButton.setText(QCoreApplication.translate("MainWindow", u"Help", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Charts here and stuff after run is complete...", None))
         self.runButton.setText(QCoreApplication.translate("MainWindow", u"Run!", None))
         self.btn_message.setText(QCoreApplication.translate("MainWindow", u"Not sure yet", None))
@@ -1826,3 +1912,4 @@ class Ui_MainWindow(object):
         self.creditsLabel.setText(QCoreApplication.translate("MainWindow", u"By: Miro & Liam Weitzel", None))
         self.version.setText(QCoreApplication.translate("MainWindow", u"v0.0.1", None))
     # retranslateUi
+

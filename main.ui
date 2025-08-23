@@ -1652,7 +1652,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                             <property name="minimumSize">
                              <size>
                               <width>0</width>
-                              <height>110</height>
+                              <height>50</height>
                              </size>
                             </property>
                             <property name="maximumSize">
@@ -1693,23 +1693,166 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                </property>
                                <layout class="QHBoxLayout" name="horizontalLayout_9">
                                 <item>
-                                 <widget class="QCommandLinkButton" name="createButton">
+                                 <widget class="QPushButton" name="createRunButton">
+                                  <property name="minimumSize">
+                                   <size>
+                                    <width>50</width>
+                                    <height>30</height>
+                                   </size>
+                                  </property>
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                    <pointsize>10</pointsize>
+                                    <italic>false</italic>
+                                    <bold>false</bold>
+                                   </font>
+                                  </property>
+                                  <property name="cursor">
+                                   <cursorShape>PointingHandCursor</cursorShape>
+                                  </property>
+                                  <property name="styleSheet">
+                                   <string notr="true">background-color: rgb(255, 255, 255);</string>
+                                  </property>
                                   <property name="text">
-                                   <string>Create new run</string>
+                                   <string>Create</string>
+                                  </property>
+                                  <property name="icon">
+                                   <iconset resource="resources.qrc">
+                                    <normaloff>:/icons/images/icons/cil-library-add.png</normaloff>:/icons/images/icons/cil-library-add.png</iconset>
                                   </property>
                                  </widget>
                                 </item>
                                 <item>
-                                 <widget class="QCommandLinkButton" name="deleteButton">
+                                 <widget class="QPushButton" name="selectRunButton">
+                                  <property name="minimumSize">
+                                   <size>
+                                    <width>50</width>
+                                    <height>30</height>
+                                   </size>
+                                  </property>
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                    <pointsize>10</pointsize>
+                                    <italic>false</italic>
+                                    <bold>false</bold>
+                                   </font>
+                                  </property>
+                                  <property name="cursor">
+                                   <cursorShape>PointingHandCursor</cursorShape>
+                                  </property>
+                                  <property name="styleSheet">
+                                   <string notr="true">background-color: rgb(255, 255, 255);</string>
+                                  </property>
                                   <property name="text">
-                                   <string>Delete run</string>
+                                   <string>Select</string>
+                                  </property>
+                                  <property name="icon">
+                                   <iconset resource="resources.qrc">
+                                    <normaloff>:/icons/images/icons/cil-input.png</normaloff>:/icons/images/icons/cil-input.png</iconset>
                                   </property>
                                  </widget>
                                 </item>
                                 <item>
-                                 <widget class="QCommandLinkButton" name="exportButton">
+                                 <spacer name="horizontalSpacer_4">
+                                  <property name="orientation">
+                                   <enum>Qt::Orientation::Horizontal</enum>
+                                  </property>
+                                  <property name="sizeHint" stdset="0">
+                                   <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                   </size>
+                                  </property>
+                                 </spacer>
+                                </item>
+                                <item>
+                                 <widget class="QLabel" name="label_5">
                                   <property name="text">
-                                   <string>Export run</string>
+                                   <string>Currently Selected Run:</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QLabel" name="label_6">
+                                  <property name="text">
+                                   <string>NONE</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <spacer name="horizontalSpacer_3">
+                                  <property name="orientation">
+                                   <enum>Qt::Orientation::Horizontal</enum>
+                                  </property>
+                                  <property name="sizeHint" stdset="0">
+                                   <size>
+                                    <width>40</width>
+                                    <height>20</height>
+                                   </size>
+                                  </property>
+                                 </spacer>
+                                </item>
+                                <item>
+                                 <widget class="QPushButton" name="refreshRunButton">
+                                  <property name="minimumSize">
+                                   <size>
+                                    <width>50</width>
+                                    <height>30</height>
+                                   </size>
+                                  </property>
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                    <pointsize>10</pointsize>
+                                    <italic>false</italic>
+                                    <bold>false</bold>
+                                   </font>
+                                  </property>
+                                  <property name="cursor">
+                                   <cursorShape>PointingHandCursor</cursorShape>
+                                  </property>
+                                  <property name="styleSheet">
+                                   <string notr="true">background-color: rgb(255, 255, 255);</string>
+                                  </property>
+                                  <property name="text">
+                                   <string>Refresh</string>
+                                  </property>
+                                  <property name="icon">
+                                   <iconset resource="resources.qrc">
+                                    <normaloff>:/icons/images/icons/cil-reload.png</normaloff>:/icons/images/icons/cil-reload.png</iconset>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item>
+                                 <widget class="QPushButton" name="deleteRunButton">
+                                  <property name="minimumSize">
+                                   <size>
+                                    <width>50</width>
+                                    <height>30</height>
+                                   </size>
+                                  </property>
+                                  <property name="font">
+                                   <font>
+                                    <family>Segoe UI</family>
+                                    <pointsize>10</pointsize>
+                                    <italic>false</italic>
+                                    <bold>false</bold>
+                                   </font>
+                                  </property>
+                                  <property name="cursor">
+                                   <cursorShape>PointingHandCursor</cursorShape>
+                                  </property>
+                                  <property name="styleSheet">
+                                   <string notr="true">background-color: rgb(255, 255, 255);</string>
+                                  </property>
+                                  <property name="text">
+                                   <string>Delete</string>
+                                  </property>
+                                  <property name="icon">
+                                   <iconset resource="resources.qrc">
+                                    <normaloff>:/icons/images/icons/cil-remove.png</normaloff>:/icons/images/icons/cil-remove.png</iconset>
                                   </property>
                                  </widget>
                                 </item>
@@ -1997,25 +2140,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
                             </attribute>
                             <row>
                              <property name="text">
-                              <string>Column headers</string>
-                             </property>
-                             <property name="font">
-                              <font>
-                               <pointsize>10</pointsize>
-                               <bold>true</bold>
-                               <underline>false</underline>
-                              </font>
-                             </property>
-                             <property name="background">
-                              <color>
-                               <red>0</red>
-                               <green>33</green>
-                               <blue>109</blue>
-                              </color>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
                               <string>New Row</string>
                              </property>
                             </row>
@@ -2146,40 +2270,20 @@ li.checked::marker { content: &quot;\2612&quot;; }
                             </column>
                             <item row="0" column="0">
                              <property name="text">
-                              <string>Name</string>
+                              <string>test</string>
                              </property>
                             </item>
                             <item row="0" column="1">
                              <property name="text">
-                              <string>Creation Timestamp</string>
+                              <string>test</string>
                              </property>
                             </item>
                             <item row="0" column="2">
                              <property name="text">
-                              <string>Progress</string>
+                              <string>test</string>
                              </property>
                             </item>
                             <item row="0" column="3">
-                             <property name="text">
-                              <string>Last Run Timestamp</string>
-                             </property>
-                            </item>
-                            <item row="1" column="0">
-                             <property name="text">
-                              <string>test</string>
-                             </property>
-                            </item>
-                            <item row="1" column="1">
-                             <property name="text">
-                              <string>test</string>
-                             </property>
-                            </item>
-                            <item row="1" column="2">
-                             <property name="text">
-                              <string>test</string>
-                             </property>
-                            </item>
-                            <item row="1" column="3">
                              <property name="text">
                               <string>test</string>
                              </property>
@@ -2224,11 +2328,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
                             <property name="bottomMargin">
                              <number>0</number>
                             </property>
-                            <item row="1" column="2">
+                            <item row="0" column="1">
                              <widget class="QPushButton" name="importRunButton">
                               <property name="minimumSize">
                                <size>
-                                <width>150</width>
+                                <width>50</width>
                                 <height>30</height>
                                </size>
                               </property>
@@ -2247,39 +2351,57 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                <string notr="true">background-color: rgb(255, 255, 255);</string>
                               </property>
                               <property name="text">
-                               <string>Open</string>
+                               <string>Import</string>
                               </property>
                               <property name="icon">
                                <iconset resource="resources.qrc">
-                                <normaloff>:/icons/images/icons/cil-folder-open.png</normaloff>:/icons/images/icons/cil-folder-open.png</iconset>
+                                <normaloff>:/icons/images/icons/cil-cloud-download.png</normaloff>:/icons/images/icons/cil-cloud-download.png</iconset>
                               </property>
                              </widget>
                             </item>
-                            <item row="1" column="0">
-                             <widget class="QLineEdit" name="importRunInput">
+                            <item row="0" column="3">
+                             <widget class="QPushButton" name="exportRunButton">
                               <property name="minimumSize">
                                <size>
-                                <width>0</width>
+                                <width>50</width>
                                 <height>30</height>
                                </size>
+                              </property>
+                              <property name="font">
+                               <font>
+                                <family>Segoe UI</family>
+                                <pointsize>10</pointsize>
+                                <italic>false</italic>
+                                <bold>false</bold>
+                               </font>
+                              </property>
+                              <property name="cursor">
+                               <cursorShape>PointingHandCursor</cursorShape>
                               </property>
                               <property name="styleSheet">
                                <string notr="true">background-color: rgb(255, 255, 255);</string>
                               </property>
                               <property name="text">
-                               <string/>
+                               <string>Export</string>
                               </property>
-                              <property name="placeholderText">
-                               <string>Type here</string>
+                              <property name="icon">
+                               <iconset resource="resources.qrc">
+                                <normaloff>:/icons/images/icons/cil-cloud-upload.png</normaloff>:/icons/images/icons/cil-cloud-upload.png</iconset>
                               </property>
                              </widget>
                             </item>
                             <item row="0" column="0">
-                             <widget class="QLabel" name="importRunLabel">
-                              <property name="text">
-                               <string>Import run</string>
+                             <spacer name="horizontalSpacer_5">
+                              <property name="orientation">
+                               <enum>Qt::Orientation::Horizontal</enum>
                               </property>
-                             </widget>
+                              <property name="sizeHint" stdset="0">
+                               <size>
+                                <width>40</width>
+                                <height>20</height>
+                               </size>
+                              </property>
+                             </spacer>
                             </item>
                            </layout>
                           </item>
@@ -2433,7 +2555,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                <string notr="true">background: transparent;</string>
                               </property>
                               <property name="currentIndex">
-                               <number>1</number>
+                               <number>0</number>
                               </property>
                               <widget class="QWidget" name="localDocker">
                                <property name="styleSheet">
@@ -2751,13 +2873,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
                               </property>
                              </widget>
                             </item>
-                            <item row="0" column="1">
-                             <widget class="QCommandLinkButton" name="commandLinkButton">
-                              <property name="text">
-                               <string>Not sure what to pick?</string>
-                              </property>
-                             </widget>
-                            </item>
                             <item row="0" column="2">
                              <spacer name="horizontalSpacer">
                               <property name="orientation">
@@ -2798,6 +2913,37 @@ li.checked::marker { content: &quot;\2612&quot;; }
                               </property>
                              </spacer>
                             </item>
+                            <item row="0" column="1">
+                             <widget class="QPushButton" name="dockerGuideButton">
+                              <property name="minimumSize">
+                               <size>
+                                <width>50</width>
+                                <height>30</height>
+                               </size>
+                              </property>
+                              <property name="font">
+                               <font>
+                                <family>Segoe UI</family>
+                                <pointsize>10</pointsize>
+                                <italic>false</italic>
+                                <bold>false</bold>
+                               </font>
+                              </property>
+                              <property name="cursor">
+                               <cursorShape>PointingHandCursor</cursorShape>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">background-color: rgb(255, 255, 255);</string>
+                              </property>
+                              <property name="text">
+                               <string>Not sure what to pick?</string>
+                              </property>
+                              <property name="icon">
+                               <iconset resource="resources.qrc">
+                                <normaloff>:/icons/images/icons/cil-external-link.png</normaloff>:/icons/images/icons/cil-external-link.png</iconset>
+                              </property>
+                             </widget>
+                            </item>
                            </layout>
                           </item>
                          </layout>
@@ -2808,13 +2954,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
                          <property name="minimumSize">
                           <size>
                            <width>0</width>
-                           <height>25</height>
+                           <height>35</height>
                           </size>
                          </property>
                          <property name="maximumSize">
                           <size>
                            <width>16777215</width>
-                           <height>25</height>
+                           <height>35</height>
                           </size>
                          </property>
                          <property name="frameShape">
@@ -2840,12 +2986,139 @@ li.checked::marker { content: &quot;\2612&quot;; }
                            <number>0</number>
                           </property>
                           <item>
-                           <widget class="QDialogButtonBox" name="buttonBox">
+                           <widget class="QPushButton" name="resetButton">
+                            <property name="minimumSize">
+                             <size>
+                              <width>50</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <family>Segoe UI</family>
+                              <pointsize>10</pointsize>
+                              <italic>false</italic>
+                              <bold>false</bold>
+                             </font>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
                             <property name="styleSheet">
                              <string notr="true">background-color: rgb(255, 255, 255);</string>
                             </property>
-                            <property name="standardButtons">
-                             <set>QDialogButtonBox::StandardButton::Help|QDialogButtonBox::StandardButton::Reset|QDialogButtonBox::StandardButton::RestoreDefaults|QDialogButtonBox::StandardButton::Save</set>
+                            <property name="text">
+                             <string>Reset</string>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="resources.qrc">
+                              <normaloff>:/icons/images/icons/cil-fire.png</normaloff>:/icons/images/icons/cil-fire.png</iconset>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="restoreDefaultsButton">
+                            <property name="minimumSize">
+                             <size>
+                              <width>50</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <family>Segoe UI</family>
+                              <pointsize>10</pointsize>
+                              <italic>false</italic>
+                              <bold>false</bold>
+                             </font>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(255, 255, 255);</string>
+                            </property>
+                            <property name="text">
+                             <string>Restore Defaults</string>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="resources.qrc">
+                              <normaloff>:/icons/images/icons/cil-file.png</normaloff>:/icons/images/icons/cil-file.png</iconset>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <spacer name="horizontalSpacer_6">
+                            <property name="orientation">
+                             <enum>Qt::Orientation::Horizontal</enum>
+                            </property>
+                            <property name="sizeHint" stdset="0">
+                             <size>
+                              <width>40</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                           </spacer>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="saveButton">
+                            <property name="minimumSize">
+                             <size>
+                              <width>50</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <family>Segoe UI</family>
+                              <pointsize>10</pointsize>
+                              <italic>false</italic>
+                              <bold>false</bold>
+                             </font>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(255, 255, 255);</string>
+                            </property>
+                            <property name="text">
+                             <string>Save</string>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="resources.qrc">
+                              <normaloff>:/icons/images/icons/cil-save.png</normaloff>:/icons/images/icons/cil-save.png</iconset>
+                            </property>
+                           </widget>
+                          </item>
+                          <item>
+                           <widget class="QPushButton" name="helpButton">
+                            <property name="minimumSize">
+                             <size>
+                              <width>50</width>
+                              <height>30</height>
+                             </size>
+                            </property>
+                            <property name="font">
+                             <font>
+                              <family>Segoe UI</family>
+                              <pointsize>10</pointsize>
+                              <italic>false</italic>
+                              <bold>false</bold>
+                             </font>
+                            </property>
+                            <property name="cursor">
+                             <cursorShape>PointingHandCursor</cursorShape>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(255, 255, 255);</string>
+                            </property>
+                            <property name="text">
+                             <string>Help</string>
+                            </property>
+                            <property name="icon">
+                             <iconset resource="resources.qrc">
+                              <normaloff>:/icons/images/icons/cil-map.png</normaloff>:/icons/images/icons/cil-map.png</iconset>
                             </property>
                            </widget>
                           </item>
