@@ -159,8 +159,8 @@ class Ui_MainWindow(object):
 "#extraLabel { color: rgb(51, 51, 51); }\n"
 "\n"
 "/* Btn Close */\n"
-"#extraCloseColumnButton { backgro"
-                        "und-color: rgba(255, 255, 255, 0); border: none;  border-radius: 5px; }\n"
+"#extraCloseColumnButton { back"
+                        "ground-color: rgba(255, 255, 255, 0); border: none;  border-radius: 5px; }\n"
 "#extraCloseColumnButton:hover { background-color: rgb(178, 223, 223); border-style: solid; border-radius: 4px; }\n"
 "#extraCloseColumnButton:pressed { background-color: rgb(128, 207, 207); border-style: solid; border-radius: 4px; }\n"
 "\n"
@@ -192,8 +192,8 @@ class Ui_MainWindow(object):
 "	background-color: rgb(245, 245, 245);\n"
 "}\n"
 "#contentBottom{\n"
-"	border-top:"
-                        " 3px solid rgb(204, 204, 204);\n"
+"	bo"
+                        "rder-top: 3px solid rgb(204, 204, 204);\n"
 "}\n"
 "\n"
 "/* Top Buttons */\n"
@@ -206,8 +206,7 @@ class Ui_MainWindow(object):
 "#themeSettingsTopDetail { background-color: #86D2ED; }\n"
 "\n"
 "/* Bottom Bar */\n"
-"#bottomBar { background-color: rgb(245"
-                        ", 245, 245); }\n"
+"#bottomBar { background-color: rgb(245, 245, 245); }\n"
 "#bottomBar QLabel { font-size: 11px; color: rgb(102, 102, 102); padding-left: 10px; padding-right: 10px; padding-bottom: 2px; }\n"
 "\n"
 "/* CONTENT SETTINGS */\n"
@@ -217,7 +216,8 @@ class Ui_MainWindow(object):
 "    background-repeat: no-repeat;\n"
 "	border: none;\n"
 "	border-left: 22px solid transparent;\n"
-"	background-color:transparent;\n"
+"	backg"
+                        "round-color:transparent;\n"
 "	text-align: left;\n"
 "	padding-left: 44px;\n"
 "}\n"
@@ -241,8 +241,7 @@ class Ui_MainWindow(object):
 "	border-color: rgb(220, 220, 220);\n"
 "	padding-left: 5px;\n"
 "	padding-right: 5px;\n"
-"	gridline-color: r"
-                        "gb(220, 220, 220);\n"
+"	gridline-color: rgb(220, 220, 220);\n"
 "}\n"
 "QTableWidget::item:selected{\n"
 "	background-color: rgb(134, 210, 237);\n"
@@ -254,7 +253,8 @@ class Ui_MainWindow(object):
 "	border: 1px solid rgb(204, 204, 204);\n"
 "	border-style: none;\n"
 "    border-bottom: 1px solid rgb(220, 220, 220);\n"
-"    border-right: 1px solid rgb(220, 220, 220);\n"
+"    border-right: 1px solid rgb(220, 220, "
+                        "220);\n"
 "}\n"
 "QTableWidget::horizontalHeader {	\n"
 "	background-color: rgb(245, 245, 245);\n"
@@ -282,8 +282,7 @@ class Ui_MainWindow(object):
 "QLineEdit:hover {\n"
 "	border: 2px solid #86D2ED;\n"
 "}\n"
-"QLineE"
-                        "dit:focus {\n"
+"QLineEdit:focus {\n"
 "	border: 2px solid #86D2ED;\n"
 "}\n"
 "\n"
@@ -298,7 +297,8 @@ class Ui_MainWindow(object):
 "QPlainTextEdit  QScrollBar:vertical {\n"
 "    width: 8px;\n"
 " }\n"
-"QPlainTextEdit  QScrollBar:horizontal {\n"
+"QPlainTextEdit  QScrollBar:ho"
+                        "rizontal {\n"
 "    height: 8px;\n"
 " }\n"
 "QPlainTextEdit:hover {\n"
@@ -325,8 +325,7 @@ class Ui_MainWindow(object):
 "    background: rgb(170, 170, 170);\n"
 "    width: 20px;\n"
 "	border-top-right-radius: 4px;\n"
-"    border-botto"
-                        "m-right-radius: 4px;\n"
+"    border-bottom-right-radius: 4px;\n"
 "    subcontrol-position: right;\n"
 "    subcontrol-origin: margin;\n"
 "}\n"
@@ -339,7 +338,8 @@ class Ui_MainWindow(object):
 "    subcontrol-position: left;\n"
 "    subcontrol-origin: margin;\n"
 "}\n"
-"QScrollBar::up-arrow:horizontal, QScrollBar::down-arrow:horizontal\n"
+"QScroll"
+                        "Bar::up-arrow:horizontal, QScrollBar::down-arrow:horizontal\n"
 "{\n"
 "     background: none;\n"
 "}\n"
@@ -363,8 +363,7 @@ class Ui_MainWindow(object):
 "    border: none;\n"
 "    background: rgb(170, 170, 170);\n"
 "    height: 20px;\n"
-"    border-bottom-l"
-                        "eft-radius: 4px;\n"
+"    border-bottom-left-radius: 4px;\n"
 "    border-bottom-right-radius: 4px;\n"
 "    subcontrol-position: bottom;\n"
 "    subcontrol-origin: margin;\n"
@@ -376,7 +375,8 @@ class Ui_MainWindow(object):
 "    border-top-left-radius: 4px;\n"
 "    border-top-right-radius: 4px;\n"
 "    subcontrol-position: top;\n"
-"    subcontrol-origin: margin;\n"
+"    subcont"
+                        "rol-origin: margin;\n"
 "}\n"
 "QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {\n"
 "    background: none;\n"
@@ -399,8 +399,7 @@ class Ui_MainWindow(object):
 "QCheckBox::indicator:checked {\n"
 "    background: 3px solid rgb(230, 230, 230);\n"
 "    border: 2px solid rgb(52, 59, 72);\n"
-"    b"
-                        "ackground-image: url(:/icons/images/icons/cil-check-alt.png);\n"
+"    background-image: url(:/icons/images/icons/cil-check-alt.png);\n"
 "}\n"
 "QCheckBox::indicator:checked:hover {\n"
 "    border: 2px solid rgb(134, 210, 237);\n"
@@ -412,7 +411,8 @@ class Ui_MainWindow(object):
 "    border-radius: 7px;\n"
 "    background: rgb(255, 255, 255);\n"
 "}\n"
-"QRadioButton::indicator:hover {\n"
+"QRadioButton::indicator:h"
+                        "over {\n"
 "    border: 2px solid rgb(134, 210, 237);\n"
 "}\n"
 "QRadioButton::indicator:checked {\n"
@@ -470,9 +470,8 @@ class Ui_MainWindow(object):
         self.titleLeftApp.setObjectName(u"titleLeftApp")
         self.titleLeftApp.setGeometry(QRect(70, 8, 160, 20))
         font1 = QFont()
-        font1.setFamilies([u"Segoe UI"])
+        font1.setFamilies([u"Segoe UI Semibold"])
         font1.setPointSize(12)
-        font1.setBold(False)
         font1.setItalic(False)
         self.titleLeftApp.setFont(font1)
         self.titleLeftApp.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignTop)
@@ -1138,7 +1137,11 @@ class Ui_MainWindow(object):
         icon8.addFile(u":/icons/images/icons/cil-cloud-download.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.importRunButton.setIcon(icon8)
 
-        self.gridLayout.addWidget(self.importRunButton, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.importRunButton, 0, 2, 1, 1)
+
+        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer_5, 0, 1, 1, 1)
 
         self.exportRunButton = QPushButton(self.row_3)
         self.exportRunButton.setObjectName(u"exportRunButton")
@@ -1150,11 +1153,19 @@ class Ui_MainWindow(object):
         icon9.addFile(u":/icons/images/icons/cil-cloud-upload.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.exportRunButton.setIcon(icon9)
 
-        self.gridLayout.addWidget(self.exportRunButton, 0, 3, 1, 1)
+        self.gridLayout.addWidget(self.exportRunButton, 0, 4, 1, 1)
 
-        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.openFolderLocationButton = QPushButton(self.row_3)
+        self.openFolderLocationButton.setObjectName(u"openFolderLocationButton")
+        self.openFolderLocationButton.setMinimumSize(QSize(50, 30))
+        self.openFolderLocationButton.setFont(font)
+        self.openFolderLocationButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.openFolderLocationButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon10 = QIcon()
+        icon10.addFile(u":/icons/images/icons/cil-folder-open.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.openFolderLocationButton.setIcon(icon10)
 
-        self.gridLayout.addItem(self.horizontalSpacer_5, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.openFolderLocationButton, 0, 0, 1, 1)
 
 
         self.horizontalLayout_12.addLayout(self.gridLayout)
@@ -1449,9 +1460,9 @@ class Ui_MainWindow(object):
         self.dockerGuideButton.setFont(font)
         self.dockerGuideButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.dockerGuideButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon10 = QIcon()
-        icon10.addFile(u":/icons/images/icons/cil-external-link.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.dockerGuideButton.setIcon(icon10)
+        icon11 = QIcon()
+        icon11.addFile(u":/icons/images/icons/cil-external-link.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.dockerGuideButton.setIcon(icon11)
 
         self.gridLayout_3.addWidget(self.dockerGuideButton, 0, 1, 1, 1)
 
@@ -1477,9 +1488,9 @@ class Ui_MainWindow(object):
         self.resetButton.setFont(font)
         self.resetButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.resetButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon11 = QIcon()
-        icon11.addFile(u":/icons/images/icons/cil-fire.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.resetButton.setIcon(icon11)
+        icon12 = QIcon()
+        icon12.addFile(u":/icons/images/icons/cil-fire.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.resetButton.setIcon(icon12)
 
         self.horizontalLayout_121.addWidget(self.resetButton)
 
@@ -1489,9 +1500,9 @@ class Ui_MainWindow(object):
         self.restoreDefaultsButton.setFont(font)
         self.restoreDefaultsButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.restoreDefaultsButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon12 = QIcon()
-        icon12.addFile(u":/icons/images/icons/cil-file.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.restoreDefaultsButton.setIcon(icon12)
+        icon13 = QIcon()
+        icon13.addFile(u":/icons/images/icons/cil-file.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.restoreDefaultsButton.setIcon(icon13)
 
         self.horizontalLayout_121.addWidget(self.restoreDefaultsButton)
 
@@ -1505,9 +1516,9 @@ class Ui_MainWindow(object):
         self.saveButton.setFont(font)
         self.saveButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.saveButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon13 = QIcon()
-        icon13.addFile(u":/icons/images/icons/cil-save.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.saveButton.setIcon(icon13)
+        icon14 = QIcon()
+        icon14.addFile(u":/icons/images/icons/cil-save.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.saveButton.setIcon(icon14)
 
         self.horizontalLayout_121.addWidget(self.saveButton)
 
@@ -1517,9 +1528,9 @@ class Ui_MainWindow(object):
         self.helpButton.setFont(font)
         self.helpButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.helpButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon14 = QIcon()
-        icon14.addFile(u":/icons/images/icons/cil-map.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.helpButton.setIcon(icon14)
+        icon15 = QIcon()
+        icon15.addFile(u":/icons/images/icons/cil-map.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.helpButton.setIcon(icon15)
 
         self.horizontalLayout_121.addWidget(self.helpButton)
 
@@ -1775,8 +1786,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
-        self.stackedWidget_2.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget_2.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1787,11 +1798,11 @@ class Ui_MainWindow(object):
         self.titleLeftApp.setText(QCoreApplication.translate("MainWindow", u"qsLAM_PCR_AIO", None))
         self.titleLeftDescription.setText(QCoreApplication.translate("MainWindow", u"Erasmus MC", None))
         self.toggleButton.setText(QCoreApplication.translate("MainWindow", u"Hide", None))
-        self.projectManagerButton.setText(QCoreApplication.translate("MainWindow", u"Home", None))
-        self.setupViewButton.setText(QCoreApplication.translate("MainWindow", u"Widgets", None))
-        self.runViewButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.analysisViewButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.toggleLeftBox.setText(QCoreApplication.translate("MainWindow", u"Left Box", None))
+        self.projectManagerButton.setText(QCoreApplication.translate("MainWindow", u"Project Manager", None))
+        self.setupViewButton.setText(QCoreApplication.translate("MainWindow", u"Edit Run Configuration", None))
+        self.runViewButton.setText(QCoreApplication.translate("MainWindow", u"Run Progress", None))
+        self.analysisViewButton.setText(QCoreApplication.translate("MainWindow", u"Analyze Run", None))
+        self.toggleLeftBox.setText(QCoreApplication.translate("MainWindow", u"About", None))
 #if QT_CONFIG(tooltip)
         self.extraCloseColumnButton.setToolTip(QCoreApplication.translate("MainWindow", u"Close about", None))
 #endif // QT_CONFIG(tooltip)
@@ -1897,6 +1908,7 @@ class Ui_MainWindow(object):
 
         self.importRunButton.setText(QCoreApplication.translate("MainWindow", u"Import", None))
         self.exportRunButton.setText(QCoreApplication.translate("MainWindow", u"Export", None))
+        self.openFolderLocationButton.setText(QCoreApplication.translate("MainWindow", u"Open Folder Location", None))
         self.nameRunLabel.setText(QCoreApplication.translate("MainWindow", u"Name of this run", None))
         self.adapterSequenceLabel.setText(QCoreApplication.translate("MainWindow", u"Adapter Sequence", None))
         self.ltrPrimerSequenceLabel.setText(QCoreApplication.translate("MainWindow", u"LTR Primer Sequence", None))

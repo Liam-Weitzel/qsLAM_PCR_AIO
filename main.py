@@ -16,9 +16,9 @@
 
 import sys
 import os
-import platform
 import httpx
 import json
+import subprocess
 
 # IMPORT / GUI AND MODULES AND WIDGETS
 # ///////////////////////////////////////////////////////////////
@@ -78,8 +78,12 @@ class MainWindow(QMainWindow):
             UIFunctions.toggleRightBox(self, True)
         widgets.settingsTopButton.clicked.connect(openCloseRightBox)
 
-        # SETUP BUTTONS
+        # PROJECT MANAGER BUTTONS
         widgets.createRunButton.clicked.connect(self.buttonClick)
+        widgets.deleteRunButton.clicked.connect(self.buttonClick)
+        widgets.exportRunButton.clicked.connect(self.buttonClick)
+        widgets.importRunButton.clicked.connect(self.buttonClick)
+        widgets.openFolderLocationButton.clicked.connect(self.buttonClick)
 
         # SHOW APP
         # ///////////////////////////////////////////////////////////////
@@ -118,9 +122,42 @@ class MainWindow(QMainWindow):
             widgets.stackedWidget.setCurrentWidget(widgets.analysisView)
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
-        # SETUP BUTTONS
+        # PROJECT MANAGER BUTTONS
         elif btnName == "createRunButton":
-            print("Create new project clicked")
+            button = QMessageBox.question(
+                self,
+                "Question dialog",
+                "The longer message",
+            )
+            if button == QMessageBox.Yes:
+                print("Yes!")
+            else:
+                print("No!")
+        elif btnName == "deleteRunButton":
+            button = QMessageBox.critical(
+                self,
+                "Oh dear!",
+                "Something went very wrong.",
+                buttons=QMessageBox.Discard | QMessageBox.NoToAll | QMessageBox.Ignore,
+                defaultButton=QMessageBox.Discard,
+            )
+
+            if button == QMessageBox.Discard:
+                print("Discard!")
+            elif button == QMessageBox.NoToAll:
+                print("No to all!")
+            else:
+                print("Ignore!")
+        elif btnName == "importRunButton":
+            print(QFileDialog.getOpenFileNames(caption="Select one or more files to import",  filter="*.zip"))
+        elif btnName == "exportRunButton":
+            print(QFileDialog.getSaveFileName(caption="Select where you would like to export to"))
+        elif btnName == "openFolderLocationButton":
+            if sys.platform == "win32":
+                os.startfile(".")
+            else:
+                opener = "open" if sys.platform == "darwin" else "xdg-open"
+                subprocess.call([opener, "."])
 
     # RESIZE EVENTS
     # ///////////////////////////////////////////////////////////////
