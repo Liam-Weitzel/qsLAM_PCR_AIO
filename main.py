@@ -62,21 +62,21 @@ class MainWindow(QMainWindow):
         # ///////////////////////////////////////////////////////////////
 
         # LEFT MENUS
-        widgets.btn_setupView.clicked.connect(self.buttonClick)
-        widgets.btn_runView.clicked.connect(self.buttonClick)
-        widgets.btn_analysisView.clicked.connect(self.buttonClick)
-        widgets.btn_projectManager.clicked.connect(self.buttonClick)
+        widgets.setupViewButton.clicked.connect(self.buttonClick)
+        widgets.runViewButton.clicked.connect(self.buttonClick)
+        widgets.analysisViewButton.clicked.connect(self.buttonClick)
+        widgets.projectManagerButton.clicked.connect(self.buttonClick)
 
         # EXTRA LEFT BOX
         def openCloseLeftBox():
             UIFunctions.toggleLeftBox(self, True)
         widgets.toggleLeftBox.clicked.connect(openCloseLeftBox)
-        widgets.extraCloseColumnBtn.clicked.connect(openCloseLeftBox)
+        widgets.extraCloseColumnButton.clicked.connect(openCloseLeftBox)
 
         # EXTRA RIGHT BOX
         def openCloseRightBox():
             UIFunctions.toggleRightBox(self, True)
-        widgets.settingsTopBtn.clicked.connect(openCloseRightBox)
+        widgets.settingsTopButton.clicked.connect(openCloseRightBox)
 
         # SETUP BUTTONS
         widgets.createRunButton.clicked.connect(self.buttonClick)
@@ -88,7 +88,7 @@ class MainWindow(QMainWindow):
         # SET FIRST LOAD PAGE AND SELECT MENU
         # ///////////////////////////////////////////////////////////////
         widgets.stackedWidget.setCurrentWidget(widgets.projectManager)
-        widgets.btn_projectManager.setStyleSheet(UIFunctions.selectMenu(widgets.btn_projectManager.styleSheet()))
+        widgets.projectManagerButton.setStyleSheet(UIFunctions.selectMenu(widgets.projectManagerButton.styleSheet()))
 
 
     # BUTTONS CLICK
@@ -102,19 +102,19 @@ class MainWindow(QMainWindow):
         print(btnName)
 
         # NAVIGATION BUTTONS
-        if btnName == "btn_projectManager":
+        if btnName == "projectManagerButton":
             widgets.stackedWidget.setCurrentWidget(widgets.projectManager)
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
-        elif btnName == "btn_setupView":
+        elif btnName == "setupViewButton":
             widgets.stackedWidget.setCurrentWidget(widgets.setupView)
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
-        elif btnName == "btn_runView":
+        elif btnName == "runViewButton":
             widgets.stackedWidget.setCurrentWidget(widgets.runView)
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
-        elif btnName == "btn_analysisView":
+        elif btnName == "analysisViewButton":
             widgets.stackedWidget.setCurrentWidget(widgets.analysisView)
             UIFunctions.resetStyle(self, btnName)
             btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))

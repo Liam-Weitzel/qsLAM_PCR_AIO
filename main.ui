@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author>Wanderson M. Pimenta</author>
+ <author>Liam Weitzel</author>
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
@@ -143,16 +143,16 @@ QToolTip {
 #extraIcon {
 	background-position: center;
 	background-repeat: no-repeat;
-	background-image: url(:/icons/images/icons/icon_settings.png);
+	background-image: url(:/icons/images/icons/cil-people.png);
 }
 
 /* Label */
 #extraLabel { color: rgb(51, 51, 51); }
 
 /* Btn Close */
-#extraCloseColumnBtn { background-color: rgba(255, 255, 255, 0); border: none;  border-radius: 5px; }
-#extraCloseColumnBtn:hover { background-color: rgb(178, 223, 223); border-style: solid; border-radius: 4px; }
-#extraCloseColumnBtn:pressed { background-color: rgb(128, 207, 207); border-style: solid; border-radius: 4px; }
+#extraCloseColumnButton { background-color: rgba(255, 255, 255, 0); border: none;  border-radius: 5px; }
+#extraCloseColumnButton:hover { background-color: rgb(178, 223, 223); border-style: solid; border-radius: 4px; }
+#extraCloseColumnButton:pressed { background-color: rgb(128, 207, 207); border-style: solid; border-radius: 4px; }
 
 /* Extra Content */
 #extraContent{
@@ -552,9 +552,10 @@ QCommandLinkButton:hover {
              </property>
              <property name="font">
               <font>
-               <family>Segoe UI Semibold</family>
-               <pointsize>12</pointsize>
-               <italic>false</italic>
+		    <family>Segoe UI</family>
+		    <pointsize>12</pointsize>
+		    <italic>false</italic>
+		    <bold>false</bold>
               </font>
              </property>
              <property name="text">
@@ -714,7 +715,7 @@ QCommandLinkButton:hover {
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QPushButton" name="btn_projectManager">
+                 <widget class="QPushButton" name="projectManagerButton">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                     <horstretch>0</horstretch>
@@ -745,12 +746,12 @@ QCommandLinkButton:hover {
                    <string notr="true">background-image: url(:/icons/images/icons/cil-folder-open.png);</string>
                   </property>
                   <property name="text">
-                   <string>Home</string>
+                   <string>Project Manager</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="btn_setupView">
+                 <widget class="QPushButton" name="setupViewButton">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                     <horstretch>0</horstretch>
@@ -781,12 +782,12 @@ QCommandLinkButton:hover {
                    <string notr="true">background-image: url(:/icons/images/icons/cil-equalizer.png);</string>
                   </property>
                   <property name="text">
-                   <string>Widgets</string>
+                   <string>Edit Run Configuration</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="btn_runView">
+                 <widget class="QPushButton" name="runViewButton">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -800,12 +801,12 @@ QCommandLinkButton:hover {
                    <string notr="true">background-image: url(:/icons/images/icons/cil-speedometer.png);</string>
                   </property>
                   <property name="text">
-                   <string>PushButton</string>
+                   <string>Run Progress</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="btn_analysisView">
+                 <widget class="QPushButton" name="analysisViewButton">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -819,7 +820,7 @@ QCommandLinkButton:hover {
                    <string notr="true">background-image: url(:/icons/images/icons/cil-chart.png);</string>
                   </property>
                   <property name="text">
-                   <string>PushButton</string>
+                   <string>Analyze Run</string>
                   </property>
                  </widget>
                 </item>
@@ -882,7 +883,7 @@ QCommandLinkButton:hover {
                    <string notr="true">background-image: url(:/icons/images/icons/cil-chevron-double-right.png);</string>
                   </property>
                   <property name="text">
-                   <string>Left Box</string>
+                   <string>About</string>
                   </property>
                  </widget>
                 </item>
@@ -982,7 +983,7 @@ QCommandLinkButton:hover {
                 <number>0</number>
                </property>
                <item row="0" column="2">
-                <widget class="QPushButton" name="extraCloseColumnBtn">
+                <widget class="QPushButton" name="extraCloseColumnButton">
                  <property name="minimumSize">
                   <size>
                    <width>28</width>
@@ -999,7 +1000,7 @@ QCommandLinkButton:hover {
                   <cursorShape>PointingHandCursor</cursorShape>
                  </property>
                  <property name="toolTip">
-                  <string>Close left box</string>
+                  <string>Close about</string>
                  </property>
                  <property name="text">
                   <string/>
@@ -1090,7 +1091,7 @@ QCommandLinkButton:hover {
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_10">
                 <item>
-                 <widget class="QTextEdit" name="textEdit">
+                 <widget class="QTextEdit" name="aboutText">
                   <property name="minimumSize">
                    <size>
                     <width>222</width>
@@ -1146,7 +1147,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QPushButton" name="btn_about">
+                 <widget class="QPushButton" name="moreButton">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                     <horstretch>0</horstretch>
@@ -1354,7 +1355,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QPushButton" name="settingsTopBtn">
+                 <widget class="QPushButton" name="settingsTopButton">
                   <property name="minimumSize">
                    <size>
                     <width>28</width>
@@ -1389,7 +1390,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="minimizeAppBtn">
+                 <widget class="QPushButton" name="minimizeAppButton">
                   <property name="minimumSize">
                    <size>
                     <width>28</width>
@@ -1424,7 +1425,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="maximizeRestoreAppBtn">
+                 <widget class="QPushButton" name="maximizeRestoreAppButton">
                   <property name="minimumSize">
                    <size>
                     <width>28</width>
@@ -1468,7 +1469,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="closeAppBtn">
+                 <widget class="QPushButton" name="closeAppButton">
                   <property name="minimumSize">
                    <size>
                     <width>28</width>
@@ -2435,13 +2436,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
                          <property name="minimumSize">
                           <size>
                            <width>0</width>
-                           <height>80</height>
+                           <height>120</height>
                           </size>
                          </property>
                          <property name="maximumSize">
                           <size>
                            <width>16777215</width>
-                           <height>80</height>
+                           <height>120</height>
                           </size>
                          </property>
                          <property name="frameShape">
@@ -2468,25 +2469,41 @@ li.checked::marker { content: &quot;\2612&quot;; }
                           </property>
                           <item>
                            <layout class="QGridLayout" name="gridLayout_2">
-                            <item row="3" column="1">
-                             <widget class="QLineEdit" name="lineEdit_2"/>
-                            </item>
                             <item row="1" column="0">
-                             <widget class="QLabel" name="label">
+                             <widget class="QLabel" name="nameRunLabel">
                               <property name="text">
-                               <string>LTR Primer Sequence</string>
+                               <string>Name of this run</string>
                               </property>
                              </widget>
+                            </item>
+                            <item row="4" column="0" colspan="2">
+                             <spacer name="verticalSpacer_3">
+                              <property name="orientation">
+                               <enum>Qt::Orientation::Vertical</enum>
+                              </property>
+                              <property name="sizeHint" stdset="0">
+                               <size>
+                                <width>20</width>
+                                <height>10</height>
+                               </size>
+                              </property>
+                             </spacer>
+                            </item>
+                            <item row="6" column="0" colspan="2">
+                             <spacer name="verticalSpacer_14">
+                              <property name="orientation">
+                               <enum>Qt::Orientation::Vertical</enum>
+                              </property>
+                              <property name="sizeHint" stdset="0">
+                               <size>
+                                <width>20</width>
+                                <height>10</height>
+                               </size>
+                              </property>
+                             </spacer>
                             </item>
                             <item row="1" column="1">
-                             <widget class="QLineEdit" name="lineEdit"/>
-                            </item>
-                            <item row="3" column="0">
-                             <widget class="QLabel" name="label_2">
-                              <property name="text">
-                               <string>Adapter Sequence</string>
-                              </property>
-                             </widget>
+                             <widget class="QLineEdit" name="nameRunInput"/>
                             </item>
                             <item row="0" column="0" colspan="2">
                              <spacer name="verticalSpacer">
@@ -2501,6 +2518,20 @@ li.checked::marker { content: &quot;\2612&quot;; }
                               </property>
                              </spacer>
                             </item>
+                            <item row="3" column="0">
+                             <widget class="QLabel" name="adapterSequenceLabel">
+                              <property name="text">
+                               <string>Adapter Sequence</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="5" column="0">
+                             <widget class="QLabel" name="ltrPrimerSequenceLabel">
+                              <property name="text">
+                               <string>LTR Primer Sequence</string>
+                              </property>
+                             </widget>
+                            </item>
                             <item row="2" column="0" colspan="2">
                              <spacer name="verticalSpacer_2">
                               <property name="orientation">
@@ -2514,18 +2545,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
                               </property>
                              </spacer>
                             </item>
-                            <item row="4" column="0" colspan="2">
-                             <spacer name="verticalSpacer_3">
-                              <property name="orientation">
-                               <enum>Qt::Orientation::Vertical</enum>
-                              </property>
-                              <property name="sizeHint" stdset="0">
-                               <size>
-                                <width>20</width>
-                                <height>10</height>
-                               </size>
-                              </property>
-                             </spacer>
+                            <item row="3" column="1">
+                             <widget class="QLineEdit" name="adapterSequenceInput"/>
+                            </item>
+                            <item row="5" column="1">
+                             <widget class="QLineEdit" name="ltrPrimerSequenceInput"/>
                             </item>
                            </layout>
                           </item>
@@ -2595,30 +2619,30 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                    <item>
                                     <layout class="QGridLayout" name="gridLayout_4">
                                      <item row="5" column="1">
-                                      <widget class="QLineEdit" name="referenceGenomeInput"/>
+                                      <widget class="QLineEdit" name="localReferenceGenomeInput"/>
                                      </item>
                                      <item row="1" column="0">
-                                      <widget class="QLabel" name="forwardReadLabel">
+                                      <widget class="QLabel" name="localForwardReadLabel">
                                        <property name="text">
                                         <string>Forward read</string>
                                        </property>
                                       </widget>
                                      </item>
                                      <item row="3" column="0">
-                                      <widget class="QLabel" name="backwardReadLabel">
+                                      <widget class="QLabel" name="localBackwardReadLabel">
                                        <property name="text">
                                         <string>Backward read</string>
                                        </property>
                                       </widget>
                                      </item>
                                      <item row="1" column="1">
-                                      <widget class="QLineEdit" name="forwardReadInput"/>
+                                      <widget class="QLineEdit" name="localForwardReadInput"/>
                                      </item>
                                      <item row="3" column="1">
-                                      <widget class="QLineEdit" name="backwardReadInput"/>
+                                      <widget class="QLineEdit" name="localBackwardReadInput"/>
                                      </item>
                                      <item row="5" column="0">
-                                      <widget class="QLabel" name="referenceGenomeLabel">
+                                      <widget class="QLabel" name="localReferenceGenomeLabel">
                                        <property name="text">
                                         <string>Reference genome
 (Leave blank for H19)</string>
@@ -2722,54 +2746,54 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                    <item>
                                     <layout class="QGridLayout" name="gridLayout_5">
                                      <item row="9" column="1" colspan="3">
-                                      <widget class="QLineEdit" name="referenceGenomeInput_2"/>
+                                      <widget class="QLineEdit" name="remoteReferenceGenomeInput"/>
                                      </item>
                                      <item row="1" column="3">
-                                      <widget class="QLineEdit" name="portNumberInput"/>
+                                      <widget class="QLineEdit" name="remotePortNumberInput"/>
                                      </item>
                                      <item row="7" column="1" colspan="3">
-                                      <widget class="QLineEdit" name="backwardReadInput_2"/>
+                                      <widget class="QLineEdit" name="remoteBackwardReadInput"/>
                                      </item>
                                      <item row="1" column="2">
-                                      <widget class="QLabel" name="portNumberLabel">
+                                      <widget class="QLabel" name="remotePortNumberLabel">
                                        <property name="text">
                                         <string>Port</string>
                                        </property>
                                       </widget>
                                      </item>
                                      <item row="7" column="0">
-                                      <widget class="QLabel" name="backwardReadLabel_2">
+                                      <widget class="QLabel" name="remoteBackwardReadLabel">
                                        <property name="text">
                                         <string>Backward read</string>
                                        </property>
                                       </widget>
                                      </item>
                                      <item row="1" column="0">
-                                      <widget class="QLabel" name="ipAddressLabel">
+                                      <widget class="QLabel" name="remoteIpAddressLabel">
                                        <property name="text">
                                         <string>IP address</string>
                                        </property>
                                       </widget>
                                      </item>
                                      <item row="3" column="0" colspan="4">
-                                      <widget class="QCheckBox" name="dontSendData">
+                                      <widget class="QCheckBox" name="remoteDontSendDataCheckbox">
                                        <property name="text">
                                         <string>Don't send input data to remote server. I already have the input data mounted correctly in the docker container</string>
                                        </property>
                                       </widget>
                                      </item>
                                      <item row="5" column="1" colspan="3">
-                                      <widget class="QLineEdit" name="forwardReadInput_2"/>
+                                      <widget class="QLineEdit" name="remoteForwardReadInput"/>
                                      </item>
                                      <item row="5" column="0">
-                                      <widget class="QLabel" name="forwardReadLabel_2">
+                                      <widget class="QLabel" name="remoteForwardReadLabel">
                                        <property name="text">
                                         <string>Forward read</string>
                                        </property>
                                       </widget>
                                      </item>
                                      <item row="9" column="0">
-                                      <widget class="QLabel" name="referenceGenomeLabel_2">
+                                      <widget class="QLabel" name="remoteReferenceGenomeLabel">
                                        <property name="text">
                                         <string>Reference genome
 (Leave blank for H19)</string>
@@ -2777,7 +2801,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                       </widget>
                                      </item>
                                      <item row="1" column="1">
-                                      <widget class="QLineEdit" name="ipAddressInput"/>
+                                      <widget class="QLineEdit" name="remoteIpAddressInput"/>
                                      </item>
                                      <item row="10" column="0" colspan="4">
                                       <spacer name="verticalSpacer_9">
@@ -2867,7 +2891,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                              </widget>
                             </item>
                             <item row="0" column="0">
-                             <widget class="QLabel" name="label_3">
+                             <widget class="QLabel" name="dockerSetupLabel">
                               <property name="text">
                                <string>  Docker setup</string>
                               </property>
@@ -2887,14 +2911,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
                              </spacer>
                             </item>
                             <item row="1" column="0">
-                             <widget class="QRadioButton" name="radioButton">
+                             <widget class="QRadioButton" name="dockerLocalButton">
                               <property name="text">
                                <string>Local</string>
                               </property>
                              </widget>
                             </item>
                             <item row="1" column="1">
-                             <widget class="QRadioButton" name="radioButton_2">
+                             <widget class="QRadioButton" name="dockerRemoteButton">
                               <property name="text">
                                <string>Remote</string>
                               </property>
@@ -3481,7 +3505,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                           <number>0</number>
                          </property>
                          <item>
-                          <widget class="QPushButton" name="btn_message">
+                          <widget class="QPushButton" name="messageButton">
                            <property name="sizePolicy">
                             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                              <horstretch>0</horstretch>
@@ -3517,7 +3541,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                           </widget>
                          </item>
                          <item>
-                          <widget class="QPushButton" name="btn_print">
+                          <widget class="QPushButton" name="printButton">
                            <property name="sizePolicy">
                             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                              <horstretch>0</horstretch>
@@ -3553,7 +3577,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                           </widget>
                          </item>
                          <item>
-                          <widget class="QPushButton" name="btn_logout">
+                          <widget class="QPushButton" name="logoutButton">
                            <property name="sizePolicy">
                             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                              <horstretch>0</horstretch>

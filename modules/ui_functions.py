@@ -33,8 +33,8 @@ class UIFunctions(MainWindow):
             self.showMaximized()
             GLOBAL_STATE = True
             self.ui.appMargins.setContentsMargins(0, 0, 0, 0)
-            self.ui.maximizeRestoreAppBtn.setToolTip("Restore")
-            self.ui.maximizeRestoreAppBtn.setIcon(QIcon(u":/icons/images/icons/icon_restore.png"))
+            self.ui.maximizeRestoreAppButton.setToolTip("Restore")
+            self.ui.maximizeRestoreAppButton.setIcon(QIcon(u":/icons/images/icons/icon_restore.png"))
             self.ui.frame_size_grip.hide()
             self.left_grip.hide()
             self.right_grip.hide()
@@ -45,8 +45,8 @@ class UIFunctions(MainWindow):
             self.showNormal()
             self.resize(self.width()+1, self.height()+1)
             self.ui.appMargins.setContentsMargins(10, 10, 10, 10)
-            self.ui.maximizeRestoreAppBtn.setToolTip("Maximize")
-            self.ui.maximizeRestoreAppBtn.setIcon(QIcon(u":/icons/images/icons/icon_maximize.png"))
+            self.ui.maximizeRestoreAppButton.setToolTip("Maximize")
+            self.ui.maximizeRestoreAppButton.setIcon(QIcon(u":/icons/images/icons/icon_maximize.png"))
             self.ui.frame_size_grip.show()
             self.left_grip.show()
             self.right_grip.show()
@@ -107,8 +107,8 @@ class UIFunctions(MainWindow):
                 # SELECT BTN
                 self.ui.toggleLeftBox.setStyleSheet(style + color)
                 if widthRightBox != 0:
-                    style = self.ui.settingsTopBtn.styleSheet()
-                    self.ui.settingsTopBtn.setStyleSheet(style.replace(Settings.BTN_RIGHT_BOX_COLOR, ''))
+                    style = self.ui.settingsTopButton.styleSheet()
+                    self.ui.settingsTopButton.setStyleSheet(style.replace(Settings.BTN_RIGHT_BOX_COLOR, ''))
             else:
                 widthExtended = standard
                 # RESET BTN
@@ -128,20 +128,20 @@ class UIFunctions(MainWindow):
             standard = 0
 
             # GET BTN STYLE
-            style = self.ui.settingsTopBtn.styleSheet()
+            style = self.ui.settingsTopButton.styleSheet()
 
             # SET MAX WIDTH
             if width == 0:
                 widthExtended = maxExtend
                 # SELECT BTN
-                self.ui.settingsTopBtn.setStyleSheet(style + color)
+                self.ui.settingsTopButton.setStyleSheet(style + color)
                 if widthLeftBox != 0:
                     style = self.ui.toggleLeftBox.styleSheet()
                     self.ui.toggleLeftBox.setStyleSheet(style.replace(Settings.BTN_LEFT_BOX_COLOR, ''))
             else:
                 widthExtended = standard
                 # RESET BTN
-                self.ui.settingsTopBtn.setStyleSheet(style.replace(color, ''))
+                self.ui.settingsTopButton.setStyleSheet(style.replace(color, ''))
 
             UIFunctions.start_box_animation(self, widthLeftBox, width, "right")
 
@@ -238,9 +238,9 @@ class UIFunctions(MainWindow):
 
         else:
             self.ui.appMargins.setContentsMargins(0, 0, 0, 0)
-            self.ui.minimizeAppBtn.hide()
-            self.ui.maximizeRestoreAppBtn.hide()
-            self.ui.closeAppBtn.hide()
+            self.ui.minimizeAppButton.hide()
+            self.ui.maximizeRestoreAppButton.hide()
+            self.ui.closeAppButton.hide()
             self.ui.frame_size_grip.hide()
 
         # DROP SHADOW
@@ -256,13 +256,13 @@ class UIFunctions(MainWindow):
         self.sizegrip.setStyleSheet("width: 20px; height: 20px; margin 0px; padding: 0px;")
 
         # MINIMIZE
-        self.ui.minimizeAppBtn.clicked.connect(lambda: self.showMinimized())
+        self.ui.minimizeAppButton.clicked.connect(lambda: self.showMinimized())
 
         # MAXIMIZE/RESTORE
-        self.ui.maximizeRestoreAppBtn.clicked.connect(lambda: UIFunctions.maximize_restore(self))
+        self.ui.maximizeRestoreAppButton.clicked.connect(lambda: UIFunctions.maximize_restore(self))
 
         # CLOSE APPLICATION
-        self.ui.closeAppBtn.clicked.connect(lambda: self.close())
+        self.ui.closeAppButton.clicked.connect(lambda: self.close())
 
     def resize_grips(self):
         if Settings.ENABLE_CUSTOM_TITLE_BAR:
