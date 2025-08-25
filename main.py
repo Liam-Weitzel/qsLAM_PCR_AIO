@@ -18,6 +18,7 @@ import sys
 import os
 import httpx
 import json
+import zipfile2
 import subprocess
 
 # IMPORT / GUI AND MODULES AND WIDGETS
@@ -126,8 +127,8 @@ class MainWindow(QMainWindow):
         elif btnName == "createRunButton":
             button = QMessageBox.question(
                 self,
-                "Question dialog",
-                "The longer message",
+                "Are you sure?",
+                "Are you sure you want to create a new run?",
             )
             if button == QMessageBox.Yes:
                 print("Yes!")
@@ -136,22 +137,31 @@ class MainWindow(QMainWindow):
         elif btnName == "deleteRunButton":
             button = QMessageBox.critical(
                 self,
-                "Oh dear!",
-                "Something went very wrong.",
-                buttons=QMessageBox.Discard | QMessageBox.NoToAll | QMessageBox.Ignore,
-                defaultButton=QMessageBox.Discard,
+                "Are you sure?",
+                "Are you sure you want to delete run X?",
+                buttons=QMessageBox.Yes | QMessageBox.No,
+                defaultButton=QMessageBox.No,
             )
-
-            if button == QMessageBox.Discard:
-                print("Discard!")
-            elif button == QMessageBox.NoToAll:
-                print("No to all!")
+            if button == QMessageBox.Yes:
+                print("Yes!")
             else:
-                print("Ignore!")
+                print("No!")
         elif btnName == "importRunButton":
-            print(QFileDialog.getOpenFileNames(caption="Select one or more files to import",  filter="*.zip"))
+            path_to_zip_files = QFileDialog.getOpenFileNames(caption="Select one or more files to import",  filter="*.zip")
+            print(path_to_zip_files)
+            for path_to_zip_file in path_to_zip_files[0]:
+                with zipfile2.ZipFile(path_to_zip_file, 'r') as zip_ref:
+                    zip_ref.extractall("./widgets")
         elif btnName == "exportRunButton":
             print(QFileDialog.getSaveFileName(caption="Select where you would like to export to"))
+            def zipdir(path, zf):
+                for root, dirs, files in os.walk(path):
+                    for file in files:
+                        zf.write(os.path.join(root, file), 
+                                   os.path.relpath(os.path.join(root, file), 
+                                                   os.path.join(path, '..')))
+            with zipfile2.ZipFile('myzipfile.zip', 'w', zipfile2.ZIP_DEFLATED) as zf:
+                zipdir('./images/', zf)
         elif btnName == "openFolderLocationButton":
             if sys.platform == "win32":
                 os.startfile(".")
