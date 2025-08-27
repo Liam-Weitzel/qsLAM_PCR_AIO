@@ -16,10 +16,6 @@
 
 import sys
 import os
-import httpx
-import json
-import zipfile2
-import subprocess
 
 # IMPORT / GUI AND MODULES AND WIDGETS
 # ///////////////////////////////////////////////////////////////
@@ -33,7 +29,7 @@ widgets = None
 
 class MainWindow(QMainWindow):
     def __init__(self):
-        QMainWindow.__init__(self)
+        super().__init__()
 
         # SET AS GLOBAL WIDGETS
         # ///////////////////////////////////////////////////////////////
@@ -59,115 +55,49 @@ class MainWindow(QMainWindow):
         # ///////////////////////////////////////////////////////////////
         UIFunctions.uiDefinitions(self)
 
-        # BUTTONS CLICK
+        self.project_manager = ProjectManager(self)
+
+        # BUTTONS CLICK - CONNECT EACH TO ITS OWN HANDLER
         # ///////////////////////////////////////////////////////////////
 
         # LEFT MENUS
-        widgets.setupViewButton.clicked.connect(self.buttonClick)
-        widgets.runViewButton.clicked.connect(self.buttonClick)
-        widgets.analysisViewButton.clicked.connect(self.buttonClick)
-        widgets.projectManagerButton.clicked.connect(self.buttonClick)
+        widgets.setupViewButton.clicked.connect(self.on_setup_view)
+        widgets.runViewButton.clicked.connect(self.on_run_view)
+        widgets.analysisViewButton.clicked.connect(self.on_analysis_view)
+        widgets.projectManagerButton.clicked.connect(self.on_project_manager_view)
 
         # EXTRA LEFT BOX
-        def openCloseLeftBox():
-            UIFunctions.toggleLeftBox(self, True)
-        widgets.toggleLeftBox.clicked.connect(openCloseLeftBox)
-        widgets.extraCloseColumnButton.clicked.connect(openCloseLeftBox)
+        widgets.toggleLeftBox.clicked.connect(lambda: UIFunctions.toggleLeftBox(self, True))
+        widgets.extraCloseColumnButton.clicked.connect(lambda: UIFunctions.toggleLeftBox(self, True))
 
         # EXTRA RIGHT BOX
-        def openCloseRightBox():
-            UIFunctions.toggleRightBox(self, True)
-        widgets.settingsTopButton.clicked.connect(openCloseRightBox)
-
-        # PROJECT MANAGER BUTTONS
-        widgets.createRunButton.clicked.connect(self.buttonClick)
-        widgets.deleteRunButton.clicked.connect(self.buttonClick)
-        widgets.exportRunButton.clicked.connect(self.buttonClick)
-        widgets.importRunButton.clicked.connect(self.buttonClick)
-        widgets.openFolderLocationButton.clicked.connect(self.buttonClick)
+        widgets.settingsTopButton.clicked.connect(lambda: UIFunctions.toggleRightBox(self, True))
 
         # SHOW APP
         # ///////////////////////////////////////////////////////////////
         self.show()
 
-        # SET FIRST LOAD PAGE AND SELECT MENU
-        # ///////////////////////////////////////////////////////////////
+    # INDIVIDUAL HANDLERS FOR LEFT MENU BUTTONS
+    # ///////////////////////////////////////////////////////////////
+    def on_project_manager_view(self):
         widgets.stackedWidget.setCurrentWidget(widgets.projectManager)
+        UIFunctions.resetStyle(self, "projectManagerButton")
         widgets.projectManagerButton.setStyleSheet(UIFunctions.selectMenu(widgets.projectManagerButton.styleSheet()))
 
+    def on_setup_view(self):
+        widgets.stackedWidget.setCurrentWidget(widgets.setupView)
+        UIFunctions.resetStyle(self, "setupViewButton")
+        widgets.setupViewButton.setStyleSheet(UIFunctions.selectMenu(widgets.setupViewButton.styleSheet()))
 
-    # BUTTONS CLICK
-    # Post here your functions for clicked buttons
-    # ///////////////////////////////////////////////////////////////
-    def buttonClick(self):
-        # GET BUTTON CLICKED
-        btn = self.sender()
-        btnName = btn.objectName()
-        
-        print(btnName)
+    def on_run_view(self):
+        widgets.stackedWidget.setCurrentWidget(widgets.runView)
+        UIFunctions.resetStyle(self, "runViewButton")
+        widgets.runViewButton.setStyleSheet(UIFunctions.selectMenu(widgets.runViewButton.styleSheet()))
 
-        # NAVIGATION BUTTONS
-        if btnName == "projectManagerButton":
-            widgets.stackedWidget.setCurrentWidget(widgets.projectManager)
-            UIFunctions.resetStyle(self, btnName)
-            btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
-        elif btnName == "setupViewButton":
-            widgets.stackedWidget.setCurrentWidget(widgets.setupView)
-            UIFunctions.resetStyle(self, btnName)
-            btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
-        elif btnName == "runViewButton":
-            widgets.stackedWidget.setCurrentWidget(widgets.runView)
-            UIFunctions.resetStyle(self, btnName)
-            btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
-        elif btnName == "analysisViewButton":
-            widgets.stackedWidget.setCurrentWidget(widgets.analysisView)
-            UIFunctions.resetStyle(self, btnName)
-            btn.setStyleSheet(UIFunctions.selectMenu(btn.styleSheet()))
-        # PROJECT MANAGER BUTTONS
-        elif btnName == "createRunButton":
-            button = QMessageBox.question(
-                self,
-                "Are you sure?",
-                "Are you sure you want to create a new run?",
-            )
-            if button == QMessageBox.Yes:
-                print("Yes!")
-            else:
-                print("No!")
-        elif btnName == "deleteRunButton":
-            button = QMessageBox.critical(
-                self,
-                "Are you sure?",
-                "Are you sure you want to delete run X?",
-                buttons=QMessageBox.Yes | QMessageBox.No,
-                defaultButton=QMessageBox.No,
-            )
-            if button == QMessageBox.Yes:
-                print("Yes!")
-            else:
-                print("No!")
-        elif btnName == "importRunButton":
-            path_to_zip_files = QFileDialog.getOpenFileNames(caption="Select one or more files to import",  filter="*.zip")
-            print(path_to_zip_files)
-            for path_to_zip_file in path_to_zip_files[0]:
-                with zipfile2.ZipFile(path_to_zip_file, 'r') as zip_ref:
-                    zip_ref.extractall("./widgets")
-        elif btnName == "exportRunButton":
-            print(QFileDialog.getSaveFileName(caption="Select where you would like to export to"))
-            def zipdir(path, zf):
-                for root, dirs, files in os.walk(path):
-                    for file in files:
-                        zf.write(os.path.join(root, file), 
-                                   os.path.relpath(os.path.join(root, file), 
-                                                   os.path.join(path, '..')))
-            with zipfile2.ZipFile('myzipfile.zip', 'w', zipfile2.ZIP_DEFLATED) as zf:
-                zipdir('./images/', zf)
-        elif btnName == "openFolderLocationButton":
-            if sys.platform == "win32":
-                os.startfile(".")
-            else:
-                opener = "open" if sys.platform == "darwin" else "xdg-open"
-                subprocess.call([opener, "."])
+    def on_analysis_view(self):
+        widgets.stackedWidget.setCurrentWidget(widgets.analysisView)
+        UIFunctions.resetStyle(self, "analysisViewButton")
+        widgets.analysisViewButton.setStyleSheet(UIFunctions.selectMenu(widgets.analysisViewButton.styleSheet()))
 
     # RESIZE EVENTS
     # ///////////////////////////////////////////////////////////////
