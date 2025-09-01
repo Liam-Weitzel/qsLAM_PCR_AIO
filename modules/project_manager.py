@@ -97,14 +97,14 @@ class ProjectManager:
         selected_items = self.widgets.runsTable.selectedItems()
         if selected_items:
             self.selected_run = selected_items[0].text()
-            self.widgets.label_6.setText(self.selected_run)
+            self.widgets.currentlySelected.setText(self.selected_run)
         else:
             self.selected_run = None
-            self.widgets.label_6.setText("NONE")
+            self.widgets.currentlySelected.setText("None")
 
     def select_specific_run(self, run):
         self.selected_run = run
-        self.widgets.label_6.setText(run)
+        self.widgets.currentlySelected.setText(run)
 
     def create_run(self):
         button = QMessageBox.question(

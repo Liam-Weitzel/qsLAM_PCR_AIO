@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.9.1
+## Created by: Qt User Interface Compiler version 6.9.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -137,9 +137,6 @@ class Ui_MainWindow(object):
 "	background-color: #00216D;\n"
 "}\n"
 "\n"
-"/* Title Menu */\n"
-"#titleRightInfo { padding-left: 10px; }\n"
-"\n"
 "/* Extra Tab */\n"
 "#extraLeftBox {	\n"
 "	background-color: rgb(235, 235, 235);\n"
@@ -159,8 +156,8 @@ class Ui_MainWindow(object):
 "#extraLabel { color: rgb(51, 51, 51); }\n"
 "\n"
 "/* Btn Close */\n"
-"#extraCloseColumnButton { back"
-                        "ground-color: rgba(255, 255, 255, 0); border: none;  border-radius: 5px; }\n"
+"#extraCloseColumnButton { background-color: rgba(255, 255, 255, 0); border: none;  border-radius: 5p"
+                        "x; }\n"
 "#extraCloseColumnButton:hover { background-color: rgb(178, 223, 223); border-style: solid; border-radius: 4px; }\n"
 "#extraCloseColumnButton:pressed { background-color: rgb(128, 207, 207); border-style: solid; border-radius: 4px; }\n"
 "\n"
@@ -192,11 +189,11 @@ class Ui_MainWindow(object):
 "	background-color: rgb(245, 245, 245);\n"
 "}\n"
 "#contentBottom{\n"
-"	bo"
-                        "rder-top: 3px solid rgb(204, 204, 204);\n"
+"	border-top: 3px solid rgb(204, 204, 204);\n"
 "}\n"
 "\n"
-"/* Top Buttons */\n"
+"/* Top Buttons "
+                        "*/\n"
 "#rightButtons .QPushButton { background-color: rgba(255, 255, 255, 0); border: none;  border-radius: 5px; }\n"
 "#rightButtons .QPushButton:hover { background-color: rgb(224, 247, 247); border-style: solid; border-radius: 4px; }\n"
 "#rightButtons .QPushButton:pressed { background-color: rgb(208, 235, 235); border-style: solid; border-radius: 4px; }\n"
@@ -216,10 +213,10 @@ class Ui_MainWindow(object):
 "    background-repeat: no-repeat;\n"
 "	border: none;\n"
 "	border-left: 22px solid transparent;\n"
-"	backg"
-                        "round-color:transparent;\n"
+"	background-color:transparent;\n"
 "	text-align: left;\n"
-"	padding-left: 44px;\n"
+"	padding-left: 44p"
+                        "x;\n"
 "}\n"
 "#contentSettings .QPushButton:hover {\n"
 "	background-color: rgb(224, 247, 247);\n"
@@ -253,11 +250,11 @@ class Ui_MainWindow(object):
 "	border: 1px solid rgb(204, 204, 204);\n"
 "	border-style: none;\n"
 "    border-bottom: 1px solid rgb(220, 220, 220);\n"
-"    border-right: 1px solid rgb(220, 220, "
-                        "220);\n"
+"    border-right: 1px solid rgb(220, 220, 220);\n"
 "}\n"
 "QTableWidget::horizontalHeader {	\n"
-"	background-color: rgb(245, 245, 245);\n"
+"	background-colo"
+                        "r: rgb(245, 245, 245);\n"
 "}\n"
 "QHeaderView::section:horizontal\n"
 "{\n"
@@ -297,12 +294,12 @@ class Ui_MainWindow(object):
 "QPlainTextEdit  QScrollBar:vertical {\n"
 "    width: 8px;\n"
 " }\n"
-"QPlainTextEdit  QScrollBar:ho"
-                        "rizontal {\n"
+"QPlainTextEdit  QScrollBar:horizontal {\n"
 "    height: 8px;\n"
 " }\n"
 "QPlainTextEdit:hover {\n"
-"	border: 2px solid #86D2ED;\n"
+""
+                        "	border: 2px solid #86D2ED;\n"
 "}\n"
 "QPlainTextEdit:focus {\n"
 "	border: 2px solid #86D2ED;\n"
@@ -338,10 +335,10 @@ class Ui_MainWindow(object):
 "    subcontrol-position: left;\n"
 "    subcontrol-origin: margin;\n"
 "}\n"
-"QScroll"
-                        "Bar::up-arrow:horizontal, QScrollBar::down-arrow:horizontal\n"
+"QScrollBar::up-arrow:horizontal, QScrollBar::down-arrow:horizontal\n"
 "{\n"
-"     background: none;\n"
+""
+                        "     background: none;\n"
 "}\n"
 "QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal\n"
 "{\n"
@@ -375,10 +372,10 @@ class Ui_MainWindow(object):
 "    border-top-left-radius: 4px;\n"
 "    border-top-right-radius: 4px;\n"
 "    subcontrol-position: top;\n"
-"    subcont"
-                        "rol-origin: margin;\n"
+"    subcontrol-origin: margin;\n"
 "}\n"
-"QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {\n"
+"QScrollBar::up-arrow:vertical, QScrollBa"
+                        "r::down-arrow:vertical {\n"
 "    background: none;\n"
 "}\n"
 "\n"
@@ -411,11 +408,11 @@ class Ui_MainWindow(object):
 "    border-radius: 7px;\n"
 "    background: rgb(255, 255, 255);\n"
 "}\n"
-"QRadioButton::indicator:h"
-                        "over {\n"
+"QRadioButton::indicator:hover {\n"
 "    border: 2px solid rgb(134, 210, 237);\n"
 "}\n"
-"QRadioButton::indicator:checked {\n"
+"QRadioB"
+                        "utton::indicator:checked {\n"
 "    background: 2px solid rgb(230, 230, 230);\n"
 "    border: 2px solid rgb(52, 59, 72);\n"
 "    background-image: url(:/icons/images/icons/cil-check-alt.png);\n"
@@ -755,18 +752,31 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.titleRightInfo = QLabel(self.leftBox)
-        self.titleRightInfo.setObjectName(u"titleRightInfo")
+        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_7)
+
+        self.currentlySelectedText = QLabel(self.leftBox)
+        self.currentlySelectedText.setObjectName(u"currentlySelectedText")
         sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Expanding)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
-        sizePolicy2.setHeightForWidth(self.titleRightInfo.sizePolicy().hasHeightForWidth())
-        self.titleRightInfo.setSizePolicy(sizePolicy2)
-        self.titleRightInfo.setMaximumSize(QSize(16777215, 45))
-        self.titleRightInfo.setFont(font)
-        self.titleRightInfo.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
+        sizePolicy2.setHeightForWidth(self.currentlySelectedText.sizePolicy().hasHeightForWidth())
+        self.currentlySelectedText.setSizePolicy(sizePolicy2)
+        self.currentlySelectedText.setMaximumSize(QSize(16777215, 45))
+        self.currentlySelectedText.setFont(font)
+        self.currentlySelectedText.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
-        self.horizontalLayout_3.addWidget(self.titleRightInfo)
+        self.horizontalLayout_3.addWidget(self.currentlySelectedText)
+
+        self.currentlySelected = QLabel(self.leftBox)
+        self.currentlySelected.setObjectName(u"currentlySelected")
+
+        self.horizontalLayout_3.addWidget(self.currentlySelected)
+
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer_3)
 
 
         self.horizontalLayout.addWidget(self.leftBox)
@@ -928,20 +938,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_9.addItem(self.horizontalSpacer_4)
 
-        self.label_5 = QLabel(self.frame_content_wid_1)
-        self.label_5.setObjectName(u"label_5")
-
-        self.horizontalLayout_9.addWidget(self.label_5)
-
-        self.label_6 = QLabel(self.frame_content_wid_1)
-        self.label_6.setObjectName(u"label_6")
-
-        self.horizontalLayout_9.addWidget(self.label_6)
-
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.horizontalLayout_9.addItem(self.horizontalSpacer_3)
-
         self.refreshRunButton = QPushButton(self.frame_content_wid_1)
         self.refreshRunButton.setObjectName(u"refreshRunButton")
         self.refreshRunButton.setMinimumSize(QSize(50, 30))
@@ -993,60 +989,6 @@ class Ui_MainWindow(object):
         self.runsTable.setHorizontalHeaderItem(2, __qtablewidgetitem2)
         __qtablewidgetitem3 = QTableWidgetItem()
         self.runsTable.setHorizontalHeaderItem(3, __qtablewidgetitem3)
-        if (self.runsTable.rowCount() < 22):
-            self.runsTable.setRowCount(22)
-        __qtablewidgetitem4 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(0, __qtablewidgetitem4)
-        __qtablewidgetitem5 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(1, __qtablewidgetitem5)
-        __qtablewidgetitem6 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(2, __qtablewidgetitem6)
-        __qtablewidgetitem7 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(3, __qtablewidgetitem7)
-        __qtablewidgetitem8 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(4, __qtablewidgetitem8)
-        __qtablewidgetitem9 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(5, __qtablewidgetitem9)
-        __qtablewidgetitem10 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(6, __qtablewidgetitem10)
-        __qtablewidgetitem11 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(7, __qtablewidgetitem11)
-        __qtablewidgetitem12 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(8, __qtablewidgetitem12)
-        __qtablewidgetitem13 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(9, __qtablewidgetitem13)
-        __qtablewidgetitem14 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(10, __qtablewidgetitem14)
-        __qtablewidgetitem15 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(11, __qtablewidgetitem15)
-        __qtablewidgetitem16 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(12, __qtablewidgetitem16)
-        __qtablewidgetitem17 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(13, __qtablewidgetitem17)
-        __qtablewidgetitem18 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(14, __qtablewidgetitem18)
-        __qtablewidgetitem19 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(15, __qtablewidgetitem19)
-        __qtablewidgetitem20 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(16, __qtablewidgetitem20)
-        __qtablewidgetitem21 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(17, __qtablewidgetitem21)
-        __qtablewidgetitem22 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(18, __qtablewidgetitem22)
-        __qtablewidgetitem23 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(19, __qtablewidgetitem23)
-        __qtablewidgetitem24 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(20, __qtablewidgetitem24)
-        __qtablewidgetitem25 = QTableWidgetItem()
-        self.runsTable.setVerticalHeaderItem(21, __qtablewidgetitem25)
-        __qtablewidgetitem26 = QTableWidgetItem()
-        self.runsTable.setItem(0, 0, __qtablewidgetitem26)
-        __qtablewidgetitem27 = QTableWidgetItem()
-        self.runsTable.setItem(0, 1, __qtablewidgetitem27)
-        __qtablewidgetitem28 = QTableWidgetItem()
-        self.runsTable.setItem(0, 2, __qtablewidgetitem28)
-        __qtablewidgetitem29 = QTableWidgetItem()
-        self.runsTable.setItem(0, 3, __qtablewidgetitem29)
         self.runsTable.setObjectName(u"runsTable")
         sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         sizePolicy3.setHorizontalStretch(0)
@@ -1137,23 +1079,7 @@ class Ui_MainWindow(object):
         icon8.addFile(u":/icons/images/icons/cil-cloud-download.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.importRunButton.setIcon(icon8)
 
-        self.gridLayout.addWidget(self.importRunButton, 0, 2, 1, 1)
-
-        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout.addItem(self.horizontalSpacer_5, 0, 1, 1, 1)
-
-        self.exportRunButton = QPushButton(self.row_3)
-        self.exportRunButton.setObjectName(u"exportRunButton")
-        self.exportRunButton.setMinimumSize(QSize(50, 30))
-        self.exportRunButton.setFont(font)
-        self.exportRunButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.exportRunButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon9 = QIcon()
-        icon9.addFile(u":/icons/images/icons/cil-cloud-upload.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.exportRunButton.setIcon(icon9)
-
-        self.gridLayout.addWidget(self.exportRunButton, 0, 4, 1, 1)
+        self.gridLayout.addWidget(self.importRunButton, 0, 3, 1, 1)
 
         self.openFolderLocationButton = QPushButton(self.row_3)
         self.openFolderLocationButton.setObjectName(u"openFolderLocationButton")
@@ -1161,11 +1087,39 @@ class Ui_MainWindow(object):
         self.openFolderLocationButton.setFont(font)
         self.openFolderLocationButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.openFolderLocationButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon10 = QIcon()
-        icon10.addFile(u":/icons/images/icons/cil-folder-open.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.openFolderLocationButton.setIcon(icon10)
+        icon9 = QIcon()
+        icon9.addFile(u":/icons/images/icons/cil-folder-open.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.openFolderLocationButton.setIcon(icon9)
 
         self.gridLayout.addWidget(self.openFolderLocationButton, 0, 0, 1, 1)
+
+        self.exportRunButton = QPushButton(self.row_3)
+        self.exportRunButton.setObjectName(u"exportRunButton")
+        self.exportRunButton.setMinimumSize(QSize(50, 30))
+        self.exportRunButton.setFont(font)
+        self.exportRunButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.exportRunButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon10 = QIcon()
+        icon10.addFile(u":/icons/images/icons/cil-cloud-upload.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.exportRunButton.setIcon(icon10)
+
+        self.gridLayout.addWidget(self.exportRunButton, 0, 5, 1, 1)
+
+        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout.addItem(self.horizontalSpacer_5, 0, 2, 1, 1)
+
+        self.renameRunButton = QPushButton(self.row_3)
+        self.renameRunButton.setObjectName(u"renameRunButton")
+        self.renameRunButton.setMinimumSize(QSize(50, 30))
+        self.renameRunButton.setFont(font)
+        self.renameRunButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.renameRunButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon11 = QIcon()
+        icon11.addFile(u":/icons/images/icons/cil-text-square.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.renameRunButton.setIcon(icon11)
+
+        self.gridLayout.addWidget(self.renameRunButton, 0, 5, 1, 1)
 
 
         self.horizontalLayout_12.addLayout(self.gridLayout)
@@ -1193,51 +1147,37 @@ class Ui_MainWindow(object):
         self.verticalLayout_161.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_2 = QGridLayout()
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.nameRunLabel = QLabel(self.row_11)
-        self.nameRunLabel.setObjectName(u"nameRunLabel")
+        self.adapterSequenceInput = QLineEdit(self.row_11)
+        self.adapterSequenceInput.setObjectName(u"adapterSequenceInput")
 
-        self.gridLayout_2.addWidget(self.nameRunLabel, 1, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.adapterSequenceInput, 1, 1, 1, 1)
 
         self.verticalSpacer_3 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout_2.addItem(self.verticalSpacer_3, 4, 0, 1, 2)
-
-        self.verticalSpacer_14 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_2.addItem(self.verticalSpacer_14, 6, 0, 1, 2)
-
-        self.nameRunInput = QLineEdit(self.row_11)
-        self.nameRunInput.setObjectName(u"nameRunInput")
-
-        self.gridLayout_2.addWidget(self.nameRunInput, 1, 1, 1, 1)
-
-        self.verticalSpacer = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_2.addItem(self.verticalSpacer, 0, 0, 1, 2)
-
-        self.adapterSequenceLabel = QLabel(self.row_11)
-        self.adapterSequenceLabel.setObjectName(u"adapterSequenceLabel")
-
-        self.gridLayout_2.addWidget(self.adapterSequenceLabel, 3, 0, 1, 1)
+        self.gridLayout_2.addItem(self.verticalSpacer_3, 2, 0, 1, 2)
 
         self.ltrPrimerSequenceLabel = QLabel(self.row_11)
         self.ltrPrimerSequenceLabel.setObjectName(u"ltrPrimerSequenceLabel")
 
-        self.gridLayout_2.addWidget(self.ltrPrimerSequenceLabel, 5, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.ltrPrimerSequenceLabel, 3, 0, 1, 1)
+
+        self.verticalSpacer_14 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_14, 4, 0, 1, 2)
+
+        self.adapterSequenceLabel = QLabel(self.row_11)
+        self.adapterSequenceLabel.setObjectName(u"adapterSequenceLabel")
+
+        self.gridLayout_2.addWidget(self.adapterSequenceLabel, 1, 0, 1, 1)
 
         self.verticalSpacer_2 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout_2.addItem(self.verticalSpacer_2, 2, 0, 1, 2)
-
-        self.adapterSequenceInput = QLineEdit(self.row_11)
-        self.adapterSequenceInput.setObjectName(u"adapterSequenceInput")
-
-        self.gridLayout_2.addWidget(self.adapterSequenceInput, 3, 1, 1, 1)
+        self.gridLayout_2.addItem(self.verticalSpacer_2, 0, 0, 1, 2)
 
         self.ltrPrimerSequenceInput = QLineEdit(self.row_11)
         self.ltrPrimerSequenceInput.setObjectName(u"ltrPrimerSequenceInput")
 
-        self.gridLayout_2.addWidget(self.ltrPrimerSequenceInput, 5, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.ltrPrimerSequenceInput, 3, 1, 1, 1)
 
 
         self.verticalLayout_161.addLayout(self.gridLayout_2)
@@ -1460,9 +1400,9 @@ class Ui_MainWindow(object):
         self.dockerGuideButton.setFont(font)
         self.dockerGuideButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.dockerGuideButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon11 = QIcon()
-        icon11.addFile(u":/icons/images/icons/cil-external-link.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.dockerGuideButton.setIcon(icon11)
+        icon12 = QIcon()
+        icon12.addFile(u":/icons/images/icons/cil-external-link.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.dockerGuideButton.setIcon(icon12)
 
         self.gridLayout_3.addWidget(self.dockerGuideButton, 0, 1, 1, 1)
 
@@ -1488,9 +1428,9 @@ class Ui_MainWindow(object):
         self.resetButton.setFont(font)
         self.resetButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.resetButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon12 = QIcon()
-        icon12.addFile(u":/icons/images/icons/cil-fire.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.resetButton.setIcon(icon12)
+        icon13 = QIcon()
+        icon13.addFile(u":/icons/images/icons/cil-fire.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.resetButton.setIcon(icon13)
 
         self.horizontalLayout_121.addWidget(self.resetButton)
 
@@ -1500,9 +1440,9 @@ class Ui_MainWindow(object):
         self.restoreDefaultsButton.setFont(font)
         self.restoreDefaultsButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.restoreDefaultsButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon13 = QIcon()
-        icon13.addFile(u":/icons/images/icons/cil-file.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.restoreDefaultsButton.setIcon(icon13)
+        icon14 = QIcon()
+        icon14.addFile(u":/icons/images/icons/cil-file.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.restoreDefaultsButton.setIcon(icon14)
 
         self.horizontalLayout_121.addWidget(self.restoreDefaultsButton)
 
@@ -1516,9 +1456,9 @@ class Ui_MainWindow(object):
         self.saveButton.setFont(font)
         self.saveButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.saveButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon14 = QIcon()
-        icon14.addFile(u":/icons/images/icons/cil-save.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.saveButton.setIcon(icon14)
+        icon15 = QIcon()
+        icon15.addFile(u":/icons/images/icons/cil-save.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.saveButton.setIcon(icon15)
 
         self.horizontalLayout_121.addWidget(self.saveButton)
 
@@ -1528,9 +1468,9 @@ class Ui_MainWindow(object):
         self.helpButton.setFont(font)
         self.helpButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.helpButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon15 = QIcon()
-        icon15.addFile(u":/icons/images/icons/cil-map.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.helpButton.setIcon(icon15)
+        icon16 = QIcon()
+        icon16.addFile(u":/icons/images/icons/cil-map.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.helpButton.setIcon(icon16)
 
         self.horizontalLayout_121.addWidget(self.helpButton)
 
@@ -1818,7 +1758,8 @@ class Ui_MainWindow(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">lorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum "
                         "lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsum</p></body></html>", None))
         self.moreButton.setText(QCoreApplication.translate("MainWindow", u"More", None))
-        self.titleRightInfo.setText(QCoreApplication.translate("MainWindow", u"Compile lentiviral vector integration sites from sequencing pipeline", None))
+        self.currentlySelectedText.setText(QCoreApplication.translate("MainWindow", u"Currently Selected Run: ", None))
+        self.currentlySelected.setText(QCoreApplication.translate("MainWindow", u"None", None))
 #if QT_CONFIG(tooltip)
         self.settingsTopButton.setToolTip(QCoreApplication.translate("MainWindow", u"Settings", None))
 #endif // QT_CONFIG(tooltip)
@@ -1837,8 +1778,6 @@ class Ui_MainWindow(object):
         self.closeAppButton.setText("")
         self.createRunButton.setText(QCoreApplication.translate("MainWindow", u"Create", None))
         self.selectRunButton.setText(QCoreApplication.translate("MainWindow", u"Select", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Currently Selected Run:", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"NONE", None))
         self.refreshRunButton.setText(QCoreApplication.translate("MainWindow", u"Refresh", None))
         self.deleteRunButton.setText(QCoreApplication.translate("MainWindow", u"Delete", None))
         ___qtablewidgetitem = self.runsTable.horizontalHeaderItem(0)
@@ -1849,69 +1788,12 @@ class Ui_MainWindow(object):
         ___qtablewidgetitem2.setText(QCoreApplication.translate("MainWindow", u"Progress", None));
         ___qtablewidgetitem3 = self.runsTable.horizontalHeaderItem(3)
         ___qtablewidgetitem3.setText(QCoreApplication.translate("MainWindow", u"Last Run Timestamp", None));
-        ___qtablewidgetitem4 = self.runsTable.verticalHeaderItem(0)
-        ___qtablewidgetitem4.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem5 = self.runsTable.verticalHeaderItem(1)
-        ___qtablewidgetitem5.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem6 = self.runsTable.verticalHeaderItem(2)
-        ___qtablewidgetitem6.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem7 = self.runsTable.verticalHeaderItem(3)
-        ___qtablewidgetitem7.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem8 = self.runsTable.verticalHeaderItem(4)
-        ___qtablewidgetitem8.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem9 = self.runsTable.verticalHeaderItem(5)
-        ___qtablewidgetitem9.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem10 = self.runsTable.verticalHeaderItem(6)
-        ___qtablewidgetitem10.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem11 = self.runsTable.verticalHeaderItem(7)
-        ___qtablewidgetitem11.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem12 = self.runsTable.verticalHeaderItem(8)
-        ___qtablewidgetitem12.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem13 = self.runsTable.verticalHeaderItem(9)
-        ___qtablewidgetitem13.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem14 = self.runsTable.verticalHeaderItem(10)
-        ___qtablewidgetitem14.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem15 = self.runsTable.verticalHeaderItem(11)
-        ___qtablewidgetitem15.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem16 = self.runsTable.verticalHeaderItem(12)
-        ___qtablewidgetitem16.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem17 = self.runsTable.verticalHeaderItem(13)
-        ___qtablewidgetitem17.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem18 = self.runsTable.verticalHeaderItem(14)
-        ___qtablewidgetitem18.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem19 = self.runsTable.verticalHeaderItem(15)
-        ___qtablewidgetitem19.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem20 = self.runsTable.verticalHeaderItem(16)
-        ___qtablewidgetitem20.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem21 = self.runsTable.verticalHeaderItem(17)
-        ___qtablewidgetitem21.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem22 = self.runsTable.verticalHeaderItem(18)
-        ___qtablewidgetitem22.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem23 = self.runsTable.verticalHeaderItem(19)
-        ___qtablewidgetitem23.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem24 = self.runsTable.verticalHeaderItem(20)
-        ___qtablewidgetitem24.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-        ___qtablewidgetitem25 = self.runsTable.verticalHeaderItem(21)
-        ___qtablewidgetitem25.setText(QCoreApplication.translate("MainWindow", u"New Row", None));
-
-        __sortingEnabled = self.runsTable.isSortingEnabled()
-        self.runsTable.setSortingEnabled(False)
-        ___qtablewidgetitem26 = self.runsTable.item(0, 0)
-        ___qtablewidgetitem26.setText(QCoreApplication.translate("MainWindow", u"test", None));
-        ___qtablewidgetitem27 = self.runsTable.item(0, 1)
-        ___qtablewidgetitem27.setText(QCoreApplication.translate("MainWindow", u"test", None));
-        ___qtablewidgetitem28 = self.runsTable.item(0, 2)
-        ___qtablewidgetitem28.setText(QCoreApplication.translate("MainWindow", u"test", None));
-        ___qtablewidgetitem29 = self.runsTable.item(0, 3)
-        ___qtablewidgetitem29.setText(QCoreApplication.translate("MainWindow", u"test", None));
-        self.runsTable.setSortingEnabled(__sortingEnabled)
-
         self.importRunButton.setText(QCoreApplication.translate("MainWindow", u"Import", None))
-        self.exportRunButton.setText(QCoreApplication.translate("MainWindow", u"Export", None))
         self.openFolderLocationButton.setText(QCoreApplication.translate("MainWindow", u"Open Folder Location", None))
-        self.nameRunLabel.setText(QCoreApplication.translate("MainWindow", u"Name of this run", None))
-        self.adapterSequenceLabel.setText(QCoreApplication.translate("MainWindow", u"Adapter Sequence", None))
+        self.exportRunButton.setText(QCoreApplication.translate("MainWindow", u"Export", None))
+        self.renameRunButton.setText(QCoreApplication.translate("MainWindow", u"renameRunButton", None))
         self.ltrPrimerSequenceLabel.setText(QCoreApplication.translate("MainWindow", u"LTR Primer Sequence", None))
+        self.adapterSequenceLabel.setText(QCoreApplication.translate("MainWindow", u"Adapter Sequence", None))
         self.localForwardReadLabel.setText(QCoreApplication.translate("MainWindow", u"Forward read", None))
         self.localBackwardReadLabel.setText(QCoreApplication.translate("MainWindow", u"Backward read", None))
         self.localReferenceGenomeLabel.setText(QCoreApplication.translate("MainWindow", u"Reference genome\n"

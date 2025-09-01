@@ -211,7 +211,7 @@ class UIFunctions(MainWindow):
             # IF DOUBLE CLICK CHANGE STATUS
             if event.type() == QEvent.MouseButtonDblClick and Settings.ENABLE_CUSTOM_TITLE_BAR:
                 QTimer.singleShot(250, lambda: UIFunctions.maximize_restore(self))
-        self.ui.titleRightInfo.mouseDoubleClickEvent = dobleClickMaximizeRestore
+        self.ui.leftBox.mouseDoubleClickEvent = dobleClickMaximizeRestore
 
         if Settings.ENABLE_CUSTOM_TITLE_BAR:
             #STANDARD TITLE BAR
@@ -228,7 +228,7 @@ class UIFunctions(MainWindow):
                     self.move(self.pos() + event.globalPos() - self.dragPos)
                     self.dragPos = event.globalPos()
                     event.accept()
-            self.ui.titleRightInfo.mouseMoveEvent = moveWindow
+            self.ui.leftBox.mouseMoveEvent = moveWindow
 
             # CUSTOM GRIPS
             self.left_grip = CustomGrip(self, Qt.LeftEdge, True)

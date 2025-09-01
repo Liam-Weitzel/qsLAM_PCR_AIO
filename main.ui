@@ -128,9 +128,6 @@ QToolTip {
 	background-color: #00216D;
 }
 
-/* Title Menu */
-#titleRightInfo { padding-left: 10px; }
-
 /* Extra Tab */
 #extraLeftBox {	
 	background-color: rgb(235, 235, 235);
@@ -1291,7 +1288,20 @@ li.checked::marker { content: &quot;\2612&quot;; }
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QLabel" name="titleRightInfo">
+                 <spacer name="horizontalSpacer_7">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QLabel" name="currentlySelectedText">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
                     <horstretch>0</horstretch>
@@ -1313,12 +1323,32 @@ li.checked::marker { content: &quot;\2612&quot;; }
                    </font>
                   </property>
                   <property name="text">
-                   <string>Compile lentiviral vector integration sites from sequencing pipeline</string>
+                   <string>Currently Selected Run: </string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
                   </property>
                  </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="currentlySelected">
+                  <property name="text">
+                   <string>None</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_3">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
                 </item>
                </layout>
               </widget>
@@ -1768,33 +1798,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                  </spacer>
                                 </item>
                                 <item>
-                                 <widget class="QLabel" name="label_5">
-                                  <property name="text">
-                                   <string>Currently Selected Run:</string>
-                                  </property>
-                                 </widget>
-                                </item>
-                                <item>
-                                 <widget class="QLabel" name="label_6">
-                                  <property name="text">
-                                   <string>NONE</string>
-                                  </property>
-                                 </widget>
-                                </item>
-                                <item>
-                                 <spacer name="horizontalSpacer_3">
-                                  <property name="orientation">
-                                   <enum>Qt::Orientation::Horizontal</enum>
-                                  </property>
-                                  <property name="sizeHint" stdset="0">
-                                   <size>
-                                    <width>40</width>
-                                    <height>20</height>
-                                   </size>
-                                  </property>
-                                 </spacer>
-                                </item>
-                                <item>
                                  <widget class="QPushButton" name="refreshRunButton">
                                   <property name="minimumSize">
                                    <size>
@@ -2138,116 +2141,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
                             <attribute name="verticalHeaderStretchLastSection">
                              <bool>true</bool>
                             </attribute>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
-                            <row>
-                             <property name="text">
-                              <string>New Row</string>
-                             </property>
-                            </row>
                             <column>
                              <property name="text">
                               <string>Name</string>
@@ -2268,26 +2161,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
                               <string>Last Run Timestamp</string>
                              </property>
                             </column>
-                            <item row="0" column="0">
-                             <property name="text">
-                              <string>test</string>
-                             </property>
-                            </item>
-                            <item row="0" column="1">
-                             <property name="text">
-                              <string>test</string>
-                             </property>
-                            </item>
-                            <item row="0" column="2">
-                             <property name="text">
-                              <string>test</string>
-                             </property>
-                            </item>
-                            <item row="0" column="3">
-                             <property name="text">
-                              <string>test</string>
-                             </property>
-                            </item>
                            </widget>
                           </item>
                          </layout>
@@ -2328,7 +2201,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                             <property name="bottomMargin">
                              <number>0</number>
                             </property>
-                            <item row="0" column="2">
+                            <item row="0" column="3">
                              <widget class="QPushButton" name="importRunButton">
                               <property name="minimumSize">
                                <size>
@@ -2356,50 +2229,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
                               <property name="icon">
                                <iconset resource="resources.qrc">
                                 <normaloff>:/icons/images/icons/cil-cloud-download.png</normaloff>:/icons/images/icons/cil-cloud-download.png</iconset>
-                              </property>
-                             </widget>
-                            </item>
-                            <item row="0" column="1">
-                             <spacer name="horizontalSpacer_5">
-                              <property name="orientation">
-                               <enum>Qt::Orientation::Horizontal</enum>
-                              </property>
-                              <property name="sizeHint" stdset="0">
-                               <size>
-                                <width>40</width>
-                                <height>20</height>
-                               </size>
-                              </property>
-                             </spacer>
-                            </item>
-                            <item row="0" column="4">
-                             <widget class="QPushButton" name="exportRunButton">
-                              <property name="minimumSize">
-                               <size>
-                                <width>50</width>
-                                <height>30</height>
-                               </size>
-                              </property>
-                              <property name="font">
-                               <font>
-                                <family>Segoe UI</family>
-                                <pointsize>10</pointsize>
-                                <italic>false</italic>
-                                <bold>false</bold>
-                               </font>
-                              </property>
-                              <property name="cursor">
-                               <cursorShape>PointingHandCursor</cursorShape>
-                              </property>
-                              <property name="styleSheet">
-                               <string notr="true">background-color: rgb(255, 255, 255);</string>
-                              </property>
-                              <property name="text">
-                               <string>Export</string>
-                              </property>
-                              <property name="icon">
-                               <iconset resource="resources.qrc">
-                                <normaloff>:/icons/images/icons/cil-cloud-upload.png</normaloff>:/icons/images/icons/cil-cloud-upload.png</iconset>
                               </property>
                              </widget>
                             </item>
@@ -2431,6 +2260,81 @@ li.checked::marker { content: &quot;\2612&quot;; }
                               <property name="icon">
                                <iconset resource="resources.qrc">
                                 <normaloff>:/icons/images/icons/cil-folder-open.png</normaloff>:/icons/images/icons/cil-folder-open.png</iconset>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="0" column="5">
+                             <widget class="QPushButton" name="exportRunButton">
+                              <property name="minimumSize">
+                               <size>
+                                <width>50</width>
+                                <height>30</height>
+                               </size>
+                              </property>
+                              <property name="font">
+                               <font>
+                                <family>Segoe UI</family>
+                                <pointsize>10</pointsize>
+                                <italic>false</italic>
+                                <bold>false</bold>
+                               </font>
+                              </property>
+                              <property name="cursor">
+                               <cursorShape>PointingHandCursor</cursorShape>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">background-color: rgb(255, 255, 255);</string>
+                              </property>
+                              <property name="text">
+                               <string>Export</string>
+                              </property>
+                              <property name="icon">
+                               <iconset resource="resources.qrc">
+                                <normaloff>:/icons/images/icons/cil-cloud-upload.png</normaloff>:/icons/images/icons/cil-cloud-upload.png</iconset>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="0" column="2">
+                             <spacer name="horizontalSpacer_5">
+                              <property name="orientation">
+                               <enum>Qt::Orientation::Horizontal</enum>
+                              </property>
+                              <property name="sizeHint" stdset="0">
+                               <size>
+                                <width>40</width>
+                                <height>20</height>
+                               </size>
+                              </property>
+                             </spacer>
+                            </item>
+                            <item row="0" column="1">
+                             <widget class="QPushButton" name="renameRunButton">
+                              <property name="minimumSize">
+                               <size>
+                                <width>50</width>
+                                <height>30</height>
+                               </size>
+                              </property>
+                              <property name="font">
+                               <font>
+                                <family>Segoe UI</family>
+                                <pointsize>10</pointsize>
+                                <italic>false</italic>
+                                <bold>false</bold>
+                               </font>
+                              </property>
+                              <property name="cursor">
+                               <cursorShape>PointingHandCursor</cursorShape>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">background-color: rgb(255, 255, 255);</string>
+                              </property>
+                              <property name="text">
+                               <string>Rename Run</string>
+                              </property>
+                              <property name="icon">
+                               <iconset resource="resources.qrc">
+                                <normaloff>:/icons/images/icons/cil-text-square.png</normaloff>:/icons/images/icons/cil-text-square.png</iconset>
                               </property>
                              </widget>
                             </item>
@@ -2499,14 +2403,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
                           </property>
                           <item>
                            <layout class="QGridLayout" name="gridLayout_2">
-                            <item row="1" column="0">
-                             <widget class="QLabel" name="nameRunLabel">
-                              <property name="text">
-                               <string>Name of this run</string>
-                              </property>
-                             </widget>
+                            <item row="1" column="1">
+                             <widget class="QLineEdit" name="adapterSequenceInput"/>
                             </item>
-                            <item row="4" column="0" colspan="2">
+                            <item row="2" column="0" colspan="2">
                              <spacer name="verticalSpacer_3">
                               <property name="orientation">
                                <enum>Qt::Orientation::Vertical</enum>
@@ -2519,7 +2419,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
                               </property>
                              </spacer>
                             </item>
-                            <item row="6" column="0" colspan="2">
+                            <item row="3" column="0">
+                             <widget class="QLabel" name="ltrPrimerSequenceLabel">
+                              <property name="text">
+                               <string>LTR Primer Sequence</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="4" column="0" colspan="2">
                              <spacer name="verticalSpacer_14">
                               <property name="orientation">
                                <enum>Qt::Orientation::Vertical</enum>
@@ -2532,37 +2439,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
                               </property>
                              </spacer>
                             </item>
-                            <item row="1" column="1">
-                             <widget class="QLineEdit" name="nameRunInput"/>
-                            </item>
-                            <item row="0" column="0" colspan="2">
-                             <spacer name="verticalSpacer">
-                              <property name="orientation">
-                               <enum>Qt::Orientation::Vertical</enum>
-                              </property>
-                              <property name="sizeHint" stdset="0">
-                               <size>
-                                <width>20</width>
-                                <height>10</height>
-                               </size>
-                              </property>
-                             </spacer>
-                            </item>
-                            <item row="3" column="0">
+                            <item row="1" column="0">
                              <widget class="QLabel" name="adapterSequenceLabel">
                               <property name="text">
                                <string>Adapter Sequence</string>
                               </property>
                              </widget>
                             </item>
-                            <item row="5" column="0">
-                             <widget class="QLabel" name="ltrPrimerSequenceLabel">
-                              <property name="text">
-                               <string>LTR Primer Sequence</string>
-                              </property>
-                             </widget>
-                            </item>
-                            <item row="2" column="0" colspan="2">
+                            <item row="0" column="0" colspan="2">
                              <spacer name="verticalSpacer_2">
                               <property name="orientation">
                                <enum>Qt::Orientation::Vertical</enum>
@@ -2576,9 +2460,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
                              </spacer>
                             </item>
                             <item row="3" column="1">
-                             <widget class="QLineEdit" name="adapterSequenceInput"/>
-                            </item>
-                            <item row="5" column="1">
                              <widget class="QLineEdit" name="ltrPrimerSequenceInput"/>
                             </item>
                            </layout>
