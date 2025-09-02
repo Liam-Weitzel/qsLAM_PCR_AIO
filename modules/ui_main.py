@@ -1119,7 +1119,7 @@ class Ui_MainWindow(object):
         icon11.addFile(u":/icons/images/icons/cil-text-square.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.renameRunButton.setIcon(icon11)
 
-        self.gridLayout.addWidget(self.renameRunButton, 0, 5, 1, 1)
+        self.gridLayout.addWidget(self.renameRunButton, 0, 1, 1, 1)
 
 
         self.horizontalLayout_12.addLayout(self.gridLayout)
@@ -1791,7 +1791,7 @@ class Ui_MainWindow(object):
         self.importRunButton.setText(QCoreApplication.translate("MainWindow", u"Import", None))
         self.openFolderLocationButton.setText(QCoreApplication.translate("MainWindow", u"Open Folder Location", None))
         self.exportRunButton.setText(QCoreApplication.translate("MainWindow", u"Export", None))
-        self.renameRunButton.setText(QCoreApplication.translate("MainWindow", u"renameRunButton", None))
+        self.renameRunButton.setText(QCoreApplication.translate("MainWindow", u"Rename Run", None))
         self.ltrPrimerSequenceLabel.setText(QCoreApplication.translate("MainWindow", u"LTR Primer Sequence", None))
         self.adapterSequenceLabel.setText(QCoreApplication.translate("MainWindow", u"Adapter Sequence", None))
         self.localForwardReadLabel.setText(QCoreApplication.translate("MainWindow", u"Forward read", None))

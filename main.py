@@ -40,7 +40,7 @@ class MainWindow(QMainWindow):
 
         # USE CUSTOM TITLE BAR | USE AS "False" FOR MAC OR LINUX
         # ///////////////////////////////////////////////////////////////
-        Settings.ENABLE_CUSTOM_TITLE_BAR = True
+        Settings.ENABLE_CUSTOM_TITLE_BAR = False
 
         # APP NAME
         # ///////////////////////////////////////////////////////////////
@@ -76,6 +76,9 @@ class MainWindow(QMainWindow):
         # SHOW APP
         # ///////////////////////////////////////////////////////////////
         self.show()
+        self.settings_path = "settings.json"
+        self.show_first_time_dialog()
+        self.show_docker_not_installed_dialog()
 
     # INDIVIDUAL HANDLERS FOR LEFT MENU BUTTONS
     # ///////////////////////////////////////////////////////////////
@@ -109,10 +112,149 @@ class MainWindow(QMainWindow):
     # ///////////////////////////////////////////////////////////////
     def mousePressEvent(self, event):
         # SET DRAG POS WINDOW
-        self.dragPos = event.globalPos()
+        self.dragPos = event.globalPosition().toPoint()
+
+    def show_first_time_dialog(self):
+        if not os.path.exists(self.settings_path):
+            # Create settings.json with default content
+            with open(self.settings_path, "w") as f:
+                json.dump({}, f)
+
+            dlg = QDialog(self)
+            dlg.setWindowTitle("Welcome to qsLAM_PCR_AIO")
+            dlg.setMinimumWidth(400)
+
+            layout = QVBoxLayout()
+
+            text = QLabel(
+                "Welcome to <b>qsLAM_PCR_AIO</b><br><br>"
+                "This tool provides an end-to-end pipeline for analyzing integration sites using LAM-PCR data. "
+                "From raw reads to annotated integration profiles, qsLAM_PCR_AIO helps researchers visualize, "
+                "filter, and export results — all in one interface."
+            )
+            text.setWordWrap(True)
+            layout.addWidget(text)
+
+            doc_link = QTextBrowser()
+            doc_link.setHtml('<a href="https://your.documentation.link" style="color: #007acc;">Visit the documentation</a><br><br><a href="https://your.documentation.link" style="color: #007acc;">Watch a guide</a>')
+            doc_link.setOpenExternalLinks(True)
+            layout.addWidget(doc_link)
+
+            ok_button = QPushButton("Get Started")
+            ok_button.clicked.connect(dlg.accept)
+            layout.addWidget(ok_button)
+
+            dlg.setLayout(layout)
+            dlg.exec()
+    
+    def is_docker_installed(self, docker_path: str = None) -> bool:
+        try:
+            if docker_path and isinstance(docker_path, str) and docker_path.strip():
+                cmd = [docker_path.strip(), "--version"]
+            else:
+                cmd = ["docker", "--version"]
+
+            result = subprocess.run(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True  # ensures output is str, not bytes
+            )
+            return result.returncode == 0
+        except (FileNotFoundError, PermissionError, OSError, ValueError) as e:
+            print(f"Docker not found or failed to run: {e}")
+            return False
+
+    def show_docker_not_installed_dialog(self):
+        settings = {}
+
+        # Load settings
+        if os.path.exists(self.settings_path):
+            with open(self.settings_path, "r") as f:
+                settings = json.load(f)
+
+        if settings.get("hide_docker_warning", False):
+            return
+
+        docker_path = settings.get("docker_path", None)
+
+        # Check if Docker is installed before showing the dialog
+        if self.is_docker_installed(docker_path):
+            return
+
+        # === Show dialog ===
+        dlg = QDialog(self)
+        dlg.setWindowTitle("Docker Not Found")
+        dlg.setMinimumWidth(500)
+
+        layout = QVBoxLayout()
+
+        msg = QLabel(
+            "🚫 <b>Docker not installed</b><br><br>"
+            "I couldn't find a working Docker installation on your system. Docker is required to run the LAM-PCR pipeline locally. "
+            "You can still browse the app, but the local run option will be hidden in the run configurations (second tab)."
+        )
+        msg.setWordWrap(True)
+        layout.addWidget(msg)
+
+        docker_link = QTextBrowser()
+        docker_link.setHtml('<a href="https://www.docker.com/products/docker-desktop/" style="color: #007acc;">Install Docker</a>')
+        docker_link.setOpenExternalLinks(True)
+        layout.addWidget(docker_link)
+
+        msg2 = QLabel("Think Docker is installed somewhere else? Let me know where it is:")
+        layout.addWidget(msg2)
+
+        docker_path_input = QLineEdit()
+        docker_path_input.setPlaceholderText("/usr/local/bin/docker or C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe")
+        if isinstance(settings.get("docker_path"), str):
+            docker_path_input.setText(settings["docker_path"])
+        layout.addWidget(docker_path_input)
+
+        checkbox = QCheckBox("Don't show this warning again")
+        layout.addWidget(checkbox)
+
+        # Buttons
+        button_layout = QHBoxLayout()
+        check_again_button = QPushButton("Check Again")
+        close_button = QPushButton("Close")
+
+        def save_settings_and_close():
+            if checkbox.isChecked():
+                settings["hide_docker_warning"] = True
+
+            custom_path = docker_path_input.text().strip()
+            if custom_path:
+                settings["docker_path"] = custom_path
+
+            with open(self.settings_path, "w") as f:
+                json.dump(settings, f, indent=2)
+
+            dlg.accept()
+
+        def check_again():
+            custom_path = docker_path_input.text().strip()
+            if self.is_docker_installed(custom_path):
+                settings["docker_path"] = custom_path
+                with open(self.settings_path, "w") as f:
+                    json.dump(settings, f, indent=2)
+                dlg.accept()  # Docker found, dismiss dialog
+            else:
+                docker_path_input.setStyleSheet("border: 1px solid red;")
+                docker_path_input.setPlaceholderText("❌ Docker not found at that path")
+
+        check_again_button.clicked.connect(check_again)
+        close_button.clicked.connect(save_settings_and_close)
+
+        button_layout.addWidget(check_again_button)
+        button_layout.addWidget(close_button)
+        layout.addLayout(button_layout)
+
+        dlg.setLayout(layout)
+        dlg.exec()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     app.setWindowIcon(QIcon("icon.ico"))
     window = MainWindow()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())

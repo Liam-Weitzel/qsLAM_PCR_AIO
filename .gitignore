@@ -13,3 +13,4 @@ main.spec
 .qtcreator/
 .venv/
 runs/
+settings.json

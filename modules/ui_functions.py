@@ -55,7 +55,7 @@ class UIFunctions(MainWindow):
 
     # RETURN STATUS
     # ///////////////////////////////////////////////////////////////
-    def returStatus(self):
+    def returnStatus(self):
         return GLOBAL_STATE
 
     # SET STATUS
@@ -221,7 +221,7 @@ class UIFunctions(MainWindow):
             # MOVE WINDOW / MAXIMIZE / RESTORE
             def moveWindow(event):
                 # IF MAXIMIZED CHANGE TO NORMAL
-                if UIFunctions.returStatus(self):
+                if UIFunctions.returnStatus(self):
                     UIFunctions.maximize_restore(self)
                 # MOVE WINDOW
                 if event.buttons() == Qt.LeftButton:
