@@ -5,11 +5,11 @@ from datetime import datetime
 from PySide6.QtWidgets import QFileDialog, QMessageBox, QTableWidgetItem
 from PySide6.QtCore import QTimer, Qt
 from . ui_functions import *
+from . app_settings import *
 
 class ProjectManager:
     def __init__(self, main_window):
-        self.runs_dir = './runs/'
-        self.selected_run = None
+        self.settings = Settings()
         self.main_window = main_window
         self.widgets = main_window.ui
 
@@ -35,15 +35,15 @@ class ProjectManager:
 
     def update_runs_table(self):
         try:
-            subdirs = [d for d in os.listdir(self.runs_dir) if os.path.isdir(os.path.join(self.runs_dir, d))]
+            subdirs = [d for d in os.listdir(Settings.RUNS_DIR) if os.path.isdir(os.path.join(Settings.RUNS_DIR, d))]
         except FileNotFoundError:
-            print(f"The directory {self.runs_dir} doesn't exist!")
+            print(f"The directory {Settings.RUNS_DIR} doesn't exist!")
             return
 
         self.widgets.runsTable.setRowCount(0)
 
         for subdir_name in subdirs:
-            metadata_path = os.path.join(self.runs_dir, subdir_name, 'metadata.json')
+            metadata_path = os.path.join(Settings.RUNS_DIR, subdir_name, Settings.METADATA_FILE)
 
             if os.path.exists(metadata_path):
                 try:
@@ -96,14 +96,14 @@ class ProjectManager:
     def select_run(self):
         selected_items = self.widgets.runsTable.selectedItems()
         if selected_items:
-            self.selected_run = selected_items[0].text()
-            self.widgets.currentlySelected.setText(self.selected_run)
+            Settings.SELECTED_RUN = selected_items[0].text()
+            self.widgets.currentlySelected.setText(Settings.SELECTED_RUN)
         else:
-            self.selected_run = None
+            Settings.SELECTED_RUN = None
             self.widgets.currentlySelected.setText("None")
 
     def select_specific_run(self, run):
-        self.selected_run = run
+        Settings.SELECTED_RUN = run
         self.widgets.currentlySelected.setText(run)
 
     def create_run(self):
@@ -118,7 +118,7 @@ class ProjectManager:
 
             if ok and run_name:
                 # Check if the name is valid and doesn't already exist
-                new_run_path = os.path.join(self.runs_dir, run_name)
+                new_run_path = os.path.join(Settings.RUNS_DIR, run_name)
 
                 if not os.path.exists(new_run_path):
                     # Create the new directory
@@ -131,7 +131,7 @@ class ProjectManager:
                         }
 
                         # Create metadata.json in the new run directory
-                        metadata_path = os.path.join(new_run_path, 'metadata.json')
+                        metadata_path = os.path.join(new_run_path, Settings.METADATA_FILE)
                         with open(metadata_path, 'w') as json_file:
                             json.dump(metadata, json_file, indent=4)
 
@@ -149,7 +149,7 @@ class ProjectManager:
 
     def delete_run(self):
         """Delete the selected run after user confirmation."""
-        if self.selected_run is None:
+        if Settings.SELECTED_RUN is None:
             QMessageBox.warning(self.main_window, "No Selection", "No run selected to delete!")
             return
 
@@ -157,13 +157,13 @@ class ProjectManager:
         button = QMessageBox.critical(
             self.main_window,
             "Are you sure?",
-            f"Are you sure you want to delete the run '{self.selected_run}'?",
+            f"Are you sure you want to delete the run '{Settings.SELECTED_RUN}'?",
             buttons=QMessageBox.Yes | QMessageBox.No,
             defaultButton=QMessageBox.No,
         )
 
         if button == QMessageBox.Yes:
-            run_path = os.path.join(self.runs_dir, self.selected_run)
+            run_path = os.path.join(Settings.RUNS_DIR, Settings.SELECTED_RUN)
 
             if os.path.exists(run_path):
                 try:
@@ -179,11 +179,11 @@ class ProjectManager:
                     self.update_runs_table()
                     self.select_run()
 
-                    QMessageBox.information(self.main_window, "Success", f"Run '{self.selected_run}' deleted successfully.")
+                    QMessageBox.information(self.main_window, "Success", f"Run '{Settings.SELECTED_RUN}' deleted successfully.")
                 except Exception as e:
                     QMessageBox.critical(self.main_window, "Error", f"Failed to delete the run: {e}")
             else:
-                QMessageBox.warning(self.main_window, "Error", f"The run '{self.selected_run}' does not exist.")
+                QMessageBox.warning(self.main_window, "Error", f"The run '{Settings.SELECTED_RUN}' does not exist.")
         else:
             print("Deletion cancelled.")
 
@@ -201,8 +201,8 @@ class ProjectManager:
                 try:
                     # Extract each zip file into the 'runs' directory
                     with zipfile2.ZipFile(file_path, 'r') as zip_ref:
-                        zip_ref.extractall(self.runs_dir)
-                        print(f"Extracted {file_path} to {self.runs_dir}")
+                        zip_ref.extractall(Settings.RUNS_DIR)
+                        print(f"Extracted {file_path} to {Settings.RUNS_DIR}")
                         
                     QMessageBox.information(self.main_window, "Success", f"Successfully imported {file_path}.")
                 except Exception as e:
@@ -212,12 +212,12 @@ class ProjectManager:
     def export_run(self):
         """Allow the user to export either the selected run or the entire 'runs' directory as a .zip file."""
         # Determine which folder to export based on whether a run is selected
-        if self.selected_run:
+        if Settings.SELECTED_RUN:
             # Export the selected run
-            folder_to_export = os.path.join(self.runs_dir, self.selected_run)
+            folder_to_export = os.path.join(Settings.RUNS_DIR, Settings.SELECTED_RUN)
         else:
             # Export the entire 'runs' directory
-            folder_to_export = self.runs_dir
+            folder_to_export = Settings.RUNS_DIR
 
         # Prompt the user to select where to save the zip file
         dest, _ = QFileDialog.getSaveFileName(
@@ -240,15 +240,15 @@ class ProjectManager:
                         for file in files:
                             file_path = os.path.join(root, file)
                             # Add each file to the zip file
-                            zf.write(file_path, os.path.relpath(file_path, self.runs_dir))
+                            zf.write(file_path, os.path.relpath(file_path, Settings.RUNS_DIR))
                 QMessageBox.information(self.main_window, "Success", f"Successfully exported to {dest}.")
             except Exception as e:
                 QMessageBox.critical(self.main_window, "Error", f"Failed to export: {str(e)}")
 
     def open_folder_location(self):
-        filepath = self.runs_dir
-        if self.selected_run:
-            filepath += '/' + self.selected_run
+        filepath = Settings.RUNS_DIR
+        if Settings.SELECTED_RUN:
+            filepath += '/' + Settings.SELECTED_RUN
         if platform.system() == 'Darwin':       # macOS
             subprocess.call(('open', filepath))
         elif platform.system() == 'Windows':    # Windows

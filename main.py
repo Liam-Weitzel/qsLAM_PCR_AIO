@@ -37,15 +37,11 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         global widgets
         widgets = self.ui
-
-        # USE CUSTOM TITLE BAR | USE AS "False" FOR MAC OR LINUX
-        # ///////////////////////////////////////////////////////////////
-        Settings.ENABLE_CUSTOM_TITLE_BAR = False
+        self.settings = Settings()
 
         # APP NAME
         # ///////////////////////////////////////////////////////////////
-        title = "qsLAM_PCR_AIO"
-        self.setWindowTitle(title)
+        self.setWindowTitle(Settings.TITLE)
 
         # TOGGLE MENU
         # ///////////////////////////////////////////////////////////////
@@ -76,7 +72,6 @@ class MainWindow(QMainWindow):
         # SHOW APP
         # ///////////////////////////////////////////////////////////////
         self.show()
-        self.settings_path = "settings.json"
         self.show_first_time_dialog()
         self.show_docker_not_installed_dialog()
 
@@ -114,11 +109,11 @@ class MainWindow(QMainWindow):
         # SET DRAG POS WINDOW
         self.dragPos = event.globalPosition().toPoint()
 
+    # PRE START POPUPS
+    # ///////////////////////////////////////////////////////////////
     def show_first_time_dialog(self):
-        if not os.path.exists(self.settings_path):
-            # Create settings.json with default content
-            with open(self.settings_path, "w") as f:
-                json.dump({}, f)
+        if self.settings.get("FIRST_START"):
+            self.settings.set("FIRST_START", False)
 
             dlg = QDialog(self)
             dlg.setWindowTitle("Welcome to qsLAM_PCR_AIO")
@@ -166,19 +161,11 @@ class MainWindow(QMainWindow):
             return False
 
     def show_docker_not_installed_dialog(self):
-        settings = {}
-
-        # Load settings
-        if os.path.exists(self.settings_path):
-            with open(self.settings_path, "r") as f:
-                settings = json.load(f)
-
-        if settings.get("hide_docker_warning", False):
+        if self.settings.get("HIDE_DOCKER_WARNING", False):
             return
 
-        docker_path = settings.get("docker_path", None)
+        docker_path = self.settings.get("DOCKER_PATH", None)
 
-        # Check if Docker is installed before showing the dialog
         if self.is_docker_installed(docker_path):
             return
 
@@ -207,8 +194,8 @@ class MainWindow(QMainWindow):
 
         docker_path_input = QLineEdit()
         docker_path_input.setPlaceholderText("/usr/local/bin/docker or C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe")
-        if isinstance(settings.get("docker_path"), str):
-            docker_path_input.setText(settings["docker_path"])
+        if isinstance(docker_path, str):
+            docker_path_input.setText(docker_path)
         layout.addWidget(docker_path_input)
 
         checkbox = QCheckBox("Don't show this warning again")
@@ -221,23 +208,18 @@ class MainWindow(QMainWindow):
 
         def save_settings_and_close():
             if checkbox.isChecked():
-                settings["hide_docker_warning"] = True
+                self.settings.set("HIDE_DOCKER_WARNING", True)
 
             custom_path = docker_path_input.text().strip()
             if custom_path:
-                settings["docker_path"] = custom_path
-
-            with open(self.settings_path, "w") as f:
-                json.dump(settings, f, indent=2)
+                self.settings.set("DOCKER_PATH", custom_path)
 
             dlg.accept()
 
         def check_again():
             custom_path = docker_path_input.text().strip()
             if self.is_docker_installed(custom_path):
-                settings["docker_path"] = custom_path
-                with open(self.settings_path, "w") as f:
-                    json.dump(settings, f, indent=2)
+                self.settings.set("DOCKER_PATH", custom_path)
                 dlg.accept()  # Docker found, dismiss dialog
             else:
                 docker_path_input.setStyleSheet("border: 1px solid red;")

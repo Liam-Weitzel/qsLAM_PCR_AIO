@@ -17,11 +17,13 @@
 # MAIN FILE
 # ///////////////////////////////////////////////////////////////
 from main import *
+from . app_settings import Settings
 
 # GLOBALS
 # ///////////////////////////////////////////////////////////////
 GLOBAL_STATE = False
 GLOBAL_TITLE_BAR = True
+settings = Settings()
 
 class UIFunctions(MainWindow):
     # MAXIMIZE/RESTORE
@@ -209,11 +211,11 @@ class UIFunctions(MainWindow):
     def uiDefinitions(self):
         def dobleClickMaximizeRestore(event):
             # IF DOUBLE CLICK CHANGE STATUS
-            if event.type() == QEvent.MouseButtonDblClick and Settings.ENABLE_CUSTOM_TITLE_BAR:
+            if event.type() == QEvent.MouseButtonDblClick and settings.get("ENABLE_CUSTOM_TITLE_BAR"):
                 QTimer.singleShot(250, lambda: UIFunctions.maximize_restore(self))
         self.ui.leftBox.mouseDoubleClickEvent = dobleClickMaximizeRestore
 
-        if Settings.ENABLE_CUSTOM_TITLE_BAR:
+        if settings.get("ENABLE_CUSTOM_TITLE_BAR"):
             #STANDARD TITLE BAR
             self.setWindowFlags(Qt.FramelessWindowHint)
             self.setAttribute(Qt.WA_TranslucentBackground)
@@ -253,7 +255,7 @@ class UIFunctions(MainWindow):
 
         # RESIZE WINDOW
         self.sizegrip = QSizeGrip(self.ui.frame_size_grip)
-        self.sizegrip.setStyleSheet("width: 20px; height: 20px; margin 0px; padding: 0px;")
+        self.sizegrip.setStyleSheet(Settings.SIZE_GRIP_STYLESHEET)
 
         # MINIMIZE
         self.ui.minimizeAppButton.clicked.connect(lambda: self.showMinimized())
@@ -265,7 +267,7 @@ class UIFunctions(MainWindow):
         self.ui.closeAppButton.clicked.connect(lambda: self.close())
 
     def resize_grips(self):
-        if Settings.ENABLE_CUSTOM_TITLE_BAR:
+        if settings.get("ENABLE_CUSTOM_TITLE_BAR"):
             self.left_grip.setGeometry(0, 10, 10, self.height())
             self.right_grip.setGeometry(self.width() - 10, 10, 10, self.height())
             self.top_grip.setGeometry(0, 0, self.width(), 10)
