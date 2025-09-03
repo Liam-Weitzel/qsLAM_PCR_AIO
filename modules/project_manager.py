@@ -22,6 +22,7 @@ class ProjectManager:
         self.widgets.runsTable.cellDoubleClicked.connect(self.select_run)
         self.widgets.refreshRunButton.clicked.connect(self.update_runs_table)
         self.widgets.openFolderLocationButton.clicked.connect(self.open_folder_location)
+        self.widgets.renameRunButton.clicked.connect(self.rename_run)
 
         # Set first load page and select menu
         self.widgets.stackedWidget.setCurrentWidget(self.widgets.projectManager)
@@ -255,6 +256,41 @@ class ProjectManager:
             os.startfile(filepath)
         else:                                   # linux variants
             subprocess.call(('xdg-open', filepath))
+
+    def rename_run(self):
+        if not Settings.SELECTED_RUN:
+            QMessageBox.critical(self.main_window, "Error", "No run selected!")
+            return
+
+        # Ask for new name using input dialog
+        new_name, ok = QInputDialog.getText(
+            self.main_window,
+            "Rename Run",
+            f"Enter new name for '{Settings.SELECTED_RUN}':"
+        )
+
+        if not ok or not new_name.strip():
+            return  # User cancelled or empty input
+
+        new_name = new_name.strip()
+        old_path = os.path.join(Settings.RUNS_DIR, Settings.SELECTED_RUN)
+        new_path = os.path.join(Settings.RUNS_DIR, new_name)
+
+        if not os.path.exists(old_path):
+            QMessageBox.critical(self.main_window, "Error", f"Run folder '{Settings.SELECTED_RUN}' does not exist.")
+            return
+
+        if os.path.exists(new_path):
+            QMessageBox.critical(self.main_window, "Error", f"A folder named '{new_name}' already exists.")
+            return
+
+        try:
+            os.rename(old_path, new_path)
+            self.select_specific_run(new_name)
+            self.update_runs_table()
+            QMessageBox.information(self.main_window, "Success", f"Run renamed to '{new_name}'")
+        except Exception as e:
+            QMessageBox.critical(self.main_window, "Error", f"Failed to rename: {e}")
 
     def _zipdir(self, path, zf):
         for root, dirs, files in os.walk(path):
