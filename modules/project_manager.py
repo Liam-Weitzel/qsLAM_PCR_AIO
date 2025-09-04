@@ -5,7 +5,8 @@ from datetime import datetime
 from PySide6.QtWidgets import QFileDialog, QMessageBox, QTableWidgetItem
 from PySide6.QtCore import QTimer, Qt
 from . ui_functions import *
-from . app_settings import *
+from . settings import Settings
+from . metadata import Metadata
 
 class ProjectManager:
     def __init__(self, main_window):
@@ -44,18 +45,11 @@ class ProjectManager:
         self.widgets.runsTable.setRowCount(0)
 
         for subdir_name in subdirs:
-            metadata_path = os.path.join(Settings.RUNS_DIR, subdir_name, Settings.METADATA_FILE)
-
-            if os.path.exists(metadata_path):
-                try:
-                    with open(metadata_path, 'r') as f:
-                        metadata = json.load(f)
-                except json.JSONDecodeError:
-                    print(f"Error decoding JSON for {subdir_name}")
-                    continue
-            else:
-                print(f"Metadata file not found for {subdir_name}")
-                metadata = {}
+            try:
+                metadata = Metadata(subdir_name)
+            except Exception as e:
+                print(f"[ProjectManager] Skipping run '{subdir_name}': {e}")
+                continue
 
             # Create a new row in the table for this run
             row_position = self.widgets.runsTable.rowCount()
@@ -126,15 +120,8 @@ class ProjectManager:
                     try:
                         os.makedirs(new_run_path)
 
-                        # Create the metadata dictionary
-                        metadata = {
-                            "creation_timestamp": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-                        }
-
-                        # Create metadata.json in the new run directory
-                        metadata_path = os.path.join(new_run_path, Settings.METADATA_FILE)
-                        with open(metadata_path, 'w') as json_file:
-                            json.dump(metadata, json_file, indent=4)
+                        # Create metadata.json via Metadata class
+                        metadata = Metadata(run_name)
 
                         self.update_runs_table()
                         self.select_specific_run(run_name)

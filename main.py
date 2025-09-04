@@ -1,4 +1,4 @@
-# ///////////////////////////////////////////////////////////////
+
 #
 # BY: WANDERSON M.PIMENTA
 # PROJECT MADE WITH: Qt Designer and PySide6
@@ -223,7 +223,7 @@ class MainWindow(QMainWindow):
                 dlg.accept()  # Docker found, dismiss dialog
             else:
                 docker_path_input.setStyleSheet("border: 1px solid red;")
-                docker_path_input.setPlaceholderText("❌ Docker not found at that path")
+                docker_path_input.setPlaceholderText("🚫 Docker not found at that path")
 
         check_again_button.clicked.connect(check_again)
         close_button.clicked.connect(save_settings_and_close)
