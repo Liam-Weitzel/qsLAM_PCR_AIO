@@ -1,4 +1,4 @@
-
+# ///////////////////////////////////////////////////////////////
 #
 # BY: WANDERSON M.PIMENTA
 # PROJECT MADE WITH: Qt Designer and PySide6
@@ -51,16 +51,16 @@ class MainWindow(QMainWindow):
         # ///////////////////////////////////////////////////////////////
         UIFunctions.uiDefinitions(self)
 
-        self.project_manager = ProjectManager(self)
+        self.run_manager = RunManager(self)
 
         # BUTTONS CLICK - CONNECT EACH TO ITS OWN HANDLER
         # ///////////////////////////////////////////////////////////////
 
         # LEFT MENUS
-        widgets.setupViewButton.clicked.connect(self.on_setup_view)
-        widgets.runViewButton.clicked.connect(self.on_run_view)
-        widgets.analysisViewButton.clicked.connect(self.on_analysis_view)
-        widgets.projectManagerButton.clicked.connect(self.on_project_manager_view)
+        widgets.runConfigurationButton.clicked.connect(self.on_run_configuration_button)
+        widgets.runProgressButton.clicked.connect(self.on_run_progress_button)
+        widgets.runAnalysisButton.clicked.connect(self.on_run_analysis_button)
+        widgets.runManagerButton.clicked.connect(self.on_run_manager_button)
 
         # EXTRA LEFT BOX
         widgets.toggleLeftBox.clicked.connect(lambda: UIFunctions.toggleLeftBox(self, True))
@@ -77,25 +77,25 @@ class MainWindow(QMainWindow):
 
     # INDIVIDUAL HANDLERS FOR LEFT MENU BUTTONS
     # ///////////////////////////////////////////////////////////////
-    def on_project_manager_view(self):
-        widgets.stackedWidget.setCurrentWidget(widgets.projectManager)
-        UIFunctions.resetStyle(self, "projectManagerButton")
-        widgets.projectManagerButton.setStyleSheet(UIFunctions.selectMenu(widgets.projectManagerButton.styleSheet()))
+    def on_run_manager_button(self):
+        widgets.stackedWidget.setCurrentWidget(widgets.runManagerTab)
+        UIFunctions.resetStyle(self, "runManagerButton")
+        widgets.runManagerButton.setStyleSheet(UIFunctions.selectMenu(widgets.runManagerButton.styleSheet()))
 
-    def on_setup_view(self):
-        widgets.stackedWidget.setCurrentWidget(widgets.setupView)
-        UIFunctions.resetStyle(self, "setupViewButton")
-        widgets.setupViewButton.setStyleSheet(UIFunctions.selectMenu(widgets.setupViewButton.styleSheet()))
+    def on_run_configuration_button(self):
+        widgets.stackedWidget.setCurrentWidget(widgets.runConfigurationTab)
+        UIFunctions.resetStyle(self, "runConfigurationButton")
+        widgets.runConfigurationButton.setStyleSheet(UIFunctions.selectMenu(widgets.runConfigurationButton.styleSheet()))
 
-    def on_run_view(self):
-        widgets.stackedWidget.setCurrentWidget(widgets.runView)
-        UIFunctions.resetStyle(self, "runViewButton")
-        widgets.runViewButton.setStyleSheet(UIFunctions.selectMenu(widgets.runViewButton.styleSheet()))
+    def on_run_progress_button(self):
+        widgets.stackedWidget.setCurrentWidget(widgets.runProgressTab)
+        UIFunctions.resetStyle(self, "runProgressButton")
+        widgets.runProgressButton.setStyleSheet(UIFunctions.selectMenu(widgets.runProgressButton.styleSheet()))
 
-    def on_analysis_view(self):
-        widgets.stackedWidget.setCurrentWidget(widgets.analysisView)
-        UIFunctions.resetStyle(self, "analysisViewButton")
-        widgets.analysisViewButton.setStyleSheet(UIFunctions.selectMenu(widgets.analysisViewButton.styleSheet()))
+    def on_run_analysis_button(self):
+        widgets.stackedWidget.setCurrentWidget(widgets.runAnalysisTab)
+        UIFunctions.resetStyle(self, "runAnalysisButton")
+        widgets.runAnalysisButton.setStyleSheet(UIFunctions.selectMenu(widgets.runAnalysisButton.styleSheet()))
 
     # RESIZE EVENTS
     # ///////////////////////////////////////////////////////////////

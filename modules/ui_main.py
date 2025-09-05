@@ -529,45 +529,45 @@ class Ui_MainWindow(object):
         self.verticalLayout_8.setSpacing(0)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.verticalLayout_8.setContentsMargins(0, 0, 0, 0)
-        self.projectManagerButton = QPushButton(self.topMenu)
-        self.projectManagerButton.setObjectName(u"projectManagerButton")
-        sizePolicy.setHeightForWidth(self.projectManagerButton.sizePolicy().hasHeightForWidth())
-        self.projectManagerButton.setSizePolicy(sizePolicy)
-        self.projectManagerButton.setMinimumSize(QSize(0, 45))
-        self.projectManagerButton.setFont(font)
-        self.projectManagerButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.projectManagerButton.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        self.projectManagerButton.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-folder-open.png);")
+        self.runManagerButton = QPushButton(self.topMenu)
+        self.runManagerButton.setObjectName(u"runManagerButton")
+        sizePolicy.setHeightForWidth(self.runManagerButton.sizePolicy().hasHeightForWidth())
+        self.runManagerButton.setSizePolicy(sizePolicy)
+        self.runManagerButton.setMinimumSize(QSize(0, 45))
+        self.runManagerButton.setFont(font)
+        self.runManagerButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.runManagerButton.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        self.runManagerButton.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-folder-open.png);")
 
-        self.verticalLayout_8.addWidget(self.projectManagerButton)
+        self.verticalLayout_8.addWidget(self.runManagerButton)
 
-        self.setupViewButton = QPushButton(self.topMenu)
-        self.setupViewButton.setObjectName(u"setupViewButton")
-        sizePolicy.setHeightForWidth(self.setupViewButton.sizePolicy().hasHeightForWidth())
-        self.setupViewButton.setSizePolicy(sizePolicy)
-        self.setupViewButton.setMinimumSize(QSize(0, 45))
-        self.setupViewButton.setFont(font)
-        self.setupViewButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.setupViewButton.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        self.setupViewButton.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-equalizer.png);")
+        self.runConfigurationButton = QPushButton(self.topMenu)
+        self.runConfigurationButton.setObjectName(u"runConfigurationButton")
+        sizePolicy.setHeightForWidth(self.runConfigurationButton.sizePolicy().hasHeightForWidth())
+        self.runConfigurationButton.setSizePolicy(sizePolicy)
+        self.runConfigurationButton.setMinimumSize(QSize(0, 45))
+        self.runConfigurationButton.setFont(font)
+        self.runConfigurationButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.runConfigurationButton.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        self.runConfigurationButton.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-equalizer.png);")
 
-        self.verticalLayout_8.addWidget(self.setupViewButton)
+        self.verticalLayout_8.addWidget(self.runConfigurationButton)
 
-        self.runViewButton = QPushButton(self.topMenu)
-        self.runViewButton.setObjectName(u"runViewButton")
-        self.runViewButton.setMinimumSize(QSize(0, 45))
-        self.runViewButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.runViewButton.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-speedometer.png);")
+        self.runProgressButton = QPushButton(self.topMenu)
+        self.runProgressButton.setObjectName(u"runProgressButton")
+        self.runProgressButton.setMinimumSize(QSize(0, 45))
+        self.runProgressButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.runProgressButton.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-speedometer.png);")
 
-        self.verticalLayout_8.addWidget(self.runViewButton)
+        self.verticalLayout_8.addWidget(self.runProgressButton)
 
-        self.analysisViewButton = QPushButton(self.topMenu)
-        self.analysisViewButton.setObjectName(u"analysisViewButton")
-        self.analysisViewButton.setMinimumSize(QSize(0, 45))
-        self.analysisViewButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.analysisViewButton.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-chart.png);")
+        self.runAnalysisButton = QPushButton(self.topMenu)
+        self.runAnalysisButton.setObjectName(u"runAnalysisButton")
+        self.runAnalysisButton.setMinimumSize(QSize(0, 45))
+        self.runAnalysisButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.runAnalysisButton.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-chart.png);")
 
-        self.verticalLayout_8.addWidget(self.analysisViewButton)
+        self.verticalLayout_8.addWidget(self.runAnalysisButton)
 
 
         self.verticalMenuLayout.addWidget(self.topMenu, 0, Qt.AlignmentFlag.AlignTop)
@@ -877,14 +877,14 @@ class Ui_MainWindow(object):
         self.stackedWidget = QStackedWidget(self.pagesContainer)
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.stackedWidget.setStyleSheet(u"background: transparent;")
-        self.projectManager = QWidget()
-        self.projectManager.setObjectName(u"projectManager")
-        self.projectManager.setStyleSheet(u"")
-        self.verticalLayout = QVBoxLayout(self.projectManager)
+        self.runManagerTab = QWidget()
+        self.runManagerTab.setObjectName(u"runManagerTab")
+        self.runManagerTab.setStyleSheet(u"")
+        self.verticalLayout = QVBoxLayout(self.runManagerTab)
         self.verticalLayout.setSpacing(10)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(10, 10, 10, 10)
-        self.row_1 = QFrame(self.projectManager)
+        self.row_1 = QFrame(self.runManagerTab)
         self.row_1.setObjectName(u"row_1")
         self.row_1.setMinimumSize(QSize(0, 50))
         self.row_1.setMaximumSize(QSize(16777215, 50))
@@ -971,7 +971,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.row_1)
 
-        self.row_2 = QFrame(self.projectManager)
+        self.row_2 = QFrame(self.runManagerTab)
         self.row_2.setObjectName(u"row_2")
         self.row_2.setMinimumSize(QSize(0, 150))
         self.row_2.setFrameShape(QFrame.Shape.StyledPanel)
@@ -1057,7 +1057,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.row_2)
 
-        self.row_3 = QFrame(self.projectManager)
+        self.row_3 = QFrame(self.runManagerTab)
         self.row_3.setObjectName(u"row_3")
         self.row_3.setMinimumSize(QSize(0, 70))
         self.row_3.setFrameShape(QFrame.Shape.StyledPanel)
@@ -1127,15 +1127,15 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addWidget(self.row_3)
 
-        self.stackedWidget.addWidget(self.projectManager)
-        self.setupView = QWidget()
-        self.setupView.setObjectName(u"setupView")
-        self.setupView.setStyleSheet(u"")
-        self.verticalLayout1 = QVBoxLayout(self.setupView)
+        self.stackedWidget.addWidget(self.runManagerTab)
+        self.runConfigurationTab = QWidget()
+        self.runConfigurationTab.setObjectName(u"runConfigurationTab")
+        self.runConfigurationTab.setStyleSheet(u"")
+        self.verticalLayout1 = QVBoxLayout(self.runConfigurationTab)
         self.verticalLayout1.setSpacing(10)
         self.verticalLayout1.setObjectName(u"verticalLayout1")
         self.verticalLayout1.setContentsMargins(10, 10, 10, 10)
-        self.row_11 = QFrame(self.setupView)
+        self.row_11 = QFrame(self.runConfigurationTab)
         self.row_11.setObjectName(u"row_11")
         self.row_11.setMinimumSize(QSize(0, 120))
         self.row_11.setMaximumSize(QSize(16777215, 120))
@@ -1185,7 +1185,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout1.addWidget(self.row_11)
 
-        self.row_21 = QFrame(self.setupView)
+        self.row_21 = QFrame(self.runConfigurationTab)
         self.row_21.setObjectName(u"row_21")
         self.row_21.setMinimumSize(QSize(0, 150))
         self.row_21.setFrameShape(QFrame.Shape.StyledPanel)
@@ -1412,7 +1412,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout1.addWidget(self.row_21)
 
-        self.row_31 = QFrame(self.setupView)
+        self.row_31 = QFrame(self.runConfigurationTab)
         self.row_31.setObjectName(u"row_31")
         self.row_31.setMinimumSize(QSize(0, 35))
         self.row_31.setMaximumSize(QSize(16777215, 35))
@@ -1477,15 +1477,15 @@ class Ui_MainWindow(object):
 
         self.verticalLayout1.addWidget(self.row_31)
 
-        self.stackedWidget.addWidget(self.setupView)
-        self.analysisView = QWidget()
-        self.analysisView.setObjectName(u"analysisView")
-        self.analysisView.setStyleSheet(u"")
-        self.verticalLayout4 = QVBoxLayout(self.analysisView)
+        self.stackedWidget.addWidget(self.runConfigurationTab)
+        self.runAnalysisTab = QWidget()
+        self.runAnalysisTab.setObjectName(u"runAnalysisTab")
+        self.runAnalysisTab.setStyleSheet(u"")
+        self.verticalLayout4 = QVBoxLayout(self.runAnalysisTab)
         self.verticalLayout4.setSpacing(10)
         self.verticalLayout4.setObjectName(u"verticalLayout4")
         self.verticalLayout4.setContentsMargins(10, 10, 10, 10)
-        self.row_12 = QFrame(self.analysisView)
+        self.row_12 = QFrame(self.runAnalysisTab)
         self.row_12.setObjectName(u"row_12")
         self.row_12.setMinimumSize(QSize(0, 50))
         self.row_12.setMaximumSize(QSize(16777215, 50))
@@ -1498,7 +1498,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout4.addWidget(self.row_12)
 
-        self.row_22 = QFrame(self.analysisView)
+        self.row_22 = QFrame(self.runAnalysisTab)
         self.row_22.setObjectName(u"row_22")
         self.row_22.setMinimumSize(QSize(0, 150))
         self.row_22.setFrameShape(QFrame.Shape.StyledPanel)
@@ -1513,7 +1513,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout4.addWidget(self.row_22)
 
-        self.row_32 = QFrame(self.analysisView)
+        self.row_32 = QFrame(self.runAnalysisTab)
         self.row_32.setObjectName(u"row_32")
         self.row_32.setMinimumSize(QSize(0, 70))
         self.row_32.setFrameShape(QFrame.Shape.StyledPanel)
@@ -1525,15 +1525,15 @@ class Ui_MainWindow(object):
 
         self.verticalLayout4.addWidget(self.row_32)
 
-        self.stackedWidget.addWidget(self.analysisView)
-        self.runView = QWidget()
-        self.runView.setObjectName(u"runView")
-        self.runView.setStyleSheet(u"")
-        self.verticalLayout5 = QVBoxLayout(self.runView)
+        self.stackedWidget.addWidget(self.runAnalysisTab)
+        self.runProgressTab = QWidget()
+        self.runProgressTab.setObjectName(u"runProgressTab")
+        self.runProgressTab.setStyleSheet(u"")
+        self.verticalLayout5 = QVBoxLayout(self.runProgressTab)
         self.verticalLayout5.setSpacing(10)
         self.verticalLayout5.setObjectName(u"verticalLayout5")
         self.verticalLayout5.setContentsMargins(10, 10, 10, 10)
-        self.row_13 = QFrame(self.runView)
+        self.row_13 = QFrame(self.runProgressTab)
         self.row_13.setObjectName(u"row_13")
         self.row_13.setMinimumSize(QSize(0, 50))
         self.row_13.setMaximumSize(QSize(16777215, 50))
@@ -1551,7 +1551,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout5.addWidget(self.row_13)
 
-        self.row_23 = QFrame(self.runView)
+        self.row_23 = QFrame(self.runProgressTab)
         self.row_23.setObjectName(u"row_23")
         self.row_23.setMinimumSize(QSize(0, 150))
         self.row_23.setFrameShape(QFrame.Shape.StyledPanel)
@@ -1566,7 +1566,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout5.addWidget(self.row_23)
 
-        self.row_33 = QFrame(self.runView)
+        self.row_33 = QFrame(self.runProgressTab)
         self.row_33.setObjectName(u"row_33")
         self.row_33.setMinimumSize(QSize(0, 70))
         self.row_33.setFrameShape(QFrame.Shape.StyledPanel)
@@ -1584,7 +1584,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout5.addWidget(self.row_33)
 
-        self.stackedWidget.addWidget(self.runView)
+        self.stackedWidget.addWidget(self.runProgressTab)
 
         self.verticalLayout_15.addWidget(self.stackedWidget)
 
@@ -1726,8 +1726,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
-        self.stackedWidget_2.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(2)
+        self.stackedWidget_2.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1738,10 +1738,10 @@ class Ui_MainWindow(object):
         self.titleLeftApp.setText(QCoreApplication.translate("MainWindow", u"qsLAM_PCR_AIO", None))
         self.titleLeftDescription.setText(QCoreApplication.translate("MainWindow", u"Erasmus MC", None))
         self.toggleButton.setText(QCoreApplication.translate("MainWindow", u"Hide", None))
-        self.projectManagerButton.setText(QCoreApplication.translate("MainWindow", u"Project Manager", None))
-        self.setupViewButton.setText(QCoreApplication.translate("MainWindow", u"Edit Run Configuration", None))
-        self.runViewButton.setText(QCoreApplication.translate("MainWindow", u"Run Progress", None))
-        self.analysisViewButton.setText(QCoreApplication.translate("MainWindow", u"Analyze Run", None))
+        self.runManagerButton.setText(QCoreApplication.translate("MainWindow", u"Manage Runs", None))
+        self.runConfigurationButton.setText(QCoreApplication.translate("MainWindow", u"Edit Run Configuration", None))
+        self.runProgressButton.setText(QCoreApplication.translate("MainWindow", u"Run Progress", None))
+        self.runAnalysisButton.setText(QCoreApplication.translate("MainWindow", u"Analyze Runs", None))
         self.toggleLeftBox.setText(QCoreApplication.translate("MainWindow", u"About", None))
 #if QT_CONFIG(tooltip)
         self.extraCloseColumnButton.setToolTip(QCoreApplication.translate("MainWindow", u"Close about", None))

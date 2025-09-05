@@ -711,7 +711,7 @@ QCommandLinkButton:hover {
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QPushButton" name="projectManagerButton">
+                 <widget class="QPushButton" name="runManagerButton">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                     <horstretch>0</horstretch>
@@ -742,12 +742,12 @@ QCommandLinkButton:hover {
                    <string notr="true">background-image: url(:/icons/images/icons/cil-folder-open.png);</string>
                   </property>
                   <property name="text">
-                   <string>Project Manager</string>
+                   <string>Manage Runs</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="setupViewButton">
+                 <widget class="QPushButton" name="runConfigurationButton">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                     <horstretch>0</horstretch>
@@ -783,7 +783,7 @@ QCommandLinkButton:hover {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="runViewButton">
+                 <widget class="QPushButton" name="runProgressButton">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -802,7 +802,7 @@ QCommandLinkButton:hover {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="analysisViewButton">
+                 <widget class="QPushButton" name="runAnalysisButton">
                   <property name="minimumSize">
                    <size>
                     <width>0</width>
@@ -816,7 +816,7 @@ QCommandLinkButton:hover {
                    <string notr="true">background-image: url(:/icons/images/icons/cil-chart.png);</string>
                   </property>
                   <property name="text">
-                   <string>Analyze Run</string>
+                   <string>Analyze Runs</string>
                   </property>
                  </widget>
                 </item>
@@ -1619,9 +1619,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>0</number>
+                      <number>2</number>
                      </property>
-                     <widget class="QWidget" name="projectManager">
+                     <widget class="QWidget" name="runManagerTab">
                       <property name="styleSheet">
                        <string notr="true"/>
                       </property>
@@ -2345,7 +2345,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                        </item>
                       </layout>
                      </widget>
-                     <widget class="QWidget" name="setupView">
+                     <widget class="QWidget" name="runConfigurationTab">
                       <property name="styleSheet">
                        <string notr="true"/>
                       </property>
@@ -2490,7 +2490,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                <string notr="true">background: transparent;</string>
                               </property>
                               <property name="currentIndex">
-                               <number>1</number>
+                               <number>0</number>
                               </property>
                               <widget class="QWidget" name="localDocker">
                                <property name="styleSheet">
@@ -3062,7 +3062,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                        </item>
                       </layout>
                      </widget>
-                     <widget class="QWidget" name="analysisView">
+                     <widget class="QWidget" name="runAnalysisTab">
                       <property name="styleSheet">
                        <string notr="true"/>
                       </property>
@@ -3181,7 +3181,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                        </item>
                       </layout>
                      </widget>
-                     <widget class="QWidget" name="runView">
+                     <widget class="QWidget" name="runProgressTab">
                       <property name="styleSheet">
                        <string notr="true"/>
                       </property>

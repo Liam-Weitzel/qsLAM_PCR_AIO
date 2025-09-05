@@ -8,7 +8,7 @@ from . ui_functions import *
 from . settings import Settings
 from . metadata import Metadata
 
-class ProjectManager:
+class RunManager:
     def __init__(self, main_window):
         self.settings = Settings()
         self.main_window = main_window
@@ -26,8 +26,8 @@ class ProjectManager:
         self.widgets.renameRunButton.clicked.connect(self.rename_run)
 
         # Set first load page and select menu
-        self.widgets.stackedWidget.setCurrentWidget(self.widgets.projectManager)
-        self.widgets.projectManagerButton.setStyleSheet(UIFunctions.selectMenu(self.widgets.projectManagerButton.styleSheet()))
+        self.widgets.stackedWidget.setCurrentWidget(self.widgets.runManagerTab)
+        self.widgets.runManagerButton.setStyleSheet(UIFunctions.selectMenu(self.widgets.runManagerButton.styleSheet()))
 
         # Schedule a refresh to fill empty rows once the UI is fully rendered
         QTimer.singleShot(100, self.update_runs_table)
@@ -48,7 +48,7 @@ class ProjectManager:
             try:
                 metadata = Metadata(subdir_name)
             except Exception as e:
-                print(f"[ProjectManager] Skipping run '{subdir_name}': {e}")
+                print(f"[RunManager] Skipping run '{subdir_name}': {e}")
                 continue
 
             # Create a new row in the table for this run

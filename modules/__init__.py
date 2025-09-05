@@ -29,5 +29,5 @@ from . metadata import Metadata
 # IMPORT FUNCTIONS
 from . ui_functions import *
 
-# PROJECT MANAGER TAB
-from . project_manager import *
+# RUN MANAGER TAB
+from . run_manager import *
