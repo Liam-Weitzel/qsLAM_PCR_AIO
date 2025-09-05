@@ -549,7 +549,7 @@ class Ui_MainWindow(object):
         self.runConfigurationButton.setFont(font)
         self.runConfigurationButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.runConfigurationButton.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        self.runConfigurationButton.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-equalizer.png);")
+        self.runConfigurationButton.setStyleSheet(u"margin-left: -5px; background-image: url(:/icons/images/icons/cil-equalizer.png);")
 
         self.verticalLayout_8.addWidget(self.runConfigurationButton)
 
@@ -557,7 +557,7 @@ class Ui_MainWindow(object):
         self.runProgressButton.setObjectName(u"runProgressButton")
         self.runProgressButton.setMinimumSize(QSize(0, 45))
         self.runProgressButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.runProgressButton.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-speedometer.png);")
+        self.runProgressButton.setStyleSheet(u"margin-left: -5px; background-image: url(:/icons/images/icons/cil-speedometer.png);")
 
         self.verticalLayout_8.addWidget(self.runProgressButton)
 

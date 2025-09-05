@@ -775,7 +775,7 @@ QCommandLinkButton:hover {
                    <enum>Qt::LayoutDirection::LeftToRight</enum>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-image: url(:/icons/images/icons/cil-equalizer.png);</string>
+                   <string notr="true">margin-left: -5px; background-image: url(:/icons/images/icons/cil-equalizer.png);</string>
                   </property>
                   <property name="text">
                    <string>Edit Run Configuration</string>
@@ -794,7 +794,7 @@ QCommandLinkButton:hover {
                    <cursorShape>PointingHandCursor</cursorShape>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-image: url(:/icons/images/icons/cil-speedometer.png);</string>
+                   <string notr="true">margin-left: -5px; background-image: url(:/icons/images/icons/cil-speedometer.png);</string>
                   </property>
                   <property name="text">
                    <string>Run Progress</string>

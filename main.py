@@ -62,6 +62,9 @@ class MainWindow(QMainWindow):
         widgets.runAnalysisButton.clicked.connect(self.on_run_analysis_button)
         widgets.runManagerButton.clicked.connect(self.on_run_manager_button)
 
+        self.disable_button(widgets.runProgressButton)
+        self.disable_button(widgets.runConfigurationButton)
+
         # EXTRA LEFT BOX
         widgets.toggleLeftBox.clicked.connect(lambda: UIFunctions.toggleLeftBox(self, True))
         widgets.extraCloseColumnButton.clicked.connect(lambda: UIFunctions.toggleLeftBox(self, True))
@@ -234,6 +237,76 @@ class MainWindow(QMainWindow):
 
         dlg.setLayout(layout)
         dlg.exec()
+
+    # DISABLE BUTTONS
+    # ///////////////////////////////////////////////////////////////
+    def disable_button(self, button):
+        # Prevent re-disabling
+        if button.property("is_custom_disabled"):
+            return
+
+        # Set cursor
+        button.setCursor(QCursor(Qt.CursorShape.WhatsThisCursor))
+
+        # Modify style only if not already applied
+        current_style = button.styleSheet()
+
+        if "background-color: lightgrey;" not in current_style:
+            current_style += " background-color: lightgrey;"
+
+        if "-cross.png" not in current_style:
+            current_style = current_style.replace(".png", "-cross.png")
+
+        button.setStyleSheet(current_style)
+
+        # Set tooltip
+        button.setToolTip(QCoreApplication.translate(
+            "MainWindow", u"        Select a run and configure it in order to progress", None))
+
+        # Replace clicked handler
+        try:
+            button.clicked.disconnect()
+        except TypeError:
+            pass
+        button.clicked.connect(self.show_disabled_dialog)
+
+        # Set custom property
+        button.setProperty("is_custom_disabled", True)
+
+    def enable_button(self, button, func):
+        # Prevent re-enabling if not disabled
+        if not button.property("is_custom_disabled"):
+            return
+
+        # Set cursor
+        button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+
+        # Clean up style
+        current_style = button.styleSheet()
+        current_style = current_style.replace(" background-color: lightgrey;", "")
+        current_style = current_style.replace("-cross.png", ".png")
+        button.setStyleSheet(current_style)
+
+        # Remove tooltip
+        button.setToolTip("")
+
+        # Restore original clicked function
+        try:
+            button.clicked.disconnect()
+        except TypeError:
+            pass
+        button.clicked.connect(func)
+
+        # Remove the custom disabled state
+        button.setProperty("is_custom_disabled", False)
+
+    def show_disabled_dialog(self):
+        msg_box = QMessageBox(self)
+        msg_box.setWindowTitle("Tab is not available")
+        msg_box.setText("Please select a run and save its run configurations in order to progress")
+        msg_box.setIcon(QMessageBox.Information)
+        msg_box.setStandardButtons(QMessageBox.Ok)
+        msg_box.exec_()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

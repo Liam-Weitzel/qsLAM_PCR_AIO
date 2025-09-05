@@ -99,6 +99,7 @@
         <file>images/icons/cil-envelope-closed.png</file>
         <file>images/icons/cil-envelope-letter.png</file>
         <file>images/icons/cil-envelope-open.png</file>
+        <file>images/icons/cil-equalizer-cross.png</file>
         <file>images/icons/cil-equalizer.png</file>
         <file>images/icons/cil-ethernet.png</file>
         <file>images/icons/cil-exit-to-app.png</file>
@@ -216,6 +217,7 @@
         <file>images/icons/cil-smile.png</file>
         <file>images/icons/cil-speaker.png</file>
         <file>images/icons/cil-speech.png</file>
+        <file>images/icons/cil-speedometer-cross.png</file>
         <file>images/icons/cil-speedometer.png</file>
         <file>images/icons/cil-star.png</file>
         <file>images/icons/cil-tags.png</file>

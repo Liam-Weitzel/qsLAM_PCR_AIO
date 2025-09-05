@@ -93,13 +93,23 @@ class RunManager:
         if selected_items:
             Settings.SELECTED_RUN = selected_items[0].text()
             self.widgets.currentlySelected.setText(Settings.SELECTED_RUN)
+            self.main_window.enable_button(self.widgets.runProgressButton, self.main_window.on_run_progress_button)
+            self.main_window.enable_button(self.widgets.runConfigurationButton, self.main_window.on_run_configuration_button)
         else:
             Settings.SELECTED_RUN = None
             self.widgets.currentlySelected.setText("None")
+            self.main_window.disable_button(self.widgets.runProgressButton)
+            self.main_window.disable_button(self.widgets.runConfigurationButton)
 
     def select_specific_run(self, run):
         Settings.SELECTED_RUN = run
         self.widgets.currentlySelected.setText(run)
+        if(run):
+            self.main_window.enable_button(self.widgets.runProgressButton, self.main_window.on_run_progress_button)
+            self.main_window.enable_button(self.widgets.runConfigurationButton, self.main_window.on_run_configuration_button)
+        else:
+            self.main_window.disable_button(self.widgets.runProgressButton)
+            self.main_window.disable_button(self.widgets.runConfigurationButton)
 
     def create_run(self):
         button = QMessageBox.question(
