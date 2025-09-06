@@ -57,10 +57,10 @@ class MainWindow(QMainWindow):
         # ///////////////////////////////////////////////////////////////
 
         # LEFT MENUS
-        widgets.runConfigurationButton.clicked.connect(self.on_run_configuration_button)
-        widgets.runProgressButton.clicked.connect(self.on_run_progress_button)
-        widgets.runAnalysisButton.clicked.connect(self.on_run_analysis_button)
-        widgets.runManagerButton.clicked.connect(self.on_run_manager_button)
+        widgets.runManagerButton.clicked.connect(lambda: self.on_menu_button_clicked(widgets.runManagerTab, widgets.runManagerButton, "runManagerButton"))
+        widgets.runConfigurationButton.clicked.connect(lambda: self.on_menu_button_clicked(widgets.runConfigurationTab, widgets.runConfigurationButton, "runConfigurationButton"))
+        widgets.runProgressButton.clicked.connect(lambda: self.on_menu_button_clicked(widgets.runProgressTab, widgets.runProgressButton, "runProgressButton"))
+        widgets.runAnalysisButton.clicked.connect(lambda: self.on_menu_button_clicked(widgets.runAnalysisTab, widgets.runAnalysisButton, "runAnalysisButton", show_selected_run=False))
 
         self.disable_button(widgets.runProgressButton)
         self.disable_button(widgets.runConfigurationButton)
@@ -78,27 +78,19 @@ class MainWindow(QMainWindow):
         self.show_first_time_dialog()
         self.show_docker_not_installed_dialog()
 
-    # INDIVIDUAL HANDLERS FOR LEFT MENU BUTTONS
+    # HANDLER FOR LEFT MENU BUTTONS
     # ///////////////////////////////////////////////////////////////
-    def on_run_manager_button(self):
-        widgets.stackedWidget.setCurrentWidget(widgets.runManagerTab)
-        UIFunctions.resetStyle(self, "runManagerButton")
-        widgets.runManagerButton.setStyleSheet(UIFunctions.selectMenu(widgets.runManagerButton.styleSheet()))
-
-    def on_run_configuration_button(self):
-        widgets.stackedWidget.setCurrentWidget(widgets.runConfigurationTab)
-        UIFunctions.resetStyle(self, "runConfigurationButton")
-        widgets.runConfigurationButton.setStyleSheet(UIFunctions.selectMenu(widgets.runConfigurationButton.styleSheet()))
-
-    def on_run_progress_button(self):
-        widgets.stackedWidget.setCurrentWidget(widgets.runProgressTab)
-        UIFunctions.resetStyle(self, "runProgressButton")
-        widgets.runProgressButton.setStyleSheet(UIFunctions.selectMenu(widgets.runProgressButton.styleSheet()))
-
-    def on_run_analysis_button(self):
-        widgets.stackedWidget.setCurrentWidget(widgets.runAnalysisTab)
-        UIFunctions.resetStyle(self, "runAnalysisButton")
-        widgets.runAnalysisButton.setStyleSheet(UIFunctions.selectMenu(widgets.runAnalysisButton.styleSheet()))
+    def on_menu_button_clicked(self, tab_widget, button_widget, button_name, show_selected_run=True):
+        widgets.stackedWidget.setCurrentWidget(tab_widget)
+        UIFunctions.resetStyle(self, button_name)
+        button_widget.setStyleSheet(UIFunctions.selectMenu(button_widget.styleSheet()))
+        
+        if show_selected_run:
+            widgets.currentlySelectedText.setText("Currently Selected Run: ")
+            widgets.currentlySelected.setText(Settings.SELECTED_RUN or "None")
+        else:
+            widgets.currentlySelectedText.setText("")
+            widgets.currentlySelected.setText("")
 
     # RESIZE EVENTS
     # ///////////////////////////////////////////////////////////////
