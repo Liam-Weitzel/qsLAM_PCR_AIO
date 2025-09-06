@@ -51,7 +51,10 @@ class MainWindow(QMainWindow):
         # ///////////////////////////////////////////////////////////////
         UIFunctions.uiDefinitions(self)
 
+        # INIT ALL TABS
+        # ///////////////////////////////////////////////////////////////
         self.run_manager = RunManager(self)
+        self.run_configurator = RunConfigurator(self)
 
         # BUTTONS CLICK - CONNECT EACH TO ITS OWN HANDLER
         # ///////////////////////////////////////////////////////////////
@@ -61,9 +64,6 @@ class MainWindow(QMainWindow):
         widgets.runConfigurationButton.clicked.connect(lambda: self.on_menu_button_clicked(widgets.runConfigurationTab, widgets.runConfigurationButton, "runConfigurationButton"))
         widgets.runProgressButton.clicked.connect(lambda: self.on_menu_button_clicked(widgets.runProgressTab, widgets.runProgressButton, "runProgressButton"))
         widgets.runAnalysisButton.clicked.connect(lambda: self.on_menu_button_clicked(widgets.runAnalysisTab, widgets.runAnalysisButton, "runAnalysisButton", show_selected_run=False))
-
-        self.disable_button(widgets.runProgressButton)
-        self.disable_button(widgets.runConfigurationButton)
 
         # EXTRA LEFT BOX
         widgets.toggleLeftBox.clicked.connect(lambda: UIFunctions.toggleLeftBox(self, True))
@@ -77,6 +77,10 @@ class MainWindow(QMainWindow):
         self.show()
         self.show_first_time_dialog()
         self.show_docker_not_installed_dialog()
+
+        # INIT STATE
+        self.disable_button(widgets.runProgressButton)
+        self.disable_button(widgets.runConfigurationButton)
 
     # HANDLER FOR LEFT MENU BUTTONS
     # ///////////////////////////////////////////////////////////////

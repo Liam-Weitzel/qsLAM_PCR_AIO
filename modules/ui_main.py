@@ -18,9 +18,9 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QCheckBox,
     QFrame, QGridLayout, QHBoxLayout, QHeaderView,
     QLabel, QLineEdit, QMainWindow, QProgressBar,
-    QPushButton, QRadioButton, QSizePolicy, QSpacerItem,
-    QStackedWidget, QTableWidget, QTableWidgetItem, QTextBrowser,
-    QTextEdit, QVBoxLayout, QWidget)
+    QPushButton, QSizePolicy, QSpacerItem, QStackedWidget,
+    QTableWidget, QTableWidgetItem, QTextBrowser, QTextEdit,
+    QVBoxLayout, QWidget)
 from .resources_rc import *
 
 class Ui_MainWindow(object):
@@ -1135,306 +1135,105 @@ class Ui_MainWindow(object):
         self.verticalLayout1.setSpacing(10)
         self.verticalLayout1.setObjectName(u"verticalLayout1")
         self.verticalLayout1.setContentsMargins(10, 10, 10, 10)
-        self.row_11 = QFrame(self.runConfigurationTab)
-        self.row_11.setObjectName(u"row_11")
-        self.row_11.setMinimumSize(QSize(0, 120))
-        self.row_11.setMaximumSize(QSize(16777215, 120))
-        self.row_11.setFrameShape(QFrame.Shape.StyledPanel)
-        self.row_11.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout_161 = QVBoxLayout(self.row_11)
-        self.verticalLayout_161.setSpacing(0)
-        self.verticalLayout_161.setObjectName(u"verticalLayout_161")
-        self.verticalLayout_161.setContentsMargins(0, 0, 0, 0)
         self.gridLayout_2 = QGridLayout()
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.adapterSequenceInput = QLineEdit(self.row_11)
-        self.adapterSequenceInput.setObjectName(u"adapterSequenceInput")
+        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout_2.addWidget(self.adapterSequenceInput, 1, 1, 1, 1)
+        self.gridLayout_2.addItem(self.horizontalSpacer_9, 25, 4, 1, 1)
 
-        self.verticalSpacer_3 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout_2.addItem(self.verticalSpacer_3, 2, 0, 1, 2)
-
-        self.ltrPrimerSequenceLabel = QLabel(self.row_11)
-        self.ltrPrimerSequenceLabel.setObjectName(u"ltrPrimerSequenceLabel")
-
-        self.gridLayout_2.addWidget(self.ltrPrimerSequenceLabel, 3, 0, 1, 1)
-
-        self.verticalSpacer_14 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_2.addItem(self.verticalSpacer_14, 4, 0, 1, 2)
-
-        self.adapterSequenceLabel = QLabel(self.row_11)
-        self.adapterSequenceLabel.setObjectName(u"adapterSequenceLabel")
-
-        self.gridLayout_2.addWidget(self.adapterSequenceLabel, 1, 0, 1, 1)
-
-        self.verticalSpacer_2 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_2.addItem(self.verticalSpacer_2, 0, 0, 1, 2)
-
-        self.ltrPrimerSequenceInput = QLineEdit(self.row_11)
-        self.ltrPrimerSequenceInput.setObjectName(u"ltrPrimerSequenceInput")
-
-        self.gridLayout_2.addWidget(self.ltrPrimerSequenceInput, 3, 1, 1, 1)
-
-
-        self.verticalLayout_161.addLayout(self.gridLayout_2)
-
-
-        self.verticalLayout1.addWidget(self.row_11)
-
-        self.row_21 = QFrame(self.runConfigurationTab)
-        self.row_21.setObjectName(u"row_21")
-        self.row_21.setMinimumSize(QSize(0, 150))
-        self.row_21.setFrameShape(QFrame.Shape.StyledPanel)
-        self.row_21.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout_191 = QVBoxLayout(self.row_21)
-        self.verticalLayout_191.setObjectName(u"verticalLayout_191")
-        self.gridLayout_3 = QGridLayout()
-        self.gridLayout_3.setObjectName(u"gridLayout_3")
-        self.stackedWidget_2 = QStackedWidget(self.row_21)
-        self.stackedWidget_2.setObjectName(u"stackedWidget_2")
-        self.stackedWidget_2.setStyleSheet(u"background: transparent;")
-        self.localDocker = QWidget()
-        self.localDocker.setObjectName(u"localDocker")
-        self.localDocker.setStyleSheet(u"")
-        self.verticalLayout2 = QVBoxLayout(self.localDocker)
-        self.verticalLayout2.setSpacing(10)
-        self.verticalLayout2.setObjectName(u"verticalLayout2")
-        self.verticalLayout2.setContentsMargins(10, 10, 10, 10)
-        self.maxSize_2 = QFrame(self.localDocker)
-        self.maxSize_2.setObjectName(u"maxSize_2")
-        self.maxSize_2.setMinimumSize(QSize(0, 150))
-        self.maxSize_2.setFrameShape(QFrame.Shape.StyledPanel)
-        self.maxSize_2.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout_192 = QVBoxLayout(self.maxSize_2)
-        self.verticalLayout_192.setObjectName(u"verticalLayout_192")
-        self.gridLayout_4 = QGridLayout()
-        self.gridLayout_4.setObjectName(u"gridLayout_4")
-        self.localReferenceGenomeInput = QLineEdit(self.maxSize_2)
-        self.localReferenceGenomeInput.setObjectName(u"localReferenceGenomeInput")
-
-        self.gridLayout_4.addWidget(self.localReferenceGenomeInput, 5, 1, 1, 1)
-
-        self.localForwardReadLabel = QLabel(self.maxSize_2)
-        self.localForwardReadLabel.setObjectName(u"localForwardReadLabel")
-
-        self.gridLayout_4.addWidget(self.localForwardReadLabel, 1, 0, 1, 1)
-
-        self.localBackwardReadLabel = QLabel(self.maxSize_2)
-        self.localBackwardReadLabel.setObjectName(u"localBackwardReadLabel")
-
-        self.gridLayout_4.addWidget(self.localBackwardReadLabel, 3, 0, 1, 1)
-
-        self.localForwardReadInput = QLineEdit(self.maxSize_2)
-        self.localForwardReadInput.setObjectName(u"localForwardReadInput")
-
-        self.gridLayout_4.addWidget(self.localForwardReadInput, 1, 1, 1, 1)
-
-        self.localBackwardReadInput = QLineEdit(self.maxSize_2)
-        self.localBackwardReadInput.setObjectName(u"localBackwardReadInput")
-
-        self.gridLayout_4.addWidget(self.localBackwardReadInput, 3, 1, 1, 1)
-
-        self.localReferenceGenomeLabel = QLabel(self.maxSize_2)
-        self.localReferenceGenomeLabel.setObjectName(u"localReferenceGenomeLabel")
-
-        self.gridLayout_4.addWidget(self.localReferenceGenomeLabel, 5, 0, 1, 1)
-
-        self.verticalSpacer_13 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_4.addItem(self.verticalSpacer_13, 6, 0, 1, 2)
-
-        self.verticalSpacer_12 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_4.addItem(self.verticalSpacer_12, 4, 0, 1, 2)
-
-        self.verticalSpacer_11 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_4.addItem(self.verticalSpacer_11, 2, 0, 1, 2)
-
-        self.verticalSpacer_10 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_4.addItem(self.verticalSpacer_10, 0, 0, 1, 2)
-
-
-        self.verticalLayout_192.addLayout(self.gridLayout_4)
-
-
-        self.verticalLayout2.addWidget(self.maxSize_2)
-
-        self.stackedWidget_2.addWidget(self.localDocker)
-        self.remoteDocker = QWidget()
-        self.remoteDocker.setObjectName(u"remoteDocker")
-        self.remoteDocker.setStyleSheet(u"")
-        self.verticalLayout3 = QVBoxLayout(self.remoteDocker)
-        self.verticalLayout3.setSpacing(10)
-        self.verticalLayout3.setObjectName(u"verticalLayout3")
-        self.verticalLayout3.setContentsMargins(10, 10, 10, 10)
-        self.maxSize = QFrame(self.remoteDocker)
-        self.maxSize.setObjectName(u"maxSize")
-        self.maxSize.setMinimumSize(QSize(0, 150))
-        self.maxSize.setFrameShape(QFrame.Shape.StyledPanel)
-        self.maxSize.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout_193 = QVBoxLayout(self.maxSize)
-        self.verticalLayout_193.setObjectName(u"verticalLayout_193")
-        self.gridLayout_5 = QGridLayout()
-        self.gridLayout_5.setObjectName(u"gridLayout_5")
-        self.remoteReferenceGenomeInput = QLineEdit(self.maxSize)
-        self.remoteReferenceGenomeInput.setObjectName(u"remoteReferenceGenomeInput")
-
-        self.gridLayout_5.addWidget(self.remoteReferenceGenomeInput, 9, 1, 1, 3)
-
-        self.remotePortNumberInput = QLineEdit(self.maxSize)
-        self.remotePortNumberInput.setObjectName(u"remotePortNumberInput")
-
-        self.gridLayout_5.addWidget(self.remotePortNumberInput, 1, 3, 1, 1)
-
-        self.remoteBackwardReadInput = QLineEdit(self.maxSize)
-        self.remoteBackwardReadInput.setObjectName(u"remoteBackwardReadInput")
-
-        self.gridLayout_5.addWidget(self.remoteBackwardReadInput, 7, 1, 1, 3)
-
-        self.remotePortNumberLabel = QLabel(self.maxSize)
-        self.remotePortNumberLabel.setObjectName(u"remotePortNumberLabel")
-
-        self.gridLayout_5.addWidget(self.remotePortNumberLabel, 1, 2, 1, 1)
-
-        self.remoteBackwardReadLabel = QLabel(self.maxSize)
-        self.remoteBackwardReadLabel.setObjectName(u"remoteBackwardReadLabel")
-
-        self.gridLayout_5.addWidget(self.remoteBackwardReadLabel, 7, 0, 1, 1)
-
-        self.remoteIpAddressLabel = QLabel(self.maxSize)
-        self.remoteIpAddressLabel.setObjectName(u"remoteIpAddressLabel")
-
-        self.gridLayout_5.addWidget(self.remoteIpAddressLabel, 1, 0, 1, 1)
-
-        self.remoteDontSendDataCheckbox = QCheckBox(self.maxSize)
-        self.remoteDontSendDataCheckbox.setObjectName(u"remoteDontSendDataCheckbox")
-
-        self.gridLayout_5.addWidget(self.remoteDontSendDataCheckbox, 3, 0, 1, 4)
-
-        self.remoteForwardReadInput = QLineEdit(self.maxSize)
-        self.remoteForwardReadInput.setObjectName(u"remoteForwardReadInput")
-
-        self.gridLayout_5.addWidget(self.remoteForwardReadInput, 5, 1, 1, 3)
-
-        self.remoteForwardReadLabel = QLabel(self.maxSize)
-        self.remoteForwardReadLabel.setObjectName(u"remoteForwardReadLabel")
-
-        self.gridLayout_5.addWidget(self.remoteForwardReadLabel, 5, 0, 1, 1)
-
-        self.remoteReferenceGenomeLabel = QLabel(self.maxSize)
-        self.remoteReferenceGenomeLabel.setObjectName(u"remoteReferenceGenomeLabel")
-
-        self.gridLayout_5.addWidget(self.remoteReferenceGenomeLabel, 9, 0, 1, 1)
-
-        self.remoteIpAddressInput = QLineEdit(self.maxSize)
-        self.remoteIpAddressInput.setObjectName(u"remoteIpAddressInput")
-
-        self.gridLayout_5.addWidget(self.remoteIpAddressInput, 1, 1, 1, 1)
-
-        self.verticalSpacer_9 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_5.addItem(self.verticalSpacer_9, 10, 0, 1, 4)
-
-        self.verticalSpacer_8 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_5.addItem(self.verticalSpacer_8, 8, 0, 1, 4)
-
-        self.verticalSpacer_7 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_5.addItem(self.verticalSpacer_7, 6, 0, 1, 4)
-
-        self.verticalSpacer_6 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_5.addItem(self.verticalSpacer_6, 4, 0, 1, 4)
-
-        self.verticalSpacer_5 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_5.addItem(self.verticalSpacer_5, 2, 0, 1, 4)
-
-        self.verticalSpacer_4 = QSpacerItem(20, 10, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_5.addItem(self.verticalSpacer_4, 0, 0, 1, 4)
-
-
-        self.verticalLayout_193.addLayout(self.gridLayout_5)
-
-
-        self.verticalLayout3.addWidget(self.maxSize)
-
-        self.stackedWidget_2.addWidget(self.remoteDocker)
-
-        self.gridLayout_3.addWidget(self.stackedWidget_2, 2, 0, 1, 3)
-
-        self.dockerSetupLabel = QLabel(self.row_21)
-        self.dockerSetupLabel.setObjectName(u"dockerSetupLabel")
-
-        self.gridLayout_3.addWidget(self.dockerSetupLabel, 0, 0, 1, 1)
+        self.gridLayout_2.addItem(self.verticalSpacer_3, 11, 0, 1, 2)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout_3.addItem(self.horizontalSpacer, 0, 2, 1, 1)
+        self.gridLayout_2.addItem(self.horizontalSpacer, 25, 6, 1, 1)
 
-        self.dockerLocalButton = QRadioButton(self.row_21)
-        self.dockerLocalButton.setObjectName(u"dockerLocalButton")
+        self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout_3.addWidget(self.dockerLocalButton, 1, 0, 1, 1)
+        self.gridLayout_2.addItem(self.verticalSpacer_6, 15, 0, 1, 2)
 
-        self.dockerRemoteButton = QRadioButton(self.row_21)
-        self.dockerRemoteButton.setObjectName(u"dockerRemoteButton")
-
-        self.gridLayout_3.addWidget(self.dockerRemoteButton, 1, 1, 1, 1)
-
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_3.addItem(self.horizontalSpacer_2, 1, 2, 1, 1)
-
-        self.dockerGuideButton = QPushButton(self.row_21)
-        self.dockerGuideButton.setObjectName(u"dockerGuideButton")
-        self.dockerGuideButton.setMinimumSize(QSize(50, 30))
-        self.dockerGuideButton.setFont(font)
-        self.dockerGuideButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.dockerGuideButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.helpButton = QPushButton(self.runConfigurationTab)
+        self.helpButton.setObjectName(u"helpButton")
+        self.helpButton.setMinimumSize(QSize(50, 30))
+        self.helpButton.setFont(font)
+        self.helpButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.helpButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         icon12 = QIcon()
-        icon12.addFile(u":/icons/images/icons/cil-external-link.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.dockerGuideButton.setIcon(icon12)
+        icon12.addFile(u":/icons/images/icons/cil-map.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.helpButton.setIcon(icon12)
 
-        self.gridLayout_3.addWidget(self.dockerGuideButton, 0, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.helpButton, 25, 8, 1, 1)
 
+        self.ltrPrimerSequenceLabel = QLabel(self.runConfigurationTab)
+        self.ltrPrimerSequenceLabel.setObjectName(u"ltrPrimerSequenceLabel")
 
-        self.verticalLayout_191.addLayout(self.gridLayout_3)
+        self.gridLayout_2.addWidget(self.ltrPrimerSequenceLabel, 4, 0, 1, 1)
 
+        self.step3Button = QPushButton(self.runConfigurationTab)
+        self.step3Button.setObjectName(u"step3Button")
+        self.step3Button.setMinimumSize(QSize(50, 30))
+        self.step3Button.setFont(font)
+        self.step3Button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.step3Button.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.step3Button.setIcon(icon9)
 
-        self.verticalLayout1.addWidget(self.row_21)
+        self.gridLayout_2.addWidget(self.step3Button, 14, 0, 1, 2)
 
-        self.row_31 = QFrame(self.runConfigurationTab)
-        self.row_31.setObjectName(u"row_31")
-        self.row_31.setMinimumSize(QSize(0, 35))
-        self.row_31.setMaximumSize(QSize(16777215, 35))
-        self.row_31.setFrameShape(QFrame.Shape.StyledPanel)
-        self.row_31.setFrameShadow(QFrame.Shadow.Raised)
-        self.horizontalLayout_121 = QHBoxLayout(self.row_31)
-        self.horizontalLayout_121.setSpacing(0)
-        self.horizontalLayout_121.setObjectName(u"horizontalLayout_121")
-        self.horizontalLayout_121.setContentsMargins(0, 0, 0, 0)
-        self.resetButton = QPushButton(self.row_31)
-        self.resetButton.setObjectName(u"resetButton")
-        self.resetButton.setMinimumSize(QSize(50, 30))
-        self.resetButton.setFont(font)
-        self.resetButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.resetButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.configStackedWidget = QStackedWidget(self.runConfigurationTab)
+        self.configStackedWidget.setObjectName(u"configStackedWidget")
+        self.docker = QWidget()
+        self.docker.setObjectName(u"docker")
+        self.label = QLabel(self.docker)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(30, 40, 171, 16))
+        self.configStackedWidget.addWidget(self.docker)
+        self.trimming = QWidget()
+        self.trimming.setObjectName(u"trimming")
+        self.label_7 = QLabel(self.trimming)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setGeometry(QRect(40, 40, 111, 16))
+        self.configStackedWidget.addWidget(self.trimming)
+        self.page_3 = QWidget()
+        self.page_3.setObjectName(u"page_3")
+        self.label_2 = QLabel(self.page_3)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setGeometry(QRect(30, 30, 57, 14))
+        self.configStackedWidget.addWidget(self.page_3)
+        self.page_4 = QWidget()
+        self.page_4.setObjectName(u"page_4")
+        self.label_3 = QLabel(self.page_4)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setGeometry(QRect(30, 30, 57, 14))
+        self.configStackedWidget.addWidget(self.page_4)
+        self.page_5 = QWidget()
+        self.page_5.setObjectName(u"page_5")
+        self.label_5 = QLabel(self.page_5)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setGeometry(QRect(30, 30, 57, 14))
+        self.configStackedWidget.addWidget(self.page_5)
+        self.page_6 = QWidget()
+        self.page_6.setObjectName(u"page_6")
+        self.label_6 = QLabel(self.page_6)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setGeometry(QRect(30, 30, 57, 14))
+        self.configStackedWidget.addWidget(self.page_6)
+
+        self.gridLayout_2.addWidget(self.configStackedWidget, 0, 2, 25, 7)
+
+        self.saveButton = QPushButton(self.runConfigurationTab)
+        self.saveButton.setObjectName(u"saveButton")
+        self.saveButton.setMinimumSize(QSize(50, 30))
+        self.saveButton.setFont(font)
+        self.saveButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.saveButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         icon13 = QIcon()
-        icon13.addFile(u":/icons/images/icons/cil-fire.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.resetButton.setIcon(icon13)
+        icon13.addFile(u":/icons/images/icons/cil-save.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.saveButton.setIcon(icon13)
 
-        self.horizontalLayout_121.addWidget(self.resetButton)
+        self.gridLayout_2.addWidget(self.saveButton, 25, 7, 1, 1)
 
-        self.restoreDefaultsButton = QPushButton(self.row_31)
+        self.restoreDefaultsButton = QPushButton(self.runConfigurationTab)
         self.restoreDefaultsButton.setObjectName(u"restoreDefaultsButton")
         self.restoreDefaultsButton.setMinimumSize(QSize(50, 30))
         self.restoreDefaultsButton.setFont(font)
@@ -1444,48 +1243,208 @@ class Ui_MainWindow(object):
         icon14.addFile(u":/icons/images/icons/cil-file.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.restoreDefaultsButton.setIcon(icon14)
 
-        self.horizontalLayout_121.addWidget(self.restoreDefaultsButton)
+        self.gridLayout_2.addWidget(self.restoreDefaultsButton, 25, 1, 1, 1)
+
+        self.verticalSpacer_8 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_8, 21, 0, 1, 2)
+
+        self.verticalSpacer_11 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_11, 8, 0, 1, 2)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_2.addItem(self.horizontalSpacer_2, 25, 5, 1, 1)
+
+        self.umiCheckbox = QCheckBox(self.runConfigurationTab)
+        self.umiCheckbox.setObjectName(u"umiCheckbox")
+
+        self.gridLayout_2.addWidget(self.umiCheckbox, 6, 0, 1, 1)
+
+        self.umiInput = QLineEdit(self.runConfigurationTab)
+        self.umiInput.setObjectName(u"umiInput")
+
+        self.gridLayout_2.addWidget(self.umiInput, 6, 1, 1, 1)
+
+        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_4, 5, 0, 1, 2)
+
+        self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_5, 13, 0, 1, 2)
+
+        self.step4Button = QPushButton(self.runConfigurationTab)
+        self.step4Button.setObjectName(u"step4Button")
+        self.step4Button.setMinimumSize(QSize(50, 30))
+        self.step4Button.setFont(font)
+        self.step4Button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.step4Button.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.step4Button.setIcon(icon9)
+
+        self.gridLayout_2.addWidget(self.step4Button, 16, 0, 1, 2)
+
+        self.adapterSequenceLabel = QLabel(self.runConfigurationTab)
+        self.adapterSequenceLabel.setObjectName(u"adapterSequenceLabel")
+
+        self.gridLayout_2.addWidget(self.adapterSequenceLabel, 0, 0, 3, 1)
+
+        self.step6Button = QPushButton(self.runConfigurationTab)
+        self.step6Button.setObjectName(u"step6Button")
+        self.step6Button.setMinimumSize(QSize(50, 30))
+        self.step6Button.setFont(font)
+        self.step6Button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.step6Button.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.step6Button.setIcon(icon9)
+
+        self.gridLayout_2.addWidget(self.step6Button, 22, 0, 1, 2)
+
+        self.trimmingConfig = QPushButton(self.runConfigurationTab)
+        self.trimmingConfig.setObjectName(u"trimmingConfig")
+        self.trimmingConfig.setMinimumSize(QSize(50, 30))
+        self.trimmingConfig.setFont(font)
+        self.trimmingConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.trimmingConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon15 = QIcon()
+        icon15.addFile(u":/icons/images/icons/cil-cut.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.trimmingConfig.setIcon(icon15)
+
+        self.gridLayout_2.addWidget(self.trimmingConfig, 12, 0, 1, 2)
+
+        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_2.addItem(self.horizontalSpacer_8, 25, 3, 1, 1)
+
+        self.verticalSpacer_7 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_7, 17, 0, 1, 2)
+
+        self.resetButton = QPushButton(self.runConfigurationTab)
+        self.resetButton.setObjectName(u"resetButton")
+        self.resetButton.setMinimumSize(QSize(50, 30))
+        self.resetButton.setFont(font)
+        self.resetButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.resetButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon16 = QIcon()
+        icon16.addFile(u":/icons/images/icons/cil-fire.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.resetButton.setIcon(icon16)
+
+        self.gridLayout_2.addWidget(self.resetButton, 25, 0, 1, 1)
+
+        self.ltrPrimerSequenceInput = QLineEdit(self.runConfigurationTab)
+        self.ltrPrimerSequenceInput.setObjectName(u"ltrPrimerSequenceInput")
+
+        self.gridLayout_2.addWidget(self.ltrPrimerSequenceInput, 4, 1, 1, 1)
+
+        self.dockerConfig = QPushButton(self.runConfigurationTab)
+        self.dockerConfig.setObjectName(u"dockerConfig")
+        self.dockerConfig.setMinimumSize(QSize(50, 30))
+        self.dockerConfig.setFont(font)
+        self.dockerConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.dockerConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon17 = QIcon()
+        icon17.addFile(u":/icons/images/icons/cil-docker.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.dockerConfig.setIcon(icon17)
+
+        self.gridLayout_2.addWidget(self.dockerConfig, 10, 0, 1, 2)
 
         self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.horizontalLayout_121.addItem(self.horizontalSpacer_6)
+        self.gridLayout_2.addItem(self.horizontalSpacer_6, 25, 2, 1, 1)
 
-        self.saveButton = QPushButton(self.row_31)
-        self.saveButton.setObjectName(u"saveButton")
-        self.saveButton.setMinimumSize(QSize(50, 30))
-        self.saveButton.setFont(font)
-        self.saveButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.saveButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon15 = QIcon()
-        icon15.addFile(u":/icons/images/icons/cil-save.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.saveButton.setIcon(icon15)
+        self.step5Button = QPushButton(self.runConfigurationTab)
+        self.step5Button.setObjectName(u"step5Button")
+        self.step5Button.setMinimumSize(QSize(50, 30))
+        self.step5Button.setFont(font)
+        self.step5Button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.step5Button.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.step5Button.setIcon(icon9)
 
-        self.horizontalLayout_121.addWidget(self.saveButton)
+        self.gridLayout_2.addWidget(self.step5Button, 18, 0, 3, 2)
 
-        self.helpButton = QPushButton(self.row_31)
-        self.helpButton.setObjectName(u"helpButton")
-        self.helpButton.setMinimumSize(QSize(50, 30))
-        self.helpButton.setFont(font)
-        self.helpButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.helpButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon16 = QIcon()
-        icon16.addFile(u":/icons/images/icons/cil-map.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.helpButton.setIcon(icon16)
+        self.verticalSpacer_10 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.horizontalLayout_121.addWidget(self.helpButton)
+        self.gridLayout_2.addItem(self.verticalSpacer_10, 7, 0, 1, 2)
+
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_2, 3, 0, 1, 2)
+
+        self.adapterSequenceInput = QLineEdit(self.runConfigurationTab)
+        self.adapterSequenceInput.setObjectName(u"adapterSequenceInput")
+
+        self.gridLayout_2.addWidget(self.adapterSequenceInput, 0, 1, 3, 1)
+
+        self.verticalSpacer_9 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_9, 24, 0, 1, 2)
+
+        self.configStepsLabel = QLabel(self.runConfigurationTab)
+        self.configStepsLabel.setObjectName(u"configStepsLabel")
+
+        self.gridLayout_2.addWidget(self.configStepsLabel, 9, 0, 1, 2)
 
 
-        self.verticalLayout1.addWidget(self.row_31)
+        self.verticalLayout1.addLayout(self.gridLayout_2)
 
         self.stackedWidget.addWidget(self.runConfigurationTab)
         self.runAnalysisTab = QWidget()
         self.runAnalysisTab.setObjectName(u"runAnalysisTab")
         self.runAnalysisTab.setStyleSheet(u"")
-        self.verticalLayout4 = QVBoxLayout(self.runAnalysisTab)
-        self.verticalLayout4.setSpacing(10)
-        self.verticalLayout4.setObjectName(u"verticalLayout4")
-        self.verticalLayout4.setContentsMargins(10, 10, 10, 10)
-        self.row_12 = QFrame(self.runAnalysisTab)
+        self.verticalLayout2 = QVBoxLayout(self.runAnalysisTab)
+        self.verticalLayout2.setSpacing(10)
+        self.verticalLayout2.setObjectName(u"verticalLayout2")
+        self.verticalLayout2.setContentsMargins(10, 10, 10, 10)
+        self.row_11 = QFrame(self.runAnalysisTab)
+        self.row_11.setObjectName(u"row_11")
+        self.row_11.setMinimumSize(QSize(0, 50))
+        self.row_11.setMaximumSize(QSize(16777215, 50))
+        self.row_11.setFrameShape(QFrame.Shape.StyledPanel)
+        self.row_11.setFrameShadow(QFrame.Shadow.Raised)
+        self.verticalLayout_161 = QVBoxLayout(self.row_11)
+        self.verticalLayout_161.setSpacing(0)
+        self.verticalLayout_161.setObjectName(u"verticalLayout_161")
+        self.verticalLayout_161.setContentsMargins(0, 0, 0, 0)
+
+        self.verticalLayout2.addWidget(self.row_11)
+
+        self.row_21 = QFrame(self.runAnalysisTab)
+        self.row_21.setObjectName(u"row_21")
+        self.row_21.setMinimumSize(QSize(0, 150))
+        self.row_21.setFrameShape(QFrame.Shape.StyledPanel)
+        self.row_21.setFrameShadow(QFrame.Shadow.Raised)
+        self.verticalLayout_191 = QVBoxLayout(self.row_21)
+        self.verticalLayout_191.setObjectName(u"verticalLayout_191")
+        self.label_4 = QLabel(self.row_21)
+        self.label_4.setObjectName(u"label_4")
+
+        self.verticalLayout_191.addWidget(self.label_4)
+
+
+        self.verticalLayout2.addWidget(self.row_21)
+
+        self.row_31 = QFrame(self.runAnalysisTab)
+        self.row_31.setObjectName(u"row_31")
+        self.row_31.setMinimumSize(QSize(0, 70))
+        self.row_31.setFrameShape(QFrame.Shape.StyledPanel)
+        self.row_31.setFrameShadow(QFrame.Shadow.Raised)
+        self.horizontalLayout_121 = QHBoxLayout(self.row_31)
+        self.horizontalLayout_121.setSpacing(0)
+        self.horizontalLayout_121.setObjectName(u"horizontalLayout_121")
+        self.horizontalLayout_121.setContentsMargins(0, 0, 0, 0)
+
+        self.verticalLayout2.addWidget(self.row_31)
+
+        self.stackedWidget.addWidget(self.runAnalysisTab)
+        self.runProgressTab = QWidget()
+        self.runProgressTab.setObjectName(u"runProgressTab")
+        self.runProgressTab.setStyleSheet(u"")
+        self.verticalLayout3 = QVBoxLayout(self.runProgressTab)
+        self.verticalLayout3.setSpacing(10)
+        self.verticalLayout3.setObjectName(u"verticalLayout3")
+        self.verticalLayout3.setContentsMargins(10, 10, 10, 10)
+        self.row_12 = QFrame(self.runProgressTab)
         self.row_12.setObjectName(u"row_12")
         self.row_12.setMinimumSize(QSize(0, 50))
         self.row_12.setMaximumSize(QSize(16777215, 50))
@@ -1495,25 +1454,37 @@ class Ui_MainWindow(object):
         self.verticalLayout_162.setSpacing(0)
         self.verticalLayout_162.setObjectName(u"verticalLayout_162")
         self.verticalLayout_162.setContentsMargins(0, 0, 0, 0)
+        self.runButton = QPushButton(self.row_12)
+        self.runButton.setObjectName(u"runButton")
+        self.runButton.setMinimumSize(QSize(50, 30))
+        self.runButton.setFont(font)
+        self.runButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.runButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon18 = QIcon()
+        icon18.addFile(u":/icons/images/icons/cil-media-play.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.runButton.setIcon(icon18)
 
-        self.verticalLayout4.addWidget(self.row_12)
+        self.verticalLayout_162.addWidget(self.runButton)
 
-        self.row_22 = QFrame(self.runAnalysisTab)
+
+        self.verticalLayout3.addWidget(self.row_12)
+
+        self.row_22 = QFrame(self.runProgressTab)
         self.row_22.setObjectName(u"row_22")
         self.row_22.setMinimumSize(QSize(0, 150))
         self.row_22.setFrameShape(QFrame.Shape.StyledPanel)
         self.row_22.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout_194 = QVBoxLayout(self.row_22)
-        self.verticalLayout_194.setObjectName(u"verticalLayout_194")
-        self.label_4 = QLabel(self.row_22)
-        self.label_4.setObjectName(u"label_4")
+        self.verticalLayout_192 = QVBoxLayout(self.row_22)
+        self.verticalLayout_192.setObjectName(u"verticalLayout_192")
+        self.stdOut = QTextBrowser(self.row_22)
+        self.stdOut.setObjectName(u"stdOut")
 
-        self.verticalLayout_194.addWidget(self.label_4)
+        self.verticalLayout_192.addWidget(self.stdOut)
 
 
-        self.verticalLayout4.addWidget(self.row_22)
+        self.verticalLayout3.addWidget(self.row_22)
 
-        self.row_32 = QFrame(self.runAnalysisTab)
+        self.row_32 = QFrame(self.runProgressTab)
         self.row_32.setObjectName(u"row_32")
         self.row_32.setMinimumSize(QSize(0, 70))
         self.row_32.setFrameShape(QFrame.Shape.StyledPanel)
@@ -1522,67 +1493,14 @@ class Ui_MainWindow(object):
         self.horizontalLayout_122.setSpacing(0)
         self.horizontalLayout_122.setObjectName(u"horizontalLayout_122")
         self.horizontalLayout_122.setContentsMargins(0, 0, 0, 0)
-
-        self.verticalLayout4.addWidget(self.row_32)
-
-        self.stackedWidget.addWidget(self.runAnalysisTab)
-        self.runProgressTab = QWidget()
-        self.runProgressTab.setObjectName(u"runProgressTab")
-        self.runProgressTab.setStyleSheet(u"")
-        self.verticalLayout5 = QVBoxLayout(self.runProgressTab)
-        self.verticalLayout5.setSpacing(10)
-        self.verticalLayout5.setObjectName(u"verticalLayout5")
-        self.verticalLayout5.setContentsMargins(10, 10, 10, 10)
-        self.row_13 = QFrame(self.runProgressTab)
-        self.row_13.setObjectName(u"row_13")
-        self.row_13.setMinimumSize(QSize(0, 50))
-        self.row_13.setMaximumSize(QSize(16777215, 50))
-        self.row_13.setFrameShape(QFrame.Shape.StyledPanel)
-        self.row_13.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout_163 = QVBoxLayout(self.row_13)
-        self.verticalLayout_163.setSpacing(0)
-        self.verticalLayout_163.setObjectName(u"verticalLayout_163")
-        self.verticalLayout_163.setContentsMargins(0, 0, 0, 0)
-        self.runButton = QPushButton(self.row_13)
-        self.runButton.setObjectName(u"runButton")
-
-        self.verticalLayout_163.addWidget(self.runButton)
-
-
-        self.verticalLayout5.addWidget(self.row_13)
-
-        self.row_23 = QFrame(self.runProgressTab)
-        self.row_23.setObjectName(u"row_23")
-        self.row_23.setMinimumSize(QSize(0, 150))
-        self.row_23.setFrameShape(QFrame.Shape.StyledPanel)
-        self.row_23.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout_195 = QVBoxLayout(self.row_23)
-        self.verticalLayout_195.setObjectName(u"verticalLayout_195")
-        self.stdOut = QTextBrowser(self.row_23)
-        self.stdOut.setObjectName(u"stdOut")
-
-        self.verticalLayout_195.addWidget(self.stdOut)
-
-
-        self.verticalLayout5.addWidget(self.row_23)
-
-        self.row_33 = QFrame(self.runProgressTab)
-        self.row_33.setObjectName(u"row_33")
-        self.row_33.setMinimumSize(QSize(0, 70))
-        self.row_33.setFrameShape(QFrame.Shape.StyledPanel)
-        self.row_33.setFrameShadow(QFrame.Shadow.Raised)
-        self.horizontalLayout_123 = QHBoxLayout(self.row_33)
-        self.horizontalLayout_123.setSpacing(0)
-        self.horizontalLayout_123.setObjectName(u"horizontalLayout_123")
-        self.horizontalLayout_123.setContentsMargins(0, 0, 0, 0)
-        self.progressBar = QProgressBar(self.row_33)
+        self.progressBar = QProgressBar(self.row_32)
         self.progressBar.setObjectName(u"progressBar")
         self.progressBar.setValue(24)
 
-        self.horizontalLayout_123.addWidget(self.progressBar)
+        self.horizontalLayout_122.addWidget(self.progressBar)
 
 
-        self.verticalLayout5.addWidget(self.row_33)
+        self.verticalLayout3.addWidget(self.row_32)
 
         self.stackedWidget.addWidget(self.runProgressTab)
 
@@ -1723,11 +1641,49 @@ class Ui_MainWindow(object):
         self.appMargins.addWidget(self.bgApp)
 
         MainWindow.setCentralWidget(self.styleSheet)
+        QWidget.setTabOrder(self.adapterSequenceInput, self.ltrPrimerSequenceInput)
+        QWidget.setTabOrder(self.ltrPrimerSequenceInput, self.umiInput)
+        QWidget.setTabOrder(self.umiInput, self.umiCheckbox)
+        QWidget.setTabOrder(self.umiCheckbox, self.trimmingConfig)
+        QWidget.setTabOrder(self.trimmingConfig, self.step3Button)
+        QWidget.setTabOrder(self.step3Button, self.step4Button)
+        QWidget.setTabOrder(self.step4Button, self.step5Button)
+        QWidget.setTabOrder(self.step5Button, self.step6Button)
+        QWidget.setTabOrder(self.step6Button, self.resetButton)
+        QWidget.setTabOrder(self.resetButton, self.restoreDefaultsButton)
+        QWidget.setTabOrder(self.restoreDefaultsButton, self.saveButton)
+        QWidget.setTabOrder(self.saveButton, self.helpButton)
+        QWidget.setTabOrder(self.helpButton, self.createRunButton)
+        QWidget.setTabOrder(self.createRunButton, self.selectRunButton)
+        QWidget.setTabOrder(self.selectRunButton, self.refreshRunButton)
+        QWidget.setTabOrder(self.refreshRunButton, self.deleteRunButton)
+        QWidget.setTabOrder(self.deleteRunButton, self.runsTable)
+        QWidget.setTabOrder(self.runsTable, self.openFolderLocationButton)
+        QWidget.setTabOrder(self.openFolderLocationButton, self.renameRunButton)
+        QWidget.setTabOrder(self.renameRunButton, self.importRunButton)
+        QWidget.setTabOrder(self.importRunButton, self.exportRunButton)
+        QWidget.setTabOrder(self.exportRunButton, self.runButton)
+        QWidget.setTabOrder(self.runButton, self.stdOut)
+        QWidget.setTabOrder(self.stdOut, self.moreButton)
+        QWidget.setTabOrder(self.moreButton, self.runManagerButton)
+        QWidget.setTabOrder(self.runManagerButton, self.minimizeAppButton)
+        QWidget.setTabOrder(self.minimizeAppButton, self.runConfigurationButton)
+        QWidget.setTabOrder(self.runConfigurationButton, self.runProgressButton)
+        QWidget.setTabOrder(self.runProgressButton, self.runAnalysisButton)
+        QWidget.setTabOrder(self.runAnalysisButton, self.toggleLeftBox)
+        QWidget.setTabOrder(self.toggleLeftBox, self.extraCloseColumnButton)
+        QWidget.setTabOrder(self.extraCloseColumnButton, self.aboutText)
+        QWidget.setTabOrder(self.aboutText, self.closeAppButton)
+        QWidget.setTabOrder(self.closeAppButton, self.settingsTopButton)
+        QWidget.setTabOrder(self.settingsTopButton, self.maximizeRestoreAppButton)
+        QWidget.setTabOrder(self.maximizeRestoreAppButton, self.toggleButton)
+        QWidget.setTabOrder(self.toggleButton, self.messageButton)
+        QWidget.setTabOrder(self.messageButton, self.printButton)
+        QWidget.setTabOrder(self.printButton, self.logoutButton)
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(2)
-        self.stackedWidget_2.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1792,27 +1748,26 @@ class Ui_MainWindow(object):
         self.openFolderLocationButton.setText(QCoreApplication.translate("MainWindow", u"Open Folder Location", None))
         self.exportRunButton.setText(QCoreApplication.translate("MainWindow", u"Export", None))
         self.renameRunButton.setText(QCoreApplication.translate("MainWindow", u"Rename Run", None))
-        self.ltrPrimerSequenceLabel.setText(QCoreApplication.translate("MainWindow", u"LTR Primer Sequence", None))
-        self.adapterSequenceLabel.setText(QCoreApplication.translate("MainWindow", u"Adapter Sequence", None))
-        self.localForwardReadLabel.setText(QCoreApplication.translate("MainWindow", u"Forward read", None))
-        self.localBackwardReadLabel.setText(QCoreApplication.translate("MainWindow", u"Backward read", None))
-        self.localReferenceGenomeLabel.setText(QCoreApplication.translate("MainWindow", u"Reference genome\n"
-"(Leave blank for H19)", None))
-        self.remotePortNumberLabel.setText(QCoreApplication.translate("MainWindow", u"Port", None))
-        self.remoteBackwardReadLabel.setText(QCoreApplication.translate("MainWindow", u"Backward read", None))
-        self.remoteIpAddressLabel.setText(QCoreApplication.translate("MainWindow", u"IP address", None))
-        self.remoteDontSendDataCheckbox.setText(QCoreApplication.translate("MainWindow", u"Don't send input data to remote server. I already have the input data mounted correctly in the docker container", None))
-        self.remoteForwardReadLabel.setText(QCoreApplication.translate("MainWindow", u"Forward read", None))
-        self.remoteReferenceGenomeLabel.setText(QCoreApplication.translate("MainWindow", u"Reference genome\n"
-"(Leave blank for H19)", None))
-        self.dockerSetupLabel.setText(QCoreApplication.translate("MainWindow", u"  Docker setup", None))
-        self.dockerLocalButton.setText(QCoreApplication.translate("MainWindow", u"Local", None))
-        self.dockerRemoteButton.setText(QCoreApplication.translate("MainWindow", u"Remote", None))
-        self.dockerGuideButton.setText(QCoreApplication.translate("MainWindow", u"Not sure what to pick?", None))
-        self.resetButton.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
-        self.restoreDefaultsButton.setText(QCoreApplication.translate("MainWindow", u"Restore Defaults", None))
-        self.saveButton.setText(QCoreApplication.translate("MainWindow", u"Save", None))
         self.helpButton.setText(QCoreApplication.translate("MainWindow", u"Help", None))
+        self.ltrPrimerSequenceLabel.setText(QCoreApplication.translate("MainWindow", u"LTR Primer Sequence", None))
+        self.step3Button.setText(QCoreApplication.translate("MainWindow", u"step 3", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"docker page", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"trimming page", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"page 3", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"page 4", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"page 5", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"page 6", None))
+        self.saveButton.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.restoreDefaultsButton.setText(QCoreApplication.translate("MainWindow", u"Restore Defaults", None))
+        self.umiCheckbox.setText(QCoreApplication.translate("MainWindow", u"Unique Molecular Identifier?", None))
+        self.step4Button.setText(QCoreApplication.translate("MainWindow", u"step 4", None))
+        self.adapterSequenceLabel.setText(QCoreApplication.translate("MainWindow", u"Adapter Sequence", None))
+        self.step6Button.setText(QCoreApplication.translate("MainWindow", u"step 6", None))
+        self.trimmingConfig.setText(QCoreApplication.translate("MainWindow", u"Adapter and primer trimming", None))
+        self.resetButton.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
+        self.dockerConfig.setText(QCoreApplication.translate("MainWindow", u"Docker configuration", None))
+        self.step5Button.setText(QCoreApplication.translate("MainWindow", u"step 5", None))
+        self.configStepsLabel.setText(QCoreApplication.translate("MainWindow", u"Please complete all configuration steps below:", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Charts here and stuff after run is complete...", None))
         self.runButton.setText(QCoreApplication.translate("MainWindow", u"Run!", None))
         self.messageButton.setText(QCoreApplication.translate("MainWindow", u"Not sure yet", None))

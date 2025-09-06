@@ -256,7 +256,7 @@ class RunManager:
 
     def rename_run(self):
         if not Settings.SELECTED_RUN:
-            QMessageBox.critical(self.main_window, "Error", "No run selected!")
+            QMessageBox.warning(self.main_window, "Error", "No run selected!")
             return
 
         # Ask for new name using input dialog
