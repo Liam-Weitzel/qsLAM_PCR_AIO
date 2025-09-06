@@ -1454,6 +1454,12 @@ class Ui_MainWindow(object):
         self.verticalLayout_162.setSpacing(0)
         self.verticalLayout_162.setObjectName(u"verticalLayout_162")
         self.verticalLayout_162.setContentsMargins(0, 0, 0, 0)
+        self.progressBar = QProgressBar(self.row_12)
+        self.progressBar.setObjectName(u"progressBar")
+        self.progressBar.setValue(24)
+
+        self.verticalLayout_162.addWidget(self.progressBar)
+
         self.runButton = QPushButton(self.row_12)
         self.runButton.setObjectName(u"runButton")
         self.runButton.setMinimumSize(QSize(50, 30))
@@ -1486,18 +1492,53 @@ class Ui_MainWindow(object):
 
         self.row_32 = QFrame(self.runProgressTab)
         self.row_32.setObjectName(u"row_32")
-        self.row_32.setMinimumSize(QSize(0, 70))
+        self.row_32.setMinimumSize(QSize(0, 50))
         self.row_32.setFrameShape(QFrame.Shape.StyledPanel)
         self.row_32.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_122 = QHBoxLayout(self.row_32)
         self.horizontalLayout_122.setSpacing(0)
         self.horizontalLayout_122.setObjectName(u"horizontalLayout_122")
         self.horizontalLayout_122.setContentsMargins(0, 0, 0, 0)
-        self.progressBar = QProgressBar(self.row_32)
-        self.progressBar.setObjectName(u"progressBar")
-        self.progressBar.setValue(24)
+        self.horizontalLayout_6 = QHBoxLayout()
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.resetButton1 = QPushButton(self.row_32)
+        self.resetButton1.setObjectName(u"resetButton1")
+        self.resetButton1.setMinimumSize(QSize(50, 30))
+        self.resetButton1.setFont(font)
+        self.resetButton1.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.resetButton1.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.resetButton1.setIcon(icon16)
 
-        self.horizontalLayout_122.addWidget(self.progressBar)
+        self.horizontalLayout_6.addWidget(self.resetButton1)
+
+        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.horizontalLayout_6.addItem(self.horizontalSpacer_10)
+
+        self.pauseButton = QPushButton(self.row_32)
+        self.pauseButton.setObjectName(u"pauseButton")
+        self.pauseButton.setMinimumSize(QSize(50, 30))
+        self.pauseButton.setFont(font)
+        self.pauseButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.pauseButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon19 = QIcon()
+        icon19.addFile(u":/icons/images/icons/cil-media-stop.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.pauseButton.setIcon(icon19)
+
+        self.horizontalLayout_6.addWidget(self.pauseButton)
+
+        self.resumeButton = QPushButton(self.row_32)
+        self.resumeButton.setObjectName(u"resumeButton")
+        self.resumeButton.setMinimumSize(QSize(50, 30))
+        self.resumeButton.setFont(font)
+        self.resumeButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.resumeButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.resumeButton.setIcon(icon18)
+
+        self.horizontalLayout_6.addWidget(self.resumeButton)
+
+
+        self.horizontalLayout_122.addLayout(self.horizontalLayout_6)
 
 
         self.verticalLayout3.addWidget(self.row_32)
@@ -1649,8 +1690,8 @@ class Ui_MainWindow(object):
         QWidget.setTabOrder(self.step3Button, self.step4Button)
         QWidget.setTabOrder(self.step4Button, self.step5Button)
         QWidget.setTabOrder(self.step5Button, self.step6Button)
-        QWidget.setTabOrder(self.step6Button, self.resetButton)
-        QWidget.setTabOrder(self.resetButton, self.restoreDefaultsButton)
+        QWidget.setTabOrder(self.step6Button, self.resetButton1)
+        QWidget.setTabOrder(self.resetButton1, self.restoreDefaultsButton)
         QWidget.setTabOrder(self.restoreDefaultsButton, self.saveButton)
         QWidget.setTabOrder(self.saveButton, self.helpButton)
         QWidget.setTabOrder(self.helpButton, self.createRunButton)
@@ -1683,7 +1724,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(3)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1770,6 +1811,24 @@ class Ui_MainWindow(object):
         self.configStepsLabel.setText(QCoreApplication.translate("MainWindow", u"Please complete all configuration steps below:", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Charts here and stuff after run is complete...", None))
         self.runButton.setText(QCoreApplication.translate("MainWindow", u"Run!", None))
+        self.stdOut.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+                        " . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
+                        ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+                        " . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
+                        ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+                        " . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
+                        ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+                        " . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</p></body></html>", None))
+        self.resetButton1.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
+        self.pauseButton.setText(QCoreApplication.translate("MainWindow", u"Pause", None))
+        self.resumeButton.setText(QCoreApplication.translate("MainWindow", u"Resume", None))
         self.messageButton.setText(QCoreApplication.translate("MainWindow", u"Not sure yet", None))
         self.printButton.setText(QCoreApplication.translate("MainWindow", u"What this is", None))
         self.logoutButton.setText(QCoreApplication.translate("MainWindow", u"For", None))

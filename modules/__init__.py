@@ -32,5 +32,8 @@ from . ui_functions import *
 # RUN MANAGER TAB
 from . run_manager import *
 
-# RUN CONFIGURATOR TAB
-from . run_configurator import *
+# RUN CONFIGURATION TAB
+from . run_configuration import *
+
+# RUN PROGRESS TAB
+from . run_progress import *

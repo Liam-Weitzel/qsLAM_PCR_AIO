@@ -54,7 +54,8 @@ class MainWindow(QMainWindow):
         # INIT ALL TABS
         # ///////////////////////////////////////////////////////////////
         self.run_manager = RunManager(self)
-        self.run_configurator = RunConfigurator(self)
+        self.run_configuration = RunConfiguration(self)
+        self.run_progress = RunProgress(self)
 
         # BUTTONS CLICK - CONNECT EACH TO ITS OWN HANDLER
         # ///////////////////////////////////////////////////////////////

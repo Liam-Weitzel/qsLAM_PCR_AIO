@@ -2,7 +2,7 @@ from . settings import Settings
 from PySide6.QtWidgets import QFileDialog, QMessageBox, QTableWidgetItem
 from PySide6.QtCore import QTimer, Qt
 
-class RunConfigurator:
+class RunConfiguration:
     def __init__(self, main_window):
         self.settings = Settings()
         self.main_window = main_window
