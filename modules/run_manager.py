@@ -92,11 +92,15 @@ class RunManager:
         selected_items = self.widgets.runsTable.selectedItems()
         if selected_items:
             Settings.SELECTED_RUN = selected_items[0].text()
+            Settings.METADATA = Metadata(Settings.SELECTED_RUN)
             self.widgets.currentlySelected.setText(Settings.SELECTED_RUN)
             self.main_window.enable_button(self.widgets.runProgressButton, lambda: self.main_window.on_menu_button_clicked(self.widgets.runProgressTab, self.widgets.runProgressButton, "runProgressButton"))
             self.main_window.enable_button(self.widgets.runConfigurationButton, lambda: self.main_window.on_menu_button_clicked(self.widgets.runConfigurationTab, self.widgets.runConfigurationButton, "runConfigurationButton"))
+            self.main_window.run_configuration.load_from_metadata()
+            self.main_window.run_progress.load_from_metadata()
         else:
             Settings.SELECTED_RUN = None
+            Settings.METADATA = None
             self.widgets.currentlySelected.setText("None")
             self.main_window.disable_button(self.widgets.runProgressButton)
             self.main_window.disable_button(self.widgets.runConfigurationButton)
@@ -107,7 +111,11 @@ class RunManager:
         if(run):
             self.main_window.enable_button(self.widgets.runProgressButton, lambda: self.main_window.on_menu_button_clicked(self.widgets.runProgressTab, self.widgets.runProgressButton, "runProgressButton"))
             self.main_window.enable_button(self.widgets.runConfigurationButton, lambda: self.main_window.on_menu_button_clicked(self.widgets.runConfigurationTab, self.widgets.runConfigurationButton, "runConfigurationButton"))
+            Settings.METADATA = Metadata(Settings.SELECTED_RUN)
+            self.main_window.run_configuration.load_from_metadata()
+            self.main_window.run_progress.load_from_metadata()
         else:
+            Settings.METADATA = None
             self.main_window.disable_button(self.widgets.runProgressButton)
             self.main_window.disable_button(self.widgets.runConfigurationButton)
 

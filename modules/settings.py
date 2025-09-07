@@ -30,6 +30,7 @@ class Settings:
     RUNS_DIR = "./runs/"
     SELECTED_RUN = None
     METADATA_FILE = "metadata.json"
+    METADATA = None
 
     _instance = None
 

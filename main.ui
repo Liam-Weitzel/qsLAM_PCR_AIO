@@ -3288,7 +3288,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                           <item>
                            <layout class="QHBoxLayout" name="horizontalLayout_6">
                           <item>
-                           <widget class="QPushButton" name="resetButton">
+                           <widget class="QPushButton" name="cleanButton">
                             <property name="minimumSize">
                              <size>
                               <width>50</width>
@@ -3310,7 +3310,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                              <string notr="true">background-color: rgb(255, 255, 255);</string>
                             </property>
                             <property name="text">
-                             <string>Reset</string>
+                             <string>Clean</string>
                             </property>
                             <property name="icon">
                              <iconset resource="resources.qrc">

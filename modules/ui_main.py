@@ -1501,15 +1501,15 @@ class Ui_MainWindow(object):
         self.horizontalLayout_122.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_6 = QHBoxLayout()
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.resetButton1 = QPushButton(self.row_32)
-        self.resetButton1.setObjectName(u"resetButton1")
-        self.resetButton1.setMinimumSize(QSize(50, 30))
-        self.resetButton1.setFont(font)
-        self.resetButton1.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.resetButton1.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        self.resetButton1.setIcon(icon16)
+        self.cleanButton = QPushButton(self.row_32)
+        self.cleanButton.setObjectName(u"cleanButton")
+        self.cleanButton.setMinimumSize(QSize(50, 30))
+        self.cleanButton.setFont(font)
+        self.cleanButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.cleanButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.cleanButton.setIcon(icon16)
 
-        self.horizontalLayout_6.addWidget(self.resetButton1)
+        self.horizontalLayout_6.addWidget(self.cleanButton)
 
         self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
@@ -1690,8 +1690,8 @@ class Ui_MainWindow(object):
         QWidget.setTabOrder(self.step3Button, self.step4Button)
         QWidget.setTabOrder(self.step4Button, self.step5Button)
         QWidget.setTabOrder(self.step5Button, self.step6Button)
-        QWidget.setTabOrder(self.step6Button, self.resetButton1)
-        QWidget.setTabOrder(self.resetButton1, self.restoreDefaultsButton)
+        QWidget.setTabOrder(self.step6Button, self.resetButton)
+        QWidget.setTabOrder(self.resetButton, self.restoreDefaultsButton)
         QWidget.setTabOrder(self.restoreDefaultsButton, self.saveButton)
         QWidget.setTabOrder(self.saveButton, self.helpButton)
         QWidget.setTabOrder(self.helpButton, self.createRunButton)
@@ -1826,7 +1826,7 @@ class Ui_MainWindow(object):
                         " . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
                         ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
                         " . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .</p></body></html>", None))
-        self.resetButton1.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
+        self.cleanButton.setText(QCoreApplication.translate("MainWindow", u"Clean", None))
         self.pauseButton.setText(QCoreApplication.translate("MainWindow", u"Pause", None))
         self.resumeButton.setText(QCoreApplication.translate("MainWindow", u"Resume", None))
         self.messageButton.setText(QCoreApplication.translate("MainWindow", u"Not sure yet", None))

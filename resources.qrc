@@ -6,6 +6,7 @@
         <file>images/images/Erasmus_MC_light.svg</file>
         <file>images/images/Erasmus_MC_logo.png</file>
         <file>images/images/Erasmus_MC_logo.svg</file>
+        <file>images/images/spinner.gif</file>
     </qresource>
     <qresource prefix="/icons">
         <file>images/icons/cil-3d.png</file>
