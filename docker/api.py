@@ -119,8 +119,7 @@ def qc_and_trimming():
 
 @app.route('/read_mapping')
 def read_mapping():
-    #TODO: Allow user to upload their own reference genome
-    # And allow users to select from refgenomes.databio
+    #TODO: Allow user to uplaod ref genome not in refgenomes.databio
     genome = "baa91c8f6e2780cfd8fd1040ff37f51c379947a2a4820d6c"
 
     GENOME_DIR = "reference"
@@ -133,35 +132,45 @@ def read_mapping():
     os.makedirs(BWA_DIR, exist_ok=True)
 
     tar_url = f"http://refgenomes.databio.org/v3/assets/archive/{genome}/bwa_index"
-
     idx_fa = os.path.join(GENOME_DIR, f"{genome}.fa")
+
     if not os.path.isfile(idx_fa + ".bwt"):
         print(f"📥 Downloading {genome} BWA index from refgenomes…")
-        subprocess.run(["wget", "-O", "bwa_index.tar.gz", tar_url], check=True)
-        subprocess.run(["tar", "-xzf", "bwa_index.tar.gz", "-C", GENOME_DIR], check=True)
-        os.remove("bwa_index.tar.gz")
+        tar_path = os.path.join(GENOME_DIR, f"{genome}_bwa_index.tar.gz")
+        # download tar.gz
+        subprocess.run(["wget", "-O", tar_path, tar_url], check=True)
+        # extract into GENOME_DIR
+        subprocess.run(["tar", "-xzf", tar_path, "-C", GENOME_DIR], check=True)
+        os.remove(tar_path)
+        # move files out of nested default/ folder and remove it
+        nested_dir = os.path.join(GENOME_DIR, "default")
+        for f in os.listdir(nested_dir):
+            src = os.path.join(nested_dir, f)
+            dst = os.path.join(GENOME_DIR, f)
+            subprocess.run(["mv", src, dst], check=True)
+
+        # then remove the now-empty directories
+        os.rmdir(nested_dir)
 
     # === Alignment ===
-    bam_out = os.path.join(BWA_DIR, "aligned.bam")
-    sorted_bam_out = os.path.join(BWA_DIR, "aligned.sorted.bam")
-    stat_out = os.path.join(BWA_DIR, "aligned.stat")
 
     print(f"🧬 Aligning reads using {genome}…")
 
-    bwa_proc = subprocess.Popen(
-        ["bwa-mem2", "mem", "-t", str(NUM_THREADS), idx_fa, R1_FILE, R2_FILE],
-        stdout=subprocess.PIPE
+    sam_out = os.path.join(BWA_DIR, "aligned.sam")
+    subprocess.run(
+        ["bwa-mem2", "mem", "-t", str(NUM_THREADS), idx_fa, R1_FILE, R2_FILE, "-o", sam_out],
+        check=True
     )
-    with open(bam_out, "wb") as bam_f:
-        subprocess.run(["samtools", "view", "-hbS", "-"],
-                       stdin=bwa_proc.stdout, stdout=bam_f, check=True)
-    bwa_proc.wait()
 
+    bam_out = os.path.join(BWA_DIR, "aligned.bam")
+    subprocess.run(["samtools", "view", "-hb", sam_out, "-o", bam_out], check=True)
+
+    sorted_bam_out = os.path.join(BWA_DIR, "aligned.sorted.bam")
     subprocess.run(["samtools", "sort", bam_out, "-o", sorted_bam_out], check=True)
     subprocess.run(["samtools", "index", sorted_bam_out], check=True)
-    with open(stat_out, "w") as stat_f:
-        subprocess.run(["samtools", "flagstat", sorted_bam_out],
-                       stdout=stat_f, check=True)
+
+    stat_out = os.path.join(BWA_DIR, "aligned.stat")
+    subprocess.run(["samtools", "flagstat", sorted_bam_out, "-o", stat_out], check=True)
 
     print("✅ Alignment complete!")
     return jsonify(message=f"Read mapping complete with {genome}!")
