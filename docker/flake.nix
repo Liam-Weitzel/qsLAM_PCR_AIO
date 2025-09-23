@@ -25,17 +25,21 @@
       };
     in pkgs.mkShell {
       packages = [
+        #DEBUGGING PACKAGES
+        pkgs.neovim
+
         pkgs.util-linux
         pkgs.fastqc
         pkgs.samtools
-        pkgs.bwa
+        pkgs.bwa-mem2
         pkgs.krb5
         pkgs.kent
         pkgs.bedtools
         pkgs.perl
         pkgs.bash
+        pkgs.fastp
         pkgs.python312
-        pkgs.python312Packages.flask-api
+        pkgs.python312Packages.flask
         pkgs.pipx
         pkgs.R
         pkgs.rPackages.ggplot2
@@ -70,6 +74,7 @@
         ln -sf $(which bedops-typical) $HOME/.local/bin/bedops
 
         pipx install cutadapt
+        pipx install umi_tools
         export PATH="$PATH:$HOME/.local/bin"
       '';
     };

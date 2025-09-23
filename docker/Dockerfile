@@ -13,3 +13,4 @@ RUN nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs && \
 RUN nix develop --impure --extra-experimental-features nix-command --extra-experimental-features flakes --accept-flake-config
 
 CMD ["/root/.nix-profile/bin/bash"]
+# CMD ["flask", "--app", "api.py", "run", "--host=0.0.0.0", "--port=5000"]
