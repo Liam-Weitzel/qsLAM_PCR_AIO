@@ -134,11 +134,11 @@ def read_mapping():
     tar_url = f"http://refgenomes.databio.org/v3/assets/archive/{genome}/bwa_index"
     idx_fa = os.path.join(GENOME_DIR, f"{genome}.fa")
 
-    if not os.path.isfile(idx_fa + ".bwt"):
+    if not os.path.isfile(idx_fa + ".bwt.2bit.64"):
         print(f"📥 Downloading {genome} BWA index from refgenomes…")
         tar_path = os.path.join(GENOME_DIR, f"{genome}_bwa_index.tar.gz")
         # download tar.gz
-        subprocess.run(["wget", "-O", tar_path, tar_url], check=True)
+        subprocess.run(["wget", tar_url,  "-O", tar_path], check=True)
         # extract into GENOME_DIR
         subprocess.run(["tar", "-xzf", tar_path, "-C", GENOME_DIR], check=True)
         os.remove(tar_path)
@@ -151,6 +151,14 @@ def read_mapping():
 
         # then remove the now-empty directories
         os.rmdir(nested_dir)
+
+        # HACK: as refgenie has broken tars with symlinks: https://github.com/refgenie/refgenieserver/issues/122
+        os.remove(idx_fa)
+        fa_url = f"http://awspds.refgenie.databio.org/refgenomes.databio.org/{genome}/bwa_index__default/{genome}.fa"
+        subprocess.run(["wget", fa_url, "-O", idx_fa], check=True)
+
+        # rebuild BWA index so .fa.bwt.2bit.64 is created
+        subprocess.run(["bwa-mem2", "index", idx_fa], check=True)
 
     # === Alignment ===
 
