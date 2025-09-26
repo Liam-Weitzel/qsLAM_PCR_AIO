@@ -31,6 +31,7 @@ class Settings:
     SELECTED_RUN = None
     METADATA_FILE = "metadata.json"
     METADATA = None
+    REF_RENOMES_SHARE_TOKEN = "abXeB3WtcWdm63f"
 
     _instance = None
 

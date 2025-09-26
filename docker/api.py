@@ -12,6 +12,7 @@ def index():
 @app.route('/qc_and_trimming')
 def qc_and_trimming():
     #TODO: Allow user to upload raw data
+    # Allow user to provide download link for data
     RAW_DIR = "rawdata"
     CUT_DIR = "cutPrimer"
     FASTQC_BEFORE_OUT = "fastqc/beforeCutAdapt"
@@ -119,8 +120,10 @@ def qc_and_trimming():
 
 @app.route('/read_mapping')
 def read_mapping():
-    #TODO: Allow user to uplaod ref genome not in refgenomes.databio
+    #TODO: Allow user to upload ref genome
+    # Allow user to provide download link for ref genome
     genome = "baa91c8f6e2780cfd8fd1040ff37f51c379947a2a4820d6c"
+    # https://nc.liam-w.com/s/abXeB3WtcWdm63f/download?path=%2F&files=mm10_cdna.tar.gz
 
     GENOME_DIR = "reference"
     CUT_DIR = "cutPrimer"

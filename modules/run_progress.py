@@ -9,7 +9,6 @@ class RunProgress:
         self.main_window = main_window
         self.widgets = main_window.ui
         self.spinner_dialog = None
-        self.network_manager = QNetworkAccessManager()
 
         self.widgets.runButton.clicked.connect(self.start_run)
         self.widgets.cleanButton.clicked.connect(self.clean_run)
@@ -27,7 +26,7 @@ class RunProgress:
 
         # Make async HTTP GET request to test connectivity (simulate waiting for backend)
         request = QNetworkRequest(QUrl("https://www.google.com"))
-        reply = self.network_manager.get(request)
+        reply = self.main_window.network_manager.get(request)
         reply.finished.connect(lambda: self.handle_pause_reply(reply))
 
     def handle_pause_reply(self, reply: QNetworkReply):

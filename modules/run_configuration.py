@@ -1,12 +1,18 @@
 from . settings import Settings
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QUrl, Slot
 from PySide6.QtWidgets import QMessageBox
+import xml.etree.ElementTree as ET
+from PySide6.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply
+import base64
 
 class RunConfiguration:
     def __init__(self, main_window):
         self.main_window = main_window
         self.widgets = main_window.ui
         self.selectedButton = None
+
+        #Get reference genomes from nextcloud TODO: return ref_genomes & download urls
+        self.get_nc_folder_contents(main_window.network_manager, Settings.REF_RENOMES_SHARE_TOKEN)
 
         self.widgets.dockerConfig.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.docker, self.widgets.dockerConfig))
         self.widgets.trimmingConfig.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.trimming, self.widgets.trimmingConfig))
@@ -94,3 +100,52 @@ class RunConfiguration:
             self.widgets.umiInput.show()
         else:
             self.widgets.umiInput.hide()
+
+    def get_nc_folder_contents(self, manager: QNetworkAccessManager, share_token: str):
+        base_url = "https://nc.liam-w.com"
+        webdav_url = f"{base_url}/public.php/webdav/"
+
+        propfind_body = b'''<?xml version="1.0"?>
+    <d:propfind xmlns:d="DAV:">
+        <d:allprop/>
+    </d:propfind>'''
+
+        request = QNetworkRequest(QUrl(webdav_url))
+        request.setHeader(QNetworkRequest.ContentTypeHeader, "application/xml")
+        request.setRawHeader(b"Depth", b"1")
+
+        auth_header = base64.b64encode(f"{share_token}:".encode()).decode()
+        request.setRawHeader(b"Authorization", f"Basic {auth_header}".encode())
+
+        # Keep a reference so it doesn't get GC'd
+        self._current_reply = manager.sendCustomRequest(request, b"PROPFIND", propfind_body)
+
+        @Slot()
+        def handle_reply():
+            reply = self._current_reply
+            if reply.error() != QNetworkReply.NoError:
+                print("Error:", reply.errorString())
+                return
+
+            data = reply.readAll().data()
+            ns = {'d': 'DAV:'}
+            root = ET.fromstring(data)
+
+            files = [
+                resp.find('d:href', ns).text.rstrip('/').split('/')[-1]
+                for resp in root.findall('d:response', ns)[1:]  # skip folder itself
+            ]
+
+            file_download_urls = [
+                f"{base_url}/s/{share_token}/download?path=%2F&files={f}"
+                for f in files
+            ]
+
+            print("Files in share:", files)
+            for url in file_download_urls:
+                print("Download URL:", url)
+
+            # Release reference
+            self._current_reply = None
+
+        self._current_reply.finished.connect(handle_reply)

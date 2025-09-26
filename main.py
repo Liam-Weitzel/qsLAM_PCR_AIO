@@ -38,6 +38,7 @@ class MainWindow(QMainWindow):
         global widgets
         widgets = self.ui
         self.settings = Settings()
+        self.network_manager = QNetworkAccessManager()
 
         # APP NAME
         # ///////////////////////////////////////////////////////////////
