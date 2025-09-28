@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, stream_with_context, Response
+import zipfile2
 import os, subprocess
 import threading
 
@@ -26,12 +27,44 @@ def stream_cmd(cmd, cwd=None):
         # Let the client know something failed
         yield f"\n[ERROR] {cmd} exited with {p.returncode}\n"
 
-@app.route('/qc_and_trimming')
+@app.route('/upload_r1_r2', methods=['POST'])
+def upload_r1_r2():
+    """
+    curl -X POST http://localhost:5000/upload_r1_r2 \
+      -F "R1=@/path/to/local/R1.fastq.zip" \
+      -F "R2=@/path/to/local/R2.fastq.zip"
+    """
+    UPLOAD_DIR = "rawdata"
+    os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+    # Expect fields named R1 and R2 in the multipart form
+    if 'R1' not in request.files or 'R2' not in request.files:
+        return jsonify(error="Please upload both R1 and R2 files"), 400
+
+    r1_file = request.files['R1']
+    r2_file = request.files['R2']
+
+    r1_path = os.path.join(UPLOAD_DIR, "R1.fastq.zip")
+    r2_path = os.path.join(UPLOAD_DIR, "R2.fastq.zip")
+
+    # Save the uploaded zip files
+    r1_file.save(r1_path)
+    r2_file.save(r2_path)
+
+    with zipfile2.ZipFile(r1_path, 'r') as zip_ref:
+        zip_ref.extractall(UPLOAD_DIR)
+    with zipfile2.ZipFile(r2_path, 'r') as zip_ref:
+        zip_ref.extractall(UPLOAD_DIR)
+
+    return jsonify(message="Upload successful")
+
+@app.route('/qc_and_trimming', methods=['POST'])
 def qc_and_trimming():
+    """
+    curl -X POST http://localhost:5000/qc_and_trimming
+    """
     @stream_with_context
     def gen():
-        #TODO: Allow user to upload raw data
-        # Allow user to provide download link for data
         RAW_DIR = "rawdata"
         CUT_DIR = "cutPrimer"
         FASTQC_BEFORE_OUT = "fastqc/beforeCutAdapt"
@@ -152,12 +185,39 @@ def qc_and_trimming():
 
     return Response(gen(), mimetype="text/plain")
 
-@app.route('/read_mapping')
+@app.route('/upload_ref_genome', methods=['POST'])
+def upload_ref_genome():
+    """
+    curl -X POST http://localhost:5000/upload_ref_genome \
+      -F "REF=@/path/to/local/reference_genome.zip" \
+      -F "NAME=test"
+    """
+    UPLOAD_DIR = "reference"
+    os.makedirs(UPLOAD_DIR, exist_ok=True)
+
+    if 'REF' not in request.files:
+        return jsonify(error="Please upload the reference genome"), 400
+    if 'NAME' not in request.form:
+        return jsonify(error="Please provide a NAME field"), 400
+
+    ref_file = request.files['REF']
+    ref_name = request.form['NAME']
+
+    zip_path = os.path.join(UPLOAD_DIR, f"{ref_name}.fa.zip")
+    ref_file.save(zip_path)
+
+    with zipfile2.ZipFile(zip_path, 'r') as zip_ref:
+        zip_ref.extractall(UPLOAD_DIR)
+
+    return jsonify(message=f"Upload successful")
+
+@app.route('/read_mapping', methods=['POST'])
 def read_mapping():
+    """
+    curl -X POST http://localhost:5000/read_mapping
+    """
     @stream_with_context
     def gen():
-        #TODO: Allow user to upload ref genome
-        # Allow user to provide download link for ref genome
         genome = "GRCh38.p14"
         tar_url = "https://nc.liam-w.com/s/abXeB3WtcWdm63f/download?path=%2F&files=GRCh38.p14.tar.gz"
 
