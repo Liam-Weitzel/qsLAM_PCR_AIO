@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify, stream_with_context, Response
-import zipfile2
 import os, subprocess
 import threading
 
@@ -31,30 +30,24 @@ def stream_cmd(cmd, cwd=None):
 def upload_r1_r2():
     """
     curl -X POST http://localhost:5000/upload_r1_r2 \
-      -F "R1=@/path/to/local/R1.fastq.zip" \
-      -F "R2=@/path/to/local/R2.fastq.zip"
+      -F "R1=@/path/to/local/R1.fastq.gz" \
+      -F "R2=@/path/to/local/R2.fastq.gz"
     """
+
     UPLOAD_DIR = "rawdata"
     os.makedirs(UPLOAD_DIR, exist_ok=True)
 
-    # Expect fields named R1 and R2 in the multipart form
     if 'R1' not in request.files or 'R2' not in request.files:
         return jsonify(error="Please upload both R1 and R2 files"), 400
 
     r1_file = request.files['R1']
     r2_file = request.files['R2']
 
-    r1_path = os.path.join(UPLOAD_DIR, "R1.fastq.zip")
-    r2_path = os.path.join(UPLOAD_DIR, "R2.fastq.zip")
+    r1_path = os.path.join(UPLOAD_DIR, "R1.fastq.gz")
+    r2_path = os.path.join(UPLOAD_DIR, "R2.fastq.gz")
 
-    # Save the uploaded zip files
     r1_file.save(r1_path)
     r2_file.save(r2_path)
-
-    with zipfile2.ZipFile(r1_path, 'r') as zip_ref:
-        zip_ref.extractall(UPLOAD_DIR)
-    with zipfile2.ZipFile(r2_path, 'r') as zip_ref:
-        zip_ref.extractall(UPLOAD_DIR)
 
     return jsonify(message="Upload successful")
 
@@ -126,7 +119,7 @@ def qc_and_trimming():
 
             # Replace originals with cleaned versions
             os.replace(tmp_r1, R1_FILE)
-            os.replace(tmp_r2, R2_FILE)
+            os.replace(tmp_r2, R2_FILE) #TODO: WE SHOULDNT OVERWRITE THE R1 AND R2!!
             yield "fastp complete, originals replaced\n"
 
         # cutadapt step 1
@@ -189,7 +182,7 @@ def qc_and_trimming():
 def upload_ref_genome():
     """
     curl -X POST http://localhost:5000/upload_ref_genome \
-      -F "REF=@/path/to/local/reference_genome.zip" \
+      -F "REF=@/path/to/local/reference_genome.tar.gz" \
       -F "NAME=test"
     """
     UPLOAD_DIR = "reference"
@@ -203,13 +196,12 @@ def upload_ref_genome():
     ref_file = request.files['REF']
     ref_name = request.form['NAME']
 
-    zip_path = os.path.join(UPLOAD_DIR, f"{ref_name}.fa.zip")
-    ref_file.save(zip_path)
+    tar_path = os.path.join(UPLOAD_DIR, f"{ref_name}.fa.tar.gz")
+    ref_file.save(tar_path)
 
-    with zipfile2.ZipFile(zip_path, 'r') as zip_ref:
-        zip_ref.extractall(UPLOAD_DIR)
+    subprocess.run(["tar", "-xzf", tar_path, "-C", UPLOAD_DIR], check=True)
 
-    return jsonify(message=f"Upload successful")
+    return jsonify(message=f"Upload successful: {ref_name}")
 
 @app.route('/read_mapping', methods=['POST'])
 def read_mapping():

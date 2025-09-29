@@ -552,6 +552,7 @@ QCommandLinkButton:hover {
                <family>Segoe UI Semibold</family>
                <pointsize>12</pointsize>
                <italic>false</italic>
+               <fontweight></fontweight>
               </font>
              </property>
              <property name="text">
@@ -3183,42 +3184,78 @@ li.checked::marker { content: &quot;\2612&quot;; }
                            <number>0</number>
                           </property>
                           <item>
-                           <widget class="QProgressBar" name="progressBar">
-                            <property name="value">
-                             <number>24</number>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QPushButton" name="runButton">
-                            <property name="minimumSize">
-                             <size>
-                              <width>50</width>
-                              <height>30</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <family>Segoe UI</family>
-                              <pointsize>10</pointsize>
-                              <italic>false</italic>
-                              <bold>false</bold>
-                             </font>
-                            </property>
-                            <property name="cursor">
-                             <cursorShape>PointingHandCursor</cursorShape>
-                            </property>
-                            <property name="styleSheet">
-                             <string notr="true">background-color: rgb(255, 255, 255);</string>
-                            </property>
-                            <property name="text">
-                             <string>Run!</string>
-                            </property>
-                            <property name="icon">
-                             <iconset resource="resources.qrc">
-                              <normaloff>:/icons/images/icons/cil-media-play.png</normaloff>:/icons/images/icons/cil-media-play.png</iconset>
-                            </property>
-                           </widget>
+                           <layout class="QHBoxLayout" name="horizontalLayout_7">
+                            <item>
+                             <widget class="QPushButton" name="uploadReadsButton">
+                              <property name="text">
+                               <string>Upload Reads</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="qc1Button">
+                              <property name="text">
+                               <string>QC One</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="umiButton">
+                              <property name="text">
+                               <string>UMI</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="cutadaptButton">
+                              <property name="text">
+                               <string>cutadapt</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="fastpButton">
+                              <property name="text">
+                               <string>fastpButton</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="qc2Button">
+                              <property name="text">
+                               <string>QC Two</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="readLenButton">
+                              <property name="text">
+                               <string>Read Length</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="uploadRefGenomeButton">
+                              <property name="text">
+                               <string>Upload Ref Genome</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="readMappingButton">
+                              <property name="text">
+                               <string>Read Mapping</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="siteAnalysisButton">
+                              <property name="text">
+                               <string>Site Analysis</string>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
                           </item>
                          </layout>
                         </widget>
@@ -3287,37 +3324,37 @@ li.checked::marker { content: &quot;\2612&quot;; }
                           </property>
                           <item>
                            <layout class="QHBoxLayout" name="horizontalLayout_6">
-                          <item>
-                           <widget class="QPushButton" name="cleanButton">
-                            <property name="minimumSize">
-                             <size>
-                              <width>50</width>
-                              <height>30</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <family>Segoe UI</family>
-                              <pointsize>10</pointsize>
-                              <italic>false</italic>
-                              <bold>false</bold>
-                             </font>
-                            </property>
-                            <property name="cursor">
-                             <cursorShape>PointingHandCursor</cursorShape>
-                            </property>
-                            <property name="styleSheet">
-                             <string notr="true">background-color: rgb(255, 255, 255);</string>
-                            </property>
-                            <property name="text">
-                             <string>Clean</string>
-                            </property>
-                            <property name="icon">
-                             <iconset resource="resources.qrc">
-                              <normaloff>:/icons/images/icons/cil-fire.png</normaloff>:/icons/images/icons/cil-fire.png</iconset>
-                            </property>
-                           </widget>
-                          </item>
+                            <item>
+                             <widget class="QPushButton" name="cleanButton">
+                              <property name="minimumSize">
+                               <size>
+                                <width>50</width>
+                                <height>30</height>
+                               </size>
+                              </property>
+                              <property name="font">
+                               <font>
+                                <family>Segoe UI</family>
+                                <pointsize>10</pointsize>
+                                <italic>false</italic>
+                                <bold>false</bold>
+                               </font>
+                              </property>
+                              <property name="cursor">
+                               <cursorShape>PointingHandCursor</cursorShape>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">background-color: rgb(255, 255, 255);</string>
+                              </property>
+                              <property name="text">
+                               <string>Clean</string>
+                              </property>
+                              <property name="icon">
+                               <iconset resource="resources.qrc">
+                                <normaloff>:/icons/images/icons/cil-fire.png</normaloff>:/icons/images/icons/cil-fire.png</iconset>
+                              </property>
+                             </widget>
+                            </item>
                             <item>
                              <spacer name="horizontalSpacer_10">
                               <property name="orientation">
@@ -3331,68 +3368,99 @@ li.checked::marker { content: &quot;\2612&quot;; }
                               </property>
                              </spacer>
                             </item>
-                          <item>
-                           <widget class="QPushButton" name="pauseButton">
-                            <property name="minimumSize">
-                             <size>
-                              <width>50</width>
-                              <height>30</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <family>Segoe UI</family>
-                              <pointsize>10</pointsize>
-                              <italic>false</italic>
-                              <bold>false</bold>
-                             </font>
-                            </property>
-                            <property name="cursor">
-                             <cursorShape>PointingHandCursor</cursorShape>
-                            </property>
-                            <property name="styleSheet">
-                             <string notr="true">background-color: rgb(255, 255, 255);</string>
-                            </property>
-                            <property name="text">
-                             <string>Pause</string>
-                            </property>
-                            <property name="icon">
-                             <iconset resource="resources.qrc">
-                              <normaloff>:/icons/images/icons/cil-media-stop.png</normaloff>:/icons/images/icons/cil-media-stop.png</iconset>
-                            </property>
-                           </widget>
-                          </item>
-                          <item>
-                           <widget class="QPushButton" name="resumeButton">
-                            <property name="minimumSize">
-                             <size>
-                              <width>50</width>
-                              <height>30</height>
-                             </size>
-                            </property>
-                            <property name="font">
-                             <font>
-                              <family>Segoe UI</family>
-                              <pointsize>10</pointsize>
-                              <italic>false</italic>
-                              <bold>false</bold>
-                             </font>
-                            </property>
-                            <property name="cursor">
-                             <cursorShape>PointingHandCursor</cursorShape>
-                            </property>
-                            <property name="styleSheet">
-                             <string notr="true">background-color: rgb(255, 255, 255);</string>
-                            </property>
-                            <property name="text">
-                             <string>Resume</string>
-                            </property>
-                            <property name="icon">
-                             <iconset resource="resources.qrc">
-                              <normaloff>:/icons/images/icons/cil-media-play.png</normaloff>:/icons/images/icons/cil-media-play.png</iconset>
-                            </property>
-                           </widget>
-                          </item>
+                            <item>
+                             <widget class="QPushButton" name="pauseButton">
+                              <property name="minimumSize">
+                               <size>
+                                <width>50</width>
+                                <height>30</height>
+                               </size>
+                              </property>
+                              <property name="font">
+                               <font>
+                                <family>Segoe UI</family>
+                                <pointsize>10</pointsize>
+                                <italic>false</italic>
+                                <bold>false</bold>
+                               </font>
+                              </property>
+                              <property name="cursor">
+                               <cursorShape>PointingHandCursor</cursorShape>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">background-color: rgb(255, 255, 255);</string>
+                              </property>
+                              <property name="text">
+                               <string>Pause</string>
+                              </property>
+                              <property name="icon">
+                               <iconset resource="resources.qrc">
+                                <normaloff>:/icons/images/icons/cil-media-stop.png</normaloff>:/icons/images/icons/cil-media-stop.png</iconset>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="resumeButton">
+                              <property name="minimumSize">
+                               <size>
+                                <width>50</width>
+                                <height>30</height>
+                               </size>
+                              </property>
+                              <property name="font">
+                               <font>
+                                <family>Segoe UI</family>
+                                <pointsize>10</pointsize>
+                                <italic>false</italic>
+                                <bold>false</bold>
+                               </font>
+                              </property>
+                              <property name="cursor">
+                               <cursorShape>PointingHandCursor</cursorShape>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">background-color: rgb(255, 255, 255);</string>
+                              </property>
+                              <property name="text">
+                               <string>Resume</string>
+                              </property>
+                              <property name="icon">
+                               <iconset resource="resources.qrc">
+                                <normaloff>:/icons/images/icons/cil-media-play.png</normaloff>:/icons/images/icons/cil-media-play.png</iconset>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QPushButton" name="runButton">
+                              <property name="minimumSize">
+                               <size>
+                                <width>50</width>
+                                <height>30</height>
+                               </size>
+                              </property>
+                              <property name="font">
+                               <font>
+                                <family>Segoe UI</family>
+                                <pointsize>10</pointsize>
+                                <italic>false</italic>
+                                <bold>false</bold>
+                               </font>
+                              </property>
+                              <property name="cursor">
+                               <cursorShape>PointingHandCursor</cursorShape>
+                              </property>
+                              <property name="styleSheet">
+                               <string notr="true">background-color: rgb(255, 255, 255);</string>
+                              </property>
+                              <property name="text">
+                               <string>Run Full Pipeline</string>
+                              </property>
+                              <property name="icon">
+                               <iconset resource="resources.qrc">
+                                <normaloff>:/icons/images/icons/cil-media-play.png</normaloff>:/icons/images/icons/cil-media-play.png</iconset>
+                              </property>
+                             </widget>
+                            </item>
                            </layout>
                           </item>
                          </layout>
@@ -3755,7 +3823,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
   <tabstop>renameRunButton</tabstop>
   <tabstop>importRunButton</tabstop>
   <tabstop>exportRunButton</tabstop>
-  <tabstop>runButton</tabstop>
   <tabstop>stdOut</tabstop>
   <tabstop>moreButton</tabstop>
   <tabstop>runManagerButton</tabstop>

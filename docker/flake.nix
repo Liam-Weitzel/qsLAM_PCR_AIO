@@ -40,7 +40,6 @@
         pkgs.fastp
         pkgs.python312
         pkgs.python312Packages.flask
-        pkgs.python312Packages.zipfile2
         pkgs.pipx
         pkgs.R
         pkgs.rPackages.ggplot2
