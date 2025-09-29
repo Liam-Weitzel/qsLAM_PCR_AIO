@@ -552,7 +552,6 @@ QCommandLinkButton:hover {
                <family>Segoe UI Semibold</family>
                <pointsize>12</pointsize>
                <italic>false</italic>
-               <fontweight></fontweight>
               </font>
              </property>
              <property name="text">

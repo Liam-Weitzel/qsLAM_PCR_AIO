@@ -70,43 +70,16 @@ class RunProgress:
         is_paused = Settings.METADATA.get("isPaused", False)
 
         if is_running:
-            self.widgets.progressBar.show()
             self.widgets.runButton.hide()
             self.widgets.cleanButton.show()
 
             if is_paused:
-                self.widgets.progressBar.setEnabled(False)
-                self.widgets.progressBar.setStyleSheet("""
-                    QProgressBar {
-                        background-color: #ddd;
-                        border: 1px solid #aaa;
-                        background-image: url(':/icons/images/icons/cil-media-pause.png');
-                        background-repeat: no-repeat;
-                        background-position: center;
-                        color: transparent;
-                    }
-                    QProgressBar::chunk {
-                        background-color: #aaa;
-                    }
-                """)
                 self.widgets.pauseButton.hide()
                 self.widgets.resumeButton.show()
             else:
-                self.widgets.progressBar.setEnabled(True)
-                self.widgets.progressBar.setStyleSheet("""
-                    QProgressBar {
-                        border: 1px solid #bbb;
-                        background: #eee;
-                        text-align: center;
-                    }
-                    QProgressBar::chunk {
-                        background-color: #86D2ED;
-                    }
-                """)
                 self.widgets.pauseButton.show()
                 self.widgets.resumeButton.hide()
         else:
-            self.widgets.progressBar.hide()
             self.widgets.runButton.show()
             self.widgets.pauseButton.hide()
             self.widgets.resumeButton.hide()

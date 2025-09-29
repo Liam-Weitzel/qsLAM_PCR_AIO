@@ -17,10 +17,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QCheckBox,
     QFrame, QGridLayout, QHBoxLayout, QHeaderView,
-    QLabel, QLineEdit, QMainWindow, QProgressBar,
-    QPushButton, QSizePolicy, QSpacerItem, QStackedWidget,
-    QTableWidget, QTableWidgetItem, QTextBrowser, QTextEdit,
-    QVBoxLayout, QWidget)
+    QLabel, QLineEdit, QMainWindow, QPushButton,
+    QSizePolicy, QSpacerItem, QStackedWidget, QTableWidget,
+    QTableWidgetItem, QTextBrowser, QTextEdit, QVBoxLayout,
+    QWidget)
 from .resources_rc import *
 
 class Ui_MainWindow(object):
@@ -1454,23 +1454,60 @@ class Ui_MainWindow(object):
         self.verticalLayout_162.setSpacing(0)
         self.verticalLayout_162.setObjectName(u"verticalLayout_162")
         self.verticalLayout_162.setContentsMargins(0, 0, 0, 0)
-        self.progressBar = QProgressBar(self.row_12)
-        self.progressBar.setObjectName(u"progressBar")
-        self.progressBar.setValue(24)
+        self.horizontalLayout_7 = QHBoxLayout()
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.uploadReadsButton = QPushButton(self.row_12)
+        self.uploadReadsButton.setObjectName(u"uploadReadsButton")
 
-        self.verticalLayout_162.addWidget(self.progressBar)
+        self.horizontalLayout_7.addWidget(self.uploadReadsButton)
 
-        self.runButton = QPushButton(self.row_12)
-        self.runButton.setObjectName(u"runButton")
-        self.runButton.setMinimumSize(QSize(50, 30))
-        self.runButton.setFont(font)
-        self.runButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.runButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon18 = QIcon()
-        icon18.addFile(u":/icons/images/icons/cil-media-play.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.runButton.setIcon(icon18)
+        self.qc1Button = QPushButton(self.row_12)
+        self.qc1Button.setObjectName(u"qc1Button")
 
-        self.verticalLayout_162.addWidget(self.runButton)
+        self.horizontalLayout_7.addWidget(self.qc1Button)
+
+        self.umiButton = QPushButton(self.row_12)
+        self.umiButton.setObjectName(u"umiButton")
+
+        self.horizontalLayout_7.addWidget(self.umiButton)
+
+        self.cutadaptButton = QPushButton(self.row_12)
+        self.cutadaptButton.setObjectName(u"cutadaptButton")
+
+        self.horizontalLayout_7.addWidget(self.cutadaptButton)
+
+        self.fastpButton = QPushButton(self.row_12)
+        self.fastpButton.setObjectName(u"fastpButton")
+
+        self.horizontalLayout_7.addWidget(self.fastpButton)
+
+        self.qc2Button = QPushButton(self.row_12)
+        self.qc2Button.setObjectName(u"qc2Button")
+
+        self.horizontalLayout_7.addWidget(self.qc2Button)
+
+        self.readLenButton = QPushButton(self.row_12)
+        self.readLenButton.setObjectName(u"readLenButton")
+
+        self.horizontalLayout_7.addWidget(self.readLenButton)
+
+        self.uploadRefGenomeButton = QPushButton(self.row_12)
+        self.uploadRefGenomeButton.setObjectName(u"uploadRefGenomeButton")
+
+        self.horizontalLayout_7.addWidget(self.uploadRefGenomeButton)
+
+        self.readMappingButton = QPushButton(self.row_12)
+        self.readMappingButton.setObjectName(u"readMappingButton")
+
+        self.horizontalLayout_7.addWidget(self.readMappingButton)
+
+        self.siteAnalysisButton = QPushButton(self.row_12)
+        self.siteAnalysisButton.setObjectName(u"siteAnalysisButton")
+
+        self.horizontalLayout_7.addWidget(self.siteAnalysisButton)
+
+
+        self.verticalLayout_162.addLayout(self.horizontalLayout_7)
 
 
         self.verticalLayout3.addWidget(self.row_12)
@@ -1521,9 +1558,9 @@ class Ui_MainWindow(object):
         self.pauseButton.setFont(font)
         self.pauseButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.pauseButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon19 = QIcon()
-        icon19.addFile(u":/icons/images/icons/cil-media-stop.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.pauseButton.setIcon(icon19)
+        icon18 = QIcon()
+        icon18.addFile(u":/icons/images/icons/cil-media-stop.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.pauseButton.setIcon(icon18)
 
         self.horizontalLayout_6.addWidget(self.pauseButton)
 
@@ -1533,9 +1570,21 @@ class Ui_MainWindow(object):
         self.resumeButton.setFont(font)
         self.resumeButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.resumeButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        self.resumeButton.setIcon(icon18)
+        icon19 = QIcon()
+        icon19.addFile(u":/icons/images/icons/cil-media-play.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.resumeButton.setIcon(icon19)
 
         self.horizontalLayout_6.addWidget(self.resumeButton)
+
+        self.runButton = QPushButton(self.row_32)
+        self.runButton.setObjectName(u"runButton")
+        self.runButton.setMinimumSize(QSize(50, 30))
+        self.runButton.setFont(font)
+        self.runButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.runButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.runButton.setIcon(icon19)
+
+        self.horizontalLayout_6.addWidget(self.runButton)
 
 
         self.horizontalLayout_122.addLayout(self.horizontalLayout_6)
@@ -1703,8 +1752,7 @@ class Ui_MainWindow(object):
         QWidget.setTabOrder(self.openFolderLocationButton, self.renameRunButton)
         QWidget.setTabOrder(self.renameRunButton, self.importRunButton)
         QWidget.setTabOrder(self.importRunButton, self.exportRunButton)
-        QWidget.setTabOrder(self.exportRunButton, self.runButton)
-        QWidget.setTabOrder(self.runButton, self.stdOut)
+        QWidget.setTabOrder(self.exportRunButton, self.stdOut)
         QWidget.setTabOrder(self.stdOut, self.moreButton)
         QWidget.setTabOrder(self.moreButton, self.runManagerButton)
         QWidget.setTabOrder(self.runManagerButton, self.minimizeAppButton)
@@ -1810,7 +1858,16 @@ class Ui_MainWindow(object):
         self.step5Button.setText(QCoreApplication.translate("MainWindow", u"step 5", None))
         self.configStepsLabel.setText(QCoreApplication.translate("MainWindow", u"Please complete all configuration steps below:", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Charts here and stuff after run is complete...", None))
-        self.runButton.setText(QCoreApplication.translate("MainWindow", u"Run!", None))
+        self.uploadReadsButton.setText(QCoreApplication.translate("MainWindow", u"Upload Reads", None))
+        self.qc1Button.setText(QCoreApplication.translate("MainWindow", u"QC One", None))
+        self.umiButton.setText(QCoreApplication.translate("MainWindow", u"UMI", None))
+        self.cutadaptButton.setText(QCoreApplication.translate("MainWindow", u"cutadapt", None))
+        self.fastpButton.setText(QCoreApplication.translate("MainWindow", u"fastpButton", None))
+        self.qc2Button.setText(QCoreApplication.translate("MainWindow", u"QC Two", None))
+        self.readLenButton.setText(QCoreApplication.translate("MainWindow", u"Read Length", None))
+        self.uploadRefGenomeButton.setText(QCoreApplication.translate("MainWindow", u"Upload Ref Genome", None))
+        self.readMappingButton.setText(QCoreApplication.translate("MainWindow", u"Read Mapping", None))
+        self.siteAnalysisButton.setText(QCoreApplication.translate("MainWindow", u"Site Analysis", None))
         self.stdOut.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -1829,6 +1886,7 @@ class Ui_MainWindow(object):
         self.cleanButton.setText(QCoreApplication.translate("MainWindow", u"Clean", None))
         self.pauseButton.setText(QCoreApplication.translate("MainWindow", u"Pause", None))
         self.resumeButton.setText(QCoreApplication.translate("MainWindow", u"Resume", None))
+        self.runButton.setText(QCoreApplication.translate("MainWindow", u"Run Full Pipeline", None))
         self.messageButton.setText(QCoreApplication.translate("MainWindow", u"Not sure yet", None))
         self.printButton.setText(QCoreApplication.translate("MainWindow", u"What this is", None))
         self.logoutButton.setText(QCoreApplication.translate("MainWindow", u"For", None))
