@@ -14,3 +14,4 @@ RUN nix develop --impure --extra-experimental-features nix-command --extra-exper
 
 CMD ["/root/.nix-profile/bin/bash"]
 # CMD ["flask", "--app", "api.py", "run", "--host=0.0.0.0", "--port=5000"]
+# flask --app api.py run --host=0.0.0.0 --port=5000
