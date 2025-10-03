@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify, stream_with_context, Response
 import os, subprocess, multiprocessing
 import json
+import traceback
+import sys
 
 app = Flask(__name__)
 
@@ -13,6 +15,8 @@ FASTQC_AFTER_OUT  = "fastqc/afterCutAdapt"
 R1_FILE = os.path.join(RAW_DIR, "R1.fastq.gz")
 R2_FILE = os.path.join(RAW_DIR, "R2.fastq.gz")
 REFERENCE = "reference"
+BAM2BED_DIR = "bam2bed"
+BED2PEAK_DIR = "bed2peak"
 
 @app.route('/')
 def index():
@@ -33,22 +37,25 @@ def safe_stream(generator_func, endpoint_name):
             yield f"[RESULT] {json.dumps(result)}\n"
     return wrapper()
 
-def stream_cmd(cmd, result, cwd=None):
-    yield f"[INFO] Running: {' '.join(cmd)}\n"
+def stream_cmd(cmd, result, cwd=None, cmd_is_shell=False):
+    if isinstance(cmd, str) and not cmd_is_shell:
+        cmd = cmd.split()
+    yield f"[INFO] Running: {cmd if cmd_is_shell else ' '.join(cmd)}\n"
     p = subprocess.Popen(
         cmd, cwd=cwd,
         stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-        text=True, bufsize=1
+        text=True, bufsize=1,
+        shell=cmd_is_shell
     )
     for line in p.stdout:
         yield f"[LOG] {line}"
     p.wait()
 
     if p.returncode == 0:
-        yield f"[DONE] {cmd[0]} finished successfully\n"
+        yield f"[DONE] {cmd[0] if not cmd_is_shell else cmd} finished successfully\n"
         return True
     else:
-        msg = f"{cmd[0]} exited with code {p.returncode}"
+        msg = f"{cmd[0] if not cmd_is_shell else cmd} exited with code {p.returncode}"
         result["success"] = False
         result["error"] = msg
         return False
@@ -406,25 +413,171 @@ def read_mapping():
 
         stat_out = os.path.join(BWA_DIR, "aligned.stat")
         yield "Generating flagstat…\n"
-        with open(stat_out, "w") as out:
-            p = subprocess.Popen(
-                ["samtools", "flagstat", sorted_bam_out, "--threads", "1"],
-                stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-                text=True, bufsize=1
-            )
-            for line in p.stdout:
-                out.write(line)
+        if not (yield from stream_cmd(
+            f"samtools flagstat {sorted_bam_out} --threads {str(NUM_THREADS)} > {stat_out}",
+            result,
+            cmd_is_shell=True
+        )):
+            return
+
+        with open(stat_out, "r") as f:
+            for line in f:
                 yield line
-            p.wait()
-            if p.returncode != 0:
-                result["success"] = False
-                result["error"] = f"samtools flagstat exited with {p.returncode}"
-                return
 
         yield "✅ Alignment complete!\n"
-        yield f"Read mapping complete with {genome}!\n"
 
     return Response(safe_stream(gen, "read_mapping"), mimetype="text/plain")
+
+@app.route('/site_analysis', methods=['GET'])
+def site_analysis():
+    """
+    curl http://localhost:5000/site_analysis
+    """
+    def gen(result):
+        os.makedirs(BAM2BED_DIR, exist_ok=True)
+
+        for bam in os.listdir(BWA_DIR):
+            if not bam.endswith(".bam"):
+                continue
+
+            out_prefix = os.path.splitext(bam)[0]
+            yield f"[INFO] Processing {out_prefix}\n"
+
+            rmdup_bed = os.path.join(BAM2BED_DIR, f"{out_prefix}.rmdup.bed")
+            if os.path.exists(rmdup_bed):
+                yield f"[SKIP] {rmdup_bed} already exists\n"
+                continue
+
+            bam_path = os.path.join(BWA_DIR, bam)
+            header_sam = os.path.join(BAM2BED_DIR, f"{out_prefix}.header.sam")
+            reads_sam  = os.path.join(BAM2BED_DIR, f"{out_prefix}.reads.sam")
+            filtered_sam = os.path.join(BAM2BED_DIR, f"{out_prefix}.sam")
+            bam_unsorted = os.path.join(BAM2BED_DIR, f"{out_prefix}.unsorted.bam")
+            sorted_bam = os.path.join(BAM2BED_DIR, f"{out_prefix}.sorted.bam")
+            temp_bedpe = os.path.join(BAM2BED_DIR, f"{out_prefix}.temp")
+            bed_file = os.path.join(BAM2BED_DIR, f"{out_prefix}.bed")
+            sam_temp = os.path.join(BAM2BED_DIR, f"{out_prefix}.sam.tmp")
+
+            # 1. Extract header
+            if not (yield from stream_cmd(["samtools", "view", "-H", bam_path, "-o", header_sam], result)):
+                return
+
+            # 2. Extract filtered reads
+            if not (yield from stream_cmd(["samtools", "view", "-F", "4", bam_path, "-o", reads_sam], result)):
+                return
+
+            # 3. Filter reads (filter_reads.pl writes to filtered_sam)
+            if not (yield from stream_cmd(["perl", "filter_reads.pl", reads_sam, filtered_sam], result)):
+                return
+
+            # 4. Combine header + filtered reads into final SAM (use temp file)
+            combined_sam = os.path.join(BAM2BED_DIR, f"{out_prefix}.sam.tmp")
+            if not (yield from stream_cmd(
+                ["bash", "-c", f"cat {header_sam} {filtered_sam} > {combined_sam}"],
+                result
+            )):
+                return
+
+            # Replace filtered_sam with combined_sam
+            filtered_sam = combined_sam
+
+            # 5. Convert to BAM (unsorted)
+            if not (yield from stream_cmd(["samtools", "view", "-hbS", filtered_sam, "-o", bam_unsorted], result)):
+                return
+
+            # 6. Sort BAM by name
+            if not (yield from stream_cmd([
+                    "samtools", "sort", "-n",
+                    "-o", sorted_bam,
+                    "-T", f"{BAM2BED_DIR}/{out_prefix}.tmp",
+                    bam_unsorted
+            ], result)):
+                return
+
+            # 7. Convert sorted BAM to BEDPE
+            if not (yield from stream_cmd(["bash", "-c", f"bedtools bamtobed -i {sorted_bam} -bedpe -mate1 > {temp_bedpe}"], result)):
+                return
+
+            # 8. Convert BEDPE to BED
+            if not (yield from stream_cmd(["perl", "bedpe_to_bed.pl", temp_bedpe, bed_file], result)):
+                return
+
+            # 9. Remove duplicates
+            if not (yield from stream_cmd([
+                "bash", "-c", f"cut -f 1,2,3,6 {bed_file} | sort -u | "
+                               "awk '{print $1\"\\t\"$2\"\\t\"$3\"\\t.\\t.\\t\"$4}' "
+                               f"> {rmdup_bed}"
+            ], result)):
+                return
+
+            # Clean up temp files
+            for f in [bam_unsorted, temp_bedpe, sorted_bam, sam_temp, header_sam, reads_sam]:
+                if os.path.exists(f):
+                    os.remove(f)
+
+            yield f"✅ Site analysis complete for {out_prefix}\n"
+
+        # === bed2peak analysis ===
+        yield "[INFO] Starting bed2peak analysis…\n"
+        rmdup_beds = [f for f in os.listdir(BAM2BED_DIR) if f.endswith("rmdup.bed")]
+        os.makedirs(BED2PEAK_DIR, exist_ok=True)
+
+        for d in range(11):
+            for bed_file in rmdup_beds:
+                out_prefix = bed_file.replace(".rmdup.bed", "")
+                yield f"[INFO] bed2peak d={d}, sample={out_prefix}\n"
+
+                # include depth in filenames
+                peak_merge  = os.path.join(BED2PEAK_DIR, f"{out_prefix}.d{d}.peak.merge.txt")
+                all_peaks   = os.path.join(BED2PEAK_DIR, f"{out_prefix}.d{d}.all_peaks.txt")
+                peak_merge2 = os.path.join(BED2PEAK_DIR, f"{out_prefix}.d{d}.peak.merge.2.txt")
+                peak_merge3 = os.path.join(BED2PEAK_DIR, f"{out_prefix}.d{d}.peak.merge.3.txt")
+                peak_xlsx   = os.path.join(BED2PEAK_DIR, f"{out_prefix}.d{d}.peak.merge.xlsx")
+
+                # Merge peaks
+                cmd_merge = f"""
+                  awk -F "\\t" '{{if($6=="+"){{print $1"\\t"$2"\\t"$6}} else {{print $1"\\t"$3"\\t"$6}}}}' {BAM2BED_DIR}/{bed_file} |
+                  grep -v vector | sort | uniq -c |
+                  awk '{{print $2"\\t"$3"\\t"$3+1"\\t.\\t"$1"\\t"$4}}' |
+                  sort -k1,1 -k2,2n |
+                  bedtools merge -c 5,6 -s -o sum,distinct -d {d} -i - |
+                  awk '{{print $1"\\t"$2"\\t"$3"\\t.\\t"$4"\\t"$5}}' |
+                  grep -v vector |
+                  bedtools intersect -b <(grep -v vector {BAM2BED_DIR}/{out_prefix}.bed | awk '{{if($6=="+"){{print $1"\\t"$2"\\t"$2+1"\\t.\\t.\\t"$6}} else {{print $1"\\t"$3"\\t"$3+1"\\t.\\t.\\t"$6}}}}') -c -s -a - |
+                  awk '{{print $1"\\t"$2"\\t"$3"\\t{out_prefix}\\t"$5"\\t"$6"\\t"$7}}' > {peak_merge}
+                """
+                if not (yield from stream_cmd(["bash", "-c", cmd_merge], result)):
+                    return
+
+                # All peaks
+                cmd_all = f"""
+                  awk -F "\\t" '{{if($6=="+"){{print $1"\\t"$2"\\t"$6}} else {{print $1"\\t"$3"\\t"$6}}}}' {BAM2BED_DIR}/{bed_file} |
+                  grep -v vector | sort | uniq -c |
+                  awk '{{print $2"\\t"$3"\\t"$3+1"\\t.\\t"$1"\\t"$4}}' |
+                  sort -k1,1 -k2,2n |
+                  grep -v vector |
+                  bedtools intersect -b <(grep -v vector {BAM2BED_DIR}/{out_prefix}.bed | awk '{{if($6=="+"){{print $1"\\t"$2"\\t"$2+1"\\t.\\t.\\t"$6}} else {{print $1"\\t"$3"\\t"$3+1"\\t.\\t.\\t"$6}}}}') -c -s -a - |
+                  awk '{{print $1"\\t"$2"\\t"$3"\\t{out_prefix}\\t"$5"\\t"$6"\\t"$7}}' > {all_peaks}
+                """
+                if not (yield from stream_cmd(["bash", "-c", cmd_all], result)):
+                    return
+
+                # Windowed intersection
+                cmd_window = f"bedtools window -w {d} -a {peak_merge} -b known20sites.bed -sm -c > {peak_merge2}"
+                if not (yield from stream_cmd(["bash", "-c", cmd_window], result)):
+                    return
+
+                # Step 1: Gene prediction
+                if not (yield from stream_cmd(["Rscript", "peak_annotation_step1.R", peak_merge2, peak_merge3], result)):
+                    return
+
+                # Step 2: Excel export
+                if not (yield from stream_cmd(["Rscript", "peak_annotation_step2.R", peak_merge3, peak_xlsx], result)):
+                    return
+
+        yield "✅ Peak annotation complete!\n"
+
+    return Response(safe_stream(gen, "site_analysis"), mimetype="text/plain")
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
