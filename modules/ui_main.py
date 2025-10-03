@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.9.2
+## Created by: Qt User Interface Compiler version 6.9.3
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -1446,69 +1446,14 @@ class Ui_MainWindow(object):
         self.verticalLayout3.setContentsMargins(10, 10, 10, 10)
         self.row_12 = QFrame(self.runProgressTab)
         self.row_12.setObjectName(u"row_12")
-        self.row_12.setMinimumSize(QSize(0, 50))
-        self.row_12.setMaximumSize(QSize(16777215, 50))
+        self.row_12.setMinimumSize(QSize(0, 70))
+        self.row_12.setMaximumSize(QSize(16777215, 70))
         self.row_12.setFrameShape(QFrame.Shape.StyledPanel)
         self.row_12.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_162 = QVBoxLayout(self.row_12)
         self.verticalLayout_162.setSpacing(0)
         self.verticalLayout_162.setObjectName(u"verticalLayout_162")
         self.verticalLayout_162.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_7 = QHBoxLayout()
-        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.uploadReadsButton = QPushButton(self.row_12)
-        self.uploadReadsButton.setObjectName(u"uploadReadsButton")
-
-        self.horizontalLayout_7.addWidget(self.uploadReadsButton)
-
-        self.qc1Button = QPushButton(self.row_12)
-        self.qc1Button.setObjectName(u"qc1Button")
-
-        self.horizontalLayout_7.addWidget(self.qc1Button)
-
-        self.umiButton = QPushButton(self.row_12)
-        self.umiButton.setObjectName(u"umiButton")
-
-        self.horizontalLayout_7.addWidget(self.umiButton)
-
-        self.cutadaptButton = QPushButton(self.row_12)
-        self.cutadaptButton.setObjectName(u"cutadaptButton")
-
-        self.horizontalLayout_7.addWidget(self.cutadaptButton)
-
-        self.fastpButton = QPushButton(self.row_12)
-        self.fastpButton.setObjectName(u"fastpButton")
-
-        self.horizontalLayout_7.addWidget(self.fastpButton)
-
-        self.qc2Button = QPushButton(self.row_12)
-        self.qc2Button.setObjectName(u"qc2Button")
-
-        self.horizontalLayout_7.addWidget(self.qc2Button)
-
-        self.readLenButton = QPushButton(self.row_12)
-        self.readLenButton.setObjectName(u"readLenButton")
-
-        self.horizontalLayout_7.addWidget(self.readLenButton)
-
-        self.uploadRefGenomeButton = QPushButton(self.row_12)
-        self.uploadRefGenomeButton.setObjectName(u"uploadRefGenomeButton")
-
-        self.horizontalLayout_7.addWidget(self.uploadRefGenomeButton)
-
-        self.readMappingButton = QPushButton(self.row_12)
-        self.readMappingButton.setObjectName(u"readMappingButton")
-
-        self.horizontalLayout_7.addWidget(self.readMappingButton)
-
-        self.siteAnalysisButton = QPushButton(self.row_12)
-        self.siteAnalysisButton.setObjectName(u"siteAnalysisButton")
-
-        self.horizontalLayout_7.addWidget(self.siteAnalysisButton)
-
-
-        self.verticalLayout_162.addLayout(self.horizontalLayout_7)
-
 
         self.verticalLayout3.addWidget(self.row_12)
 
@@ -1858,16 +1803,6 @@ class Ui_MainWindow(object):
         self.step5Button.setText(QCoreApplication.translate("MainWindow", u"step 5", None))
         self.configStepsLabel.setText(QCoreApplication.translate("MainWindow", u"Please complete all configuration steps below:", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Charts here and stuff after run is complete...", None))
-        self.uploadReadsButton.setText(QCoreApplication.translate("MainWindow", u"Upload Reads", None))
-        self.qc1Button.setText(QCoreApplication.translate("MainWindow", u"QC One", None))
-        self.umiButton.setText(QCoreApplication.translate("MainWindow", u"UMI", None))
-        self.cutadaptButton.setText(QCoreApplication.translate("MainWindow", u"cutadapt", None))
-        self.fastpButton.setText(QCoreApplication.translate("MainWindow", u"fastpButton", None))
-        self.qc2Button.setText(QCoreApplication.translate("MainWindow", u"QC Two", None))
-        self.readLenButton.setText(QCoreApplication.translate("MainWindow", u"Read Length", None))
-        self.uploadRefGenomeButton.setText(QCoreApplication.translate("MainWindow", u"Upload Ref Genome", None))
-        self.readMappingButton.setText(QCoreApplication.translate("MainWindow", u"Read Mapping", None))
-        self.siteAnalysisButton.setText(QCoreApplication.translate("MainWindow", u"Site Analysis", None))
         self.stdOut.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"

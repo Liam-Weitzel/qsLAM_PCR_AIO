@@ -1,7 +1,9 @@
-from PySide6.QtWidgets import QMessageBox, QDialog, QLabel, QVBoxLayout
+from PySide6.QtWidgets import QMessageBox, QDialog, QLabel, QVBoxLayout, QWidget
 from PySide6.QtGui import QMovie
 from PySide6.QtCore import Qt, QSize, QPoint, QUrl
 from PySide6.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply
+
+from widgets.custom_progress_bar.custom_progress_bar import CustomProgressBar
 from . settings import Settings
 
 class RunProgress:
@@ -10,10 +12,20 @@ class RunProgress:
         self.widgets = main_window.ui
         self.spinner_dialog = None
 
-        self.widgets.runButton.clicked.connect(self.start_run)
+        self.widgets.runButton.clicked.connect(self.run_all)
         self.widgets.cleanButton.clicked.connect(self.clean_run)
         self.widgets.pauseButton.clicked.connect(self.pause_run)
         self.widgets.resumeButton.clicked.connect(self.resume_run)
+
+        self.row_1 = self.widgets.runProgressTab.layout().itemAt(0).widget()
+        self.progressbar = CustomProgressBar()
+        self.progressbar.set_labels([
+            {"label": "Setup Docker", "actions": [("Run", self.clean_run)]},
+            {"label": "Upload R1 & R2", "actions": [("Upload", self.pause_run)]},
+            {"label": "QC 1", "actions": [("Run QC", self.resume_run), ("Skip", lambda: print("Skipped QC1"))]},
+            "UMI"  # no custom actions, just label
+        ])
+        self.row_1.layout().addWidget(self.progressbar)
 
     def pause_run(self):
         QMessageBox.information(
@@ -55,9 +67,10 @@ class RunProgress:
 
         if reply == QMessageBox.Yes:
             Settings.METADATA.set("isRunning", False)
+            self.progressbar.reset()
             self.load_from_metadata()
 
-    def start_run(self):
+    def run_all(self):
         Settings.METADATA.set("isRunning", True)
         self.load_from_metadata()
 

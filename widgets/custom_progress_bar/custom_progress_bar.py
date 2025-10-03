@@ -1,4 +1,3 @@
-import sys
 from enum import Enum, auto
 
 from PySide6.QtCore import *
@@ -19,7 +18,8 @@ class CustomProgressBar(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self._labels: list[str] = []
+        # each step is {"label": str, "actions": [(name, callable), ...]}
+        self._steps: list[dict] = []
         self._states: list[StepState] = []
         self._step_rects: list[QRect] = []
 
@@ -39,15 +39,43 @@ class CustomProgressBar(QWidget):
 
     fill_width = Property(float, fget=get_fill_width, fset=set_fill_width)
 
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        if self._steps:
+            number_of_steps = len(self._steps)
+            step_width = (self.width() - 20) / number_of_steps
+            completed_count = 0
+            for st in self._states:
+                if st == StepState.COMPLETED:
+                    completed_count += 1
+                else:
+                    break
+            target_width = (completed_count - 0.5) * step_width if completed_count > 0 else 0
+            self._fill_width = target_width
+            self.update()
+
     # ---------------- API ----------------
-    def set_labels(self, labels: list[str]):
-        self._labels = labels[:]
-        self._states = [StepState.INACTIVE] * len(labels)
-        self.stepsChanged.emit(self._labels)
+    def set_labels(self, steps: list):
+        """
+        steps: list of str OR list of dicts
+        dict format: { "label": str, "actions": [(name, func), ...] }
+        """
+        normalized = []
+        for s in steps:
+            if isinstance(s, str):
+                normalized.append({"label": s, "actions": []})
+            elif isinstance(s, dict):
+                normalized.append({"label": s["label"], "actions": s.get("actions", [])})
+            else:
+                raise ValueError("Steps must be str or dict with keys 'label' and optional 'actions'")
+
+        self._steps = normalized
+        self._states = [StepState.INACTIVE] * len(self._steps)
+        self.stepsChanged.emit([s["label"] for s in self._steps])
         self.update()
 
     def get_labels(self):
-        return self._labels
+        return [s["label"] for s in self._steps]
 
     labels = Property(list, fget=get_labels, fset=set_labels, notify=stepsChanged)
 
@@ -64,10 +92,6 @@ class CustomProgressBar(QWidget):
         return StepState.INACTIVE
 
     def last_completed_index(self) -> int:
-        """
-        Returns the index of the last consecutively completed step starting
-        from the beginning. Returns -1 if none are completed.
-        """
         idx = -1
         for i, st in enumerate(self._states):
             if st == StepState.COMPLETED:
@@ -76,14 +100,19 @@ class CustomProgressBar(QWidget):
                 break
         return idx
 
+    def reset(self):
+        for i in range(len(self._states)):
+            self.set_step_state(i, StepState.INACTIVE)
+        self._fill_width = 0.0
+        self.update()
+
     # ---------------- internal helpers ----------------
     def _update_animation(self):
-        if not self._labels:
+        if not self._steps:
             return
-        number_of_steps = len(self._labels)
+        number_of_steps = len(self._steps)
         step_width = (self.width() - 20) / number_of_steps  # track width - margins
 
-        # count consecutive completed
         completed_count = 0
         for st in self._states:
             if st == StepState.COMPLETED:
@@ -105,7 +134,6 @@ class CustomProgressBar(QWidget):
 
     # ---------------- Painting ----------------
     def paintEvent(self, event):
-        grey = QColor("#777")
         grey2 = QColor("#dfe3e4")
         blue = QColor("#2183dd")
         green = QColor("#009900")
@@ -116,9 +144,10 @@ class CustomProgressBar(QWidget):
         painter.setRenderHints(QPainter.Antialiasing)
         painter.fillRect(self.rect(), white)
 
-        if not self._labels:
+        if not self._steps:
             return
 
+        # ----------------- setup busy bar -----------------
         height = 5
         offset = 10
         busy_rect = QRect(0, 0, self.width(), height)
@@ -126,75 +155,82 @@ class CustomProgressBar(QWidget):
         busy_rect.moveCenter(self.rect().center())
         painter.fillRect(busy_rect, grey2)
 
-        # blue fill (animated)
+        # blue fill
         if self._fill_width > 0:
             r_busy = QRect(busy_rect.left(), busy_rect.top(), int(self._fill_width), height)
             painter.fillRect(r_busy, blue)
 
-        number_of_steps = len(self._labels)
+        # ----------------- adaptive sizing -----------------
+        number_of_steps = len(self._steps)
         step_width = busy_rect.width() / number_of_steps
         x = busy_rect.left() + step_width / 2
         y = busy_rect.center().y()
-        radius = 13
 
+        # circle radius
+        max_radius = min(13, (step_width - 10) / 2)
+        min_radius = 6
+        radius = max(min_radius, int(max_radius))
+
+        # font scaling
         font_text = painter.font()
+        font_size = font_text.pointSize()
         fm = QFontMetrics(font_text)
-        r = QRect(0, 0, int(1.5 * radius), int(1.5 * radius))
+        for step in self._steps:
+            label_width = fm.horizontalAdvance(step["label"])
+            while label_width > step_width - 4 and font_size > 6:
+                font_size -= 1
+                font_text.setPointSize(font_size)
+                fm = QFontMetrics(font_text)
+                label_width = fm.horizontalAdvance(step["label"])
+        painter.setFont(font_text)
 
+        r = QRect(0, 0, int(1.5 * radius), int(1.5 * radius))
         self._step_rects.clear()
 
-        for i, (text, state) in enumerate(zip(self._labels, self._states), 0):
+        for i, (step, state) in enumerate(zip(self._steps, self._states)):
+            text = step["label"]
             r.moveCenter(QPoint(int(x), int(y)))
             self._step_rects.append(QRect(r))
 
+            # draw circle
             if state == StepState.COMPLETED:
-                pen = QPen(green, 3)
-                painter.setPen(pen)
+                painter.setPen(QPen(green, 3))
                 painter.setBrush(green)
                 painter.drawEllipse(r)
                 painter.setPen(white)
                 painter.drawText(r, Qt.AlignCenter, "✔")
 
             elif state == StepState.RUNNING:
-                # circle
-                pen = QPen(blue, 3)
-                painter.setPen(pen)
+                painter.setPen(QPen(blue, 3))
                 painter.setBrush(white)
                 painter.drawEllipse(r)
-
-                # triangle ▶
                 tri = QPolygon([
                     QPoint(r.center().x() - 3, r.center().y() - 5),
                     QPoint(r.center().x() - 3, r.center().y() + 5),
                     QPoint(r.center().x() + 6, r.center().y()),
-                ]) 
+                ])
                 painter.setBrush(blue)
                 painter.setPen(Qt.NoPen)
                 painter.drawPolygon(tri)
 
             elif state == StepState.FAILED:
-                pen = QPen(red, 3)
-                painter.setPen(pen)
+                painter.setPen(QPen(red, 3))
                 painter.setBrush(red)
                 painter.drawEllipse(r)
                 painter.setPen(white)
                 painter.drawText(r, Qt.AlignCenter, "✗")
 
             else:  # INACTIVE
-                pen = QPen(grey2, 3)
-                painter.setPen(pen)
+                painter.setPen(QPen(grey2, 3))
                 painter.setBrush(white)
                 painter.drawEllipse(r)
 
-            # label text
-            rect = fm.boundingRect(text)
+            # label
+            elided_text = fm.elidedText(text, Qt.ElideRight, int(step_width - 4))
+            rect = fm.boundingRect(elided_text)
             rect.moveCenter(QPoint(int(x), int(y + 2 * radius)))
-            if state == StepState.RUNNING:
-                painter.setPen(blue)
-            else:
-                painter.setPen(QColor("black"))
-            painter.setFont(font_text)
-            painter.drawText(rect, Qt.AlignCenter, text)
+            painter.setPen(blue if state == StepState.RUNNING else QColor("black"))
+            painter.drawText(rect, Qt.AlignCenter, elided_text)
 
             x += step_width
 
@@ -209,65 +245,34 @@ class CustomProgressBar(QWidget):
 
     def _show_context_menu(self, step_index: int, global_pos: QPoint):
         menu = QMenu(self)
-        label = self._labels[step_index]
+        step = self._steps[step_index]
 
-        def setstate(s: StepState):
-            self.set_step_state(step_index, s)
+        # custom actions
+        if step["actions"]:
+            menu.addSeparator()
+            for action_name, func in step["actions"]:
+                menu.addAction(action_name, func)
 
-        menu.addAction(f"Mark '{label}' as Running", lambda: setstate(StepState.RUNNING))
-        menu.addAction(f"Mark '{label}' as Completed", lambda: setstate(StepState.COMPLETED))
-        menu.addAction(f"Mark '{label}' as Failed", lambda: setstate(StepState.FAILED))
-        menu.addAction(f"Reset '{label}'", lambda: setstate(StepState.INACTIVE))
+        menu.setStyleSheet("""
+            QMenu {
+                background-color: white;
+                color: black;
+                border: 1px solid black;
+                padding: 5px;
+                border-radius: 4px;
+            }
+            QMenu::item {
+                padding: 4px 20px 4px 20px;
+            }
+            QMenu::item:selected {
+                background-color: #cce6ff;
+                color: black;
+            }
+            QMenu::separator {
+                height: 1px;
+                background: #aaa;
+                margin: 5px 0;
+            }
+        """)
 
         menu.exec(global_pos)
-
-
-# ---------------- Demo ----------------
-def main():
-    app = QApplication(sys.argv)
-
-    progressbar = CustomProgressBar()
-    progressbar.labels = ["Setup Docker", "Upload R1 & R2", "QC 1",  "UMI", "Cutadapt", "Fastp", "QC 2", "Read len", "Upload Ref Genome", "Read Mapping", "Site Analysis"]
-
-    # buttons to simulate normal flow
-    next_btn = QPushButton("Next")
-    def advance():
-        # find running step
-        running_idx = None
-        for i, st in enumerate(progressbar._states):
-            if st == StepState.RUNNING:
-                running_idx = i
-                break
-
-        if running_idx is None:
-            # start with step 0 as running
-            progressbar.set_step_state(0, StepState.RUNNING)
-        else:
-            # complete it
-            progressbar.set_step_state(running_idx, StepState.COMPLETED)
-            # start next if exists
-            if running_idx + 1 < len(progressbar._states):
-                progressbar.set_step_state(running_idx + 1, StepState.RUNNING)
-
-    next_btn.clicked.connect(advance)
-
-    reset_btn = QPushButton("Reset All")
-    def reset():
-        for i in range(len(progressbar._states)):
-            progressbar.set_step_state(i, StepState.INACTIVE)
-        progressbar._fill_width = 0.0
-        progressbar.update()
-    reset_btn.clicked.connect(reset)
-
-    w = QWidget()
-    lay = QVBoxLayout(w)
-    lay.addWidget(progressbar)
-    lay.addWidget(next_btn, alignment=Qt.AlignRight)
-    lay.addWidget(reset_btn, alignment=Qt.AlignRight)
-    w.show()
-
-    sys.exit(app.exec())
-
-
-if __name__ == "__main__":
-    main()
