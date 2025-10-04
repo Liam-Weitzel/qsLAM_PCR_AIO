@@ -168,6 +168,7 @@ class MainWindow(QMainWindow):
         docker_path = self.settings.get("DOCKER_PATH", None)
 
         if self.is_docker_installed(docker_path):
+            self.settings.set("DOCKER_PATH", "docker")
             return
 
         # === Show dialog ===

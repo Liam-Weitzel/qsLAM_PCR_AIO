@@ -3,14 +3,15 @@ from PySide6.QtGui import QMovie
 from PySide6.QtCore import Qt, QSize, QPoint, QUrl
 from PySide6.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply
 
-from widgets.custom_progress_bar.custom_progress_bar import CustomProgressBar
+from widgets.custom_progress_bar.custom_progress_bar import CustomProgressBar, StepState
+from . docker_worker import DockerWorker
 from . settings import Settings
 
 class RunProgress:
     def __init__(self, main_window):
         self.main_window = main_window
         self.widgets = main_window.ui
-        self.spinner_dialog = None
+        self.settings = Settings()
 
         self.widgets.runButton.clicked.connect(self.run_all)
         self.widgets.cleanButton.clicked.connect(self.clean_run)
@@ -20,22 +21,52 @@ class RunProgress:
         self.row_1 = self.widgets.runProgressTab.layout().itemAt(0).widget()
         self.progressbar = CustomProgressBar()
         self.progressbar.set_labels([
-            {"label": "Setup Docker", "actions": [("Run", self.clean_run)]},
-            {"label": "Upload R1 & R2", "actions": [("Upload", self.pause_run)]},
-            {"label": "QC 1", "actions": [("Run QC", self.resume_run), ("Skip", lambda: print("Skipped QC1"))]},
-            "UMI"  # no custom actions, just label
+            {"label": "Setup Docker", "actions": [("Run", self.start_local_docker)]},
+            {"label": "Upload R1 & R2", "actions": [("Run", self.clean_run)]},
+            {"label": "QC 1", "actions": [("Run", self.clean_run)]},
+            {"label": "UMI", "actions": [("Run", self.clean_run)]},
+            {"label": "Cutadapt", "actions": [("Run", self.clean_run)]},
+            {"label": "Fastp", "actions": [("Upload", self.pause_run)]},
+            {"label": "QC 2", "actions": [("Run QC", self.resume_run), ("Skip", lambda: print("Skipped QC1"))]},
+            {"label": "Readlenst", "actions": [("Run QC", self.resume_run), ("Skip", lambda: print("Skipped QC1"))]},
+            {"label": "Upload reference genome", "actions": [("Run QC", self.resume_run), ("Skip", lambda: print("Skipped QC1"))]},
+            {"label": "Read mapping", "actions": [("Run QC", self.resume_run), ("Skip", lambda: print("Skipped QC1"))]},
+            {"label": "Site analysis", "actions": [("Run QC", self.resume_run), ("Skip", lambda: print("Skipped QC1"))]},
         ])
         self.row_1.layout().addWidget(self.progressbar)
 
+    def start_local_docker(self):
+        self.progressbar.set_step_state_by_label("Setup Docker", StepState.RUNNING)
+
+        docker_path = self.settings.get("DOCKER_PATH", None)
+        if not docker_path:
+            self.progressbar.set_step_state_by_label("Setup Docker", StepState.FAILED)
+            QMessageBox.critical(
+                self.main_window,
+                "Docker Error",
+                "Docker path not set in settings. Please configure DOCKER_PATH."
+            )
+            return
+
+        # launch worker thread
+        self.docker_worker = DockerWorker(docker_path)
+        self.docker_worker.finished.connect(self._on_docker_finished)
+        self.docker_worker.start()
+
+    def _on_docker_finished(self, success: bool, error: str, container_id: str, container_ip: str):
+        if success:
+            self.progressbar.set_step_state_by_label("Setup Docker", StepState.COMPLETED)
+            print(container_id);
+            print(container_ip);
+        else:
+            self.progressbar.set_step_state_by_label("Setup Docker", StepState.FAILED)
+            QMessageBox.critical(
+                self.main_window,
+                "Docker Error",
+                f"Failed to start Docker container:\n{error}"
+            )
+
     def pause_run(self):
-        QMessageBox.information(
-            self.main_window,
-            "Pausing Run",
-            "The run will pause as soon as possible.\nPlease note this may take a few minutes."
-        )
-
-        self.show_spinner_dialog()
-
         # Make async HTTP GET request to test connectivity (simulate waiting for backend)
         request = QNetworkRequest(QUrl("https://www.google.com"))
         reply = self.main_window.network_manager.get(request)
@@ -54,7 +85,6 @@ class RunProgress:
             )
 
         reply.deleteLater()
-        self.hide_spinner_dialog()
         self.load_from_metadata()
 
     def clean_run(self):
@@ -97,34 +127,3 @@ class RunProgress:
             self.widgets.pauseButton.hide()
             self.widgets.resumeButton.hide()
             self.widgets.cleanButton.hide()
-
-    def show_spinner_dialog(self):
-        self.spinner_dialog = QDialog(self.main_window)
-        self.spinner_dialog.setModal(True)
-        self.spinner_dialog.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.FramelessWindowHint)
-        self.spinner_dialog.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
-
-        layout = QVBoxLayout()
-        layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        layout.setContentsMargins(20, 20, 20, 20)
-
-        spinner = QLabel()
-        movie = QMovie(":/images/images/images/spinner.gif")
-        movie.setScaledSize(QSize(80, 80))
-        spinner.setMovie(movie)
-        movie.start()
-
-        layout.addWidget(spinner)
-        self.spinner_dialog.setLayout(layout)
-        self.spinner_dialog.adjustSize()
-
-        parent_center = self.main_window.geometry().center()
-        dialog_size = self.spinner_dialog.size()
-        self.spinner_dialog.move(parent_center - QPoint(dialog_size.width() // 2, dialog_size.height() // 2))
-
-        self.spinner_dialog.show()
-
-    def hide_spinner_dialog(self):
-        if self.spinner_dialog:
-            self.spinner_dialog.accept()
-            self.spinner_dialog = None

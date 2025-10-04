@@ -4,13 +4,11 @@ from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
 
-
 class StepState(Enum):
     INACTIVE = auto()
     RUNNING = auto()
     COMPLETED = auto()
     FAILED = auto()
-
 
 class CustomProgressBar(QWidget):
     stepsChanged = Signal(list)
@@ -105,6 +103,19 @@ class CustomProgressBar(QWidget):
             self.set_step_state(i, StepState.INACTIVE)
         self._fill_width = 0.0
         self.update()
+
+    def set_step_state_by_label(self, label: str, state: StepState):
+        for i, step in enumerate(self._steps):
+            if step["label"] == label:
+                self.set_step_state(i, state)
+                return
+        raise ValueError(f"No step with label '{label}' found")
+
+    def get_step_state_by_label(self, label: str) -> StepState:
+        for i, step in enumerate(self._steps):
+            if step["label"] == label:
+                return self.get_step_state(i)
+        raise ValueError(f"No step with label '{label}' found")
 
     # ---------------- internal helpers ----------------
     def _update_animation(self):

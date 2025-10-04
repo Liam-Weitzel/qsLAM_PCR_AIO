@@ -37,3 +37,6 @@ from . run_configuration import *
 
 # RUN PROGRESS TAB
 from . run_progress import *
+
+# DOCKER WORKER
+from . docker_worker import *

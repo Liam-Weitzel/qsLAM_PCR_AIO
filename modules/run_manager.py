@@ -306,5 +306,5 @@ class RunManager:
                 )
 
     def on_resize(self, event):
-        self.fill_empty_rows()
+        self.update_runs_table()
         event.accept()

@@ -1619,7 +1619,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                       <string notr="true">background: transparent;</string>
                      </property>
                      <property name="currentIndex">
-                      <number>3</number>
+                      <number>1</number>
                      </property>
                      <widget class="QWidget" name="runManagerTab">
                       <property name="styleSheet">
@@ -2367,222 +2367,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                        </property>
                        <item>
                         <layout class="QGridLayout" name="gridLayout_2">
-                         <item row="25" column="4">
-                          <spacer name="horizontalSpacer_9">
-                           <property name="orientation">
-                            <enum>Qt::Orientation::Horizontal</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>40</width>
-                             <height>20</height>
-                            </size>
-                           </property>
-                          </spacer>
-                         </item>
-                         <item row="11" column="0" colspan="2">
-                          <spacer name="verticalSpacer_3">
-                           <property name="orientation">
-                            <enum>Qt::Orientation::Vertical</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>20</width>
-                             <height>40</height>
-                            </size>
-                           </property>
-                          </spacer>
-                         </item>
-                         <item row="25" column="6">
-                          <spacer name="horizontalSpacer">
-                           <property name="orientation">
-                            <enum>Qt::Orientation::Horizontal</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>40</width>
-                             <height>20</height>
-                            </size>
-                           </property>
-                          </spacer>
-                         </item>
-                         <item row="15" column="0" colspan="2">
-                          <spacer name="verticalSpacer_6">
-                           <property name="orientation">
-                            <enum>Qt::Orientation::Vertical</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>20</width>
-                             <height>40</height>
-                            </size>
-                           </property>
-                          </spacer>
-                         </item>
-                         <item row="25" column="8">
-                          <widget class="QPushButton" name="helpButton">
-                           <property name="minimumSize">
-                            <size>
-                             <width>50</width>
-                             <height>30</height>
-                            </size>
-                           </property>
-                           <property name="font">
-                            <font>
-                             <family>Segoe UI</family>
-                             <pointsize>10</pointsize>
-                             <italic>false</italic>
-                             <bold>false</bold>
-                            </font>
-                           </property>
-                           <property name="cursor">
-                            <cursorShape>PointingHandCursor</cursorShape>
-                           </property>
-                           <property name="styleSheet">
-                            <string notr="true">background-color: rgb(255, 255, 255);</string>
-                           </property>
-                           <property name="text">
-                            <string>Help</string>
-                           </property>
-                           <property name="icon">
-                            <iconset resource="resources.qrc">
-                             <normaloff>:/icons/images/icons/cil-map.png</normaloff>:/icons/images/icons/cil-map.png</iconset>
-                           </property>
-                          </widget>
-                         </item>
-                         <item row="4" column="0">
-                          <widget class="QLabel" name="ltrPrimerSequenceLabel">
-                           <property name="text">
-                            <string>LTR Primer Sequence</string>
-                           </property>
-                          </widget>
-                         </item>
-                         <item row="14" column="0" colspan="2">
-                          <widget class="QPushButton" name="step3Button">
-                           <property name="minimumSize">
-                            <size>
-                             <width>50</width>
-                             <height>30</height>
-                            </size>
-                           </property>
-                           <property name="font">
-                            <font>
-                             <family>Segoe UI</family>
-                             <pointsize>10</pointsize>
-                             <italic>false</italic>
-                             <bold>false</bold>
-                            </font>
-                           </property>
-                           <property name="cursor">
-                            <cursorShape>PointingHandCursor</cursorShape>
-                           </property>
-                           <property name="styleSheet">
-                            <string notr="true">background-color: rgb(255, 255, 255);</string>
-                           </property>
-                           <property name="text">
-                            <string>step 3</string>
-                           </property>
-                           <property name="icon">
-                            <iconset resource="resources.qrc">
-                             <normaloff>:/icons/images/icons/cil-folder-open.png</normaloff>:/icons/images/icons/cil-folder-open.png</iconset>
-                           </property>
-                          </widget>
-                         </item>
-                         <item row="0" column="2" rowspan="25" colspan="7">
-                          <widget class="QStackedWidget" name="configStackedWidget">
-                           <widget class="QWidget" name="docker">
-                            <widget class="QLabel" name="label">
-                             <property name="geometry">
-                              <rect>
-                               <x>30</x>
-                               <y>40</y>
-                               <width>171</width>
-                               <height>16</height>
-                              </rect>
-                             </property>
-                             <property name="text">
-                              <string>docker page</string>
-                             </property>
-                            </widget>
-                           </widget>
-                           <widget class="QWidget" name="trimming">
-                            <widget class="QLabel" name="label_7">
-                             <property name="geometry">
-                              <rect>
-                               <x>40</x>
-                               <y>40</y>
-                               <width>111</width>
-                               <height>16</height>
-                              </rect>
-                             </property>
-                             <property name="text">
-                              <string>trimming page</string>
-                             </property>
-                            </widget>
-                           </widget>
-                           <widget class="QWidget" name="page_3">
-                            <widget class="QLabel" name="label_2">
-                             <property name="geometry">
-                              <rect>
-                               <x>30</x>
-                               <y>30</y>
-                               <width>57</width>
-                               <height>14</height>
-                              </rect>
-                             </property>
-                             <property name="text">
-                              <string>page 3</string>
-                             </property>
-                            </widget>
-                           </widget>
-                           <widget class="QWidget" name="page_4">
-                            <widget class="QLabel" name="label_3">
-                             <property name="geometry">
-                              <rect>
-                               <x>30</x>
-                               <y>30</y>
-                               <width>57</width>
-                               <height>14</height>
-                              </rect>
-                             </property>
-                             <property name="text">
-                              <string>page 4</string>
-                             </property>
-                            </widget>
-                           </widget>
-                           <widget class="QWidget" name="page_5">
-                            <widget class="QLabel" name="label_5">
-                             <property name="geometry">
-                              <rect>
-                               <x>30</x>
-                               <y>30</y>
-                               <width>57</width>
-                               <height>14</height>
-                              </rect>
-                             </property>
-                             <property name="text">
-                              <string>page 5</string>
-                             </property>
-                            </widget>
-                           </widget>
-                           <widget class="QWidget" name="page_6">
-                            <widget class="QLabel" name="label_6">
-                             <property name="geometry">
-                              <rect>
-                               <x>30</x>
-                               <y>30</y>
-                               <width>57</width>
-                               <height>14</height>
-                              </rect>
-                             </property>
-                             <property name="text">
-                              <string>page 6</string>
-                             </property>
-                            </widget>
-                           </widget>
-                          </widget>
-                         </item>
-                         <item row="25" column="7">
+                         <item row="24" column="7">
                           <widget class="QPushButton" name="saveButton">
                            <property name="minimumSize">
                             <size>
@@ -2613,98 +2398,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
                            </property>
                           </widget>
                          </item>
-                         <item row="25" column="1">
-                          <widget class="QPushButton" name="restoreDefaultsButton">
-                           <property name="minimumSize">
-                            <size>
-                             <width>50</width>
-                             <height>30</height>
-                            </size>
-                           </property>
-                           <property name="font">
-                            <font>
-                             <family>Segoe UI</family>
-                             <pointsize>10</pointsize>
-                             <italic>false</italic>
-                             <bold>false</bold>
-                            </font>
-                           </property>
-                           <property name="cursor">
-                            <cursorShape>PointingHandCursor</cursorShape>
-                           </property>
-                           <property name="styleSheet">
-                            <string notr="true">background-color: rgb(255, 255, 255);</string>
-                           </property>
-                           <property name="text">
-                            <string>Restore Defaults</string>
-                           </property>
-                           <property name="icon">
-                            <iconset resource="resources.qrc">
-                             <normaloff>:/icons/images/icons/cil-file.png</normaloff>:/icons/images/icons/cil-file.png</iconset>
-                           </property>
-                          </widget>
-                         </item>
-                         <item row="21" column="0" colspan="2">
-                          <spacer name="verticalSpacer_8">
-                           <property name="orientation">
-                            <enum>Qt::Orientation::Vertical</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>20</width>
-                             <height>40</height>
-                            </size>
-                           </property>
-                          </spacer>
-                         </item>
-                         <item row="8" column="0" colspan="2">
-                          <spacer name="verticalSpacer_11">
-                           <property name="orientation">
-                            <enum>Qt::Orientation::Vertical</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>20</width>
-                             <height>40</height>
-                            </size>
-                           </property>
-                          </spacer>
-                         </item>
-                         <item row="25" column="5">
-                          <spacer name="horizontalSpacer_2">
-                           <property name="orientation">
-                            <enum>Qt::Orientation::Horizontal</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>40</width>
-                             <height>20</height>
-                            </size>
-                           </property>
-                          </spacer>
-                         </item>
-                         <item row="6" column="0">
-                          <widget class="QCheckBox" name="umiCheckbox">
-                           <property name="text">
-                            <string>Unique Molecular Identifier?</string>
-                           </property>
-                          </widget>
-                         </item>
                          <item row="6" column="1">
                           <widget class="QLineEdit" name="umiInput"/>
-                         </item>
-                         <item row="5" column="0" colspan="2">
-                          <spacer name="verticalSpacer_4">
-                           <property name="orientation">
-                            <enum>Qt::Orientation::Vertical</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>20</width>
-                             <height>40</height>
-                            </size>
-                           </property>
-                          </spacer>
                          </item>
                          <item row="13" column="0" colspan="2">
                           <spacer name="verticalSpacer_5">
@@ -2718,75 +2413,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
                             </size>
                            </property>
                           </spacer>
-                         </item>
-                         <item row="16" column="0" colspan="2">
-                          <widget class="QPushButton" name="step4Button">
-                           <property name="minimumSize">
-                            <size>
-                             <width>50</width>
-                             <height>30</height>
-                            </size>
-                           </property>
-                           <property name="font">
-                            <font>
-                             <family>Segoe UI</family>
-                             <pointsize>10</pointsize>
-                             <italic>false</italic>
-                             <bold>false</bold>
-                            </font>
-                           </property>
-                           <property name="cursor">
-                            <cursorShape>PointingHandCursor</cursorShape>
-                           </property>
-                           <property name="styleSheet">
-                            <string notr="true">background-color: rgb(255, 255, 255);</string>
-                           </property>
-                           <property name="text">
-                            <string>step 4</string>
-                           </property>
-                           <property name="icon">
-                            <iconset resource="resources.qrc">
-                             <normaloff>:/icons/images/icons/cil-folder-open.png</normaloff>:/icons/images/icons/cil-folder-open.png</iconset>
-                           </property>
-                          </widget>
-                         </item>
-                         <item row="0" column="0" rowspan="3">
-                          <widget class="QLabel" name="adapterSequenceLabel">
-                           <property name="text">
-                            <string>Adapter Sequence</string>
-                           </property>
-                          </widget>
-                         </item>
-                         <item row="22" column="0" colspan="2">
-                          <widget class="QPushButton" name="step6Button">
-                           <property name="minimumSize">
-                            <size>
-                             <width>50</width>
-                             <height>30</height>
-                            </size>
-                           </property>
-                           <property name="font">
-                            <font>
-                             <family>Segoe UI</family>
-                             <pointsize>10</pointsize>
-                             <italic>false</italic>
-                             <bold>false</bold>
-                            </font>
-                           </property>
-                           <property name="cursor">
-                            <cursorShape>PointingHandCursor</cursorShape>
-                           </property>
-                           <property name="styleSheet">
-                            <string notr="true">background-color: rgb(255, 255, 255);</string>
-                           </property>
-                           <property name="text">
-                            <string>step 6</string>
-                           </property>
-                           <property name="icon">
-                            <iconset resource="resources.qrc">
-                             <normaloff>:/icons/images/icons/cil-folder-open.png</normaloff>:/icons/images/icons/cil-folder-open.png</iconset>
-                           </property>
-                          </widget>
                          </item>
                          <item row="12" column="0" colspan="2">
                           <widget class="QPushButton" name="trimmingConfig">
@@ -2819,34 +2445,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
                            </property>
                           </widget>
                          </item>
-                         <item row="25" column="3">
-                          <spacer name="horizontalSpacer_8">
-                           <property name="orientation">
-                            <enum>Qt::Orientation::Horizontal</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>40</width>
-                             <height>20</height>
-                            </size>
-                           </property>
-                          </spacer>
-                         </item>
-                         <item row="17" column="0" colspan="2">
-                          <spacer name="verticalSpacer_7">
-                           <property name="orientation">
-                            <enum>Qt::Orientation::Vertical</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>20</width>
-                             <height>40</height>
-                            </size>
-                           </property>
-                          </spacer>
-                         </item>
-                         <item row="25" column="0">
-                          <widget class="QPushButton" name="resetButton">
+                         <item row="24" column="1">
+                          <widget class="QPushButton" name="restoreDefaultsButton">
                            <property name="minimumSize">
                             <size>
                              <width>50</width>
@@ -2868,16 +2468,267 @@ li.checked::marker { content: &quot;\2612&quot;; }
                             <string notr="true">background-color: rgb(255, 255, 255);</string>
                            </property>
                            <property name="text">
-                            <string>Reset</string>
+                            <string>Restore Defaults</string>
                            </property>
                            <property name="icon">
                             <iconset resource="resources.qrc">
-                             <normaloff>:/icons/images/icons/cil-fire.png</normaloff>:/icons/images/icons/cil-fire.png</iconset>
+                             <normaloff>:/icons/images/icons/cil-file.png</normaloff>:/icons/images/icons/cil-file.png</iconset>
                            </property>
                           </widget>
                          </item>
+                         <item row="3" column="0" colspan="2">
+                          <spacer name="verticalSpacer_2">
+                           <property name="orientation">
+                            <enum>Qt::Orientation::Vertical</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>20</width>
+                             <height>40</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                         <item row="4" column="0">
+                          <widget class="QLabel" name="ltrPrimerSequenceLabel">
+                           <property name="text">
+                            <string>Read 2</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item row="24" column="2">
+                          <spacer name="horizontalSpacer_6">
+                           <property name="orientation">
+                            <enum>Qt::Orientation::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                         <item row="7" column="0" colspan="2">
+                          <spacer name="verticalSpacer_10">
+                           <property name="orientation">
+                            <enum>Qt::Orientation::Vertical</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>20</width>
+                             <height>40</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                         <item row="17" column="0" colspan="2">
+                          <spacer name="verticalSpacer_7">
+                           <property name="orientation">
+                            <enum>Qt::Orientation::Vertical</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>20</width>
+                             <height>40</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
                          <item row="4" column="1">
                           <widget class="QLineEdit" name="ltrPrimerSequenceInput"/>
+                         </item>
+                         <item row="15" column="0" colspan="2">
+                          <spacer name="verticalSpacer_6">
+                           <property name="orientation">
+                            <enum>Qt::Orientation::Vertical</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>20</width>
+                             <height>40</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                         <item row="0" column="2" rowspan="24" colspan="7">
+                          <widget class="QStackedWidget" name="configStackedWidget">
+                           <property name="currentIndex">
+                            <number>1</number>
+                           </property>
+                           <widget class="QWidget" name="docker">
+                            <widget class="QLabel" name="label">
+                             <property name="geometry">
+                              <rect>
+                               <x>30</x>
+                               <y>40</y>
+                               <width>171</width>
+                               <height>16</height>
+                              </rect>
+                             </property>
+                             <property name="text">
+                              <string>docker page</string>
+                             </property>
+                            </widget>
+                           </widget>
+                           <widget class="QWidget" name="trimming">
+                            <widget class="QLabel" name="label_7">
+                             <property name="geometry">
+                              <rect>
+                               <x>40</x>
+                               <y>40</y>
+                               <width>111</width>
+                               <height>16</height>
+                              </rect>
+                             </property>
+                             <property name="text">
+                              <string>trimming page</string>
+                             </property>
+                            </widget>
+                           </widget>
+                           <widget class="QWidget" name="ref_genome">
+                            <widget class="QLabel" name="label_2">
+                             <property name="geometry">
+                              <rect>
+                               <x>30</x>
+                               <y>30</y>
+                               <width>57</width>
+                               <height>14</height>
+                              </rect>
+                             </property>
+                             <property name="text">
+                              <string>page 3</string>
+                             </property>
+                            </widget>
+                           </widget>
+                           <widget class="QWidget" name="read_mapping">
+                            <widget class="QLabel" name="label_3">
+                             <property name="geometry">
+                              <rect>
+                               <x>30</x>
+                               <y>30</y>
+                               <width>57</width>
+                               <height>14</height>
+                              </rect>
+                             </property>
+                             <property name="text">
+                              <string>page 4</string>
+                             </property>
+                            </widget>
+                           </widget>
+                           <widget class="QWidget" name="site_analysis">
+                            <widget class="QLabel" name="label_5">
+                             <property name="geometry">
+                              <rect>
+                               <x>30</x>
+                               <y>30</y>
+                               <width>57</width>
+                               <height>14</height>
+                              </rect>
+                             </property>
+                             <property name="text">
+                              <string>page 5</string>
+                             </property>
+                            </widget>
+                           </widget>
+                          </widget>
+                         </item>
+                         <item row="16" column="0" colspan="2">
+                          <widget class="QPushButton" name="readMappingButton">
+                           <property name="minimumSize">
+                            <size>
+                             <width>50</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <family>Segoe UI</family>
+                             <pointsize>10</pointsize>
+                             <italic>false</italic>
+                             <bold>false</bold>
+                            </font>
+                           </property>
+                           <property name="cursor">
+                            <cursorShape>PointingHandCursor</cursorShape>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(255, 255, 255);</string>
+                           </property>
+                           <property name="text">
+                            <string>Read mapping</string>
+                           </property>
+                           <property name="icon">
+                            <iconset resource="resources.qrc">
+                             <normaloff>:/icons/images/icons/cil-folder-open.png</normaloff>:/icons/images/icons/cil-folder-open.png</iconset>
+                           </property>
+                          </widget>
+                         </item>
+                         <item row="6" column="0">
+                          <widget class="QCheckBox" name="umiCheckbox">
+                           <property name="text">
+                            <string>Unique Molecular Identifier?</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item row="24" column="4">
+                          <spacer name="horizontalSpacer_9">
+                           <property name="orientation">
+                            <enum>Qt::Orientation::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                         <item row="24" column="6">
+                          <spacer name="horizontalSpacer">
+                           <property name="orientation">
+                            <enum>Qt::Orientation::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                         <item row="24" column="5">
+                          <spacer name="horizontalSpacer_2">
+                           <property name="orientation">
+                            <enum>Qt::Orientation::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                         <item row="9" column="0" colspan="2">
+                          <widget class="QLabel" name="configStepsLabel">
+                           <property name="text">
+                            <string>Please complete all configuration steps below:</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item row="5" column="0" colspan="2">
+                          <spacer name="verticalSpacer_4">
+                           <property name="orientation">
+                            <enum>Qt::Orientation::Vertical</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>20</width>
+                             <height>40</height>
+                            </size>
+                           </property>
+                          </spacer>
                          </item>
                          <item row="10" column="0" colspan="2">
                           <widget class="QPushButton" name="dockerConfig">
@@ -2910,21 +2761,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
                            </property>
                           </widget>
                          </item>
-                         <item row="25" column="2">
-                          <spacer name="horizontalSpacer_6">
-                           <property name="orientation">
-                            <enum>Qt::Orientation::Horizontal</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>40</width>
-                             <height>20</height>
-                            </size>
-                           </property>
-                          </spacer>
-                         </item>
-                         <item row="18" column="0" rowspan="3" colspan="2">
-                          <widget class="QPushButton" name="step5Button">
+                         <item row="24" column="0">
+                          <widget class="QPushButton" name="resetButton">
                            <property name="minimumSize">
                             <size>
                              <width>50</width>
@@ -2946,16 +2784,29 @@ li.checked::marker { content: &quot;\2612&quot;; }
                             <string notr="true">background-color: rgb(255, 255, 255);</string>
                            </property>
                            <property name="text">
-                            <string>step 5</string>
+                            <string>Reset</string>
                            </property>
                            <property name="icon">
                             <iconset resource="resources.qrc">
-                             <normaloff>:/icons/images/icons/cil-folder-open.png</normaloff>:/icons/images/icons/cil-folder-open.png</iconset>
+                             <normaloff>:/icons/images/icons/cil-fire.png</normaloff>:/icons/images/icons/cil-fire.png</iconset>
                            </property>
                           </widget>
                          </item>
-                         <item row="7" column="0" colspan="2">
-                          <spacer name="verticalSpacer_10">
+                         <item row="24" column="3">
+                          <spacer name="horizontalSpacer_8">
+                           <property name="orientation">
+                            <enum>Qt::Orientation::Horizontal</enum>
+                           </property>
+                           <property name="sizeHint" stdset="0">
+                            <size>
+                             <width>40</width>
+                             <height>20</height>
+                            </size>
+                           </property>
+                          </spacer>
+                         </item>
+                         <item row="21" column="0" colspan="2">
+                          <spacer name="verticalSpacer_8">
                            <property name="orientation">
                             <enum>Qt::Orientation::Vertical</enum>
                            </property>
@@ -2967,8 +2818,39 @@ li.checked::marker { content: &quot;\2612&quot;; }
                            </property>
                           </spacer>
                          </item>
-                         <item row="3" column="0" colspan="2">
-                          <spacer name="verticalSpacer_2">
+                         <item row="24" column="8">
+                          <widget class="QPushButton" name="helpButton">
+                           <property name="minimumSize">
+                            <size>
+                             <width>50</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <family>Segoe UI</family>
+                             <pointsize>10</pointsize>
+                             <italic>false</italic>
+                             <bold>false</bold>
+                            </font>
+                           </property>
+                           <property name="cursor">
+                            <cursorShape>PointingHandCursor</cursorShape>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(255, 255, 255);</string>
+                           </property>
+                           <property name="text">
+                            <string>Help</string>
+                           </property>
+                           <property name="icon">
+                            <iconset resource="resources.qrc">
+                             <normaloff>:/icons/images/icons/cil-map.png</normaloff>:/icons/images/icons/cil-map.png</iconset>
+                           </property>
+                          </widget>
+                         </item>
+                         <item row="8" column="0" colspan="2">
+                          <spacer name="verticalSpacer_11">
                            <property name="orientation">
                             <enum>Qt::Orientation::Vertical</enum>
                            </property>
@@ -2981,10 +2863,72 @@ li.checked::marker { content: &quot;\2612&quot;; }
                           </spacer>
                          </item>
                          <item row="0" column="1" rowspan="3">
-                          <widget class="QLineEdit" name="adapterSequenceInput"/>
+                          <widget class="QLineEdit" name="R2Input"/>
                          </item>
-                         <item row="24" column="0" colspan="2">
-                          <spacer name="verticalSpacer_9">
+                         <item row="14" column="0" colspan="2">
+                          <widget class="QPushButton" name="referenceGenomeButton">
+                           <property name="minimumSize">
+                            <size>
+                             <width>50</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <family>Segoe UI</family>
+                             <pointsize>10</pointsize>
+                             <italic>false</italic>
+                             <bold>false</bold>
+                            </font>
+                           </property>
+                           <property name="cursor">
+                            <cursorShape>PointingHandCursor</cursorShape>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(255, 255, 255);</string>
+                           </property>
+                           <property name="text">
+                            <string>Reference genome</string>
+                           </property>
+                           <property name="icon">
+                            <iconset resource="resources.qrc">
+                             <normaloff>:/icons/images/icons/cil-folder-open.png</normaloff>:/icons/images/icons/cil-folder-open.png</iconset>
+                           </property>
+                          </widget>
+                         </item>
+                         <item row="18" column="0" rowspan="3" colspan="2">
+                          <widget class="QPushButton" name="siteAnalysisButton">
+                           <property name="minimumSize">
+                            <size>
+                             <width>50</width>
+                             <height>30</height>
+                            </size>
+                           </property>
+                           <property name="font">
+                            <font>
+                             <family>Segoe UI</family>
+                             <pointsize>10</pointsize>
+                             <italic>false</italic>
+                             <bold>false</bold>
+                            </font>
+                           </property>
+                           <property name="cursor">
+                            <cursorShape>PointingHandCursor</cursorShape>
+                           </property>
+                           <property name="styleSheet">
+                            <string notr="true">background-color: rgb(255, 255, 255);</string>
+                           </property>
+                           <property name="text">
+                            <string>Site analysis</string>
+                           </property>
+                           <property name="icon">
+                            <iconset resource="resources.qrc">
+                             <normaloff>:/icons/images/icons/cil-folder-open.png</normaloff>:/icons/images/icons/cil-folder-open.png</iconset>
+                           </property>
+                          </widget>
+                         </item>
+                         <item row="11" column="0" colspan="2">
+                          <spacer name="verticalSpacer_3">
                            <property name="orientation">
                             <enum>Qt::Orientation::Vertical</enum>
                            </property>
@@ -2996,10 +2940,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
                            </property>
                           </spacer>
                          </item>
-                         <item row="9" column="0" colspan="2">
-                          <widget class="QLabel" name="configStepsLabel">
+                         <item row="0" column="0" rowspan="3">
+                          <widget class="QLabel" name="R1Label">
                            <property name="text">
-                            <string>Please complete all configuration steps below:</string>
+                            <string>Read 1</string>
                            </property>
                           </widget>
                          </item>
@@ -3726,15 +3670,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
   </widget>
  </widget>
  <tabstops>
-  <tabstop>adapterSequenceInput</tabstop>
+  <tabstop>R2Input</tabstop>
   <tabstop>ltrPrimerSequenceInput</tabstop>
   <tabstop>umiInput</tabstop>
   <tabstop>umiCheckbox</tabstop>
   <tabstop>trimmingConfig</tabstop>
-  <tabstop>step3Button</tabstop>
-  <tabstop>step4Button</tabstop>
-  <tabstop>step5Button</tabstop>
-  <tabstop>step6Button</tabstop>
+  <tabstop>referenceGenomeButton</tabstop>
+  <tabstop>readMappingButton</tabstop>
+  <tabstop>siteAnalysisButton</tabstop>
   <tabstop>resetButton</tabstop>
   <tabstop>restoreDefaultsButton</tabstop>
   <tabstop>saveButton</tabstop>
