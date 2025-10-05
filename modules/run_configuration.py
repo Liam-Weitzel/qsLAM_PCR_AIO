@@ -11,15 +11,13 @@ class RunConfiguration:
         self.widgets = main_window.ui
         self.selectedButton = None
 
-        #Get reference genomes from nextcloud TODO: return ref_genomes & download urls
-        self.get_nc_folder_contents(main_window.network_manager, Settings.REF_RENOMES_SHARE_TOKEN)
+        # self.get_nc_folder_contents(main_window.network_manager, Settings.REF_RENOMES_SHARE_TOKEN)
 
         self.widgets.dockerConfig.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.docker, self.widgets.dockerConfig))
         self.widgets.trimmingConfig.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.trimming, self.widgets.trimmingConfig))
-        self.widgets.step3Button.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.page_3, self.widgets.step3Button))
-        self.widgets.step4Button.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.page_4, self.widgets.step4Button))
-        self.widgets.step5Button.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.page_5, self.widgets.step5Button))
-        self.widgets.step6Button.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.page_6, self.widgets.step6Button))
+        self.widgets.refGenomeConfig.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.ref_genome, self.widgets.refGenomeConfig))
+        self.widgets.readMappingConfig.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.read_mapping, self.widgets.readMappingConfig))
+        self.widgets.siteAnalysisConfig.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.site_analysis, self.widgets.siteAnalysisConfig))
         self.on_configure_button_clicked(self.widgets.docker, self.widgets.dockerConfig)
 
         self.widgets.saveButton.clicked.connect(self.save_to_metadata)
@@ -30,8 +28,8 @@ class RunConfiguration:
         self.on_umi_checkbox_state_changed(self.widgets.umiCheckbox.checkState())
 
     def load_from_metadata(self):
-        self.widgets.adapterSequenceInput.setText(Settings.METADATA.get("adapter_sequence", ""))
-        self.widgets.ltrPrimerSequenceInput.setText(Settings.METADATA.get("ltr_primer_sequence", ""))
+        self.widgets.R1Input.setText(Settings.METADATA.get("r1", ""))
+        self.widgets.R2Input.setText(Settings.METADATA.get("r2", ""))
         
         umi_enabled = Settings.METADATA.get("umi_enabled", False)
         self.widgets.umiCheckbox.setCheckState(Qt.CheckState.Checked if umi_enabled else Qt.CheckState.Unchecked)
@@ -40,8 +38,8 @@ class RunConfiguration:
         self.on_umi_checkbox_state_changed(self.widgets.umiCheckbox.checkState())
 
     def save_to_metadata(self):
-        Settings.METADATA.set("adapter_sequence", self.widgets.adapterSequenceInput.text())
-        Settings.METADATA.set("ltr_primer_sequence", self.widgets.ltrPrimerSequenceInput.text())
+        Settings.METADATA.set("r1", self.widgets.R1Input.text())
+        Settings.METADATA.set("r2", self.widgets.R2Input.text())
         Settings.METADATA.set("umi_enabled", self.widgets.umiCheckbox.checkState() == Qt.CheckState.Checked)
         Settings.METADATA.set("umi_input", self.widgets.umiInput.text())
 
@@ -88,8 +86,8 @@ class RunConfiguration:
         )
 
         if button == QMessageBox.Yes:
-            self.widgets.adapterSequenceInput.clear()
-            self.widgets.ltrPrimerSequenceInput.clear()
+            self.widgets.R1Input.clear()
+            self.widgets.R2Input.clear()
             self.widgets.umiCheckbox.setCheckState(Qt.CheckState.Unchecked)
             self.widgets.umiInput.clear()
             self.on_umi_checkbox_state_changed(self.widgets.umiCheckbox.checkState())

@@ -2490,7 +2490,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                           </spacer>
                          </item>
                          <item row="4" column="0">
-                          <widget class="QLabel" name="ltrPrimerSequenceLabel">
+                          <widget class="QLabel" name="R2Label">
                            <property name="text">
                             <string>Read 2</string>
                            </property>
@@ -2536,7 +2536,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                           </spacer>
                          </item>
                          <item row="4" column="1">
-                          <widget class="QLineEdit" name="ltrPrimerSequenceInput"/>
+                          <widget class="QLineEdit" name="R2Input"/>
                          </item>
                          <item row="15" column="0" colspan="2">
                           <spacer name="verticalSpacer_6">
@@ -2554,87 +2554,544 @@ li.checked::marker { content: &quot;\2612&quot;; }
                          <item row="0" column="2" rowspan="24" colspan="7">
                           <widget class="QStackedWidget" name="configStackedWidget">
                            <property name="currentIndex">
-                            <number>1</number>
+                            <number>0</number>
                            </property>
                            <widget class="QWidget" name="docker">
-                            <widget class="QLabel" name="label">
-                             <property name="geometry">
-                              <rect>
-                               <x>30</x>
-                               <y>40</y>
-                               <width>171</width>
-                               <height>16</height>
-                              </rect>
+                            <layout class="QVBoxLayout" name="verticalLayout">
+                             <property name="spacing">
+                              <number>10</number>
                              </property>
-                             <property name="text">
-                              <string>docker page</string>
+                             <property name="leftmargin" stdset="0">
+                              <number>10</number>
                              </property>
-                            </widget>
+                             <property name="topmargin" stdset="0">
+                              <number>10</number>
+                             </property>
+                             <property name="rightmargin" stdset="0">
+                              <number>10</number>
+                             </property>
+                             <property name="bottommargin" stdset="0">
+                              <number>10</number>
+                             </property>
+                             <item>
+                              <widget class="QFrame" name="row_1">
+                               <property name="minimumSize">
+                                <size>
+                                 <width>0</width>
+                                 <height>70</height>
+                                </size>
+                               </property>
+                               <property name="maximumSize">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>70</height>
+                                </size>
+                               </property>
+                               <property name="minimumsize" stdset="0">
+                                <size>
+                                 <width>0</width>
+                                 <height>70</height>
+                                </size>
+                               </property>
+                               <property name="maximumsize" stdset="0">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>70</height>
+                                </size>
+                               </property>
+                               <layout class="QGridLayout" name="gridlayout">
+                                <property name="spacing">
+                                 <number>0</number>
+                                </property>
+                                <item row="1" column="1">
+                                 <widget class="QRadioButton" name="radioButton_2">
+                                  <property name="text">
+                                   <string>RadioButton</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item row="1" column="0">
+                                 <widget class="QRadioButton" name="radioButton">
+                                  <property name="text">
+                                   <string>RadioButton</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                                <item row="0" column="0" colspan="2">
+                                 <widget class="QLabel" name="label">
+                                  <property name="text">
+                                   <string>TextLabel</string>
+                                  </property>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QFrame" name="row_2">
+                               <property name="minimumsize" stdset="0">
+                                <size>
+                                 <width>0</width>
+                                 <height>150</height>
+                                </size>
+                               </property>
+                               <layout class="QVBoxLayout" name="verticalLayout">
+                                <item>
+                                 <widget class="QStackedWidget" name="dockerStackedWidget">
+                                  <property name="currentIndex">
+                                   <number>1</number>
+                                  </property>
+                                  <widget class="QWidget" name="local">
+                                   <layout class="QVBoxLayout" name="verticalLayout">
+                                    <property name="spacing">
+                                     <number>10</number>
+                                    </property>
+                                    <property name="leftmargin" stdset="0">
+                                     <number>10</number>
+                                    </property>
+                                    <property name="topmargin" stdset="0">
+                                     <number>10</number>
+                                    </property>
+                                    <property name="rightmargin" stdset="0">
+                                     <number>10</number>
+                                    </property>
+                                    <property name="bottommargin" stdset="0">
+                                     <number>10</number>
+                                    </property>
+                                    <item>
+                                     <widget class="QFrame" name="grid">
+                                      <property name="minimumsize" stdset="0">
+                                       <size>
+                                        <width>0</width>
+                                        <height>70</height>
+                                       </size>
+                                      </property>
+                                      <property name="maximumsize" stdset="0">
+                                       <size>
+                                        <width>16777215</width>
+                                        <height>70</height>
+                                       </size>
+                                      </property>
+                                      <layout class="QGridLayout" name="gridLayout">
+                                       <property name="spacing">
+                                        <number>0</number>
+                                       </property>
+                                      </layout>
+                                     </widget>
+                                    </item>
+                                   </layout>
+                                  </widget>
+                                  <widget class="QWidget" name="remote">
+                                   <layout class="QVBoxLayout" name="verticalLayout">
+                                    <property name="spacing">
+                                     <number>10</number>
+                                    </property>
+                                    <property name="leftmargin" stdset="0">
+                                     <number>10</number>
+                                    </property>
+                                    <property name="topmargin" stdset="0">
+                                     <number>10</number>
+                                    </property>
+                                    <property name="rightmargin" stdset="0">
+                                     <number>10</number>
+                                    </property>
+                                    <property name="bottommargin" stdset="0">
+                                     <number>10</number>
+                                    </property>
+                                    <item>
+                                     <widget class="QFrame" name="grid">
+                                      <property name="minimumsize" stdset="0">
+                                       <size>
+                                        <width>0</width>
+                                        <height>70</height>
+                                       </size>
+                                      </property>
+                                      <property name="maximumsize" stdset="0">
+                                       <size>
+                                        <width>16777215</width>
+                                        <height>70</height>
+                                       </size>
+                                      </property>
+                                      <layout class="QGridLayout" name="gridLayout">
+                                       <property name="spacing">
+                                        <number>0</number>
+                                       </property>
+                                      </layout>
+                                     </widget>
+                                    </item>
+                                   </layout>
+                                  </widget>
+                                 </widget>
+                                </item>
+                               </layout>
+                              </widget>
+                             </item>
+                            </layout>
                            </widget>
                            <widget class="QWidget" name="trimming">
-                            <widget class="QLabel" name="label_7">
-                             <property name="geometry">
-                              <rect>
-                               <x>40</x>
-                               <y>40</y>
-                               <width>111</width>
-                               <height>16</height>
-                              </rect>
+                            <layout class="QVBoxLayout" name="verticalLayout">
+                             <property name="spacing">
+                              <number>10</number>
                              </property>
-                             <property name="text">
-                              <string>trimming page</string>
+                             <property name="leftmargin" stdset="0">
+                              <number>10</number>
                              </property>
-                            </widget>
+                             <property name="topmargin" stdset="0">
+                              <number>10</number>
+                             </property>
+                             <property name="rightmargin" stdset="0">
+                              <number>10</number>
+                             </property>
+                             <property name="bottommargin" stdset="0">
+                              <number>10</number>
+                             </property>
+                             <item>
+                              <widget class="QFrame" name="row_1">
+                               <property name="minimumsize" stdset="0">
+                                <size>
+                                 <width>0</width>
+                                 <height>70</height>
+                                </size>
+                               </property>
+                               <property name="maximumsize" stdset="0">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>70</height>
+                                </size>
+                               </property>
+                               <layout class="QVBoxLayout" name="verticalLayout">
+                                <property name="spacing">
+                                 <number>0</number>
+                                </property>
+                                <property name="leftmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="topmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="rightmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="bottommargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                               </layout>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QFrame" name="row_2">
+                               <property name="minimumsize" stdset="0">
+                                <size>
+                                 <width>0</width>
+                                 <height>150</height>
+                                </size>
+                               </property>
+                               <layout class="QVBoxLayout" name="verticalLayout"/>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QFrame" name="row_3">
+                               <property name="minimumsize" stdset="0">
+                                <size>
+                                 <width>0</width>
+                                 <height>50</height>
+                                </size>
+                               </property>
+                               <layout class="QVBoxLayout" name="horizontalLayout">
+                                <property name="spacing">
+                                 <number>0</number>
+                                </property>
+                                <property name="leftmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="topmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="rightmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="bottommargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                               </layout>
+                              </widget>
+                             </item>
+                            </layout>
                            </widget>
                            <widget class="QWidget" name="ref_genome">
-                            <widget class="QLabel" name="label_2">
-                             <property name="geometry">
-                              <rect>
-                               <x>30</x>
-                               <y>30</y>
-                               <width>57</width>
-                               <height>14</height>
-                              </rect>
+                            <layout class="QVBoxLayout" name="verticalLayout">
+                             <property name="spacing">
+                              <number>10</number>
                              </property>
-                             <property name="text">
-                              <string>page 3</string>
+                             <property name="leftmargin" stdset="0">
+                              <number>10</number>
                              </property>
-                            </widget>
+                             <property name="topmargin" stdset="0">
+                              <number>10</number>
+                             </property>
+                             <property name="rightmargin" stdset="0">
+                              <number>10</number>
+                             </property>
+                             <property name="bottommargin" stdset="0">
+                              <number>10</number>
+                             </property>
+                             <item>
+                              <widget class="QFrame" name="row_1">
+                               <property name="minimumsize" stdset="0">
+                                <size>
+                                 <width>0</width>
+                                 <height>70</height>
+                                </size>
+                               </property>
+                               <property name="maximumsize" stdset="0">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>70</height>
+                                </size>
+                               </property>
+                               <layout class="QVBoxLayout" name="verticalLayout">
+                                <property name="spacing">
+                                 <number>0</number>
+                                </property>
+                                <property name="leftmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="topmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="rightmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="bottommargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                               </layout>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QFrame" name="row_2">
+                               <property name="minimumsize" stdset="0">
+                                <size>
+                                 <width>0</width>
+                                 <height>150</height>
+                                </size>
+                               </property>
+                               <layout class="QVBoxLayout" name="verticalLayout"/>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QFrame" name="row_3">
+                               <property name="minimumsize" stdset="0">
+                                <size>
+                                 <width>0</width>
+                                 <height>50</height>
+                                </size>
+                               </property>
+                               <layout class="QVBoxLayout" name="horizontalLayout">
+                                <property name="spacing">
+                                 <number>0</number>
+                                </property>
+                                <property name="leftmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="topmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="rightmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="bottommargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                               </layout>
+                              </widget>
+                             </item>
+                            </layout>
                            </widget>
                            <widget class="QWidget" name="read_mapping">
-                            <widget class="QLabel" name="label_3">
-                             <property name="geometry">
-                              <rect>
-                               <x>30</x>
-                               <y>30</y>
-                               <width>57</width>
-                               <height>14</height>
-                              </rect>
+                            <layout class="QVBoxLayout" name="verticalLayout">
+                             <property name="spacing">
+                              <number>10</number>
                              </property>
-                             <property name="text">
-                              <string>page 4</string>
+                             <property name="leftmargin" stdset="0">
+                              <number>10</number>
                              </property>
-                            </widget>
+                             <property name="topmargin" stdset="0">
+                              <number>10</number>
+                             </property>
+                             <property name="rightmargin" stdset="0">
+                              <number>10</number>
+                             </property>
+                             <property name="bottommargin" stdset="0">
+                              <number>10</number>
+                             </property>
+                             <item>
+                              <widget class="QFrame" name="row_1">
+                               <property name="minimumsize" stdset="0">
+                                <size>
+                                 <width>0</width>
+                                 <height>70</height>
+                                </size>
+                               </property>
+                               <property name="maximumsize" stdset="0">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>70</height>
+                                </size>
+                               </property>
+                               <layout class="QVBoxLayout" name="verticalLayout">
+                                <property name="spacing">
+                                 <number>0</number>
+                                </property>
+                                <property name="leftmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="topmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="rightmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="bottommargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                               </layout>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QFrame" name="row_2">
+                               <property name="minimumsize" stdset="0">
+                                <size>
+                                 <width>0</width>
+                                 <height>150</height>
+                                </size>
+                               </property>
+                               <layout class="QVBoxLayout" name="verticalLayout"/>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QFrame" name="row_3">
+                               <property name="minimumsize" stdset="0">
+                                <size>
+                                 <width>0</width>
+                                 <height>50</height>
+                                </size>
+                               </property>
+                               <layout class="QVBoxLayout" name="horizontalLayout">
+                                <property name="spacing">
+                                 <number>0</number>
+                                </property>
+                                <property name="leftmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="topmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="rightmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="bottommargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                               </layout>
+                              </widget>
+                             </item>
+                            </layout>
                            </widget>
                            <widget class="QWidget" name="site_analysis">
-                            <widget class="QLabel" name="label_5">
-                             <property name="geometry">
-                              <rect>
-                               <x>30</x>
-                               <y>30</y>
-                               <width>57</width>
-                               <height>14</height>
-                              </rect>
+                            <layout class="QVBoxLayout" name="verticalLayout">
+                             <property name="spacing">
+                              <number>10</number>
                              </property>
-                             <property name="text">
-                              <string>page 5</string>
+                             <property name="leftmargin" stdset="0">
+                              <number>10</number>
                              </property>
-                            </widget>
+                             <property name="topmargin" stdset="0">
+                              <number>10</number>
+                             </property>
+                             <property name="rightmargin" stdset="0">
+                              <number>10</number>
+                             </property>
+                             <property name="bottommargin" stdset="0">
+                              <number>10</number>
+                             </property>
+                             <item>
+                              <widget class="QFrame" name="row_1">
+                               <property name="minimumsize" stdset="0">
+                                <size>
+                                 <width>0</width>
+                                 <height>70</height>
+                                </size>
+                               </property>
+                               <property name="maximumsize" stdset="0">
+                                <size>
+                                 <width>16777215</width>
+                                 <height>70</height>
+                                </size>
+                               </property>
+                               <layout class="QVBoxLayout" name="verticalLayout">
+                                <property name="spacing">
+                                 <number>0</number>
+                                </property>
+                                <property name="leftmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="topmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="rightmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="bottommargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                               </layout>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QFrame" name="row_2">
+                               <property name="minimumsize" stdset="0">
+                                <size>
+                                 <width>0</width>
+                                 <height>150</height>
+                                </size>
+                               </property>
+                               <layout class="QVBoxLayout" name="verticalLayout"/>
+                              </widget>
+                             </item>
+                             <item>
+                              <widget class="QFrame" name="row_3">
+                               <property name="minimumsize" stdset="0">
+                                <size>
+                                 <width>0</width>
+                                 <height>50</height>
+                                </size>
+                               </property>
+                               <layout class="QVBoxLayout" name="horizontalLayout">
+                                <property name="spacing">
+                                 <number>0</number>
+                                </property>
+                                <property name="leftmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="topmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="rightmargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                                <property name="bottommargin" stdset="0">
+                                 <number>0</number>
+                                </property>
+                               </layout>
+                              </widget>
+                             </item>
+                            </layout>
                            </widget>
                           </widget>
                          </item>
                          <item row="16" column="0" colspan="2">
-                          <widget class="QPushButton" name="readMappingButton">
+                          <widget class="QPushButton" name="readMappingConfig">
                            <property name="minimumSize">
                             <size>
                              <width>50</width>
@@ -2863,10 +3320,10 @@ li.checked::marker { content: &quot;\2612&quot;; }
                           </spacer>
                          </item>
                          <item row="0" column="1" rowspan="3">
-                          <widget class="QLineEdit" name="R2Input"/>
+                          <widget class="QLineEdit" name="R1Input"/>
                          </item>
                          <item row="14" column="0" colspan="2">
-                          <widget class="QPushButton" name="referenceGenomeButton">
+                          <widget class="QPushButton" name="refGenomeConfig">
                            <property name="minimumSize">
                             <size>
                              <width>50</width>
@@ -2897,7 +3354,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                           </widget>
                          </item>
                          <item row="18" column="0" rowspan="3" colspan="2">
-                          <widget class="QPushButton" name="siteAnalysisButton">
+                          <widget class="QPushButton" name="siteAnalysisConfig">
                            <property name="minimumSize">
                             <size>
                              <width>50</width>
@@ -3670,14 +4127,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
   </widget>
  </widget>
  <tabstops>
+  <tabstop>R1Input</tabstop>
   <tabstop>R2Input</tabstop>
-  <tabstop>ltrPrimerSequenceInput</tabstop>
   <tabstop>umiInput</tabstop>
   <tabstop>umiCheckbox</tabstop>
   <tabstop>trimmingConfig</tabstop>
-  <tabstop>referenceGenomeButton</tabstop>
-  <tabstop>readMappingButton</tabstop>
-  <tabstop>siteAnalysisButton</tabstop>
+  <tabstop>refGenomeConfig</tabstop>
+  <tabstop>readMappingConfig</tabstop>
+  <tabstop>siteAnalysisConfig</tabstop>
   <tabstop>resetButton</tabstop>
   <tabstop>restoreDefaultsButton</tabstop>
   <tabstop>saveButton</tabstop>
