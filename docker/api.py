@@ -63,7 +63,7 @@ def stream_cmd(cmd, result, cwd=None, cmd_is_shell=False):
 @app.route('/upload_r1_r2', methods=['POST'])
 def upload_r1_r2():
     """
-    curl -N -X POST http://localhost:5000/upload_r1_r2 \
+    curl -N -X POST http://172.17.0.2:5000/upload_r1_r2 \
       -F "R1=@/home/liam-w/qsLAM_PCR_AIO/docker/rawdata/R1.fastq.gz" \
       -F "R2=@/home/liam-w/qsLAM_PCR_AIO/docker/rawdata/R2.fastq.gz"
     """
@@ -94,11 +94,11 @@ def upload_r1_r2():
 @app.route('/qc', methods=['POST'])
 def qc():
     """
-    curl -N -X POST http://localhost:5000/qc \
+    curl -N -X POST http://172.17.0.2:5000/qc \
       -H "Content-Type: application/json" \
       -d '{"stage": "before"}'
     or
-    curl -N -X POST http://localhost:5000/qc \
+    curl -N -X POST http://172.17.0.2:5000/qc \
       -H "Content-Type: application/json" \
       -d '{"stage": "after"}'
     """
@@ -132,7 +132,7 @@ def qc():
 @app.route('/umi', methods=['GET'])
 def umi():
     """
-    curl http://localhost:5000/umi
+    curl http://172.17.0.2:5000/umi
     """
     def gen(result):
         result["success"] = False
@@ -144,15 +144,15 @@ def umi():
 @app.route('/cutadapt', methods=['POST'])
 def cutadapt():
     """
-    curl -N -X POST http://localhost:5000/cutadapt \
+    curl -N -X POST http://172.17.0.2:5000/cutadapt \
       -H "Content-Type: application/json" \
       -d '{
         "r1_seq": "ATCCCTCAGACCCTTTTAGTCAGTGTGGAAAATCTC",
         "r2_seq": "GACTGCGTATCAGT",
-        "r1_error_rate": 0.1,
+        "r1_error_rate": 0.3,
         "r1_trim_leading_trailing": 0,
         "r1_anchored": false,
-        "r1_min_overlap": 0,
+        "r1_min_overlap": 5,
         "r1_pair_filter": "both",
         "r1_minimum_length_of_read": 30,
         "r2_error_rate": 0.1,
@@ -184,9 +184,9 @@ def cutadapt():
         yield "[INFO] Cutadapt step 1…\n"
         if not (yield from stream_cmd([
             "cutadapt",
-            "-e", str(params.get("r1_error_rate", 0.1)),
+            "-e", str(params.get("r1_error_rate", 0.3)),
             "--cut", str(params.get("r1_trim_leading_trailing", 0)),
-            "-g", f"{'^' if params.get('r1_anchored', False) else ''}{r1_seq};min_overlap={params.get('r1_min_overlap', 0)}",
+            "-g", f"{'^' if params.get('r1_anchored', False) else ''}{r1_seq};min_overlap={params.get('r1_min_overlap', 5)}",
             "--pair-filter", params.get("r1_pair_filter", "both"),
             "-m", str(params.get("r1_minimum_length_of_read", 30)),
             "-j", str(NUM_THREADS),
@@ -221,7 +221,7 @@ def cutadapt():
 @app.route('/fastp', methods=['GET'])
 def fastp():
     """
-    curl http://localhost:5000/fastp
+    curl http://172.17.0.2:5000/fastp
     """
     def gen(result):
         tmp_r1 = os.path.join(RAW_DIR, "R1.fastp.fastq.gz")
@@ -243,7 +243,7 @@ def fastp():
 @app.route('/readlen', methods=['GET'])
 def readlen():
     """
-    curl http://localhost:5000/readlen
+    curl http://172.17.0.2:5000/readlen
     """
     def gen(result):
         r1 = os.path.join(CUT_DIR, "R1.fastq.gz")
@@ -269,92 +269,20 @@ required_suffixes = [
 def has_bwa_mem2_index(idx_fa):
     return all(os.path.isfile(idx_fa + s) for s in required_suffixes)
 
-@app.route('/upload_ref_genome', methods=['POST'])
-def upload_ref_genome():
-    """
-    curl -N -X POST http://localhost:5000/upload_ref_genome \
-      -F "REF=@/home/liam-w/Downloads/mm10_cdna.tar.gz" \
-      -F "NAME=mm10_cdna"
-    """
-    def gen(result):
-        os.makedirs(REFERENCE, exist_ok=True)
-
-        if 'REF' not in request.files:
-            result["success"] = False
-            result["error"] = "Please upload the reference genome (field: REF)"
-            return
-        if 'NAME' not in request.form:
-            result["success"] = False
-            result["error"] = "Please provide a NAME field"
-            return
-
-        ref_file = request.files['REF']
-        ref_name = request.form['NAME']
-        idx_fa = os.path.join(REFERENCE, f"{ref_name}.fa")
-
-        # Check if all index files already exist
-        if has_bwa_mem2_index(idx_fa):
-            yield f"[INFO] Reference genome {ref_name} with all BWA-MEM2 index files already exists. Skipping upload and extraction.\n"
-            yield "✅ Ready for read mapping\n"
-            return
-
-        tar_path = os.path.join(REFERENCE, f"{ref_name}.fa.tar.gz")
-        yield f"[INFO] Saving uploaded file as {tar_path}…\n"
-        ref_file.save(tar_path)
-        yield "[DONE] File saved\n"
-
-        yield f"[INFO] Extracting {tar_path} into {REFERENCE}…\n"
-        if not (yield from stream_cmd(["tar", "-xzf", tar_path, "-C", REFERENCE], result)):
-            return
-        os.remove(tar_path)
-        yield "[DONE] Extraction complete\n"
-
-        # Check for missing BWA-MEM2 index files
-        missing = [s for s in required_suffixes if not os.path.isfile(idx_fa + s)]
-        if missing:
-            result["success"] = False
-            result["error"] = f"Missing BWA-MEM2 index files: {', '.join(missing)}"
-        else:
-            yield f"[INFO] All BWA-MEM2 index files present for {ref_name}\n"
-
-        yield f"✅ Reference genome uploaded and extracted: {ref_name}\n"
-
-    return Response(safe_stream(gen, "upload_ref_genome"), mimetype="text/plain")
-
-@app.route('/get_ref_genomes', methods=['GET'])
-def get_ref_genomes():
-    """
-    curl http://localhost:5000/get_ref_genomes
-    """
-    GENOME_DIR = "reference"
-    os.makedirs(GENOME_DIR, exist_ok=True)
-
-    genomes = set()
-    for fname in os.listdir(GENOME_DIR):
-        if ".fa" in fname and not fname.endswith(".tar.gz"):
-            idx_fa = os.path.join(GENOME_DIR, fname)
-            if has_bwa_mem2_index(idx_fa):
-                genomes.add(fname)
-
-    return jsonify({
-        "ref_genomes": sorted(genomes),
-        "count": len(genomes)
-    })
-
 @app.route('/read_mapping', methods=['POST'])
 def read_mapping():
     """
-    curl -N -X POST http://localhost:5000/read_mapping \
+    curl -N -X POST http://172.17.0.2:5000/read_mapping \
       -H "Content-Type: application/json" \
       -d '{
-        "genome": "GRCh38.p14",
-        "tar_url": "https://nc.liam-w.com/s/abXeB3WtcWdm63f/download?path=%2F&files=GRCh38.p14.tar.gz"
+        "genome": "hg38",
+        "tar_url": "https://nc.liam-w.com/s/abXeB3WtcWdm63f/download?path=%2F&files=hg38.tar.gz"
       }'
     or if reference already exists on the server, tar_url can be omitted:
-    curl -N -X POST http://localhost:5000/read_mapping \
+    curl -N -X POST http://172.17.0.2:5000/read_mapping \
       -H "Content-Type: application/json" \
       -d '{
-        "genome": "GRCh38.p14"
+        "genome": "hg38"
       }'
     """
     params = request.get_json(force=True)
@@ -428,11 +356,24 @@ def read_mapping():
 
     return Response(safe_stream(gen, "read_mapping"), mimetype="text/plain")
 
-@app.route('/site_analysis', methods=['GET'])
+@app.route('/site_analysis', methods=['POST'])
 def site_analysis():
     """
-    curl http://localhost:5000/site_analysis
+    curl -N -X POST http://172.17.0.2:5000/site_analysis \
+      -H "Content-Type: application/json" \
+      -d '{
+        "genome": "hg38",
+        "promoter.left": "5000",
+        "promoter.right": "2000",
+        "enhancer.left": "50000"
+      }'
     """
+    params = request.get_json(force=True)
+    genome = params.get("genome")
+    promoter_left = params.get("promoter.left")
+    promoter_right = params.get("promoter.right")
+    enhancer_left = params.get("enhancer.left")
+
     def gen(result):
         os.makedirs(BAM2BED_DIR, exist_ok=True)
 
@@ -568,7 +509,7 @@ def site_analysis():
                     return
 
                 # Step 1: Gene prediction
-                if not (yield from stream_cmd(["Rscript", "peak_annotation_step1.R", peak_merge2, peak_merge3], result)):
+                if not (yield from stream_cmd(["Rscript", "peak_annotation_step1.R", peak_merge2, peak_merge3, genome, promoter_left, promoter_right, enhancer_left], result)):
                     return
 
                 # Step 2: Excel export

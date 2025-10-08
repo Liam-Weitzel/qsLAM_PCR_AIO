@@ -11,7 +11,12 @@ class DockerWorker(QThread):
 
     def run(self):
         try:
-            cmd = [self.docker_path, "run", "-d", "-p", "5000:5000", "qslam_pcr_aio:latest"]
+            cmd = [self.docker_path, "run", "-d", "-p", "127.0.0.1::5000", "qslam_pcr_aio:latest"]
+            # NAME="qslam_pcr_aio_1"
+            # docker run -d --name "$NAME" -p 127.0.0.1::5000 qslam_pcr_aio:latest
+            # PORT=$(docker port "$NAME" 5000 | awk -F: '{print $2}')
+            # echo "Container '$NAME' is running at http://127.0.0.1:$PORT"
+            # TODO: then talk to it over 127.0.0.1 + the bound port...
             result = subprocess.run(cmd, capture_output=True, text=True, check=True)
             container_id = result.stdout.strip()
 

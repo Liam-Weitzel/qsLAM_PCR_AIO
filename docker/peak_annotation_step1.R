@@ -7,6 +7,10 @@ if (length(args) < 2) {
 
 input_file <- args[1]
 output_file <- args[2]
+genome <- args[3]
+promoter.left <- args[4]
+promoter.right <- args[5]
+enhancer.left <- args[6]
 
 tryCatch({
   # Load target gene prediction function
@@ -31,7 +35,7 @@ tryCatch({
                                    1:nrow(inputBed), sep = "_"))
 
   # Run gene prediction
-  d <- target_gene_prediction(inputBed)
+  d <- target_gene_prediction(inputBed, genome, promoter.left, promoter.right, enhancer.left)
 
   # Reorder for mapping
   inputBed <- inputBed[order(inputBed$name), ]

@@ -58,6 +58,10 @@
         pkgs.rPackages.AnnotationDbi
         pkgs.rPackages.org_Hs_eg_db
         pkgs.rPackages.TxDb_Hsapiens_UCSC_hg19_knownGene
+        pkgs.rPackages.TxDb_Mmusculus_UCSC_mm9_knownGene
+        pkgs.rPackages.TxDb_Mmusculus_UCSC_mm10_knownGene
+        pkgs.rPackages.TxDb_Hsapiens_UCSC_hg18_knownGene
+        pkgs.rPackages.TxDb_Hsapiens_UCSC_hg38_knownGene
         pkgs.rPackages.BSgenome_Hsapiens_UCSC_hg19
         pkgs.rPackages.openxlsx
         pkgs.rPackages.bedr

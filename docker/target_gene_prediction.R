@@ -1,6 +1,10 @@
 library(GenomicRanges)
 library(ChIPpeakAnno)
 library(TxDb.Hsapiens.UCSC.hg19.knownGene)
+library(TxDb.Mmusculus.UCSC.mm9.knownGene)
+library(TxDb.Mmusculus.UCSC.mm10.knownGene)
+library(TxDb.Hsapiens.UCSC.hg18.knownGene)
+library(TxDb.Hsapiens.UCSC.hg38.knownGene)
 library(org.Hs.eg.db)
 library(dplyr)
 
@@ -15,7 +19,7 @@ entrez2symbol <- function(entrez_ids, orgAnn){
 }
 
 # output: peak_id, tss distances, nearest gene, gene region
-target_gene_prediction <- function(inputBed, genome="hg19", promoter.left=5000, promoter.right=2000, enhancer.left=50000){
+target_gene_prediction <- function(inputBed, genome, promoter.left, promoter.right, enhancer.left){
   if(genome=="mm9"){
     gregions <- genes(TxDb.Mmusculus.UCSC.mm9.knownGene)
     orgAnn <- org.Mm.egSYMBOL
@@ -30,7 +34,7 @@ target_gene_prediction <- function(inputBed, genome="hg19", promoter.left=5000, 
 	d=c[!grepl("hap", c)]
     
     seqlevels(UCSC.hg19)=d
-   # print(d)
+    #print(d)
     
     gregions <- genes(UCSC.hg19)
     #print(gregions)
