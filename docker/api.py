@@ -63,7 +63,7 @@ def stream_cmd(cmd, result, cwd=None, cmd_is_shell=False):
 @app.route('/upload_r1_r2', methods=['POST'])
 def upload_r1_r2():
     """
-    curl -N -X POST http://172.17.0.2:5000/upload_r1_r2 \
+    curl -N -X POST http://127.0.0.1:32773/upload_r1_r2 \
       -F "R1=@/home/liam-w/qsLAM_PCR_AIO/docker/rawdata/R1.fastq.gz" \
       -F "R2=@/home/liam-w/qsLAM_PCR_AIO/docker/rawdata/R2.fastq.gz"
     """
@@ -94,11 +94,11 @@ def upload_r1_r2():
 @app.route('/qc', methods=['POST'])
 def qc():
     """
-    curl -N -X POST http://172.17.0.2:5000/qc \
+    curl -N -X POST http://127.0.0.1:32773/qc \
       -H "Content-Type: application/json" \
       -d '{"stage": "before"}'
     or
-    curl -N -X POST http://172.17.0.2:5000/qc \
+    curl -N -X POST http://127.0.0.1:32773/qc \
       -H "Content-Type: application/json" \
       -d '{"stage": "after"}'
     """
@@ -132,7 +132,7 @@ def qc():
 @app.route('/umi', methods=['GET'])
 def umi():
     """
-    curl http://172.17.0.2:5000/umi
+    curl http://127.0.0.1:32773/umi
     """
     def gen(result):
         result["success"] = False
@@ -144,7 +144,7 @@ def umi():
 @app.route('/cutadapt', methods=['POST'])
 def cutadapt():
     """
-    curl -N -X POST http://172.17.0.2:5000/cutadapt \
+    curl -N -X POST http://127.0.0.1:32773/cutadapt \
       -H "Content-Type: application/json" \
       -d '{
         "r1_seq": "ATCCCTCAGACCCTTTTAGTCAGTGTGGAAAATCTC",
@@ -221,7 +221,7 @@ def cutadapt():
 @app.route('/fastp', methods=['GET'])
 def fastp():
     """
-    curl http://172.17.0.2:5000/fastp
+    curl http://127.0.0.1:32773/fastp
     """
     def gen(result):
         tmp_r1 = os.path.join(RAW_DIR, "R1.fastp.fastq.gz")
@@ -243,7 +243,7 @@ def fastp():
 @app.route('/readlen', methods=['GET'])
 def readlen():
     """
-    curl http://172.17.0.2:5000/readlen
+    curl http://127.0.0.1:32773/readlen
     """
     def gen(result):
         r1 = os.path.join(CUT_DIR, "R1.fastq.gz")
@@ -272,14 +272,14 @@ def has_bwa_mem2_index(idx_fa):
 @app.route('/read_mapping', methods=['POST'])
 def read_mapping():
     """
-    curl -N -X POST http://172.17.0.2:5000/read_mapping \
+    curl -N -X POST http://127.0.0.1:32773/read_mapping \
       -H "Content-Type: application/json" \
       -d '{
         "genome": "hg38",
         "tar_url": "https://nc.liam-w.com/s/abXeB3WtcWdm63f/download?path=%2F&files=hg38.tar.gz"
       }'
     or if reference already exists on the server, tar_url can be omitted:
-    curl -N -X POST http://172.17.0.2:5000/read_mapping \
+    curl -N -X POST http://127.0.0.1:32773/read_mapping \
       -H "Content-Type: application/json" \
       -d '{
         "genome": "hg38"
@@ -359,7 +359,7 @@ def read_mapping():
 @app.route('/site_analysis', methods=['POST'])
 def site_analysis():
     """
-    curl -N -X POST http://172.17.0.2:5000/site_analysis \
+    curl -N -X POST http://127.0.0.1:32773/site_analysis \
       -H "Content-Type: application/json" \
       -d '{
         "genome": "hg38",

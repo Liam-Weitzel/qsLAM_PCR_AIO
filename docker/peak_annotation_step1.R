@@ -1,16 +1,16 @@
 #!/usr/bin/env Rscript
 
 args <- commandArgs(trailingOnly = TRUE)
-if (length(args) < 2) {
-  stop("Usage: peak_annotation_step1.R <input_file> <output_file>")
+if (length(args) < 6) {
+  stop("Usage: peak_annotation_step1.R <input_file> <output_file> <genome> <promoter.left> <promoter.right> <enhancer.left>")
 }
 
 input_file <- args[1]
 output_file <- args[2]
 genome <- args[3]
-promoter.left <- args[4]
-promoter.right <- args[5]
-enhancer.left <- args[6]
+promoter.left <- as.numeric(args[4])
+promoter.right <- as.numeric(args[5])
+enhancer.left <- as.numeric(args[6])
 
 tryCatch({
   # Load target gene prediction function
