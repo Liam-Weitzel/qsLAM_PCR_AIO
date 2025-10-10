@@ -552,7 +552,6 @@ QCommandLinkButton:hover {
                <family>Segoe UI Semibold</family>
                <pointsize>12</pointsize>
                <italic>false</italic>
-               <fontweight></fontweight>
               </font>
              </property>
              <property name="text">
@@ -2679,7 +2678,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                 <item>
                                  <widget class="QStackedWidget" name="dockerStackedWidget">
                                   <property name="currentIndex">
-                                   <number>1</number>
+                                   <number>0</number>
                                   </property>
                                   <widget class="QWidget" name="local">
                                    <layout class="QVBoxLayout" name="verticalLayout">
@@ -2716,6 +2715,135 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                        <property name="spacing">
                                         <number>0</number>
                                        </property>
+                                       <item row="0" column="0">
+                                        <widget class="QStackedWidget" name="isInstalledStackedWidget">
+                                         <widget class="QWidget" name="isInstalled">
+                                          <layout class="QVBoxLayout" name="verticalLayout">
+                                           <property name="spacing">
+                                            <number>10</number>
+                                           </property>
+                                           <property name="leftmargin" stdset="0">
+                                            <number>10</number>
+                                           </property>
+                                           <property name="topmargin" stdset="0">
+                                            <number>10</number>
+                                           </property>
+                                           <property name="rightmargin" stdset="0">
+                                            <number>10</number>
+                                           </property>
+                                           <property name="bottommargin" stdset="0">
+                                            <number>10</number>
+                                           </property>
+                                           <item>
+                                            <widget class="QFrame" name="grid">
+                                             <property name="minimumsize" stdset="0">
+                                              <size>
+                                               <width>0</width>
+                                               <height>70</height>
+                                              </size>
+                                             </property>
+                                             <property name="maximumsize" stdset="0">
+                                              <size>
+                                               <width>16777215</width>
+                                               <height>70</height>
+                                              </size>
+                                             </property>
+                                             <layout class="QGridLayout" name="gridLayout">
+                                              <property name="spacing">
+                                               <number>0</number>
+                                              </property>
+                                              <item row="0" column="0">
+                                               <widget class="QLabel" name="label_8">
+                                                <property name="text">
+                                                 <string>✅ Docker installed</string>
+                                                </property>
+                                               </widget>
+                                              </item>
+                                              <item row="1" column="0">
+                                               <widget class="QLabel" name="label_9">
+                                                <property name="text">
+                                                 <string>We will take care of the rest</string>
+                                                </property>
+                                               </widget>
+                                              </item>
+                                             </layout>
+                                            </widget>
+                                           </item>
+                                          </layout>
+                                         </widget>
+                                         <widget class="QWidget" name="notInstalled">
+                                          <layout class="QVBoxLayout" name="verticalLayout">
+                                           <property name="spacing">
+                                            <number>10</number>
+                                           </property>
+                                           <property name="leftmargin" stdset="0">
+                                            <number>10</number>
+                                           </property>
+                                           <property name="topmargin" stdset="0">
+                                            <number>10</number>
+                                           </property>
+                                           <property name="rightmargin" stdset="0">
+                                            <number>10</number>
+                                           </property>
+                                           <property name="bottommargin" stdset="0">
+                                            <number>10</number>
+                                           </property>
+                                           <item>
+                                            <widget class="QFrame" name="grid">
+                                             <property name="minimumsize" stdset="0">
+                                              <size>
+                                               <width>0</width>
+                                               <height>70</height>
+                                              </size>
+                                             </property>
+                                             <property name="maximumsize" stdset="0">
+                                              <size>
+                                               <width>16777215</width>
+                                               <height>70</height>
+                                              </size>
+                                             </property>
+                                             <layout class="QGridLayout" name="gridLayout">
+                                              <property name="spacing">
+                                               <number>0</number>
+                                              </property>
+                                              <item row="0" column="0">
+                                               <widget class="QLabel" name="label_6">
+                                                <property name="text">
+                                                 <string>🚫 Docker not installed</string>
+                                                </property>
+                                               </widget>
+                                              </item>
+                                              <item row="2" column="0">
+                                               <widget class="QCommandLinkButton" name="commandLinkButton_2">
+                                                <property name="text">
+                                                 <string>CommandLinkButton</string>
+                                                </property>
+                                               </widget>
+                                              </item>
+                                              <item row="1" column="0">
+                                               <widget class="QLabel" name="label_7">
+                                                <property name="text">
+                                                 <string>I couldn't find a working Docker installation on your system. Docker is required to run the LAM-PCR pipeline locally. </string>
+                                                </property>
+                                               </widget>
+                                              </item>
+                                              <item row="3" column="0">
+                                               <widget class="QLineEdit" name="lineEdit_4"/>
+                                              </item>
+                                              <item row="4" column="0">
+                                               <widget class="QPushButton" name="pushButton_3">
+                                                <property name="text">
+                                                 <string>PushButton</string>
+                                                </property>
+                                               </widget>
+                                              </item>
+                                             </layout>
+                                            </widget>
+                                           </item>
+                                          </layout>
+                                         </widget>
+                                        </widget>
+                                       </item>
                                       </layout>
                                      </widget>
                                     </item>
@@ -2762,19 +2890,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                           <string>Http</string>
                                          </property>
                                         </widget>
-                                       </item>
-                                       <item row="7" column="5">
-                                        <spacer name="horizontalSpacer_13">
-                                         <property name="orientation">
-                                          <enum>Qt::Orientation::Horizontal</enum>
-                                         </property>
-                                         <property name="sizeHint" stdset="0">
-                                          <size>
-                                           <width>40</width>
-                                           <height>20</height>
-                                          </size>
-                                         </property>
-                                        </spacer>
                                        </item>
                                        <item row="2" column="0" colspan="8">
                                         <spacer name="verticalSpacer_13">
@@ -2872,19 +2987,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                          </property>
                                         </spacer>
                                        </item>
-                                       <item row="7" column="7">
-                                        <spacer name="horizontalSpacer_12">
-                                         <property name="orientation">
-                                          <enum>Qt::Orientation::Horizontal</enum>
-                                         </property>
-                                         <property name="sizeHint" stdset="0">
-                                          <size>
-                                           <width>40</width>
-                                           <height>20</height>
-                                          </size>
-                                         </property>
-                                        </spacer>
-                                       </item>
                                        <item row="3" column="0">
                                         <widget class="QLabel" name="label_2">
                                          <property name="text">
@@ -2927,6 +3029,32 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                        </item>
                                        <item row="7" column="3">
                                         <spacer name="horizontalSpacer_14">
+                                         <property name="orientation">
+                                          <enum>Qt::Orientation::Horizontal</enum>
+                                         </property>
+                                         <property name="sizeHint" stdset="0">
+                                          <size>
+                                           <width>40</width>
+                                           <height>20</height>
+                                          </size>
+                                         </property>
+                                        </spacer>
+                                       </item>
+                                       <item row="7" column="5">
+                                        <spacer name="horizontalSpacer_13">
+                                         <property name="orientation">
+                                          <enum>Qt::Orientation::Horizontal</enum>
+                                         </property>
+                                         <property name="sizeHint" stdset="0">
+                                          <size>
+                                           <width>40</width>
+                                           <height>20</height>
+                                          </size>
+                                         </property>
+                                        </spacer>
+                                       </item>
+                                       <item row="7" column="7">
+                                        <spacer name="horizontalSpacer_12">
                                          <property name="orientation">
                                           <enum>Qt::Orientation::Horizontal</enum>
                                          </property>

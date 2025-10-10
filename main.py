@@ -78,7 +78,6 @@ class MainWindow(QMainWindow):
         # ///////////////////////////////////////////////////////////////
         self.show()
         self.show_first_time_dialog()
-        self.show_docker_not_installed_dialog()
 
         # INIT STATE
         self.disable_button(widgets.runProgressButton)
@@ -143,100 +142,6 @@ class MainWindow(QMainWindow):
             dlg.setLayout(layout)
             dlg.exec()
     
-    def is_docker_installed(self, docker_path: str = None) -> bool:
-        try:
-            if docker_path and isinstance(docker_path, str) and docker_path.strip():
-                cmd = [docker_path.strip(), "--version"]
-            else:
-                cmd = ["docker", "--version"]
-
-            result = subprocess.run(
-                cmd,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                text=True  # ensures output is str, not bytes
-            )
-            return result.returncode == 0
-        except (FileNotFoundError, PermissionError, OSError, ValueError) as e:
-            print(f"Docker not found or failed to run: {e}")
-            return False
-
-    def show_docker_not_installed_dialog(self):
-        if self.settings.get("HIDE_DOCKER_WARNING", False):
-            return
-
-        docker_path = self.settings.get("DOCKER_PATH", None)
-
-        if self.is_docker_installed(docker_path):
-            self.settings.set("DOCKER_PATH", "docker")
-            return
-
-        # === Show dialog ===
-        dlg = QDialog(self)
-        dlg.setWindowTitle("Docker Not Found")
-        dlg.setMinimumWidth(500)
-
-        layout = QVBoxLayout()
-
-        msg = QLabel(
-            "🚫 <b>Docker not installed</b><br><br>"
-            "I couldn't find a working Docker installation on your system. Docker is required to run the LAM-PCR pipeline locally. "
-            "You can still browse the app, but the local run option will be hidden in the run configurations (second tab)."
-        )
-        msg.setWordWrap(True)
-        layout.addWidget(msg)
-
-        docker_link = QTextBrowser()
-        docker_link.setHtml('<a href="https://www.docker.com/products/docker-desktop/" style="color: #007acc;">Install Docker</a>')
-        docker_link.setOpenExternalLinks(True)
-        layout.addWidget(docker_link)
-
-        msg2 = QLabel("Think Docker is installed somewhere else? Let me know where it is:")
-        layout.addWidget(msg2)
-
-        docker_path_input = QLineEdit()
-        docker_path_input.setPlaceholderText("/usr/local/bin/docker or C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe")
-        if isinstance(docker_path, str):
-            docker_path_input.setText(docker_path)
-        layout.addWidget(docker_path_input)
-
-        checkbox = QCheckBox("Don't show this warning again")
-        layout.addWidget(checkbox)
-
-        # Buttons
-        button_layout = QHBoxLayout()
-        check_again_button = QPushButton("Check Again")
-        close_button = QPushButton("Close")
-
-        def save_settings_and_close():
-            if checkbox.isChecked():
-                self.settings.set("HIDE_DOCKER_WARNING", True)
-
-            custom_path = docker_path_input.text().strip()
-            if custom_path:
-                self.settings.set("DOCKER_PATH", custom_path)
-
-            dlg.accept()
-
-        def check_again():
-            custom_path = docker_path_input.text().strip()
-            if self.is_docker_installed(custom_path):
-                self.settings.set("DOCKER_PATH", custom_path)
-                dlg.accept()  # Docker found, dismiss dialog
-            else:
-                docker_path_input.setStyleSheet("border: 1px solid red;")
-                docker_path_input.setPlaceholderText("🚫 Docker not found at that path")
-
-        check_again_button.clicked.connect(check_again)
-        close_button.clicked.connect(save_settings_and_close)
-
-        button_layout.addWidget(check_again_button)
-        button_layout.addWidget(close_button)
-        layout.addLayout(button_layout)
-
-        dlg.setLayout(layout)
-        dlg.exec()
-
     # DISABLE BUTTONS
     # ///////////////////////////////////////////////////////////////
     def disable_button(self, button):

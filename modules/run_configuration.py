@@ -1,15 +1,20 @@
 from . settings import Settings
-from PySide6.QtCore import Qt, QUrl, Slot
-from PySide6.QtWidgets import QMessageBox
 import xml.etree.ElementTree as ET
 from PySide6.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply
 import base64
+import sys
+import os
+import subprocess
+from PySide6.QtCore import *
+from PySide6.QtGui import *
+from PySide6.QtWidgets import *
 
 class RunConfiguration:
     def __init__(self, main_window):
         self.main_window = main_window
         self.widgets = main_window.ui
         self.selectedButton = None
+        self.settings = Settings()
 
         # self.get_nc_folder_contents(main_window.network_manager, Settings.REF_RENOMES_SHARE_TOKEN)
 
@@ -26,6 +31,7 @@ class RunConfiguration:
 
         self.widgets.umiCheckbox.stateChanged.connect(lambda: self.on_umi_checkbox_state_changed(self.widgets.umiCheckbox.checkState()))
         self.on_umi_checkbox_state_changed(self.widgets.umiCheckbox.checkState())
+        self.docker_not_installed()
 
     def load_from_metadata(self):
         self.widgets.R1Input.setText(Settings.METADATA.get("r1", ""))
@@ -59,6 +65,35 @@ class RunConfiguration:
 
         self.selectedButton = button
 
+    def is_docker_installed(self, docker_path) -> bool:
+        try:
+            if docker_path and isinstance(docker_path, str) and docker_path.strip():
+                cmd = [docker_path.strip(), "--version"]
+            else:
+                cmd = ["docker", "--version"]
+
+            result = subprocess.run(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True  # ensures output is str, not bytes
+            )
+            return result.returncode == 0
+        except (FileNotFoundError, PermissionError, OSError, ValueError) as e:
+            print(f"Docker not found or failed to run: {e}")
+            return False
+
+    # def docker_not_installed(self):
+    #     docker_path = self.settings.get("DOCKER_PATH", "docker")
+    #
+    #     if self.is_docker_installed(docker_path):
+    #         self.settings.set("DOCKER_PATH", docker_path)
+    #         return
+    #
+    #     def check_again():
+    #         custom_path = docker_path_input.text().strip()
+    #         if self.is_docker_installed(custom_path):
+    #             self.settings.set("DOCKER_PATH", custom_path)
 
     def reset(self):
         """Reset the selected run to what is saved in metadata.json"""

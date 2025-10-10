@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'main.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.9.3
+## Created by: Qt User Interface Compiler version 6.10.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -16,11 +16,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QCheckBox,
-    QFrame, QGridLayout, QHBoxLayout, QHeaderView,
-    QLabel, QLineEdit, QMainWindow, QPushButton,
-    QRadioButton, QSizePolicy, QSpacerItem, QStackedWidget,
-    QTableWidget, QTableWidgetItem, QTextBrowser, QTextEdit,
-    QVBoxLayout, QWidget)
+    QCommandLinkButton, QFrame, QGridLayout, QHBoxLayout,
+    QHeaderView, QLabel, QLineEdit, QMainWindow,
+    QPushButton, QRadioButton, QSizePolicy, QSpacerItem,
+    QStackedWidget, QTableWidget, QTableWidgetItem, QTextBrowser,
+    QTextEdit, QVBoxLayout, QWidget)
 from .resources_rc import *
 
 class Ui_MainWindow(object):
@@ -1232,20 +1232,32 @@ class Ui_MainWindow(object):
         self.gridlayout = QGridLayout(self.row_11)
         self.gridlayout.setSpacing(0)
         self.gridlayout.setObjectName(u"gridlayout")
-        self.radioButton_2 = QRadioButton(self.row_11)
-        self.radioButton_2.setObjectName(u"radioButton_2")
+        self.localRadio = QRadioButton(self.row_11)
+        self.localRadio.setObjectName(u"localRadio")
 
-        self.gridlayout.addWidget(self.radioButton_2, 1, 1, 1, 1)
+        self.gridlayout.addWidget(self.localRadio, 3, 0, 1, 1)
 
-        self.radioButton = QRadioButton(self.row_11)
-        self.radioButton.setObjectName(u"radioButton")
+        self.remoteRadio = QRadioButton(self.row_11)
+        self.remoteRadio.setObjectName(u"remoteRadio")
 
-        self.gridlayout.addWidget(self.radioButton, 1, 0, 1, 1)
+        self.gridlayout.addWidget(self.remoteRadio, 3, 1, 1, 1)
 
-        self.label = QLabel(self.row_11)
-        self.label.setObjectName(u"label")
+        self.verticalSpacer_9 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridlayout.addWidget(self.label, 0, 0, 1, 2)
+        self.gridlayout.addItem(self.verticalSpacer_9, 4, 0, 1, 2)
+
+        self.dockerLabel = QLabel(self.row_11)
+        self.dockerLabel.setObjectName(u"dockerLabel")
+
+        self.gridlayout.addWidget(self.dockerLabel, 1, 0, 1, 2)
+
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridlayout.addItem(self.verticalSpacer, 2, 0, 1, 2)
+
+        self.verticalSpacer_16 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridlayout.addItem(self.verticalSpacer_16, 0, 0, 1, 2)
 
 
         self.verticalLayout2.addWidget(self.row_11)
@@ -1293,6 +1305,97 @@ class Ui_MainWindow(object):
         self.gridLayout2 = QGridLayout(self.grid1)
         self.gridLayout2.setSpacing(0)
         self.gridLayout2.setObjectName(u"gridLayout2")
+        self.radioButton = QRadioButton(self.grid1)
+        self.radioButton.setObjectName(u"radioButton")
+
+        self.gridLayout2.addWidget(self.radioButton, 7, 2, 1, 1)
+
+        self.horizontalSpacer_13 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout2.addItem(self.horizontalSpacer_13, 7, 5, 1, 1)
+
+        self.verticalSpacer_13 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout2.addItem(self.verticalSpacer_13, 2, 0, 1, 8)
+
+        self.verticalSpacer_15 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout2.addItem(self.verticalSpacer_15, 6, 0, 1, 8)
+
+        self.verticalSpacer_12 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout2.addItem(self.verticalSpacer_12, 0, 0, 1, 8)
+
+        self.commandLinkButton = QCommandLinkButton(self.grid1)
+        self.commandLinkButton.setObjectName(u"commandLinkButton")
+
+        self.gridLayout2.addWidget(self.commandLinkButton, 9, 0, 1, 4)
+
+        self.lineEdit_2 = QLineEdit(self.grid1)
+        self.lineEdit_2.setObjectName(u"lineEdit_2")
+
+        self.gridLayout2.addWidget(self.lineEdit_2, 3, 1, 1, 4)
+
+        self.pushButton = QPushButton(self.grid1)
+        self.pushButton.setObjectName(u"pushButton")
+
+        self.gridLayout2.addWidget(self.pushButton, 9, 7, 1, 1)
+
+        self.verticalSpacer_18 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout2.addItem(self.verticalSpacer_18, 8, 0, 1, 8)
+
+        self.label = QLabel(self.grid1)
+        self.label.setObjectName(u"label")
+
+        self.gridLayout2.addWidget(self.label, 1, 0, 1, 1)
+
+        self.label_3 = QLabel(self.grid1)
+        self.label_3.setObjectName(u"label_3")
+
+        self.gridLayout2.addWidget(self.label_3, 5, 0, 1, 1)
+
+        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout2.addItem(self.horizontalSpacer_11, 7, 1, 1, 1)
+
+        self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout2.addItem(self.horizontalSpacer_12, 7, 7, 1, 1)
+
+        self.label_2 = QLabel(self.grid1)
+        self.label_2.setObjectName(u"label_2")
+
+        self.gridLayout2.addWidget(self.label_2, 3, 0, 1, 1)
+
+        self.lineEdit_3 = QLineEdit(self.grid1)
+        self.lineEdit_3.setObjectName(u"lineEdit_3")
+
+        self.gridLayout2.addWidget(self.lineEdit_3, 1, 1, 1, 4)
+
+        self.label_5 = QLabel(self.grid1)
+        self.label_5.setObjectName(u"label_5")
+
+        self.gridLayout2.addWidget(self.label_5, 7, 0, 1, 1)
+
+        self.lineEdit = QLineEdit(self.grid1)
+        self.lineEdit.setObjectName(u"lineEdit")
+
+        self.gridLayout2.addWidget(self.lineEdit, 5, 1, 1, 4)
+
+        self.radioButton_2 = QRadioButton(self.grid1)
+        self.radioButton_2.setObjectName(u"radioButton_2")
+
+        self.gridLayout2.addWidget(self.radioButton_2, 7, 4, 1, 1)
+
+        self.verticalSpacer_14 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout2.addItem(self.verticalSpacer_14, 4, 0, 1, 8)
+
+        self.horizontalSpacer_14 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout2.addItem(self.horizontalSpacer_14, 7, 3, 1, 1)
+
 
         self.verticalLayout5.addWidget(self.grid1)
 
@@ -1551,10 +1654,6 @@ class Ui_MainWindow(object):
 
         self.gridLayout_2.addItem(self.horizontalSpacer_8, 24, 3, 1, 1)
 
-        self.verticalSpacer_8 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_2.addItem(self.verticalSpacer_8, 21, 0, 1, 2)
-
         self.helpButton = QPushButton(self.runConfigurationTab)
         self.helpButton.setObjectName(u"helpButton")
         self.helpButton.setMinimumSize(QSize(50, 30))
@@ -1604,6 +1703,10 @@ class Ui_MainWindow(object):
         self.R1Label.setObjectName(u"R1Label")
 
         self.gridLayout_2.addWidget(self.R1Label, 0, 0, 3, 1)
+
+        self.verticalSpacer_8 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_8, 21, 0, 1, 2)
 
 
         self.verticalLayout1.addLayout(self.gridLayout_2)
@@ -2007,9 +2110,17 @@ class Ui_MainWindow(object):
         self.trimmingConfig.setText(QCoreApplication.translate("MainWindow", u"Adapter and primer trimming", None))
         self.restoreDefaultsButton.setText(QCoreApplication.translate("MainWindow", u"Restore Defaults", None))
         self.R2Label.setText(QCoreApplication.translate("MainWindow", u"Read 2", None))
-        self.radioButton_2.setText(QCoreApplication.translate("MainWindow", u"RadioButton", None))
-        self.radioButton.setText(QCoreApplication.translate("MainWindow", u"RadioButton", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.localRadio.setText(QCoreApplication.translate("MainWindow", u"Local", None))
+        self.remoteRadio.setText(QCoreApplication.translate("MainWindow", u"Remote", None))
+        self.dockerLabel.setText(QCoreApplication.translate("MainWindow", u"Do you want to run the qsLAM PCR pipeline locally or on a remote server? You can do some trial runs on our public test server.", None))
+        self.radioButton.setText(QCoreApplication.translate("MainWindow", u"Http", None))
+        self.commandLinkButton.setText(QCoreApplication.translate("MainWindow", u"Want to use our public test server instead?", None))
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Test Connection", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"IP Address", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Authentication Token", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Port", None))
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Protocol", None))
+        self.radioButton_2.setText(QCoreApplication.translate("MainWindow", u"Https", None))
         self.readMappingConfig.setText(QCoreApplication.translate("MainWindow", u"Read mapping", None))
         self.umiCheckbox.setText(QCoreApplication.translate("MainWindow", u"Unique Molecular Identifier?", None))
         self.configStepsLabel.setText(QCoreApplication.translate("MainWindow", u"Please complete all configuration steps below:", None))
