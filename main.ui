@@ -2699,7 +2699,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                          <item row="0" column="4" rowspan="21" colspan="7">
                           <widget class="QStackedWidget" name="configStackedWidget">
                            <property name="currentIndex">
-                            <number>1</number>
+                            <number>0</number>
                            </property>
                            <widget class="QWidget" name="docker">
                             <layout class="QVBoxLayout" name="verticalLayout">
@@ -2914,7 +2914,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                                <widget class="QFrame" name="dockerSuccessIcon">
                                                 <property name="minimumSize">
                                                  <size>
-                                                  <width>84</width>
+                                                  <width>20</width>
                                                   <height>20</height>
                                                  </size>
                                                 </property>
@@ -2966,6 +2966,19 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                                 </property>
                                                </spacer>
                                               </item>
+                                              <item row="1" column="0">
+                                               <spacer name="horizontalSpacer_32">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>40</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
                                              </layout>
                                             </widget>
                                            </item>
@@ -3006,177 +3019,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                               <property name="spacing">
                                                <number>0</number>
                                               </property>
-                                              <item row="0" column="0" colspan="8">
-                                               <spacer name="verticalSpacer_19">
-                                                <property name="orientation">
-                                                 <enum>Qt::Orientation::Vertical</enum>
-                                                </property>
-                                                <property name="sizeHint" stdset="0">
-                                                 <size>
-                                                  <width>20</width>
-                                                  <height>40</height>
-                                                 </size>
-                                                </property>
-                                               </spacer>
-                                              </item>
-                                              <item row="8" column="0" colspan="8">
-                                               <spacer name="verticalSpacer_24">
-                                                <property name="orientation">
-                                                 <enum>Qt::Orientation::Vertical</enum>
-                                                </property>
-                                                <property name="sizeHint" stdset="0">
-                                                 <size>
-                                                  <width>20</width>
-                                                  <height>40</height>
-                                                 </size>
-                                                </property>
-                                               </spacer>
-                                              </item>
-                                              <item row="5" column="6">
-                                               <spacer name="horizontalSpacer_19">
-                                                <property name="orientation">
-                                                 <enum>Qt::Orientation::Horizontal</enum>
-                                                </property>
-                                                <property name="sizeHint" stdset="0">
-                                                 <size>
-                                                  <width>40</width>
-                                                  <height>20</height>
-                                                 </size>
-                                                </property>
-                                               </spacer>
-                                              </item>
-                                              <item row="5" column="5">
-                                               <spacer name="horizontalSpacer_18">
-                                                <property name="orientation">
-                                                 <enum>Qt::Orientation::Horizontal</enum>
-                                                </property>
-                                                <property name="sizeHint" stdset="0">
-                                                 <size>
-                                                  <width>40</width>
-                                                  <height>20</height>
-                                                 </size>
-                                                </property>
-                                               </spacer>
-                                              </item>
-                                              <item row="4" column="0" colspan="8">
-                                               <spacer name="verticalSpacer_23">
-                                                <property name="orientation">
-                                                 <enum>Qt::Orientation::Vertical</enum>
-                                                </property>
-                                                <property name="sizeHint" stdset="0">
-                                                 <size>
-                                                  <width>20</width>
-                                                  <height>40</height>
-                                                 </size>
-                                                </property>
-                                               </spacer>
-                                              </item>
-                                              <item row="1" column="0">
-                                               <widget class="QFrame" name="dockerErrorIcon">
-                                                <property name="minimumSize">
-                                                 <size>
-                                                  <width>84</width>
-                                                  <height>20</height>
-                                                 </size>
-                                                </property>
-                                                <property name="styleSheet">
-                                                 <string notr="true">
-						    background-image: url(:/icons/images/icons/cil-frown.png);
-						    background-position: center;
-						    background-repeat: no-repeat;
-						   </string>
-                                                </property>
-                                                <property name="frameShape">
-                                                 <enum>QFrame::Shape::StyledPanel</enum>
-                                                </property>
-                                                <property name="frameShadow">
-                                                 <enum>QFrame::Shadow::Raised</enum>
-                                                </property>
-                                               </widget>
-                                              </item>
-                                              <item row="3" column="0" colspan="8">
-                                               <widget class="QLabel" name="DockerNotFoundDescriptionLabel">
-                                                <property name="text">
-                                                 <string notr="true">&lt;html&gt;&lt;body&gt;I couldn't find a working Docker installation on your system. Docker is required to run the qsLAM_PCR pipeline locally. &lt;a href=&quot;https://docs.docker.com/get-docker/&quot; style=&quot;color:#0066cc; text-decoration:none;&quot;&gt;Install Docker&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                                                </property>
-                                                <property name="textFormat">
-                                                 <enum>Qt::TextFormat::RichText</enum>
-                                                </property>
-                                                <property name="wordWrap">
-                                                 <bool>true</bool>
-                                                </property>
-                                                <property name="openExternalLinks">
-                                                 <bool>true</bool>
-                                                </property>
-                                                <property name="textInteractionFlags">
-                                                 <set>Qt::TextInteractionFlag::TextBrowserInteraction</set>
-                                                </property>
-                                               </widget>
-                                              </item>
-                                              <item row="5" column="3">
-                                               <widget class="QLineEdit" name="dockerPathInput">
-                                                <property name="text">
-                                                 <string>docker</string>
-                                                </property>
-                                               </widget>
-                                              </item>
-                                              <item row="1" column="2" colspan="3">
-                                               <widget class="QLabel" name="dockerNotFoundLabel">
-                                                <property name="styleSheet">
-                                                 <string notr="true">color: red; font-weight: bold;</string>
-                                                </property>
-                                                <property name="text">
-                                                 <string>Docker not found on your computer!</string>
-                                                </property>
-                                               </widget>
-                                              </item>
-                                              <item row="2" column="0" colspan="8">
-                                               <spacer name="verticalSpacer_22">
-                                                <property name="orientation">
-                                                 <enum>Qt::Orientation::Vertical</enum>
-                                                </property>
-                                                <property name="sizeHint" stdset="0">
-                                                 <size>
-                                                  <width>20</width>
-                                                  <height>40</height>
-                                                 </size>
-                                                </property>
-                                               </spacer>
-                                              </item>
-                                              <item row="5" column="4">
-                                               <spacer name="horizontalSpacer_17">
-                                                <property name="orientation">
-                                                 <enum>Qt::Orientation::Horizontal</enum>
-                                                </property>
-                                                <property name="sizeHint" stdset="0">
-                                                 <size>
-                                                  <width>40</width>
-                                                  <height>20</height>
-                                                 </size>
-                                                </property>
-                                               </spacer>
-                                              </item>
-                                              <item row="5" column="0">
-                                               <widget class="QLabel" name="dockerPathLabel">
-                                                <property name="text">
-                                                 <string>Docker path:</string>
-                                                </property>
-                                               </widget>
-                                              </item>
-                                              <item row="6" column="0" colspan="8">
-                                               <spacer name="verticalSpacer_17">
-                                                <property name="orientation">
-                                                 <enum>Qt::Orientation::Vertical</enum>
-                                                </property>
-                                                <property name="sizeHint" stdset="0">
-                                                 <size>
-                                                  <width>20</width>
-                                                  <height>40</height>
-                                                 </size>
-                                                </property>
-                                               </spacer>
-                                              </item>
-                                              <item row="5" column="7">
+                                              <item row="5" column="9">
                                                <widget class="QPushButton" name="checkAgainButton">
                                                 <property name="minimumSize">
                                                  <size>
@@ -3207,8 +3050,204 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                                 </property>
                                                </widget>
                                               </item>
-                                              <item row="1" column="5" colspan="3">
+                                              <item row="2" column="1" colspan="9">
+                                               <spacer name="verticalSpacer_22">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Vertical</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>20</width>
+                                                  <height>40</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="6" column="1" colspan="9">
+                                               <spacer name="verticalSpacer_17">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Vertical</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>20</width>
+                                                  <height>40</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="0" column="1" colspan="9">
+                                               <spacer name="verticalSpacer_19">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Vertical</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>20</width>
+                                                  <height>40</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="8" column="1" colspan="9">
+                                               <spacer name="verticalSpacer_24">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Vertical</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>20</width>
+                                                  <height>40</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="5" column="1" colspan="5">
+                                               <widget class="QLineEdit" name="dockerPathInput">
+                                                <property name="text">
+                                                 <string>docker</string>
+                                                </property>
+                                               </widget>
+                                              </item>
+                                              <item row="4" column="1" colspan="9">
+                                               <spacer name="verticalSpacer_23">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Vertical</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>20</width>
+                                                  <height>40</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="1" column="2">
+                                               <spacer name="horizontalSpacer_34">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>40</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="5" column="0">
+                                               <widget class="QLabel" name="dockerPathLabel">
+                                                <property name="text">
+                                                 <string>Docker path: </string>
+                                                </property>
+                                               </widget>
+                                              </item>
+                                              <item row="1" column="4" colspan="3">
+                                               <widget class="QLabel" name="dockerNotFoundLabel">
+                                                <property name="styleSheet">
+                                                 <string notr="true">color: red; font-weight: bold;</string>
+                                                </property>
+                                                <property name="text">
+                                                 <string>Docker not found on your computer!</string>
+                                                </property>
+                                               </widget>
+                                              </item>
+                                              <item row="5" column="7">
+                                               <spacer name="horizontalSpacer_18">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>40</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="1" column="3">
+                                               <widget class="QFrame" name="dockerErrorIcon">
+                                                <property name="minimumSize">
+                                                 <size>
+                                                  <width>20</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                                <property name="styleSheet">
+                                                 <string notr="true">
+						    background-image: url(:/icons/images/icons/cil-frown.png);
+						    background-position: center;
+						    background-repeat: no-repeat;
+						   </string>
+                                                </property>
+                                                <property name="frameShape">
+                                                 <enum>QFrame::Shape::StyledPanel</enum>
+                                                </property>
+                                                <property name="frameShadow">
+                                                 <enum>QFrame::Shadow::Raised</enum>
+                                                </property>
+                                               </widget>
+                                              </item>
+                                              <item row="1" column="0" colspan="2">
+                                               <spacer name="horizontalSpacer_33">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>40</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="1" column="7" colspan="3">
                                                <spacer name="horizontalSpacer_16">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>40</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="3" column="0" colspan="10">
+                                               <widget class="QLabel" name="DockerNotFoundDescriptionLabel">
+                                                <property name="text">
+                                                 <string notr="true">&lt;html&gt;&lt;body&gt;I couldn't find a working Docker installation on your system. Docker is required to run the qsLAM_PCR pipeline locally. &lt;a href=&quot;https://docs.docker.com/get-docker/&quot; style=&quot;color:#0066cc; text-decoration:none;&quot;&gt;Install Docker&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                                </property>
+                                                <property name="textFormat">
+                                                 <enum>Qt::TextFormat::RichText</enum>
+                                                </property>
+                                                <property name="wordWrap">
+                                                 <bool>true</bool>
+                                                </property>
+                                                <property name="openExternalLinks">
+                                                 <bool>true</bool>
+                                                </property>
+                                                <property name="textInteractionFlags">
+                                                 <set>Qt::TextInteractionFlag::TextBrowserInteraction</set>
+                                                </property>
+                                               </widget>
+                                              </item>
+                                              <item row="5" column="6">
+                                               <spacer name="horizontalSpacer_17">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>40</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="5" column="8">
+                                               <spacer name="horizontalSpacer_19">
                                                 <property name="orientation">
                                                  <enum>Qt::Orientation::Horizontal</enum>
                                                 </property>
@@ -4141,96 +4180,6 @@ check before trimming</string>
                              </item>
                             </layout>
                            </widget>
-                           <widget class="QWidget" name="ref_genome">
-                            <layout class="QVBoxLayout" name="verticalLayout">
-                             <property name="spacing">
-                              <number>10</number>
-                             </property>
-                             <property name="leftmargin" stdset="0">
-                              <number>10</number>
-                             </property>
-                             <property name="topmargin" stdset="0">
-                              <number>10</number>
-                             </property>
-                             <property name="rightmargin" stdset="0">
-                              <number>10</number>
-                             </property>
-                             <property name="bottommargin" stdset="0">
-                              <number>10</number>
-                             </property>
-                             <item>
-                              <widget class="QFrame" name="row_1">
-                               <property name="minimumsize" stdset="0">
-                                <size>
-                                 <width>0</width>
-                                 <height>70</height>
-                                </size>
-                               </property>
-                               <property name="maximumsize" stdset="0">
-                                <size>
-                                 <width>16777215</width>
-                                 <height>70</height>
-                                </size>
-                               </property>
-                               <layout class="QVBoxLayout" name="verticalLayout">
-                                <property name="spacing">
-                                 <number>0</number>
-                                </property>
-                                <property name="leftmargin" stdset="0">
-                                 <number>0</number>
-                                </property>
-                                <property name="topmargin" stdset="0">
-                                 <number>0</number>
-                                </property>
-                                <property name="rightmargin" stdset="0">
-                                 <number>0</number>
-                                </property>
-                                <property name="bottommargin" stdset="0">
-                                 <number>0</number>
-                                </property>
-                               </layout>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QFrame" name="row_2">
-                               <property name="minimumsize" stdset="0">
-                                <size>
-                                 <width>0</width>
-                                 <height>150</height>
-                                </size>
-                               </property>
-                               <layout class="QVBoxLayout" name="verticalLayout"/>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QFrame" name="row_3">
-                               <property name="minimumsize" stdset="0">
-                                <size>
-                                 <width>0</width>
-                                 <height>50</height>
-                                </size>
-                               </property>
-                               <layout class="QVBoxLayout" name="horizontalLayout">
-                                <property name="spacing">
-                                 <number>0</number>
-                                </property>
-                                <property name="leftmargin" stdset="0">
-                                 <number>0</number>
-                                </property>
-                                <property name="topmargin" stdset="0">
-                                 <number>0</number>
-                                </property>
-                                <property name="rightmargin" stdset="0">
-                                 <number>0</number>
-                                </property>
-                                <property name="bottommargin" stdset="0">
-                                 <number>0</number>
-                                </property>
-                               </layout>
-                              </widget>
-                             </item>
-                            </layout>
-                           </widget>
                            <widget class="QWidget" name="read_mapping">
                             <layout class="QVBoxLayout" name="verticalLayout">
                              <property name="spacing">
@@ -4249,73 +4198,87 @@ check before trimming</string>
                               <number>10</number>
                              </property>
                              <item>
-                              <widget class="QFrame" name="row_1">
-                               <property name="minimumsize" stdset="0">
-                                <size>
-                                 <width>0</width>
-                                 <height>70</height>
-                                </size>
-                               </property>
-                               <property name="maximumsize" stdset="0">
-                                <size>
-                                 <width>16777215</width>
-                                 <height>70</height>
-                                </size>
-                               </property>
-                               <layout class="QVBoxLayout" name="verticalLayout">
-                                <property name="spacing">
-                                 <number>0</number>
-                                </property>
-                                <property name="leftmargin" stdset="0">
-                                 <number>0</number>
-                                </property>
-                                <property name="topmargin" stdset="0">
-                                 <number>0</number>
-                                </property>
-                                <property name="rightmargin" stdset="0">
-                                 <number>0</number>
-                                </property>
-                                <property name="bottommargin" stdset="0">
-                                 <number>0</number>
-                                </property>
-                               </layout>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QFrame" name="row_2">
+                              <widget class="QFrame" name="row_6">
                                <property name="minimumsize" stdset="0">
                                 <size>
                                  <width>0</width>
                                  <height>150</height>
                                 </size>
                                </property>
-                               <layout class="QVBoxLayout" name="verticalLayout"/>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QFrame" name="row_3">
-                               <property name="minimumsize" stdset="0">
-                                <size>
-                                 <width>0</width>
-                                 <height>50</height>
-                                </size>
-                               </property>
-                               <layout class="QVBoxLayout" name="horizontalLayout">
-                                <property name="spacing">
-                                 <number>0</number>
-                                </property>
-                                <property name="leftmargin" stdset="0">
-                                 <number>0</number>
-                                </property>
-                                <property name="topmargin" stdset="0">
-                                 <number>0</number>
-                                </property>
-                                <property name="rightmargin" stdset="0">
-                                 <number>0</number>
-                                </property>
-                                <property name="bottommargin" stdset="0">
-                                 <number>0</number>
-                                </property>
+                               <layout class="QVBoxLayout" name="verticalLayout">
+                                <item>
+                                 <layout class="QGridLayout" name="gridLayout_4">
+                                  <item row="1" column="0">
+                                   <spacer name="horizontalSpacer_29">
+                                    <property name="orientation">
+                                     <enum>Qt::Orientation::Horizontal</enum>
+                                    </property>
+                                    <property name="sizeHint" stdset="0">
+                                     <size>
+                                      <width>40</width>
+                                      <height>20</height>
+                                     </size>
+                                    </property>
+                                   </spacer>
+                                  </item>
+                                  <item row="1" column="1">
+                                   <widget class="QLabel" name="referenceGenomeLabel">
+                                    <property name="text">
+                                     <string>Reference genome: </string>
+                                    </property>
+                                   </widget>
+                                  </item>
+                                  <item row="1" column="3">
+                                   <spacer name="horizontalSpacer_28">
+                                    <property name="orientation">
+                                     <enum>Qt::Orientation::Horizontal</enum>
+                                    </property>
+                                    <property name="sizeHint" stdset="0">
+                                     <size>
+                                      <width>40</width>
+                                      <height>20</height>
+                                     </size>
+                                    </property>
+                                   </spacer>
+                                  </item>
+                                  <item row="1" column="2">
+                                   <widget class="QComboBox" name="referenceGenomeComboBox">
+                                    <property name="minimumSize">
+                                     <size>
+                                      <width>140</width>
+                                      <height>0</height>
+                                     </size>
+                                    </property>
+                                   </widget>
+                                  </item>
+                                  <item row="2" column="0" colspan="4">
+                                   <spacer name="verticalSpacer_29">
+                                    <property name="orientation">
+                                     <enum>Qt::Orientation::Vertical</enum>
+                                    </property>
+                                    <property name="sizeHint" stdset="0">
+                                     <size>
+                                      <width>20</width>
+                                      <height>40</height>
+                                     </size>
+                                    </property>
+                                   </spacer>
+                                  </item>
+                                  <item row="0" column="0" colspan="4">
+                                   <spacer name="verticalSpacer_28">
+                                    <property name="orientation">
+                                     <enum>Qt::Orientation::Vertical</enum>
+                                    </property>
+                                    <property name="sizeHint" stdset="0">
+                                     <size>
+                                      <width>20</width>
+                                      <height>40</height>
+                                     </size>
+                                    </property>
+                                   </spacer>
+                                  </item>
+                                 </layout>
+                                </item>
                                </layout>
                               </widget>
                              </item>
@@ -4368,44 +4331,69 @@ check before trimming</string>
                                 <property name="bottommargin" stdset="0">
                                  <number>0</number>
                                 </property>
-                               </layout>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QFrame" name="row_2">
-                               <property name="minimumsize" stdset="0">
-                                <size>
-                                 <width>0</width>
-                                 <height>150</height>
-                                </size>
-                               </property>
-                               <layout class="QVBoxLayout" name="verticalLayout"/>
-                              </widget>
-                             </item>
-                             <item>
-                              <widget class="QFrame" name="row_3">
-                               <property name="minimumsize" stdset="0">
-                                <size>
-                                 <width>0</width>
-                                 <height>50</height>
-                                </size>
-                               </property>
-                               <layout class="QVBoxLayout" name="horizontalLayout">
-                                <property name="spacing">
-                                 <number>0</number>
-                                </property>
-                                <property name="leftmargin" stdset="0">
-                                 <number>0</number>
-                                </property>
-                                <property name="topmargin" stdset="0">
-                                 <number>0</number>
-                                </property>
-                                <property name="rightmargin" stdset="0">
-                                 <number>0</number>
-                                </property>
-                                <property name="bottommargin" stdset="0">
-                                 <number>0</number>
-                                </property>
+                                <item>
+                                 <layout class="QGridLayout" name="gridLayout_5">
+                                  <item row="0" column="1">
+                                   <spacer name="verticalSpacer_30">
+                                    <property name="orientation">
+                                     <enum>Qt::Orientation::Vertical</enum>
+                                    </property>
+                                    <property name="sizeHint" stdset="0">
+                                     <size>
+                                      <width>20</width>
+                                      <height>40</height>
+                                     </size>
+                                    </property>
+                                   </spacer>
+                                  </item>
+                                  <item row="1" column="2">
+                                   <spacer name="horizontalSpacer_31">
+                                    <property name="orientation">
+                                     <enum>Qt::Orientation::Horizontal</enum>
+                                    </property>
+                                    <property name="sizeHint" stdset="0">
+                                     <size>
+                                      <width>40</width>
+                                      <height>20</height>
+                                     </size>
+                                    </property>
+                                   </spacer>
+                                  </item>
+                                  <item row="1" column="0">
+                                   <spacer name="horizontalSpacer_30">
+                                    <property name="orientation">
+                                     <enum>Qt::Orientation::Horizontal</enum>
+                                    </property>
+                                    <property name="sizeHint" stdset="0">
+                                     <size>
+                                      <width>40</width>
+                                      <height>20</height>
+                                     </size>
+                                    </property>
+                                   </spacer>
+                                  </item>
+                                  <item row="1" column="1">
+                                   <widget class="QLabel" name="label_3">
+                                    <property name="text">
+                                     <string>Nothing to see here yet :)</string>
+                                    </property>
+                                   </widget>
+                                  </item>
+                                  <item row="2" column="1">
+                                   <spacer name="verticalSpacer_31">
+                                    <property name="orientation">
+                                     <enum>Qt::Orientation::Vertical</enum>
+                                    </property>
+                                    <property name="sizeHint" stdset="0">
+                                     <size>
+                                      <width>20</width>
+                                      <height>40</height>
+                                     </size>
+                                    </property>
+                                   </spacer>
+                                  </item>
+                                 </layout>
+                                </item>
                                </layout>
                               </widget>
                              </item>
@@ -4586,7 +4574,7 @@ check before trimming</string>
                            </property>
                            <property name="icon">
                             <iconset resource="resources.qrc">
-                             <normaloff>:/icons/images/icons/cil-folder-open.png</normaloff>:/icons/images/icons/cil-folder-open.png</iconset>
+                             <normaloff>:/icons/images/icons/cil-find-in-page.png</normaloff>:/icons/images/icons/cil-find-in-page.png</iconset>
                            </property>
                           </widget>
                          </item>
@@ -4643,7 +4631,7 @@ check before trimming</string>
                            </property>
                            <property name="icon">
                             <iconset resource="resources.qrc">
-                             <normaloff>:/icons/images/icons/cil-folder-open.png</normaloff>:/icons/images/icons/cil-folder-open.png</iconset>
+                             <normaloff>:/icons/images/icons/cil-terminal.png</normaloff>:/icons/images/icons/cil-terminal.png</iconset>
                            </property>
                           </widget>
                          </item>
@@ -4806,7 +4794,7 @@ check before trimming</string>
                          <property name="maximumSize">
                           <size>
                            <width>16777215</width>
-                           <height>50</height>
+                           <height>16777215</height>
                           </size>
                          </property>
                          <property name="frameShape">
@@ -4831,64 +4819,69 @@ check before trimming</string>
                           <property name="bottomMargin">
                            <number>0</number>
                           </property>
-                         </layout>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QFrame" name="row_2">
-                         <property name="minimumSize">
-                          <size>
-                           <width>0</width>
-                           <height>150</height>
-                          </size>
-                         </property>
-                         <property name="frameShape">
-                          <enum>QFrame::Shape::StyledPanel</enum>
-                         </property>
-                         <property name="frameShadow">
-                          <enum>QFrame::Shadow::Raised</enum>
-                         </property>
-                         <layout class="QVBoxLayout" name="verticalLayout_19">
                           <item>
-                           <widget class="QLabel" name="label_4">
-                            <property name="text">
-                             <string>Charts here and stuff after run is complete...</string>
-                            </property>
-                           </widget>
+                           <layout class="QGridLayout" name="gridLayout_6">
+                            <item row="1" column="1">
+                             <widget class="QLabel" name="label_4">
+                              <property name="text">
+                               <string>Nothing to see here yet :)</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item row="2" column="1">
+                             <spacer name="verticalSpacer_32">
+                              <property name="orientation">
+                               <enum>Qt::Orientation::Vertical</enum>
+                              </property>
+                              <property name="sizeHint" stdset="0">
+                               <size>
+                                <width>20</width>
+                                <height>40</height>
+                               </size>
+                              </property>
+                             </spacer>
+                            </item>
+                            <item row="1" column="2">
+                             <spacer name="horizontalSpacer_36">
+                              <property name="orientation">
+                               <enum>Qt::Orientation::Horizontal</enum>
+                              </property>
+                              <property name="sizeHint" stdset="0">
+                               <size>
+                                <width>40</width>
+                                <height>20</height>
+                               </size>
+                              </property>
+                             </spacer>
+                            </item>
+                            <item row="0" column="1">
+                             <spacer name="verticalSpacer_33">
+                              <property name="orientation">
+                               <enum>Qt::Orientation::Vertical</enum>
+                              </property>
+                              <property name="sizeHint" stdset="0">
+                               <size>
+                                <width>20</width>
+                                <height>40</height>
+                               </size>
+                              </property>
+                             </spacer>
+                            </item>
+                            <item row="1" column="0">
+                             <spacer name="horizontalSpacer_35">
+                              <property name="orientation">
+                               <enum>Qt::Orientation::Horizontal</enum>
+                              </property>
+                              <property name="sizeHint" stdset="0">
+                               <size>
+                                <width>40</width>
+                                <height>20</height>
+                               </size>
+                              </property>
+                             </spacer>
+                            </item>
+                           </layout>
                           </item>
-                         </layout>
-                        </widget>
-                       </item>
-                       <item>
-                        <widget class="QFrame" name="row_3">
-                         <property name="minimumSize">
-                          <size>
-                           <width>0</width>
-                           <height>70</height>
-                          </size>
-                         </property>
-                         <property name="frameShape">
-                          <enum>QFrame::Shape::StyledPanel</enum>
-                         </property>
-                         <property name="frameShadow">
-                          <enum>QFrame::Shadow::Raised</enum>
-                         </property>
-                         <layout class="QHBoxLayout" name="horizontalLayout_12">
-                          <property name="spacing">
-                           <number>0</number>
-                          </property>
-                          <property name="leftMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="topMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="rightMargin">
-                           <number>0</number>
-                          </property>
-                          <property name="bottomMargin">
-                           <number>0</number>
-                          </property>
                          </layout>
                         </widget>
                        </item>

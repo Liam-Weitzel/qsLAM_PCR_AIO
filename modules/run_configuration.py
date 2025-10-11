@@ -20,7 +20,8 @@ class RunConfiguration:
         self.selectedButton = None
         self.settings = Settings()
 
-        # self.get_nc_folder_contents(main_window.network_manager, Settings.REF_RENOMES_SHARE_TOKEN)
+        self.reference_genomes = {}
+        self.populate_reference_genome_combo_box(main_window.network_manager, Settings.REF_RENOMES_SHARE_TOKEN)
 
         self.widgets.dockerConfig.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.docker, self.widgets.dockerConfig))
         self.widgets.trimmingConfig.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.trimming, self.widgets.trimmingConfig))
@@ -52,6 +53,19 @@ class RunConfiguration:
         self.widgets.usePublicServerButton.clicked.connect(self.use_public_test_server)
         self.widgets.testConnectionButton.clicked.connect(self.test_connection)
         self.check_and_save_docker_path()
+
+        # Connect sliders to live update labels
+        self.widgets.r1ErrorRateSlider.valueChanged.connect(self.update_error_rate_labels)
+        self.widgets.r2ErrorRateSlider.valueChanged.connect(self.update_error_rate_labels)
+
+        # Initialize with current values
+        self.update_error_rate_labels()
+
+    def update_error_rate_labels(self):
+        r1_value = self.widgets.r1ErrorRateSlider.value() / 100
+        r2_value = self.widgets.r2ErrorRateSlider.value() / 100
+        self.widgets.r1ErrorRateValueLabel.setText(f" {r1_value:.2f}")
+        self.widgets.r2ErrorRateValueLabel.setText(f" {r2_value:.2f}")
 
     def select_read(self, num):
         file, _ = QFileDialog.getOpenFileName(
@@ -154,6 +168,9 @@ class RunConfiguration:
         self.widgets.qcBeforeCheckbox.setChecked(Settings.METADATA.get("qc_before", True))
         self.widgets.readLenCheckbox.setChecked(Settings.METADATA.get("read_len", True))
 
+        # --- REFERENCE_GENOMES ---
+        self.widgets.referenceGenomeComboBox.setCurrentText(Settings.METADATA.get("reference_genome", ""))
+
         # --- FINAL UPDATES ---
         self.update_docker_stack()
         self.check_and_save_docker_path()
@@ -195,6 +212,10 @@ class RunConfiguration:
         Settings.METADATA.set("qc_after", self.widgets.qcAfterCheckbox.isChecked())
         Settings.METADATA.set("qc_before", self.widgets.qcBeforeCheckbox.isChecked())
         Settings.METADATA.set("read_len", self.widgets.readLenCheckbox.isChecked())
+
+        # --- REFERENCE_GENOMES ---
+        Settings.METADATA.set("reference_genome", self.widgets.referenceGenomeComboBox.currentText())
+        Settings.METADATA.set("reference_genome_url", self.reference_genomes[self.widgets.referenceGenomeComboBox.currentText()])
 
     def on_configure_button_clicked(self, page, button):
         if(self.selectedButton == button): return
@@ -295,6 +316,9 @@ class RunConfiguration:
             self.widgets.qcBeforeCheckbox.setChecked(True)
             self.widgets.readLenCheckbox.setChecked(True)
 
+            # --- REFERENCE_GENOMES ---
+            self.widgets.referenceGenomeComboBox.setCurrentIndex(0)
+
             # --- Update dependent logic ---
             self.on_umi_checkbox_state_changed(self.widgets.umiCheckbox.checkState())
 
@@ -309,7 +333,15 @@ class RunConfiguration:
             self.widgets.umiInput.hide()
             self.widgets.trimmingTabs.setTabEnabled(2, False)
 
-    def get_nc_folder_contents(self, manager: QNetworkAccessManager, share_token: str):
+    def populate_reference_genome_combo_box(self, manager: QNetworkAccessManager, share_token: str):
+        def strip_all_extensions(filename: str) -> str:
+            name = filename
+            while True:
+                name, ext = os.path.splitext(name)
+                if not ext:
+                    break
+            return name
+
         base_url = "https://nc.liam-w.com"
         webdav_url = f"{base_url}/public.php/webdav/"
 
@@ -325,7 +357,6 @@ class RunConfiguration:
         auth_header = base64.b64encode(f"{share_token}:".encode()).decode()
         request.setRawHeader(b"Authorization", f"Basic {auth_header}".encode())
 
-        # Keep a reference so it doesn't get GC'd
         self._current_reply = manager.sendCustomRequest(request, b"PROPFIND", propfind_body)
 
         @Slot()
@@ -341,7 +372,7 @@ class RunConfiguration:
 
             files = [
                 resp.find('d:href', ns).text.rstrip('/').split('/')[-1]
-                for resp in root.findall('d:response', ns)[1:]  # skip folder itself
+                for resp in root.findall('d:response', ns)[1:]
             ]
 
             file_download_urls = [
@@ -349,11 +380,23 @@ class RunConfiguration:
                 for f in files
             ]
 
-            print("Files in share:", files)
-            for url in file_download_urls:
-                print("Download URL:", url)
+            # Strip extensions and build mapping: {name_without_ext: url}
+            for filename, url in zip(files, file_download_urls):
+                clean_name = strip_all_extensions(filename)
+                self.reference_genomes[clean_name] = url
 
-            # Release reference
+            # Save using self.settings
+            self.settings.set("REFERENCE_GENOMES", self.reference_genomes)
+
+            # Populate combo box
+            combo = self.widgets.referenceGenomeComboBox
+            combo.clear()
+            for name, url in self.reference_genomes.items():
+                combo.addItem(name, userData=url)
+
+            if combo.count() > 0:
+                combo.setCurrentIndex(0)
+
             self._current_reply = None
 
         self._current_reply.finished.connect(handle_reply)
