@@ -2678,7 +2678,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                 <item>
                                  <widget class="QStackedWidget" name="dockerStackedWidget">
                                   <property name="currentIndex">
-                                   <number>0</number>
+                                   <number>1</number>
                                   </property>
                                   <widget class="QWidget" name="local">
                                    <layout class="QVBoxLayout" name="verticalLayout">
@@ -2717,6 +2717,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                        </property>
                                        <item row="0" column="0">
                                         <widget class="QStackedWidget" name="isInstalledStackedWidget">
+                                         <property name="currentIndex">
+                                          <number>1</number>
+                                         </property>
                                          <widget class="QWidget" name="isInstalled">
                                           <layout class="QVBoxLayout" name="verticalLayout">
                                            <property name="spacing">
@@ -2752,19 +2755,71 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                               <property name="spacing">
                                                <number>0</number>
                                               </property>
-                                              <item row="0" column="0">
-                                               <widget class="QLabel" name="label_8">
+                                              <item row="1" column="2">
+                                               <widget class="QLabel" name="dockerFoundLabel">
+                                                <property name="styleSheet">
+                                                 <string notr="true">color: green; font-weight: bold;</string>
+                                                </property>
                                                 <property name="text">
-                                                 <string>✅ Docker installed</string>
+                                                 <string>Docker found! We will take care of the rest</string>
                                                 </property>
                                                </widget>
                                               </item>
-                                              <item row="1" column="0">
-                                               <widget class="QLabel" name="label_9">
-                                                <property name="text">
-                                                 <string>We will take care of the rest</string>
+                                              <item row="1" column="1">
+                                               <widget class="QFrame" name="dockerSuccessIcon">
+                                                <property name="minimumSize">
+                                                 <size>
+                                                  <width>84</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                                <property name="styleSheet">
+                                                 <string notr="true">
+						    background-image: url(:/icons/images/icons/cil-smile.png);
+						    background-position: center;
+						    background-repeat: no-repeat;
+						   </string>
                                                 </property>
                                                </widget>
+                                              </item>
+                                              <item row="0" column="1" colspan="2">
+                                               <spacer name="verticalSpacer_21">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Vertical</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>20</width>
+                                                  <height>40</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="2" column="1" colspan="2">
+                                               <spacer name="verticalSpacer_20">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Vertical</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>20</width>
+                                                  <height>40</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="1" column="3">
+                                               <spacer name="horizontalSpacer_15">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>40</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
                                               </item>
                                              </layout>
                                             </widget>
@@ -2806,36 +2861,219 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                               <property name="spacing">
                                                <number>0</number>
                                               </property>
-                                              <item row="0" column="0">
-                                               <widget class="QLabel" name="label_6">
-                                                <property name="text">
-                                                 <string>🚫 Docker not installed</string>
+                                              <item row="0" column="0" colspan="8">
+                                               <spacer name="verticalSpacer_19">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Vertical</enum>
                                                 </property>
-                                               </widget>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>20</width>
+                                                  <height>40</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
                                               </item>
-                                              <item row="2" column="0">
-                                               <widget class="QCommandLinkButton" name="commandLinkButton_2">
-                                                <property name="text">
-                                                 <string>CommandLinkButton</string>
+                                              <item row="8" column="0" colspan="8">
+                                               <spacer name="verticalSpacer_24">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Vertical</enum>
                                                 </property>
-                                               </widget>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>20</width>
+                                                  <height>40</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="5" column="6">
+                                               <spacer name="horizontalSpacer_19">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>40</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="5" column="5">
+                                               <spacer name="horizontalSpacer_18">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>40</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="4" column="0" colspan="8">
+                                               <spacer name="verticalSpacer_23">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Vertical</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>20</width>
+                                                  <height>40</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
                                               </item>
                                               <item row="1" column="0">
-                                               <widget class="QLabel" name="label_7">
-                                                <property name="text">
-                                                 <string>I couldn't find a working Docker installation on your system. Docker is required to run the LAM-PCR pipeline locally. </string>
+                                               <widget class="QFrame" name="dockerErrorIcon">
+                                                <property name="minimumSize">
+                                                 <size>
+                                                  <width>84</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                                <property name="styleSheet">
+                                                 <string notr="true">
+						    background-image: url(:/icons/images/icons/cil-frown.png);
+						    background-position: center;
+						    background-repeat: no-repeat;
+						   </string>
+                                                </property>
+                                                <property name="frameShape">
+                                                 <enum>QFrame::Shape::StyledPanel</enum>
+                                                </property>
+                                                <property name="frameShadow">
+                                                 <enum>QFrame::Shadow::Raised</enum>
                                                 </property>
                                                </widget>
                                               </item>
-                                              <item row="3" column="0">
-                                               <widget class="QLineEdit" name="lineEdit_4"/>
-                                              </item>
-                                              <item row="4" column="0">
-                                               <widget class="QPushButton" name="pushButton_3">
+                                              <item row="3" column="0" colspan="8">
+                                               <widget class="QLabel" name="DockerNotFoundDescriptionLabel">
                                                 <property name="text">
-                                                 <string>PushButton</string>
+                                                 <string notr="true">&lt;html&gt;&lt;body&gt;I couldn't find a working Docker installation on your system. Docker is required to run the qsLAM_PCR pipeline locally. &lt;a href=&quot;https://docs.docker.com/get-docker/&quot; style=&quot;color:#0066cc; text-decoration:none;&quot;&gt;Install Docker&lt;/a&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                                                </property>
+                                                <property name="textFormat">
+                                                 <enum>Qt::TextFormat::RichText</enum>
+                                                </property>
+                                                <property name="wordWrap">
+                                                 <bool>true</bool>
+                                                </property>
+                                                <property name="openExternalLinks">
+                                                 <bool>true</bool>
+                                                </property>
+                                                <property name="textInteractionFlags">
+                                                 <set>Qt::TextInteractionFlag::TextBrowserInteraction</set>
                                                 </property>
                                                </widget>
+                                              </item>
+                                              <item row="5" column="3">
+                                               <widget class="QLineEdit" name="dockerPathInput">
+                                                <property name="text">
+                                                 <string>docker</string>
+                                                </property>
+                                               </widget>
+                                              </item>
+                                              <item row="1" column="2" colspan="3">
+                                               <widget class="QLabel" name="dockerNotFoundLabel">
+                                                <property name="styleSheet">
+                                                 <string notr="true">color: red; font-weight: bold;</string>
+                                                </property>
+                                                <property name="text">
+                                                 <string>Docker not found on your computer!</string>
+                                                </property>
+                                               </widget>
+                                              </item>
+                                              <item row="2" column="0" colspan="8">
+                                               <spacer name="verticalSpacer_22">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Vertical</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>20</width>
+                                                  <height>40</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="5" column="4">
+                                               <spacer name="horizontalSpacer_17">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>40</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="5" column="0">
+                                               <widget class="QLabel" name="dockerPathLabel">
+                                                <property name="text">
+                                                 <string>Docker path:</string>
+                                                </property>
+                                               </widget>
+                                              </item>
+                                              <item row="6" column="0" colspan="8">
+                                               <spacer name="verticalSpacer_17">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Vertical</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>20</width>
+                                                  <height>40</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="5" column="7">
+                                               <widget class="QPushButton" name="checkAgainButton">
+                                                <property name="minimumSize">
+                                                 <size>
+                                                  <width>50</width>
+                                                  <height>30</height>
+                                                 </size>
+                                                </property>
+                                                <property name="font">
+                                                 <font>
+                                                  <family>Segoe UI</family>
+                                                  <pointsize>10</pointsize>
+                                                  <italic>false</italic>
+                                                  <bold>false</bold>
+                                                 </font>
+                                                </property>
+                                                <property name="cursor">
+                                                 <cursorShape>PointingHandCursor</cursorShape>
+                                                </property>
+                                                <property name="styleSheet">
+                                                 <string notr="true">background-color: rgb(255, 255, 255);</string>
+                                                </property>
+                                                <property name="text">
+                                                 <string>Check Again</string>
+                                                </property>
+                                                <property name="icon">
+                                                 <iconset resource="resources.qrc">
+                                                  <normaloff>:/icons/images/icons/cil-reload.png</normaloff>:/icons/images/icons/cil-reload.png</iconset>
+                                                </property>
+                                               </widget>
+                                              </item>
+                                              <item row="1" column="5" colspan="3">
+                                               <spacer name="horizontalSpacer_16">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>40</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
                                               </item>
                                              </layout>
                                             </widget>
@@ -2885,7 +3123,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                         <number>0</number>
                                        </property>
                                        <item row="7" column="2">
-                                        <widget class="QRadioButton" name="radioButton">
+                                        <widget class="QRadioButton" name="httpRadio">
                                          <property name="text">
                                           <string>Http</string>
                                          </property>
@@ -2931,19 +3169,43 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                         </spacer>
                                        </item>
                                        <item row="9" column="0" colspan="4">
-                                        <widget class="QCommandLinkButton" name="commandLinkButton">
+                                        <widget class="QCommandLinkButton" name="usePublicServerButton">
                                          <property name="text">
                                           <string>Want to use our public test server instead?</string>
                                          </property>
                                         </widget>
                                        </item>
                                        <item row="3" column="1" colspan="4">
-                                        <widget class="QLineEdit" name="lineEdit_2"/>
+                                        <widget class="QLineEdit" name="portInput"/>
                                        </item>
                                        <item row="9" column="7">
-                                        <widget class="QPushButton" name="pushButton">
+                                        <widget class="QPushButton" name="testConnectionButton">
+                                         <property name="minimumSize">
+                                          <size>
+                                           <width>50</width>
+                                           <height>30</height>
+                                          </size>
+                                         </property>
+                                         <property name="font">
+                                          <font>
+                                           <family>Segoe UI</family>
+                                           <pointsize>10</pointsize>
+                                           <italic>false</italic>
+                                           <bold>false</bold>
+                                          </font>
+                                         </property>
+                                         <property name="cursor">
+                                          <cursorShape>PointingHandCursor</cursorShape>
+                                         </property>
+                                         <property name="styleSheet">
+                                          <string notr="true">background-color: rgb(255, 255, 255);</string>
+                                         </property>
                                          <property name="text">
                                           <string>Test Connection</string>
+                                         </property>
+                                         <property name="icon">
+                                          <iconset resource="resources.qrc">
+                                           <normaloff>:/icons/images/icons/cil-link.png</normaloff>:/icons/images/icons/cil-link.png</iconset>
                                          </property>
                                         </widget>
                                        </item>
@@ -2961,14 +3223,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                         </spacer>
                                        </item>
                                        <item row="1" column="0">
-                                        <widget class="QLabel" name="label">
+                                        <widget class="QLabel" name="ipAddressLabel">
                                          <property name="text">
                                           <string>IP Address</string>
                                          </property>
                                         </widget>
                                        </item>
                                        <item row="5" column="0">
-                                        <widget class="QLabel" name="label_3">
+                                        <widget class="QLabel" name="authTokenLabel">
                                          <property name="text">
                                           <string>Authentication Token</string>
                                          </property>
@@ -2988,27 +3250,27 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                         </spacer>
                                        </item>
                                        <item row="3" column="0">
-                                        <widget class="QLabel" name="label_2">
+                                        <widget class="QLabel" name="portLabel">
                                          <property name="text">
                                           <string>Port</string>
                                          </property>
                                         </widget>
                                        </item>
                                        <item row="1" column="1" colspan="4">
-                                        <widget class="QLineEdit" name="lineEdit_3"/>
+                                        <widget class="QLineEdit" name="ipAddressInput"/>
                                        </item>
                                        <item row="7" column="0">
-                                        <widget class="QLabel" name="label_5">
+                                        <widget class="QLabel" name="protocolLabel">
                                          <property name="text">
                                           <string>Protocol</string>
                                          </property>
                                         </widget>
                                        </item>
                                        <item row="5" column="1" colspan="4">
-                                        <widget class="QLineEdit" name="lineEdit"/>
+                                        <widget class="QLineEdit" name="authTokenInput"/>
                                        </item>
                                        <item row="7" column="4">
-                                        <widget class="QRadioButton" name="radioButton_2">
+                                        <widget class="QRadioButton" name="httpsRadio">
                                          <property name="text">
                                           <string>Https</string>
                                          </property>

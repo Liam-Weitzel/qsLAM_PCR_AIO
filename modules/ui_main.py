@@ -1285,119 +1285,199 @@ class Ui_MainWindow(object):
         self.gridLayout1 = QGridLayout(self.grid)
         self.gridLayout1.setSpacing(0)
         self.gridLayout1.setObjectName(u"gridLayout1")
-
-        self.verticalLayout4.addWidget(self.grid)
-
-        self.dockerStackedWidget.addWidget(self.local)
-        self.remote = QWidget()
-        self.remote.setObjectName(u"remote")
-        self.verticalLayout5 = QVBoxLayout(self.remote)
+        self.isInstalledStackedWidget = QStackedWidget(self.grid)
+        self.isInstalledStackedWidget.setObjectName(u"isInstalledStackedWidget")
+        self.isInstalled = QWidget()
+        self.isInstalled.setObjectName(u"isInstalled")
+        self.verticalLayout5 = QVBoxLayout(self.isInstalled)
         self.verticalLayout5.setSpacing(10)
         self.verticalLayout5.setObjectName(u"verticalLayout5")
         self.verticalLayout5.setProperty(u"leftmargin", 10)
         self.verticalLayout5.setProperty(u"topmargin", 10)
         self.verticalLayout5.setProperty(u"rightmargin", 10)
         self.verticalLayout5.setProperty(u"bottommargin", 10)
-        self.grid1 = QFrame(self.remote)
+        self.grid1 = QFrame(self.isInstalled)
         self.grid1.setObjectName(u"grid1")
         self.grid1.setProperty(u"minimumsize", QSize(0, 70))
         self.grid1.setProperty(u"maximumsize", QSize(16777215, 70))
         self.gridLayout2 = QGridLayout(self.grid1)
         self.gridLayout2.setSpacing(0)
         self.gridLayout2.setObjectName(u"gridLayout2")
-        self.radioButton = QRadioButton(self.grid1)
-        self.radioButton.setObjectName(u"radioButton")
+        self.label_8 = QLabel(self.grid1)
+        self.label_8.setObjectName(u"label_8")
 
-        self.gridLayout2.addWidget(self.radioButton, 7, 2, 1, 1)
+        self.gridLayout2.addWidget(self.label_8, 0, 0, 1, 1)
 
-        self.horizontalSpacer_13 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.label_9 = QLabel(self.grid1)
+        self.label_9.setObjectName(u"label_9")
 
-        self.gridLayout2.addItem(self.horizontalSpacer_13, 7, 5, 1, 1)
-
-        self.verticalSpacer_13 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout2.addItem(self.verticalSpacer_13, 2, 0, 1, 8)
-
-        self.verticalSpacer_15 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout2.addItem(self.verticalSpacer_15, 6, 0, 1, 8)
-
-        self.verticalSpacer_12 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout2.addItem(self.verticalSpacer_12, 0, 0, 1, 8)
-
-        self.commandLinkButton = QCommandLinkButton(self.grid1)
-        self.commandLinkButton.setObjectName(u"commandLinkButton")
-
-        self.gridLayout2.addWidget(self.commandLinkButton, 9, 0, 1, 4)
-
-        self.lineEdit_2 = QLineEdit(self.grid1)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
-
-        self.gridLayout2.addWidget(self.lineEdit_2, 3, 1, 1, 4)
-
-        self.pushButton = QPushButton(self.grid1)
-        self.pushButton.setObjectName(u"pushButton")
-
-        self.gridLayout2.addWidget(self.pushButton, 9, 7, 1, 1)
-
-        self.verticalSpacer_18 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout2.addItem(self.verticalSpacer_18, 8, 0, 1, 8)
-
-        self.label = QLabel(self.grid1)
-        self.label.setObjectName(u"label")
-
-        self.gridLayout2.addWidget(self.label, 1, 0, 1, 1)
-
-        self.label_3 = QLabel(self.grid1)
-        self.label_3.setObjectName(u"label_3")
-
-        self.gridLayout2.addWidget(self.label_3, 5, 0, 1, 1)
-
-        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout2.addItem(self.horizontalSpacer_11, 7, 1, 1, 1)
-
-        self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout2.addItem(self.horizontalSpacer_12, 7, 7, 1, 1)
-
-        self.label_2 = QLabel(self.grid1)
-        self.label_2.setObjectName(u"label_2")
-
-        self.gridLayout2.addWidget(self.label_2, 3, 0, 1, 1)
-
-        self.lineEdit_3 = QLineEdit(self.grid1)
-        self.lineEdit_3.setObjectName(u"lineEdit_3")
-
-        self.gridLayout2.addWidget(self.lineEdit_3, 1, 1, 1, 4)
-
-        self.label_5 = QLabel(self.grid1)
-        self.label_5.setObjectName(u"label_5")
-
-        self.gridLayout2.addWidget(self.label_5, 7, 0, 1, 1)
-
-        self.lineEdit = QLineEdit(self.grid1)
-        self.lineEdit.setObjectName(u"lineEdit")
-
-        self.gridLayout2.addWidget(self.lineEdit, 5, 1, 1, 4)
-
-        self.radioButton_2 = QRadioButton(self.grid1)
-        self.radioButton_2.setObjectName(u"radioButton_2")
-
-        self.gridLayout2.addWidget(self.radioButton_2, 7, 4, 1, 1)
-
-        self.verticalSpacer_14 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout2.addItem(self.verticalSpacer_14, 4, 0, 1, 8)
-
-        self.horizontalSpacer_14 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout2.addItem(self.horizontalSpacer_14, 7, 3, 1, 1)
+        self.gridLayout2.addWidget(self.label_9, 1, 0, 1, 1)
 
 
         self.verticalLayout5.addWidget(self.grid1)
+
+        self.isInstalledStackedWidget.addWidget(self.isInstalled)
+        self.notInstalled = QWidget()
+        self.notInstalled.setObjectName(u"notInstalled")
+        self.verticalLayout6 = QVBoxLayout(self.notInstalled)
+        self.verticalLayout6.setSpacing(10)
+        self.verticalLayout6.setObjectName(u"verticalLayout6")
+        self.verticalLayout6.setProperty(u"leftmargin", 10)
+        self.verticalLayout6.setProperty(u"topmargin", 10)
+        self.verticalLayout6.setProperty(u"rightmargin", 10)
+        self.verticalLayout6.setProperty(u"bottommargin", 10)
+        self.grid2 = QFrame(self.notInstalled)
+        self.grid2.setObjectName(u"grid2")
+        self.grid2.setProperty(u"minimumsize", QSize(0, 70))
+        self.grid2.setProperty(u"maximumsize", QSize(16777215, 70))
+        self.gridLayout3 = QGridLayout(self.grid2)
+        self.gridLayout3.setSpacing(0)
+        self.gridLayout3.setObjectName(u"gridLayout3")
+        self.label_6 = QLabel(self.grid2)
+        self.label_6.setObjectName(u"label_6")
+
+        self.gridLayout3.addWidget(self.label_6, 0, 0, 1, 1)
+
+        self.commandLinkButton_2 = QCommandLinkButton(self.grid2)
+        self.commandLinkButton_2.setObjectName(u"commandLinkButton_2")
+
+        self.gridLayout3.addWidget(self.commandLinkButton_2, 2, 0, 1, 1)
+
+        self.label_7 = QLabel(self.grid2)
+        self.label_7.setObjectName(u"label_7")
+
+        self.gridLayout3.addWidget(self.label_7, 1, 0, 1, 1)
+
+        self.lineEdit_4 = QLineEdit(self.grid2)
+        self.lineEdit_4.setObjectName(u"lineEdit_4")
+
+        self.gridLayout3.addWidget(self.lineEdit_4, 3, 0, 1, 1)
+
+        self.pushButton_3 = QPushButton(self.grid2)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+
+        self.gridLayout3.addWidget(self.pushButton_3, 4, 0, 1, 1)
+
+
+        self.verticalLayout6.addWidget(self.grid2)
+
+        self.isInstalledStackedWidget.addWidget(self.notInstalled)
+
+        self.gridLayout1.addWidget(self.isInstalledStackedWidget, 0, 0, 1, 1)
+
+
+        self.verticalLayout4.addWidget(self.grid)
+
+        self.dockerStackedWidget.addWidget(self.local)
+        self.remote = QWidget()
+        self.remote.setObjectName(u"remote")
+        self.verticalLayout7 = QVBoxLayout(self.remote)
+        self.verticalLayout7.setSpacing(10)
+        self.verticalLayout7.setObjectName(u"verticalLayout7")
+        self.verticalLayout7.setProperty(u"leftmargin", 10)
+        self.verticalLayout7.setProperty(u"topmargin", 10)
+        self.verticalLayout7.setProperty(u"rightmargin", 10)
+        self.verticalLayout7.setProperty(u"bottommargin", 10)
+        self.grid3 = QFrame(self.remote)
+        self.grid3.setObjectName(u"grid3")
+        self.grid3.setProperty(u"minimumsize", QSize(0, 70))
+        self.grid3.setProperty(u"maximumsize", QSize(16777215, 70))
+        self.gridLayout4 = QGridLayout(self.grid3)
+        self.gridLayout4.setSpacing(0)
+        self.gridLayout4.setObjectName(u"gridLayout4")
+        self.radioButton = QRadioButton(self.grid3)
+        self.radioButton.setObjectName(u"radioButton")
+
+        self.gridLayout4.addWidget(self.radioButton, 7, 2, 1, 1)
+
+        self.verticalSpacer_13 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout4.addItem(self.verticalSpacer_13, 2, 0, 1, 8)
+
+        self.verticalSpacer_15 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout4.addItem(self.verticalSpacer_15, 6, 0, 1, 8)
+
+        self.verticalSpacer_12 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout4.addItem(self.verticalSpacer_12, 0, 0, 1, 8)
+
+        self.commandLinkButton = QCommandLinkButton(self.grid3)
+        self.commandLinkButton.setObjectName(u"commandLinkButton")
+
+        self.gridLayout4.addWidget(self.commandLinkButton, 9, 0, 1, 4)
+
+        self.lineEdit_2 = QLineEdit(self.grid3)
+        self.lineEdit_2.setObjectName(u"lineEdit_2")
+
+        self.gridLayout4.addWidget(self.lineEdit_2, 3, 1, 1, 4)
+
+        self.pushButton = QPushButton(self.grid3)
+        self.pushButton.setObjectName(u"pushButton")
+
+        self.gridLayout4.addWidget(self.pushButton, 9, 7, 1, 1)
+
+        self.verticalSpacer_18 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout4.addItem(self.verticalSpacer_18, 8, 0, 1, 8)
+
+        self.label = QLabel(self.grid3)
+        self.label.setObjectName(u"label")
+
+        self.gridLayout4.addWidget(self.label, 1, 0, 1, 1)
+
+        self.label_3 = QLabel(self.grid3)
+        self.label_3.setObjectName(u"label_3")
+
+        self.gridLayout4.addWidget(self.label_3, 5, 0, 1, 1)
+
+        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout4.addItem(self.horizontalSpacer_11, 7, 1, 1, 1)
+
+        self.label_2 = QLabel(self.grid3)
+        self.label_2.setObjectName(u"label_2")
+
+        self.gridLayout4.addWidget(self.label_2, 3, 0, 1, 1)
+
+        self.lineEdit_3 = QLineEdit(self.grid3)
+        self.lineEdit_3.setObjectName(u"lineEdit_3")
+
+        self.gridLayout4.addWidget(self.lineEdit_3, 1, 1, 1, 4)
+
+        self.label_5 = QLabel(self.grid3)
+        self.label_5.setObjectName(u"label_5")
+
+        self.gridLayout4.addWidget(self.label_5, 7, 0, 1, 1)
+
+        self.lineEdit = QLineEdit(self.grid3)
+        self.lineEdit.setObjectName(u"lineEdit")
+
+        self.gridLayout4.addWidget(self.lineEdit, 5, 1, 1, 4)
+
+        self.radioButton_2 = QRadioButton(self.grid3)
+        self.radioButton_2.setObjectName(u"radioButton_2")
+
+        self.gridLayout4.addWidget(self.radioButton_2, 7, 4, 1, 1)
+
+        self.verticalSpacer_14 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout4.addItem(self.verticalSpacer_14, 4, 0, 1, 8)
+
+        self.horizontalSpacer_14 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout4.addItem(self.horizontalSpacer_14, 7, 3, 1, 1)
+
+        self.horizontalSpacer_13 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout4.addItem(self.horizontalSpacer_13, 7, 5, 1, 1)
+
+        self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout4.addItem(self.horizontalSpacer_12, 7, 7, 1, 1)
+
+
+        self.verticalLayout7.addWidget(self.grid3)
 
         self.dockerStackedWidget.addWidget(self.remote)
 
@@ -1409,34 +1489,34 @@ class Ui_MainWindow(object):
         self.configStackedWidget.addWidget(self.docker)
         self.trimming = QWidget()
         self.trimming.setObjectName(u"trimming")
-        self.verticalLayout6 = QVBoxLayout(self.trimming)
-        self.verticalLayout6.setSpacing(10)
-        self.verticalLayout6.setObjectName(u"verticalLayout6")
-        self.verticalLayout6.setProperty(u"leftmargin", 10)
-        self.verticalLayout6.setProperty(u"topmargin", 10)
-        self.verticalLayout6.setProperty(u"rightmargin", 10)
-        self.verticalLayout6.setProperty(u"bottommargin", 10)
+        self.verticalLayout8 = QVBoxLayout(self.trimming)
+        self.verticalLayout8.setSpacing(10)
+        self.verticalLayout8.setObjectName(u"verticalLayout8")
+        self.verticalLayout8.setProperty(u"leftmargin", 10)
+        self.verticalLayout8.setProperty(u"topmargin", 10)
+        self.verticalLayout8.setProperty(u"rightmargin", 10)
+        self.verticalLayout8.setProperty(u"bottommargin", 10)
         self.row_12 = QFrame(self.trimming)
         self.row_12.setObjectName(u"row_12")
         self.row_12.setProperty(u"minimumsize", QSize(0, 70))
         self.row_12.setProperty(u"maximumsize", QSize(16777215, 70))
-        self.verticalLayout7 = QVBoxLayout(self.row_12)
-        self.verticalLayout7.setSpacing(0)
-        self.verticalLayout7.setObjectName(u"verticalLayout7")
-        self.verticalLayout7.setProperty(u"leftmargin", 0)
-        self.verticalLayout7.setProperty(u"topmargin", 0)
-        self.verticalLayout7.setProperty(u"rightmargin", 0)
-        self.verticalLayout7.setProperty(u"bottommargin", 0)
+        self.verticalLayout9 = QVBoxLayout(self.row_12)
+        self.verticalLayout9.setSpacing(0)
+        self.verticalLayout9.setObjectName(u"verticalLayout9")
+        self.verticalLayout9.setProperty(u"leftmargin", 0)
+        self.verticalLayout9.setProperty(u"topmargin", 0)
+        self.verticalLayout9.setProperty(u"rightmargin", 0)
+        self.verticalLayout9.setProperty(u"bottommargin", 0)
 
-        self.verticalLayout6.addWidget(self.row_12)
+        self.verticalLayout8.addWidget(self.row_12)
 
         self.row_22 = QFrame(self.trimming)
         self.row_22.setObjectName(u"row_22")
         self.row_22.setProperty(u"minimumsize", QSize(0, 150))
-        self.verticalLayout8 = QVBoxLayout(self.row_22)
-        self.verticalLayout8.setObjectName(u"verticalLayout8")
+        self.verticalLayout10 = QVBoxLayout(self.row_22)
+        self.verticalLayout10.setObjectName(u"verticalLayout10")
 
-        self.verticalLayout6.addWidget(self.row_22)
+        self.verticalLayout8.addWidget(self.row_22)
 
         self.row_31 = QFrame(self.trimming)
         self.row_31.setObjectName(u"row_31")
@@ -1449,39 +1529,39 @@ class Ui_MainWindow(object):
         self.horizontalLayout1.setProperty(u"rightmargin", 0)
         self.horizontalLayout1.setProperty(u"bottommargin", 0)
 
-        self.verticalLayout6.addWidget(self.row_31)
+        self.verticalLayout8.addWidget(self.row_31)
 
         self.configStackedWidget.addWidget(self.trimming)
         self.ref_genome = QWidget()
         self.ref_genome.setObjectName(u"ref_genome")
-        self.verticalLayout9 = QVBoxLayout(self.ref_genome)
-        self.verticalLayout9.setSpacing(10)
-        self.verticalLayout9.setObjectName(u"verticalLayout9")
-        self.verticalLayout9.setProperty(u"leftmargin", 10)
-        self.verticalLayout9.setProperty(u"topmargin", 10)
-        self.verticalLayout9.setProperty(u"rightmargin", 10)
-        self.verticalLayout9.setProperty(u"bottommargin", 10)
+        self.verticalLayout11 = QVBoxLayout(self.ref_genome)
+        self.verticalLayout11.setSpacing(10)
+        self.verticalLayout11.setObjectName(u"verticalLayout11")
+        self.verticalLayout11.setProperty(u"leftmargin", 10)
+        self.verticalLayout11.setProperty(u"topmargin", 10)
+        self.verticalLayout11.setProperty(u"rightmargin", 10)
+        self.verticalLayout11.setProperty(u"bottommargin", 10)
         self.row_13 = QFrame(self.ref_genome)
         self.row_13.setObjectName(u"row_13")
         self.row_13.setProperty(u"minimumsize", QSize(0, 70))
         self.row_13.setProperty(u"maximumsize", QSize(16777215, 70))
-        self.verticalLayout10 = QVBoxLayout(self.row_13)
-        self.verticalLayout10.setSpacing(0)
-        self.verticalLayout10.setObjectName(u"verticalLayout10")
-        self.verticalLayout10.setProperty(u"leftmargin", 0)
-        self.verticalLayout10.setProperty(u"topmargin", 0)
-        self.verticalLayout10.setProperty(u"rightmargin", 0)
-        self.verticalLayout10.setProperty(u"bottommargin", 0)
+        self.verticalLayout12 = QVBoxLayout(self.row_13)
+        self.verticalLayout12.setSpacing(0)
+        self.verticalLayout12.setObjectName(u"verticalLayout12")
+        self.verticalLayout12.setProperty(u"leftmargin", 0)
+        self.verticalLayout12.setProperty(u"topmargin", 0)
+        self.verticalLayout12.setProperty(u"rightmargin", 0)
+        self.verticalLayout12.setProperty(u"bottommargin", 0)
 
-        self.verticalLayout9.addWidget(self.row_13)
+        self.verticalLayout11.addWidget(self.row_13)
 
         self.row_23 = QFrame(self.ref_genome)
         self.row_23.setObjectName(u"row_23")
         self.row_23.setProperty(u"minimumsize", QSize(0, 150))
-        self.verticalLayout11 = QVBoxLayout(self.row_23)
-        self.verticalLayout11.setObjectName(u"verticalLayout11")
+        self.verticalLayout13 = QVBoxLayout(self.row_23)
+        self.verticalLayout13.setObjectName(u"verticalLayout13")
 
-        self.verticalLayout9.addWidget(self.row_23)
+        self.verticalLayout11.addWidget(self.row_23)
 
         self.row_32 = QFrame(self.ref_genome)
         self.row_32.setObjectName(u"row_32")
@@ -1494,39 +1574,39 @@ class Ui_MainWindow(object):
         self.horizontalLayout2.setProperty(u"rightmargin", 0)
         self.horizontalLayout2.setProperty(u"bottommargin", 0)
 
-        self.verticalLayout9.addWidget(self.row_32)
+        self.verticalLayout11.addWidget(self.row_32)
 
         self.configStackedWidget.addWidget(self.ref_genome)
         self.read_mapping = QWidget()
         self.read_mapping.setObjectName(u"read_mapping")
-        self.verticalLayout12 = QVBoxLayout(self.read_mapping)
-        self.verticalLayout12.setSpacing(10)
-        self.verticalLayout12.setObjectName(u"verticalLayout12")
-        self.verticalLayout12.setProperty(u"leftmargin", 10)
-        self.verticalLayout12.setProperty(u"topmargin", 10)
-        self.verticalLayout12.setProperty(u"rightmargin", 10)
-        self.verticalLayout12.setProperty(u"bottommargin", 10)
+        self.verticalLayout14 = QVBoxLayout(self.read_mapping)
+        self.verticalLayout14.setSpacing(10)
+        self.verticalLayout14.setObjectName(u"verticalLayout14")
+        self.verticalLayout14.setProperty(u"leftmargin", 10)
+        self.verticalLayout14.setProperty(u"topmargin", 10)
+        self.verticalLayout14.setProperty(u"rightmargin", 10)
+        self.verticalLayout14.setProperty(u"bottommargin", 10)
         self.row_14 = QFrame(self.read_mapping)
         self.row_14.setObjectName(u"row_14")
         self.row_14.setProperty(u"minimumsize", QSize(0, 70))
         self.row_14.setProperty(u"maximumsize", QSize(16777215, 70))
-        self.verticalLayout13 = QVBoxLayout(self.row_14)
-        self.verticalLayout13.setSpacing(0)
-        self.verticalLayout13.setObjectName(u"verticalLayout13")
-        self.verticalLayout13.setProperty(u"leftmargin", 0)
-        self.verticalLayout13.setProperty(u"topmargin", 0)
-        self.verticalLayout13.setProperty(u"rightmargin", 0)
-        self.verticalLayout13.setProperty(u"bottommargin", 0)
+        self.verticalLayout15 = QVBoxLayout(self.row_14)
+        self.verticalLayout15.setSpacing(0)
+        self.verticalLayout15.setObjectName(u"verticalLayout15")
+        self.verticalLayout15.setProperty(u"leftmargin", 0)
+        self.verticalLayout15.setProperty(u"topmargin", 0)
+        self.verticalLayout15.setProperty(u"rightmargin", 0)
+        self.verticalLayout15.setProperty(u"bottommargin", 0)
 
-        self.verticalLayout12.addWidget(self.row_14)
+        self.verticalLayout14.addWidget(self.row_14)
 
         self.row_24 = QFrame(self.read_mapping)
         self.row_24.setObjectName(u"row_24")
         self.row_24.setProperty(u"minimumsize", QSize(0, 150))
-        self.verticalLayout14 = QVBoxLayout(self.row_24)
-        self.verticalLayout14.setObjectName(u"verticalLayout14")
+        self.verticalLayout16 = QVBoxLayout(self.row_24)
+        self.verticalLayout16.setObjectName(u"verticalLayout16")
 
-        self.verticalLayout12.addWidget(self.row_24)
+        self.verticalLayout14.addWidget(self.row_24)
 
         self.row_33 = QFrame(self.read_mapping)
         self.row_33.setObjectName(u"row_33")
@@ -1539,39 +1619,39 @@ class Ui_MainWindow(object):
         self.horizontalLayout3.setProperty(u"rightmargin", 0)
         self.horizontalLayout3.setProperty(u"bottommargin", 0)
 
-        self.verticalLayout12.addWidget(self.row_33)
+        self.verticalLayout14.addWidget(self.row_33)
 
         self.configStackedWidget.addWidget(self.read_mapping)
         self.site_analysis = QWidget()
         self.site_analysis.setObjectName(u"site_analysis")
-        self.verticalLayout15 = QVBoxLayout(self.site_analysis)
-        self.verticalLayout15.setSpacing(10)
-        self.verticalLayout15.setObjectName(u"verticalLayout15")
-        self.verticalLayout15.setProperty(u"leftmargin", 10)
-        self.verticalLayout15.setProperty(u"topmargin", 10)
-        self.verticalLayout15.setProperty(u"rightmargin", 10)
-        self.verticalLayout15.setProperty(u"bottommargin", 10)
+        self.verticalLayout17 = QVBoxLayout(self.site_analysis)
+        self.verticalLayout17.setSpacing(10)
+        self.verticalLayout17.setObjectName(u"verticalLayout17")
+        self.verticalLayout17.setProperty(u"leftmargin", 10)
+        self.verticalLayout17.setProperty(u"topmargin", 10)
+        self.verticalLayout17.setProperty(u"rightmargin", 10)
+        self.verticalLayout17.setProperty(u"bottommargin", 10)
         self.row_15 = QFrame(self.site_analysis)
         self.row_15.setObjectName(u"row_15")
         self.row_15.setProperty(u"minimumsize", QSize(0, 70))
         self.row_15.setProperty(u"maximumsize", QSize(16777215, 70))
-        self.verticalLayout16 = QVBoxLayout(self.row_15)
-        self.verticalLayout16.setSpacing(0)
-        self.verticalLayout16.setObjectName(u"verticalLayout16")
-        self.verticalLayout16.setProperty(u"leftmargin", 0)
-        self.verticalLayout16.setProperty(u"topmargin", 0)
-        self.verticalLayout16.setProperty(u"rightmargin", 0)
-        self.verticalLayout16.setProperty(u"bottommargin", 0)
+        self.verticalLayout18 = QVBoxLayout(self.row_15)
+        self.verticalLayout18.setSpacing(0)
+        self.verticalLayout18.setObjectName(u"verticalLayout18")
+        self.verticalLayout18.setProperty(u"leftmargin", 0)
+        self.verticalLayout18.setProperty(u"topmargin", 0)
+        self.verticalLayout18.setProperty(u"rightmargin", 0)
+        self.verticalLayout18.setProperty(u"bottommargin", 0)
 
-        self.verticalLayout15.addWidget(self.row_15)
+        self.verticalLayout17.addWidget(self.row_15)
 
         self.row_25 = QFrame(self.site_analysis)
         self.row_25.setObjectName(u"row_25")
         self.row_25.setProperty(u"minimumsize", QSize(0, 150))
-        self.verticalLayout17 = QVBoxLayout(self.row_25)
-        self.verticalLayout17.setObjectName(u"verticalLayout17")
+        self.verticalLayout19 = QVBoxLayout(self.row_25)
+        self.verticalLayout19.setObjectName(u"verticalLayout19")
 
-        self.verticalLayout15.addWidget(self.row_25)
+        self.verticalLayout17.addWidget(self.row_25)
 
         self.row_34 = QFrame(self.site_analysis)
         self.row_34.setObjectName(u"row_34")
@@ -1584,7 +1664,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout4.setProperty(u"rightmargin", 0)
         self.horizontalLayout4.setProperty(u"bottommargin", 0)
 
-        self.verticalLayout15.addWidget(self.row_34)
+        self.verticalLayout17.addWidget(self.row_34)
 
         self.configStackedWidget.addWidget(self.site_analysis)
 
@@ -1715,10 +1795,10 @@ class Ui_MainWindow(object):
         self.runAnalysisTab = QWidget()
         self.runAnalysisTab.setObjectName(u"runAnalysisTab")
         self.runAnalysisTab.setStyleSheet(u"")
-        self.verticalLayout18 = QVBoxLayout(self.runAnalysisTab)
-        self.verticalLayout18.setSpacing(10)
-        self.verticalLayout18.setObjectName(u"verticalLayout18")
-        self.verticalLayout18.setContentsMargins(10, 10, 10, 10)
+        self.verticalLayout20 = QVBoxLayout(self.runAnalysisTab)
+        self.verticalLayout20.setSpacing(10)
+        self.verticalLayout20.setObjectName(u"verticalLayout20")
+        self.verticalLayout20.setContentsMargins(10, 10, 10, 10)
         self.row_16 = QFrame(self.runAnalysisTab)
         self.row_16.setObjectName(u"row_16")
         self.row_16.setMinimumSize(QSize(0, 50))
@@ -1730,7 +1810,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_161.setObjectName(u"verticalLayout_161")
         self.verticalLayout_161.setContentsMargins(0, 0, 0, 0)
 
-        self.verticalLayout18.addWidget(self.row_16)
+        self.verticalLayout20.addWidget(self.row_16)
 
         self.row_26 = QFrame(self.runAnalysisTab)
         self.row_26.setObjectName(u"row_26")
@@ -1745,7 +1825,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_191.addWidget(self.label_4)
 
 
-        self.verticalLayout18.addWidget(self.row_26)
+        self.verticalLayout20.addWidget(self.row_26)
 
         self.row_35 = QFrame(self.runAnalysisTab)
         self.row_35.setObjectName(u"row_35")
@@ -1757,16 +1837,16 @@ class Ui_MainWindow(object):
         self.horizontalLayout_121.setObjectName(u"horizontalLayout_121")
         self.horizontalLayout_121.setContentsMargins(0, 0, 0, 0)
 
-        self.verticalLayout18.addWidget(self.row_35)
+        self.verticalLayout20.addWidget(self.row_35)
 
         self.stackedWidget.addWidget(self.runAnalysisTab)
         self.runProgressTab = QWidget()
         self.runProgressTab.setObjectName(u"runProgressTab")
         self.runProgressTab.setStyleSheet(u"")
-        self.verticalLayout19 = QVBoxLayout(self.runProgressTab)
-        self.verticalLayout19.setSpacing(10)
-        self.verticalLayout19.setObjectName(u"verticalLayout19")
-        self.verticalLayout19.setContentsMargins(10, 10, 10, 10)
+        self.verticalLayout21 = QVBoxLayout(self.runProgressTab)
+        self.verticalLayout21.setSpacing(10)
+        self.verticalLayout21.setObjectName(u"verticalLayout21")
+        self.verticalLayout21.setContentsMargins(10, 10, 10, 10)
         self.row_17 = QFrame(self.runProgressTab)
         self.row_17.setObjectName(u"row_17")
         self.row_17.setMinimumSize(QSize(0, 70))
@@ -1778,7 +1858,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_162.setObjectName(u"verticalLayout_162")
         self.verticalLayout_162.setContentsMargins(0, 0, 0, 0)
 
-        self.verticalLayout19.addWidget(self.row_17)
+        self.verticalLayout21.addWidget(self.row_17)
 
         self.row_27 = QFrame(self.runProgressTab)
         self.row_27.setObjectName(u"row_27")
@@ -1793,7 +1873,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_192.addWidget(self.stdOut)
 
 
-        self.verticalLayout19.addWidget(self.row_27)
+        self.verticalLayout21.addWidget(self.row_27)
 
         self.row_36 = QFrame(self.runProgressTab)
         self.row_36.setObjectName(u"row_36")
@@ -1858,7 +1938,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_122.addLayout(self.horizontalLayout_6)
 
 
-        self.verticalLayout19.addWidget(self.row_36)
+        self.verticalLayout21.addWidget(self.row_36)
 
         self.stackedWidget.addWidget(self.runProgressTab)
 
@@ -2041,7 +2121,7 @@ class Ui_MainWindow(object):
 
         self.stackedWidget.setCurrentIndex(1)
         self.configStackedWidget.setCurrentIndex(0)
-        self.dockerStackedWidget.setCurrentIndex(1)
+        self.dockerStackedWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -2113,6 +2193,12 @@ class Ui_MainWindow(object):
         self.localRadio.setText(QCoreApplication.translate("MainWindow", u"Local", None))
         self.remoteRadio.setText(QCoreApplication.translate("MainWindow", u"Remote", None))
         self.dockerLabel.setText(QCoreApplication.translate("MainWindow", u"Do you want to run the qsLAM PCR pipeline locally or on a remote server? You can do some trial runs on our public test server.", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Docker installed", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"We will take care of the rest", None))
+        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Docker not installed", None))
+        self.commandLinkButton_2.setText(QCoreApplication.translate("MainWindow", u"CommandLinkButton", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"I couldn't find a working Docker installation on your system. Docker is required to run the LAM-PCR pipeline locally. ", None))
+        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
         self.radioButton.setText(QCoreApplication.translate("MainWindow", u"Http", None))
         self.commandLinkButton.setText(QCoreApplication.translate("MainWindow", u"Want to use our public test server instead?", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Test Connection", None))

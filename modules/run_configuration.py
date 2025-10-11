@@ -31,7 +31,6 @@ class RunConfiguration:
 
         self.widgets.umiCheckbox.stateChanged.connect(lambda: self.on_umi_checkbox_state_changed(self.widgets.umiCheckbox.checkState()))
         self.on_umi_checkbox_state_changed(self.widgets.umiCheckbox.checkState())
-        self.docker_not_installed()
 
     def load_from_metadata(self):
         self.widgets.R1Input.setText(Settings.METADATA.get("r1", ""))
