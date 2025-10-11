@@ -8,6 +8,8 @@ import subprocess
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
+import random
+import string
 
 class RunConfiguration:
     def __init__(self, main_window):
@@ -23,6 +25,11 @@ class RunConfiguration:
         self.widgets.refGenomeConfig.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.ref_genome, self.widgets.refGenomeConfig))
         self.widgets.readMappingConfig.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.read_mapping, self.widgets.readMappingConfig))
         self.widgets.siteAnalysisConfig.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.site_analysis, self.widgets.siteAnalysisConfig))
+        self.r1 = None
+        self.r2 = None
+        self.widgets.r1InputButton.clicked.connect(lambda: self.select_read(1))
+        self.widgets.r2InputButton.clicked.connect(lambda: self.select_read(2))
+        self.update_read_borders()
         self.on_configure_button_clicked(self.widgets.docker, self.widgets.dockerConfig)
 
         self.widgets.saveButton.clicked.connect(self.save_to_metadata)
@@ -32,21 +39,132 @@ class RunConfiguration:
         self.widgets.umiCheckbox.stateChanged.connect(lambda: self.on_umi_checkbox_state_changed(self.widgets.umiCheckbox.checkState()))
         self.on_umi_checkbox_state_changed(self.widgets.umiCheckbox.checkState())
 
+        # DOCKER CONFIG SETUP
+        docker_path = self.settings.get("DOCKER_PATH", "docker")
+        self.widgets.dockerPathInput.setText(docker_path)
+        self.widgets.remoteRadio.setChecked(True)
+        self.widgets.localRadio.setChecked(False)
+        self.widgets.localRadio.toggled.connect(self.update_docker_stack)
+        self.widgets.remoteRadio.toggled.connect(self.update_docker_stack)
+        self.widgets.checkAgainButton.clicked.connect(self.check_and_save_docker_path)
+        self.widgets.usePublicServerButton.clicked.connect(self.use_public_test_server)
+        self.widgets.testConnectionButton.clicked.connect(self.test_connection)
+        self.update_docker_stack()
+        self.check_and_save_docker_path()
+
+    def update_read_borders(self):
+        r1_style = "border: 1px solid green; border-radius: 6px;" if self.r1 else "border: 1px solid red; border-radius: 6px;"
+        r2_style = "border: 1px solid green; border-radius: 6px;" if self.r2 else "border: 1px solid red; border-radius: 6px;"
+
+        self.widgets.r1InputButton.setStyleSheet(r1_style)
+        self.widgets.r2InputButton.setStyleSheet(r2_style)
+
+    def select_read(self, num):
+        file, _ = QFileDialog.getOpenFileName(
+            self.main_window,
+            caption=f"Select your read {num}",
+            filter="*.fastq.gz"
+        )
+        if file:
+            if num == 1:
+                self.r1 = file
+            elif num == 2:
+                self.r2 = file
+        self.update_read_borders()
+
+    def update_docker_stack(self):
+        if self.widgets.localRadio.isChecked():
+            self.widgets.dockerStackedWidget.setCurrentIndex(0)
+        else:
+            self.widgets.dockerStackedWidget.setCurrentIndex(1)
+
+    def check_and_save_docker_path(self):
+        docker_path = self.widgets.dockerPathInput.text() or "docker"
+        if self.is_docker_installed(docker_path):
+            self.settings.set("DOCKER_PATH", docker_path)
+            self.widgets.isInstalledStackedWidget.setCurrentIndex(0)
+        else:
+            self.widgets.isInstalledStackedWidget.setCurrentIndex(1)
+
+    def test_connection(self):
+        # DUMMY FUNC
+        QMessageBox.information(
+            self.main_window,
+            "Connection Test",
+            "✅ Connection works!"
+        )
+
+    def use_public_test_server(self):
+        # DUMMY FUNC
+        random_ip = f"192.168.{random.randint(0, 255)}.{random.randint(0, 255)}"
+        random_port = str(random.randint(1024, 65535))
+        random_token = ''.join(random.choices(string.ascii_letters + string.digits, k=16))
+
+        self.widgets.ipAddressInput.setText(random_ip)
+        self.widgets.portInput.setText(random_port)
+        self.widgets.httpRadio.setChecked(False)
+        self.widgets.httpsRadio.setChecked(True)
+        self.widgets.authTokenInput.setText(random_token)
+
+        self.widgets.remoteRadio.setChecked(True)
+        self.update_docker_stack()
+
     def load_from_metadata(self):
-        self.widgets.R1Input.setText(Settings.METADATA.get("r1", ""))
-        self.widgets.R2Input.setText(Settings.METADATA.get("r2", ""))
-        
+        self.r1 = Settings.METADATA.get("r1", None)
+        self.r2 = Settings.METADATA.get("r2", None)
+        self.update_read_borders()
         umi_enabled = Settings.METADATA.get("umi_enabled", False)
         self.widgets.umiCheckbox.setCheckState(Qt.CheckState.Checked if umi_enabled else Qt.CheckState.Unchecked)
 
         self.widgets.umiInput.setText(Settings.METADATA.get("umi_input", ""))
         self.on_umi_checkbox_state_changed(self.widgets.umiCheckbox.checkState())
 
+        # --- Load Docker mode ---
+        docker_mode = Settings.METADATA.get("docker_mode", "remote")
+        if docker_mode == "local":
+            self.widgets.localRadio.setChecked(True)
+        else:
+            self.widgets.remoteRadio.setChecked(True)
+
+        # --- Load Docker Path ---
+        docker_path = self.settings.get("DOCKER_PATH", "docker")
+        self.widgets.dockerPathInput.setText(docker_path)
+
+        # --- Load Remote Config ---
+        self.widgets.ipAddressInput.setText(Settings.METADATA.get("docker_ip", ""))
+        self.widgets.portInput.setText(Settings.METADATA.get("docker_port", ""))
+        self.widgets.authTokenInput.setText(Settings.METADATA.get("docker_auth_token", ""))
+
+        protocol = Settings.METADATA.get("docker_protocol", "http")
+        if protocol == "https":
+            self.widgets.httpsRadio.setChecked(True)
+        else:
+            self.widgets.httpRadio.setChecked(True)
+
+        # Update widgets
+        self.update_docker_stack()
+        self.check_and_save_docker_path()
+
     def save_to_metadata(self):
-        Settings.METADATA.set("r1", self.widgets.R1Input.text())
-        Settings.METADATA.set("r2", self.widgets.R2Input.text())
+        Settings.METADATA.set("r1", self.r1)
+        Settings.METADATA.set("r2", self.r2)
         Settings.METADATA.set("umi_enabled", self.widgets.umiCheckbox.checkState() == Qt.CheckState.Checked)
         Settings.METADATA.set("umi_input", self.widgets.umiInput.text())
+
+        # --- Save Docker mode ---
+        docker_mode = "local" if self.widgets.localRadio.isChecked() else "remote"
+        Settings.METADATA.set("docker_mode", docker_mode)
+
+        # --- Save Docker path ---
+        Settings.METADATA.set("docker_path", self.widgets.dockerPathInput.text())
+
+        # --- Save Remote Config ---
+        Settings.METADATA.set("docker_ip", self.widgets.ipAddressInput.text().strip())
+        Settings.METADATA.set("docker_port", self.widgets.portInput.text().strip())
+        Settings.METADATA.set("docker_auth_token", self.widgets.authTokenInput.text().strip())
+
+        protocol = "https" if self.widgets.httpsRadio.isChecked() else "http"
+        Settings.METADATA.set("docker_protocol", protocol)
 
     def on_configure_button_clicked(self, page, button):
         if(self.selectedButton == button): return
@@ -67,32 +185,21 @@ class RunConfiguration:
     def is_docker_installed(self, docker_path) -> bool:
         try:
             if docker_path and isinstance(docker_path, str) and docker_path.strip():
-                cmd = [docker_path.strip(), "--version"]
+                cmd = f"{docker_path} --version"
             else:
-                cmd = ["docker", "--version"]
+                cmd = "docker --version"
 
             result = subprocess.run(
                 cmd,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
-                text=True  # ensures output is str, not bytes
+                text=True,
+                shell=True  # execute the whole string in the shell
             )
             return result.returncode == 0
         except (FileNotFoundError, PermissionError, OSError, ValueError) as e:
             print(f"Docker not found or failed to run: {e}")
             return False
-
-    # def docker_not_installed(self):
-    #     docker_path = self.settings.get("DOCKER_PATH", "docker")
-    #
-    #     if self.is_docker_installed(docker_path):
-    #         self.settings.set("DOCKER_PATH", docker_path)
-    #         return
-    #
-    #     def check_again():
-    #         custom_path = docker_path_input.text().strip()
-    #         if self.is_docker_installed(custom_path):
-    #             self.settings.set("DOCKER_PATH", custom_path)
 
     def reset(self):
         """Reset the selected run to what is saved in metadata.json"""
@@ -120,8 +227,6 @@ class RunConfiguration:
         )
 
         if button == QMessageBox.Yes:
-            self.widgets.R1Input.clear()
-            self.widgets.R2Input.clear()
             self.widgets.umiCheckbox.setCheckState(Qt.CheckState.Unchecked)
             self.widgets.umiInput.clear()
             self.on_umi_checkbox_state_changed(self.widgets.umiCheckbox.checkState())

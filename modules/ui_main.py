@@ -1137,38 +1137,78 @@ class Ui_MainWindow(object):
         self.verticalLayout1.setContentsMargins(10, 10, 10, 10)
         self.gridLayout_2 = QGridLayout()
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.saveButton = QPushButton(self.runConfigurationTab)
-        self.saveButton.setObjectName(u"saveButton")
-        self.saveButton.setMinimumSize(QSize(50, 30))
-        self.saveButton.setFont(font)
-        self.saveButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.saveButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon12 = QIcon()
-        icon12.addFile(u":/icons/images/icons/cil-save.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.saveButton.setIcon(icon12)
+        self.verticalSpacer_10 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout_2.addWidget(self.saveButton, 24, 7, 1, 1)
+        self.gridLayout_2.addItem(self.verticalSpacer_10, 6, 0, 1, 2)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_2.addItem(self.horizontalSpacer_2, 23, 5, 1, 1)
+
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_2.addItem(self.horizontalSpacer, 23, 6, 1, 1)
+
+        self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_6, 14, 0, 1, 2)
+
+        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_2.addItem(self.horizontalSpacer_8, 23, 3, 1, 1)
+
+        self.helpButton = QPushButton(self.runConfigurationTab)
+        self.helpButton.setObjectName(u"helpButton")
+        self.helpButton.setMinimumSize(QSize(50, 30))
+        self.helpButton.setFont(font)
+        self.helpButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.helpButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon12 = QIcon()
+        icon12.addFile(u":/icons/images/icons/cil-map.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.helpButton.setIcon(icon12)
+
+        self.gridLayout_2.addWidget(self.helpButton, 23, 8, 1, 1)
+
+        self.R1Label = QLabel(self.runConfigurationTab)
+        self.R1Label.setObjectName(u"R1Label")
+
+        self.gridLayout_2.addWidget(self.R1Label, 0, 0, 2, 1)
+
+        self.verticalSpacer_8 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_8, 20, 0, 1, 2)
 
         self.umiInput = QLineEdit(self.runConfigurationTab)
         self.umiInput.setObjectName(u"umiInput")
 
-        self.gridLayout_2.addWidget(self.umiInput, 6, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.umiInput, 5, 1, 1, 1)
 
-        self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.umiCheckbox = QCheckBox(self.runConfigurationTab)
+        self.umiCheckbox.setObjectName(u"umiCheckbox")
 
-        self.gridLayout_2.addItem(self.verticalSpacer_5, 13, 0, 1, 2)
+        self.gridLayout_2.addWidget(self.umiCheckbox, 5, 0, 1, 1)
 
-        self.trimmingConfig = QPushButton(self.runConfigurationTab)
-        self.trimmingConfig.setObjectName(u"trimmingConfig")
-        self.trimmingConfig.setMinimumSize(QSize(50, 30))
-        self.trimmingConfig.setFont(font)
-        self.trimmingConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.trimmingConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.refGenomeConfig = QPushButton(self.runConfigurationTab)
+        self.refGenomeConfig.setObjectName(u"refGenomeConfig")
+        self.refGenomeConfig.setMinimumSize(QSize(50, 30))
+        self.refGenomeConfig.setFont(font)
+        self.refGenomeConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.refGenomeConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.refGenomeConfig.setIcon(icon9)
+
+        self.gridLayout_2.addWidget(self.refGenomeConfig, 13, 0, 1, 2)
+
+        self.dockerConfig = QPushButton(self.runConfigurationTab)
+        self.dockerConfig.setObjectName(u"dockerConfig")
+        self.dockerConfig.setMinimumSize(QSize(50, 30))
+        self.dockerConfig.setFont(font)
+        self.dockerConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.dockerConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         icon13 = QIcon()
-        icon13.addFile(u":/icons/images/icons/cil-cut.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.trimmingConfig.setIcon(icon13)
+        icon13.addFile(u":/icons/images/icons/cil-docker.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.dockerConfig.setIcon(icon13)
 
-        self.gridLayout_2.addWidget(self.trimmingConfig, 12, 0, 1, 2)
+        self.gridLayout_2.addWidget(self.dockerConfig, 9, 0, 1, 2)
 
         self.restoreDefaultsButton = QPushButton(self.runConfigurationTab)
         self.restoreDefaultsButton.setObjectName(u"restoreDefaultsButton")
@@ -1180,37 +1220,39 @@ class Ui_MainWindow(object):
         icon14.addFile(u":/icons/images/icons/cil-file.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.restoreDefaultsButton.setIcon(icon14)
 
-        self.gridLayout_2.addWidget(self.restoreDefaultsButton, 24, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.restoreDefaultsButton, 23, 1, 1, 1)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.verticalSpacer_11 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout_2.addItem(self.verticalSpacer_2, 3, 0, 1, 2)
+        self.gridLayout_2.addItem(self.verticalSpacer_11, 7, 0, 1, 2)
 
-        self.R2Label = QLabel(self.runConfigurationTab)
-        self.R2Label.setObjectName(u"R2Label")
+        self.readMappingConfig = QPushButton(self.runConfigurationTab)
+        self.readMappingConfig.setObjectName(u"readMappingConfig")
+        self.readMappingConfig.setMinimumSize(QSize(50, 30))
+        self.readMappingConfig.setFont(font)
+        self.readMappingConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.readMappingConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.readMappingConfig.setIcon(icon9)
 
-        self.gridLayout_2.addWidget(self.R2Label, 4, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.readMappingConfig, 15, 0, 1, 2)
 
-        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout_2.addItem(self.horizontalSpacer_6, 24, 2, 1, 1)
-
-        self.verticalSpacer_10 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_2.addItem(self.verticalSpacer_10, 7, 0, 1, 2)
+        self.gridLayout_2.addItem(self.verticalSpacer_3, 10, 0, 1, 2)
 
         self.verticalSpacer_7 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout_2.addItem(self.verticalSpacer_7, 17, 0, 1, 2)
+        self.gridLayout_2.addItem(self.verticalSpacer_7, 16, 0, 1, 2)
 
-        self.R2Input = QLineEdit(self.runConfigurationTab)
-        self.R2Input.setObjectName(u"R2Input")
+        self.siteAnalysisConfig = QPushButton(self.runConfigurationTab)
+        self.siteAnalysisConfig.setObjectName(u"siteAnalysisConfig")
+        self.siteAnalysisConfig.setMinimumSize(QSize(50, 30))
+        self.siteAnalysisConfig.setFont(font)
+        self.siteAnalysisConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.siteAnalysisConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.siteAnalysisConfig.setIcon(icon9)
 
-        self.gridLayout_2.addWidget(self.R2Input, 4, 1, 1, 1)
-
-        self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_2.addItem(self.verticalSpacer_6, 15, 0, 1, 2)
+        self.gridLayout_2.addWidget(self.siteAnalysisConfig, 17, 0, 3, 2)
 
         self.configStackedWidget = QStackedWidget(self.runConfigurationTab)
         self.configStackedWidget.setObjectName(u"configStackedWidget")
@@ -1303,15 +1345,34 @@ class Ui_MainWindow(object):
         self.gridLayout2 = QGridLayout(self.grid1)
         self.gridLayout2.setSpacing(0)
         self.gridLayout2.setObjectName(u"gridLayout2")
-        self.label_8 = QLabel(self.grid1)
-        self.label_8.setObjectName(u"label_8")
+        self.dockerFoundLabel = QLabel(self.grid1)
+        self.dockerFoundLabel.setObjectName(u"dockerFoundLabel")
+        self.dockerFoundLabel.setStyleSheet(u"color: green; font-weight: bold;")
 
-        self.gridLayout2.addWidget(self.label_8, 0, 0, 1, 1)
+        self.gridLayout2.addWidget(self.dockerFoundLabel, 1, 2, 1, 1)
 
-        self.label_9 = QLabel(self.grid1)
-        self.label_9.setObjectName(u"label_9")
+        self.dockerSuccessIcon = QFrame(self.grid1)
+        self.dockerSuccessIcon.setObjectName(u"dockerSuccessIcon")
+        self.dockerSuccessIcon.setMinimumSize(QSize(84, 20))
+        self.dockerSuccessIcon.setStyleSheet(u"\n"
+"						    background-image: url(:/icons/images/icons/cil-smile.png);\n"
+"						    background-position: center;\n"
+"						    background-repeat: no-repeat;\n"
+"						   ")
 
-        self.gridLayout2.addWidget(self.label_9, 1, 0, 1, 1)
+        self.gridLayout2.addWidget(self.dockerSuccessIcon, 1, 1, 1, 1)
+
+        self.verticalSpacer_21 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout2.addItem(self.verticalSpacer_21, 0, 1, 1, 2)
+
+        self.verticalSpacer_20 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout2.addItem(self.verticalSpacer_20, 2, 1, 1, 2)
+
+        self.horizontalSpacer_15 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout2.addItem(self.horizontalSpacer_15, 1, 3, 1, 1)
 
 
         self.verticalLayout5.addWidget(self.grid1)
@@ -1333,30 +1394,90 @@ class Ui_MainWindow(object):
         self.gridLayout3 = QGridLayout(self.grid2)
         self.gridLayout3.setSpacing(0)
         self.gridLayout3.setObjectName(u"gridLayout3")
-        self.label_6 = QLabel(self.grid2)
-        self.label_6.setObjectName(u"label_6")
+        self.verticalSpacer_19 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout3.addWidget(self.label_6, 0, 0, 1, 1)
+        self.gridLayout3.addItem(self.verticalSpacer_19, 0, 0, 1, 8)
 
-        self.commandLinkButton_2 = QCommandLinkButton(self.grid2)
-        self.commandLinkButton_2.setObjectName(u"commandLinkButton_2")
+        self.verticalSpacer_24 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout3.addWidget(self.commandLinkButton_2, 2, 0, 1, 1)
+        self.gridLayout3.addItem(self.verticalSpacer_24, 8, 0, 1, 8)
 
-        self.label_7 = QLabel(self.grid2)
-        self.label_7.setObjectName(u"label_7")
+        self.horizontalSpacer_19 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout3.addWidget(self.label_7, 1, 0, 1, 1)
+        self.gridLayout3.addItem(self.horizontalSpacer_19, 5, 6, 1, 1)
 
-        self.lineEdit_4 = QLineEdit(self.grid2)
-        self.lineEdit_4.setObjectName(u"lineEdit_4")
+        self.horizontalSpacer_18 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout3.addWidget(self.lineEdit_4, 3, 0, 1, 1)
+        self.gridLayout3.addItem(self.horizontalSpacer_18, 5, 5, 1, 1)
 
-        self.pushButton_3 = QPushButton(self.grid2)
-        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.verticalSpacer_23 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout3.addWidget(self.pushButton_3, 4, 0, 1, 1)
+        self.gridLayout3.addItem(self.verticalSpacer_23, 4, 0, 1, 8)
+
+        self.dockerErrorIcon = QFrame(self.grid2)
+        self.dockerErrorIcon.setObjectName(u"dockerErrorIcon")
+        self.dockerErrorIcon.setMinimumSize(QSize(84, 20))
+        self.dockerErrorIcon.setStyleSheet(u"\n"
+"						    background-image: url(:/icons/images/icons/cil-frown.png);\n"
+"						    background-position: center;\n"
+"						    background-repeat: no-repeat;\n"
+"						   ")
+        self.dockerErrorIcon.setFrameShape(QFrame.Shape.StyledPanel)
+        self.dockerErrorIcon.setFrameShadow(QFrame.Shadow.Raised)
+
+        self.gridLayout3.addWidget(self.dockerErrorIcon, 1, 0, 1, 1)
+
+        self.DockerNotFoundDescriptionLabel = QLabel(self.grid2)
+        self.DockerNotFoundDescriptionLabel.setObjectName(u"DockerNotFoundDescriptionLabel")
+        self.DockerNotFoundDescriptionLabel.setText(u"<html><body>I couldn't find a working Docker installation on your system. Docker is required to run the qsLAM_PCR pipeline locally. <a href=\"https://docs.docker.com/get-docker/\" style=\"color:#0066cc; text-decoration:none;\">Install Docker</a></body></html>")
+        self.DockerNotFoundDescriptionLabel.setTextFormat(Qt.TextFormat.RichText)
+        self.DockerNotFoundDescriptionLabel.setWordWrap(True)
+        self.DockerNotFoundDescriptionLabel.setOpenExternalLinks(True)
+        self.DockerNotFoundDescriptionLabel.setTextInteractionFlags(Qt.TextInteractionFlag.TextBrowserInteraction)
+
+        self.gridLayout3.addWidget(self.DockerNotFoundDescriptionLabel, 3, 0, 1, 8)
+
+        self.dockerPathInput = QLineEdit(self.grid2)
+        self.dockerPathInput.setObjectName(u"dockerPathInput")
+
+        self.gridLayout3.addWidget(self.dockerPathInput, 5, 3, 1, 1)
+
+        self.dockerNotFoundLabel = QLabel(self.grid2)
+        self.dockerNotFoundLabel.setObjectName(u"dockerNotFoundLabel")
+        self.dockerNotFoundLabel.setStyleSheet(u"color: red; font-weight: bold;")
+
+        self.gridLayout3.addWidget(self.dockerNotFoundLabel, 1, 2, 1, 3)
+
+        self.verticalSpacer_22 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout3.addItem(self.verticalSpacer_22, 2, 0, 1, 8)
+
+        self.horizontalSpacer_17 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout3.addItem(self.horizontalSpacer_17, 5, 4, 1, 1)
+
+        self.dockerPathLabel = QLabel(self.grid2)
+        self.dockerPathLabel.setObjectName(u"dockerPathLabel")
+
+        self.gridLayout3.addWidget(self.dockerPathLabel, 5, 0, 1, 1)
+
+        self.verticalSpacer_17 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout3.addItem(self.verticalSpacer_17, 6, 0, 1, 8)
+
+        self.checkAgainButton = QPushButton(self.grid2)
+        self.checkAgainButton.setObjectName(u"checkAgainButton")
+        self.checkAgainButton.setMinimumSize(QSize(50, 30))
+        self.checkAgainButton.setFont(font)
+        self.checkAgainButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.checkAgainButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.checkAgainButton.setIcon(icon6)
+
+        self.gridLayout3.addWidget(self.checkAgainButton, 5, 7, 1, 1)
+
+        self.horizontalSpacer_16 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout3.addItem(self.horizontalSpacer_16, 1, 5, 1, 3)
 
 
         self.verticalLayout6.addWidget(self.grid2)
@@ -1385,10 +1506,10 @@ class Ui_MainWindow(object):
         self.gridLayout4 = QGridLayout(self.grid3)
         self.gridLayout4.setSpacing(0)
         self.gridLayout4.setObjectName(u"gridLayout4")
-        self.radioButton = QRadioButton(self.grid3)
-        self.radioButton.setObjectName(u"radioButton")
+        self.httpRadio = QRadioButton(self.grid3)
+        self.httpRadio.setObjectName(u"httpRadio")
 
-        self.gridLayout4.addWidget(self.radioButton, 7, 2, 1, 1)
+        self.gridLayout4.addWidget(self.httpRadio, 7, 2, 1, 1)
 
         self.verticalSpacer_13 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
@@ -1402,63 +1523,70 @@ class Ui_MainWindow(object):
 
         self.gridLayout4.addItem(self.verticalSpacer_12, 0, 0, 1, 8)
 
-        self.commandLinkButton = QCommandLinkButton(self.grid3)
-        self.commandLinkButton.setObjectName(u"commandLinkButton")
+        self.usePublicServerButton = QCommandLinkButton(self.grid3)
+        self.usePublicServerButton.setObjectName(u"usePublicServerButton")
 
-        self.gridLayout4.addWidget(self.commandLinkButton, 9, 0, 1, 4)
+        self.gridLayout4.addWidget(self.usePublicServerButton, 9, 0, 1, 4)
 
-        self.lineEdit_2 = QLineEdit(self.grid3)
-        self.lineEdit_2.setObjectName(u"lineEdit_2")
+        self.portInput = QLineEdit(self.grid3)
+        self.portInput.setObjectName(u"portInput")
 
-        self.gridLayout4.addWidget(self.lineEdit_2, 3, 1, 1, 4)
+        self.gridLayout4.addWidget(self.portInput, 3, 1, 1, 4)
 
-        self.pushButton = QPushButton(self.grid3)
-        self.pushButton.setObjectName(u"pushButton")
+        self.testConnectionButton = QPushButton(self.grid3)
+        self.testConnectionButton.setObjectName(u"testConnectionButton")
+        self.testConnectionButton.setMinimumSize(QSize(50, 30))
+        self.testConnectionButton.setFont(font)
+        self.testConnectionButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.testConnectionButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon15 = QIcon()
+        icon15.addFile(u":/icons/images/icons/cil-link.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.testConnectionButton.setIcon(icon15)
 
-        self.gridLayout4.addWidget(self.pushButton, 9, 7, 1, 1)
+        self.gridLayout4.addWidget(self.testConnectionButton, 9, 7, 1, 1)
 
         self.verticalSpacer_18 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.gridLayout4.addItem(self.verticalSpacer_18, 8, 0, 1, 8)
 
-        self.label = QLabel(self.grid3)
-        self.label.setObjectName(u"label")
+        self.ipAddressLabel = QLabel(self.grid3)
+        self.ipAddressLabel.setObjectName(u"ipAddressLabel")
 
-        self.gridLayout4.addWidget(self.label, 1, 0, 1, 1)
+        self.gridLayout4.addWidget(self.ipAddressLabel, 1, 0, 1, 1)
 
-        self.label_3 = QLabel(self.grid3)
-        self.label_3.setObjectName(u"label_3")
+        self.authTokenLabel = QLabel(self.grid3)
+        self.authTokenLabel.setObjectName(u"authTokenLabel")
 
-        self.gridLayout4.addWidget(self.label_3, 5, 0, 1, 1)
+        self.gridLayout4.addWidget(self.authTokenLabel, 5, 0, 1, 1)
 
         self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.gridLayout4.addItem(self.horizontalSpacer_11, 7, 1, 1, 1)
 
-        self.label_2 = QLabel(self.grid3)
-        self.label_2.setObjectName(u"label_2")
+        self.portLabel = QLabel(self.grid3)
+        self.portLabel.setObjectName(u"portLabel")
 
-        self.gridLayout4.addWidget(self.label_2, 3, 0, 1, 1)
+        self.gridLayout4.addWidget(self.portLabel, 3, 0, 1, 1)
 
-        self.lineEdit_3 = QLineEdit(self.grid3)
-        self.lineEdit_3.setObjectName(u"lineEdit_3")
+        self.ipAddressInput = QLineEdit(self.grid3)
+        self.ipAddressInput.setObjectName(u"ipAddressInput")
 
-        self.gridLayout4.addWidget(self.lineEdit_3, 1, 1, 1, 4)
+        self.gridLayout4.addWidget(self.ipAddressInput, 1, 1, 1, 4)
 
-        self.label_5 = QLabel(self.grid3)
-        self.label_5.setObjectName(u"label_5")
+        self.protocolLabel = QLabel(self.grid3)
+        self.protocolLabel.setObjectName(u"protocolLabel")
 
-        self.gridLayout4.addWidget(self.label_5, 7, 0, 1, 1)
+        self.gridLayout4.addWidget(self.protocolLabel, 7, 0, 1, 1)
 
-        self.lineEdit = QLineEdit(self.grid3)
-        self.lineEdit.setObjectName(u"lineEdit")
+        self.authTokenInput = QLineEdit(self.grid3)
+        self.authTokenInput.setObjectName(u"authTokenInput")
 
-        self.gridLayout4.addWidget(self.lineEdit, 5, 1, 1, 4)
+        self.gridLayout4.addWidget(self.authTokenInput, 5, 1, 1, 4)
 
-        self.radioButton_2 = QRadioButton(self.grid3)
-        self.radioButton_2.setObjectName(u"radioButton_2")
+        self.httpsRadio = QRadioButton(self.grid3)
+        self.httpsRadio.setObjectName(u"httpsRadio")
 
-        self.gridLayout4.addWidget(self.radioButton_2, 7, 4, 1, 1)
+        self.gridLayout4.addWidget(self.httpsRadio, 7, 4, 1, 1)
 
         self.verticalSpacer_14 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
@@ -1668,55 +1796,12 @@ class Ui_MainWindow(object):
 
         self.configStackedWidget.addWidget(self.site_analysis)
 
-        self.gridLayout_2.addWidget(self.configStackedWidget, 0, 2, 24, 7)
-
-        self.readMappingConfig = QPushButton(self.runConfigurationTab)
-        self.readMappingConfig.setObjectName(u"readMappingConfig")
-        self.readMappingConfig.setMinimumSize(QSize(50, 30))
-        self.readMappingConfig.setFont(font)
-        self.readMappingConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.readMappingConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        self.readMappingConfig.setIcon(icon9)
-
-        self.gridLayout_2.addWidget(self.readMappingConfig, 16, 0, 1, 2)
-
-        self.umiCheckbox = QCheckBox(self.runConfigurationTab)
-        self.umiCheckbox.setObjectName(u"umiCheckbox")
-
-        self.gridLayout_2.addWidget(self.umiCheckbox, 6, 0, 1, 1)
-
-        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_2.addItem(self.horizontalSpacer_9, 24, 4, 1, 1)
-
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_2.addItem(self.horizontalSpacer, 24, 6, 1, 1)
-
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_2.addItem(self.horizontalSpacer_2, 24, 5, 1, 1)
+        self.gridLayout_2.addWidget(self.configStackedWidget, 0, 2, 23, 7)
 
         self.configStepsLabel = QLabel(self.runConfigurationTab)
         self.configStepsLabel.setObjectName(u"configStepsLabel")
 
-        self.gridLayout_2.addWidget(self.configStepsLabel, 9, 0, 1, 2)
-
-        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_2.addItem(self.verticalSpacer_4, 5, 0, 1, 2)
-
-        self.dockerConfig = QPushButton(self.runConfigurationTab)
-        self.dockerConfig.setObjectName(u"dockerConfig")
-        self.dockerConfig.setMinimumSize(QSize(50, 30))
-        self.dockerConfig.setFont(font)
-        self.dockerConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.dockerConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon15 = QIcon()
-        icon15.addFile(u":/icons/images/icons/cil-docker.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.dockerConfig.setIcon(icon15)
-
-        self.gridLayout_2.addWidget(self.dockerConfig, 10, 0, 1, 2)
+        self.gridLayout_2.addWidget(self.configStepsLabel, 8, 0, 1, 2)
 
         self.resetButton = QPushButton(self.runConfigurationTab)
         self.resetButton.setObjectName(u"resetButton")
@@ -1728,65 +1813,76 @@ class Ui_MainWindow(object):
         icon16.addFile(u":/icons/images/icons/cil-fire.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         self.resetButton.setIcon(icon16)
 
-        self.gridLayout_2.addWidget(self.resetButton, 24, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.resetButton, 23, 0, 1, 1)
 
-        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_2.addItem(self.horizontalSpacer_8, 24, 3, 1, 1)
-
-        self.helpButton = QPushButton(self.runConfigurationTab)
-        self.helpButton.setObjectName(u"helpButton")
-        self.helpButton.setMinimumSize(QSize(50, 30))
-        self.helpButton.setFont(font)
-        self.helpButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.helpButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.trimmingConfig = QPushButton(self.runConfigurationTab)
+        self.trimmingConfig.setObjectName(u"trimmingConfig")
+        self.trimmingConfig.setMinimumSize(QSize(50, 30))
+        self.trimmingConfig.setFont(font)
+        self.trimmingConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.trimmingConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         icon17 = QIcon()
-        icon17.addFile(u":/icons/images/icons/cil-map.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.helpButton.setIcon(icon17)
+        icon17.addFile(u":/icons/images/icons/cil-cut.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.trimmingConfig.setIcon(icon17)
 
-        self.gridLayout_2.addWidget(self.helpButton, 24, 8, 1, 1)
+        self.gridLayout_2.addWidget(self.trimmingConfig, 11, 0, 1, 2)
 
-        self.verticalSpacer_11 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout_2.addItem(self.verticalSpacer_11, 8, 0, 1, 2)
+        self.gridLayout_2.addItem(self.verticalSpacer_5, 12, 0, 1, 2)
 
-        self.R1Input = QLineEdit(self.runConfigurationTab)
-        self.R1Input.setObjectName(u"R1Input")
+        self.saveButton = QPushButton(self.runConfigurationTab)
+        self.saveButton.setObjectName(u"saveButton")
+        self.saveButton.setMinimumSize(QSize(50, 30))
+        self.saveButton.setFont(font)
+        self.saveButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.saveButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon18 = QIcon()
+        icon18.addFile(u":/icons/images/icons/cil-save.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.saveButton.setIcon(icon18)
 
-        self.gridLayout_2.addWidget(self.R1Input, 0, 1, 3, 1)
+        self.gridLayout_2.addWidget(self.saveButton, 23, 7, 1, 1)
 
-        self.refGenomeConfig = QPushButton(self.runConfigurationTab)
-        self.refGenomeConfig.setObjectName(u"refGenomeConfig")
-        self.refGenomeConfig.setMinimumSize(QSize(50, 30))
-        self.refGenomeConfig.setFont(font)
-        self.refGenomeConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.refGenomeConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        self.refGenomeConfig.setIcon(icon9)
+        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout_2.addWidget(self.refGenomeConfig, 14, 0, 1, 2)
+        self.gridLayout_2.addItem(self.horizontalSpacer_9, 23, 4, 1, 1)
 
-        self.siteAnalysisConfig = QPushButton(self.runConfigurationTab)
-        self.siteAnalysisConfig.setObjectName(u"siteAnalysisConfig")
-        self.siteAnalysisConfig.setMinimumSize(QSize(50, 30))
-        self.siteAnalysisConfig.setFont(font)
-        self.siteAnalysisConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.siteAnalysisConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        self.siteAnalysisConfig.setIcon(icon9)
+        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout_2.addWidget(self.siteAnalysisConfig, 18, 0, 3, 2)
+        self.gridLayout_2.addItem(self.verticalSpacer_4, 4, 0, 1, 2)
 
-        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.R2Label = QLabel(self.runConfigurationTab)
+        self.R2Label.setObjectName(u"R2Label")
 
-        self.gridLayout_2.addItem(self.verticalSpacer_3, 11, 0, 1, 2)
+        self.gridLayout_2.addWidget(self.R2Label, 3, 0, 1, 1)
 
-        self.R1Label = QLabel(self.runConfigurationTab)
-        self.R1Label.setObjectName(u"R1Label")
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout_2.addWidget(self.R1Label, 0, 0, 3, 1)
+        self.gridLayout_2.addItem(self.verticalSpacer_2, 2, 0, 1, 2)
 
-        self.verticalSpacer_8 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout_2.addItem(self.verticalSpacer_8, 21, 0, 1, 2)
+        self.gridLayout_2.addItem(self.horizontalSpacer_6, 23, 2, 1, 1)
+
+        self.r1InputButton = QPushButton(self.runConfigurationTab)
+        self.r1InputButton.setObjectName(u"r1InputButton")
+        self.r1InputButton.setMinimumSize(QSize(50, 30))
+        self.r1InputButton.setFont(font)
+        self.r1InputButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.r1InputButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.r1InputButton.setIcon(icon9)
+
+        self.gridLayout_2.addWidget(self.r1InputButton, 0, 1, 2, 1)
+
+        self.r2InputButton = QPushButton(self.runConfigurationTab)
+        self.r2InputButton.setObjectName(u"r2InputButton")
+        self.r2InputButton.setMinimumSize(QSize(50, 30))
+        self.r2InputButton.setFont(font)
+        self.r2InputButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.r2InputButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.r2InputButton.setIcon(icon9)
+
+        self.gridLayout_2.addWidget(self.r2InputButton, 3, 1, 1, 1)
 
 
         self.verticalLayout1.addLayout(self.gridLayout_2)
@@ -1906,9 +2002,9 @@ class Ui_MainWindow(object):
         self.pauseButton.setFont(font)
         self.pauseButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.pauseButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon18 = QIcon()
-        icon18.addFile(u":/icons/images/icons/cil-media-stop.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.pauseButton.setIcon(icon18)
+        icon19 = QIcon()
+        icon19.addFile(u":/icons/images/icons/cil-media-stop.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.pauseButton.setIcon(icon19)
 
         self.horizontalLayout_6.addWidget(self.pauseButton)
 
@@ -1918,9 +2014,9 @@ class Ui_MainWindow(object):
         self.resumeButton.setFont(font)
         self.resumeButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.resumeButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon19 = QIcon()
-        icon19.addFile(u":/icons/images/icons/cil-media-play.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.resumeButton.setIcon(icon19)
+        icon20 = QIcon()
+        icon20.addFile(u":/icons/images/icons/cil-media-play.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.resumeButton.setIcon(icon20)
 
         self.horizontalLayout_6.addWidget(self.resumeButton)
 
@@ -1930,7 +2026,7 @@ class Ui_MainWindow(object):
         self.runButton.setFont(font)
         self.runButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.runButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        self.runButton.setIcon(icon19)
+        self.runButton.setIcon(icon20)
 
         self.horizontalLayout_6.addWidget(self.runButton)
 
@@ -2079,8 +2175,6 @@ class Ui_MainWindow(object):
         self.appMargins.addWidget(self.bgApp)
 
         MainWindow.setCentralWidget(self.styleSheet)
-        QWidget.setTabOrder(self.R1Input, self.R2Input)
-        QWidget.setTabOrder(self.R2Input, self.umiInput)
         QWidget.setTabOrder(self.umiInput, self.umiCheckbox)
         QWidget.setTabOrder(self.umiCheckbox, self.trimmingConfig)
         QWidget.setTabOrder(self.trimmingConfig, self.refGenomeConfig)
@@ -2120,8 +2214,9 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.stackedWidget.setCurrentIndex(1)
-        self.configStackedWidget.setCurrentIndex(0)
-        self.dockerStackedWidget.setCurrentIndex(0)
+        self.configStackedWidget.setCurrentIndex(1)
+        self.dockerStackedWidget.setCurrentIndex(1)
+        self.isInstalledStackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -2186,36 +2281,37 @@ class Ui_MainWindow(object):
         self.openFolderLocationButton.setText(QCoreApplication.translate("MainWindow", u"Open Folder Location", None))
         self.exportRunButton.setText(QCoreApplication.translate("MainWindow", u"Export", None))
         self.renameRunButton.setText(QCoreApplication.translate("MainWindow", u"Rename Run", None))
-        self.saveButton.setText(QCoreApplication.translate("MainWindow", u"Save", None))
-        self.trimmingConfig.setText(QCoreApplication.translate("MainWindow", u"Adapter and primer trimming", None))
+        self.helpButton.setText(QCoreApplication.translate("MainWindow", u"Help", None))
+        self.R1Label.setText(QCoreApplication.translate("MainWindow", u"Read 1", None))
+        self.umiCheckbox.setText(QCoreApplication.translate("MainWindow", u"Unique Molecular Identifier?", None))
+        self.refGenomeConfig.setText(QCoreApplication.translate("MainWindow", u"Reference genome", None))
+        self.dockerConfig.setText(QCoreApplication.translate("MainWindow", u"Docker configuration", None))
         self.restoreDefaultsButton.setText(QCoreApplication.translate("MainWindow", u"Restore Defaults", None))
-        self.R2Label.setText(QCoreApplication.translate("MainWindow", u"Read 2", None))
+        self.readMappingConfig.setText(QCoreApplication.translate("MainWindow", u"Read mapping", None))
+        self.siteAnalysisConfig.setText(QCoreApplication.translate("MainWindow", u"Site analysis", None))
         self.localRadio.setText(QCoreApplication.translate("MainWindow", u"Local", None))
         self.remoteRadio.setText(QCoreApplication.translate("MainWindow", u"Remote", None))
         self.dockerLabel.setText(QCoreApplication.translate("MainWindow", u"Do you want to run the qsLAM PCR pipeline locally or on a remote server? You can do some trial runs on our public test server.", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Docker installed", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"We will take care of the rest", None))
-        self.label_6.setText(QCoreApplication.translate("MainWindow", u"Docker not installed", None))
-        self.commandLinkButton_2.setText(QCoreApplication.translate("MainWindow", u"CommandLinkButton", None))
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"I couldn't find a working Docker installation on your system. Docker is required to run the LAM-PCR pipeline locally. ", None))
-        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.radioButton.setText(QCoreApplication.translate("MainWindow", u"Http", None))
-        self.commandLinkButton.setText(QCoreApplication.translate("MainWindow", u"Want to use our public test server instead?", None))
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Test Connection", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"IP Address", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Authentication Token", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Port", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"Protocol", None))
-        self.radioButton_2.setText(QCoreApplication.translate("MainWindow", u"Https", None))
-        self.readMappingConfig.setText(QCoreApplication.translate("MainWindow", u"Read mapping", None))
-        self.umiCheckbox.setText(QCoreApplication.translate("MainWindow", u"Unique Molecular Identifier?", None))
+        self.dockerFoundLabel.setText(QCoreApplication.translate("MainWindow", u"Docker found! We will take care of the rest", None))
+        self.dockerPathInput.setText(QCoreApplication.translate("MainWindow", u"docker", None))
+        self.dockerNotFoundLabel.setText(QCoreApplication.translate("MainWindow", u"Docker not found on your computer!", None))
+        self.dockerPathLabel.setText(QCoreApplication.translate("MainWindow", u"Docker path:", None))
+        self.checkAgainButton.setText(QCoreApplication.translate("MainWindow", u"Check Again", None))
+        self.httpRadio.setText(QCoreApplication.translate("MainWindow", u"Http", None))
+        self.usePublicServerButton.setText(QCoreApplication.translate("MainWindow", u"Want to use our public test server instead?", None))
+        self.testConnectionButton.setText(QCoreApplication.translate("MainWindow", u"Test Connection", None))
+        self.ipAddressLabel.setText(QCoreApplication.translate("MainWindow", u"IP Address", None))
+        self.authTokenLabel.setText(QCoreApplication.translate("MainWindow", u"Authentication Token", None))
+        self.portLabel.setText(QCoreApplication.translate("MainWindow", u"Port", None))
+        self.protocolLabel.setText(QCoreApplication.translate("MainWindow", u"Protocol", None))
+        self.httpsRadio.setText(QCoreApplication.translate("MainWindow", u"Https", None))
         self.configStepsLabel.setText(QCoreApplication.translate("MainWindow", u"Please complete all configuration steps below:", None))
-        self.dockerConfig.setText(QCoreApplication.translate("MainWindow", u"Docker configuration", None))
         self.resetButton.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
-        self.helpButton.setText(QCoreApplication.translate("MainWindow", u"Help", None))
-        self.refGenomeConfig.setText(QCoreApplication.translate("MainWindow", u"Reference genome", None))
-        self.siteAnalysisConfig.setText(QCoreApplication.translate("MainWindow", u"Site analysis", None))
-        self.R1Label.setText(QCoreApplication.translate("MainWindow", u"Read 1", None))
+        self.trimmingConfig.setText(QCoreApplication.translate("MainWindow", u"Adapter and primer trimming", None))
+        self.saveButton.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.R2Label.setText(QCoreApplication.translate("MainWindow", u"Read 2", None))
+        self.r1InputButton.setText(QCoreApplication.translate("MainWindow", u"Open", None))
+        self.r2InputButton.setText(QCoreApplication.translate("MainWindow", u"Open", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Charts here and stuff after run is complete...", None))
         self.stdOut.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
