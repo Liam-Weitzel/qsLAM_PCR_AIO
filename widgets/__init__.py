@@ -15,3 +15,5 @@
 # ///////////////////////////////////////////////////////////////
 
 from . custom_grips import CustomGrip
+from . custom_progress_bar import CustomProgressBar
+from . custom_context_menu import CustomContextMenu

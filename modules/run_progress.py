@@ -4,6 +4,7 @@ from PySide6.QtCore import Qt, QSize, QPoint, QUrl
 from PySide6.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply
 
 from widgets.custom_progress_bar.custom_progress_bar import CustomProgressBar, StepState
+from widgets.custom_context_menu.custom_context_menu import CustomContextMenu
 from . docker_worker import DockerWorker
 from . settings import Settings
 
@@ -18,6 +19,7 @@ class RunProgress:
         self.widgets.pauseButton.clicked.connect(self.pause_run)
         self.widgets.resumeButton.clicked.connect(self.resume_run)
 
+        CustomContextMenu(self.widgets.stdOut)
         self.row_1 = self.widgets.runProgressTab.layout().itemAt(0).widget()
         self.progressbar = CustomProgressBar()
         self.progressbar.set_labels([

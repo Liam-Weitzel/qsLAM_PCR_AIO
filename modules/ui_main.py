@@ -16,11 +16,12 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QCheckBox,
-    QCommandLinkButton, QFrame, QGridLayout, QHBoxLayout,
-    QHeaderView, QLabel, QLineEdit, QMainWindow,
-    QPushButton, QRadioButton, QSizePolicy, QSpacerItem,
-    QStackedWidget, QTableWidget, QTableWidgetItem, QTextBrowser,
-    QTextEdit, QVBoxLayout, QWidget)
+    QComboBox, QCommandLinkButton, QFrame, QGridLayout,
+    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
+    QMainWindow, QPushButton, QRadioButton, QSizePolicy,
+    QSlider, QSpacerItem, QStackedWidget, QTabWidget,
+    QTableWidget, QTableWidgetItem, QTextBrowser, QTextEdit,
+    QVBoxLayout, QWidget)
 from .resources_rc import *
 
 class Ui_MainWindow(object):
@@ -425,6 +426,181 @@ class Ui_MainWindow(object):
 "}\n"
 "QCommandLinkButton:hover {\n"
 "    border: 300px solid rgb(134, 210, 237);\n"
+"}\n"
+"/* QTabWidget Container */\n"
+"QTabWidget {\n"
+"    background-color: rgb(245, 245, 245);\n"
+"    border: 1px solid rgb(204, 204, 204);\n"
+"    border-radius: 3px;\n"
+"}\n"
+"\n"
+"/* Tab Bar */\n"
+"QTabBar::tab {\n"
+"    background-color: rgb(240, 240, 240);\n"
+"    color: rgb(30, 30, 30);\n"
+"    padding: 6px 14px;\n"
+"    margin-right: 1px;\n"
+"    border-top-left-radius: 3px;\n"
+"    border-top-right-radius: 3px;\n"
+"    font-weight: 500;\n"
+"}\n"
+"\n"
+"QTabBar::tab:selected {\n"
+"    background-color: qlineargradient(\n"
+"        x1:0, y1:0, x2:0, y2:1,\n"
+"     "
+                        "   stop:0 #a0cdee, stop:1 #d0f0f7\n"
+"    );\n"
+"    color: rgb(0, 0, 0);\n"
+"    font-weight: 500;\n"
+"}\n"
+"\n"
+"QTabBar::tab:hover {\n"
+"    background-color: rgb(224, 247, 247);\n"
+"}\n"
+"\n"
+"/* Tab Widget Pane (Content Area) */\n"
+"QTabWidget::pane {\n"
+"    border-top: 2px solid rgb(204, 204, 204);\n"
+"    background-color: rgb(255, 255, 255);\n"
+"    padding: 10px;\n"
+"}\n"
+"\n"
+"QTabBar::tab:disabled {\n"
+"    background-color: rgb(200, 200, 200);  /* light grey for disabled tabs */\n"
+"    color: rgb(120, 120, 120);             /* greyed-out text */\n"
+"}\n"
+"\n"
+"/* ComboBox */\n"
+"QComboBox {\n"
+"    background-color: rgb(255, 255, 255);\n"
+"    border: 2px solid rgb(204, 204, 204);\n"
+"    border-radius: 5px;\n"
+"    padding: 4px 8px;\n"
+"    font: 10pt \"Segoe UI\";\n"
+"    color: rgb(30, 30, 30);\n"
+"}\n"
+"\n"
+"/* Hover */\n"
+"QComboBox:hover {\n"
+"    border: 2px solid #86D2ED;\n"
+"}\n"
+"\n"
+"/* Focused */\n"
+"QComboBox:focus {\n"
+"    border: 2px solid #86D2ED;\n"
+"}\n"
+"\n"
+"/* Drop-down arro"
+                        "w button */\n"
+"QComboBox::drop-down {\n"
+"    subcontrol-origin: padding;\n"
+"    subcontrol-position: top right;\n"
+"    width: 24px;\n"
+"    border-left: 1px solid rgb(204, 204, 204);\n"
+"    background-color: rgb(245, 245, 245);\n"
+"    border-top-right-radius: 4px;\n"
+"    border-bottom-right-radius: 4px;\n"
+"}\n"
+"\n"
+"/* Arrow icon */\n"
+"QComboBox::down-arrow {\n"
+"    image: url(:/icons/images/icons/cil-arrow-bottom.png);\n"
+"    width: 10px;\n"
+"    height: 10px;\n"
+"}\n"
+"\n"
+"/* Drop-down button hover */\n"
+"QComboBox::drop-down:hover {\n"
+"    background-color: rgb(224, 247, 247);\n"
+"}\n"
+"\n"
+"/* Popup (the list that opens) */\n"
+"QComboBox QAbstractItemView {\n"
+"    border: 1px solid rgb(204, 204, 204);\n"
+"    background-color: rgb(255, 255, 255);\n"
+"    selection-background-color: #86D2ED;\n"
+"    selection-color: rgb(0, 0, 0);\n"
+"    outline: 0;\n"
+"}\n"
+"\n"
+"/* Disabled state */\n"
+"QComboBox:disabled {\n"
+"    background-color: rgb(235, 235, 235);\n"
+"    color: rgb(120, 120, 120);\n"
+""
+                        "    border: 2px solid rgb(200, 200, 200);\n"
+"}\n"
+"\n"
+"/* QSlider */\n"
+"QSlider::groove:horizontal {\n"
+"    border: none;\n"
+"    height: 6px;\n"
+"    background: rgb(204, 204, 204);\n"
+"    border-radius: 3px;\n"
+"}\n"
+"\n"
+"QSlider::groove:horizontal:hover {\n"
+"    background: rgb(180, 220, 240);\n"
+"}\n"
+"\n"
+"QSlider::handle:horizontal {\n"
+"    background: #00216D;\n"
+"    border: none;\n"
+"    width: 14px;\n"
+"    height: 14px;\n"
+"    margin: -4px 0;\n"
+"    border-radius: 7px;\n"
+"}\n"
+"\n"
+"QSlider::handle:horizontal:hover {\n"
+"    background: #6BAAD2;\n"
+"}\n"
+"\n"
+"QSlider::add-page:horizontal {\n"
+"    background: rgb(204, 204, 204);\n"
+"    border-radius: 3px;\n"
+"}\n"
+"\n"
+"QSlider::sub-page:horizontal {\n"
+"    background: #86D2ED;\n"
+"    border-radius: 3px;\n"
+"}\n"
+"\n"
+"/* Vertical Slider */\n"
+"QSlider::groove:vertical {\n"
+"    border: none;\n"
+"    width: 6px;\n"
+"    background: rgb(204, 204, 204);\n"
+"    border-radius: 3px;\n"
+"}\n"
+"\n"
+"QSlider::groove:vertical:hover {\n"
+"    "
+                        "background: rgb(180, 220, 240);\n"
+"}\n"
+"\n"
+"QSlider::handle:vertical {\n"
+"    background: #00216D;\n"
+"    border: none;\n"
+"    width: 14px;\n"
+"    height: 14px;\n"
+"    margin: 0 -4px;\n"
+"    border-radius: 7px;\n"
+"}\n"
+"\n"
+"QSlider::handle:vertical:hover {\n"
+"    background: #6BAAD2;\n"
+"}\n"
+"\n"
+"QSlider::add-page:vertical {\n"
+"    background: rgb(204, 204, 204);\n"
+"    border-radius: 3px;\n"
+"}\n"
+"\n"
+"QSlider::sub-page:vertical {\n"
+"    background: #86D2ED;\n"
+"    border-radius: 3px;\n"
 "}\n"
 "")
         self.appMargins = QVBoxLayout(self.styleSheet)
@@ -996,7 +1172,7 @@ class Ui_MainWindow(object):
         sizePolicy3.setHeightForWidth(self.runsTable.sizePolicy().hasHeightForWidth())
         self.runsTable.setSizePolicy(sizePolicy3)
         palette = QPalette()
-        brush = QBrush(QColor(221, 221, 221, 255))
+        brush = QBrush(QColor(30, 30, 30, 255))
         brush.setStyle(Qt.BrushStyle.SolidPattern)
         palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.WindowText, brush)
         brush1 = QBrush(QColor(0, 0, 0, 0))
@@ -1008,30 +1184,32 @@ class Ui_MainWindow(object):
         brush2.setStyle(Qt.BrushStyle.NoBrush)
         palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Base, brush2)
         palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.Window, brush1)
+        brush3 = QBrush(QColor(30, 30, 30, 128))
+        brush3.setStyle(Qt.BrushStyle.SolidPattern)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.PlaceholderText, brush)
+        palette.setBrush(QPalette.ColorGroup.Active, QPalette.ColorRole.PlaceholderText, brush3)
 #endif
         palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.WindowText, brush)
         palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Button, brush1)
         palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Text, brush)
         palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.ButtonText, brush)
-        brush3 = QBrush(QColor(0, 0, 0, 255))
-        brush3.setStyle(Qt.BrushStyle.NoBrush)
-        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Base, brush3)
+        brush4 = QBrush(QColor(0, 0, 0, 255))
+        brush4.setStyle(Qt.BrushStyle.NoBrush)
+        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Base, brush4)
         palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.Window, brush1)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.PlaceholderText, brush)
+        palette.setBrush(QPalette.ColorGroup.Inactive, QPalette.ColorRole.PlaceholderText, brush3)
 #endif
         palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.WindowText, brush)
         palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Button, brush1)
         palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Text, brush)
         palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.ButtonText, brush)
-        brush4 = QBrush(QColor(0, 0, 0, 255))
-        brush4.setStyle(Qt.BrushStyle.NoBrush)
-        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Base, brush4)
+        brush5 = QBrush(QColor(0, 0, 0, 255))
+        brush5.setStyle(Qt.BrushStyle.NoBrush)
+        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Base, brush5)
         palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.Window, brush1)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.PlaceholderText, brush)
+        palette.setBrush(QPalette.ColorGroup.Disabled, QPalette.ColorRole.PlaceholderText, brush3)
 #endif
         self.runsTable.setPalette(palette)
         self.runsTable.setFrameShape(QFrame.Shape.NoFrame)
@@ -1137,25 +1315,47 @@ class Ui_MainWindow(object):
         self.verticalLayout1.setContentsMargins(10, 10, 10, 10)
         self.gridLayout_2 = QGridLayout()
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.verticalSpacer_10 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_2.addItem(self.verticalSpacer_10, 6, 0, 1, 2)
-
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_2.addItem(self.horizontalSpacer_2, 23, 5, 1, 1)
-
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout_2.addItem(self.horizontalSpacer, 23, 6, 1, 1)
+        self.gridLayout_2.addItem(self.horizontalSpacer, 21, 8, 1, 1)
 
-        self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout_2.addItem(self.verticalSpacer_6, 14, 0, 1, 2)
+        self.gridLayout_2.addItem(self.horizontalSpacer_9, 21, 6, 1, 1)
 
         self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout_2.addItem(self.horizontalSpacer_8, 23, 3, 1, 1)
+        self.gridLayout_2.addItem(self.horizontalSpacer_8, 21, 5, 1, 1)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_2.addItem(self.horizontalSpacer_2, 21, 7, 1, 1)
+
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout_2.addItem(self.horizontalSpacer_6, 21, 4, 1, 1)
+
+        self.saveButton = QPushButton(self.runConfigurationTab)
+        self.saveButton.setObjectName(u"saveButton")
+        self.saveButton.setMinimumSize(QSize(50, 30))
+        self.saveButton.setFont(font)
+        self.saveButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.saveButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon12 = QIcon()
+        icon12.addFile(u":/icons/images/icons/cil-save.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.saveButton.setIcon(icon12)
+
+        self.gridLayout_2.addWidget(self.saveButton, 21, 9, 1, 1)
+
+        self.r1InputButton = QPushButton(self.runConfigurationTab)
+        self.r1InputButton.setObjectName(u"r1InputButton")
+        self.r1InputButton.setMinimumSize(QSize(50, 30))
+        self.r1InputButton.setFont(font)
+        self.r1InputButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.r1InputButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.r1InputButton.setIcon(icon9)
+
+        self.gridLayout_2.addWidget(self.r1InputButton, 0, 3, 2, 1)
 
         self.helpButton = QPushButton(self.runConfigurationTab)
         self.helpButton.setObjectName(u"helpButton")
@@ -1163,96 +1363,11 @@ class Ui_MainWindow(object):
         self.helpButton.setFont(font)
         self.helpButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.helpButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon12 = QIcon()
-        icon12.addFile(u":/icons/images/icons/cil-map.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.helpButton.setIcon(icon12)
-
-        self.gridLayout_2.addWidget(self.helpButton, 23, 8, 1, 1)
-
-        self.R1Label = QLabel(self.runConfigurationTab)
-        self.R1Label.setObjectName(u"R1Label")
-
-        self.gridLayout_2.addWidget(self.R1Label, 0, 0, 2, 1)
-
-        self.verticalSpacer_8 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_2.addItem(self.verticalSpacer_8, 20, 0, 1, 2)
-
-        self.umiInput = QLineEdit(self.runConfigurationTab)
-        self.umiInput.setObjectName(u"umiInput")
-
-        self.gridLayout_2.addWidget(self.umiInput, 5, 1, 1, 1)
-
-        self.umiCheckbox = QCheckBox(self.runConfigurationTab)
-        self.umiCheckbox.setObjectName(u"umiCheckbox")
-
-        self.gridLayout_2.addWidget(self.umiCheckbox, 5, 0, 1, 1)
-
-        self.refGenomeConfig = QPushButton(self.runConfigurationTab)
-        self.refGenomeConfig.setObjectName(u"refGenomeConfig")
-        self.refGenomeConfig.setMinimumSize(QSize(50, 30))
-        self.refGenomeConfig.setFont(font)
-        self.refGenomeConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.refGenomeConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        self.refGenomeConfig.setIcon(icon9)
-
-        self.gridLayout_2.addWidget(self.refGenomeConfig, 13, 0, 1, 2)
-
-        self.dockerConfig = QPushButton(self.runConfigurationTab)
-        self.dockerConfig.setObjectName(u"dockerConfig")
-        self.dockerConfig.setMinimumSize(QSize(50, 30))
-        self.dockerConfig.setFont(font)
-        self.dockerConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.dockerConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         icon13 = QIcon()
-        icon13.addFile(u":/icons/images/icons/cil-docker.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.dockerConfig.setIcon(icon13)
+        icon13.addFile(u":/icons/images/icons/cil-map.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.helpButton.setIcon(icon13)
 
-        self.gridLayout_2.addWidget(self.dockerConfig, 9, 0, 1, 2)
-
-        self.restoreDefaultsButton = QPushButton(self.runConfigurationTab)
-        self.restoreDefaultsButton.setObjectName(u"restoreDefaultsButton")
-        self.restoreDefaultsButton.setMinimumSize(QSize(50, 30))
-        self.restoreDefaultsButton.setFont(font)
-        self.restoreDefaultsButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.restoreDefaultsButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon14 = QIcon()
-        icon14.addFile(u":/icons/images/icons/cil-file.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.restoreDefaultsButton.setIcon(icon14)
-
-        self.gridLayout_2.addWidget(self.restoreDefaultsButton, 23, 1, 1, 1)
-
-        self.verticalSpacer_11 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_2.addItem(self.verticalSpacer_11, 7, 0, 1, 2)
-
-        self.readMappingConfig = QPushButton(self.runConfigurationTab)
-        self.readMappingConfig.setObjectName(u"readMappingConfig")
-        self.readMappingConfig.setMinimumSize(QSize(50, 30))
-        self.readMappingConfig.setFont(font)
-        self.readMappingConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.readMappingConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        self.readMappingConfig.setIcon(icon9)
-
-        self.gridLayout_2.addWidget(self.readMappingConfig, 15, 0, 1, 2)
-
-        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_2.addItem(self.verticalSpacer_3, 10, 0, 1, 2)
-
-        self.verticalSpacer_7 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_2.addItem(self.verticalSpacer_7, 16, 0, 1, 2)
-
-        self.siteAnalysisConfig = QPushButton(self.runConfigurationTab)
-        self.siteAnalysisConfig.setObjectName(u"siteAnalysisConfig")
-        self.siteAnalysisConfig.setMinimumSize(QSize(50, 30))
-        self.siteAnalysisConfig.setFont(font)
-        self.siteAnalysisConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.siteAnalysisConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        self.siteAnalysisConfig.setIcon(icon9)
-
-        self.gridLayout_2.addWidget(self.siteAnalysisConfig, 17, 0, 3, 2)
+        self.gridLayout_2.addWidget(self.helpButton, 21, 10, 1, 1)
 
         self.configStackedWidget = QStackedWidget(self.runConfigurationTab)
         self.configStackedWidget.setObjectName(u"configStackedWidget")
@@ -1539,9 +1654,9 @@ class Ui_MainWindow(object):
         self.testConnectionButton.setFont(font)
         self.testConnectionButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.testConnectionButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon15 = QIcon()
-        icon15.addFile(u":/icons/images/icons/cil-link.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.testConnectionButton.setIcon(icon15)
+        icon14 = QIcon()
+        icon14.addFile(u":/icons/images/icons/cil-link.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.testConnectionButton.setIcon(icon14)
 
         self.gridLayout4.addWidget(self.testConnectionButton, 9, 7, 1, 1)
 
@@ -1624,29 +1739,360 @@ class Ui_MainWindow(object):
         self.verticalLayout8.setProperty(u"topmargin", 10)
         self.verticalLayout8.setProperty(u"rightmargin", 10)
         self.verticalLayout8.setProperty(u"bottommargin", 10)
-        self.row_12 = QFrame(self.trimming)
+        self.row_5 = QFrame(self.trimming)
+        self.row_5.setObjectName(u"row_5")
+        self.row_5.setProperty(u"minimumsize", QSize(0, 150))
+        self.verticalLayout9 = QVBoxLayout(self.row_5)
+        self.verticalLayout9.setObjectName(u"verticalLayout9")
+        self.trimmingTabs = QTabWidget(self.row_5)
+        self.trimmingTabs.setObjectName(u"trimmingTabs")
+        self.cutadapt = QWidget()
+        self.cutadapt.setObjectName(u"cutadapt")
+        self.verticalLayout10 = QVBoxLayout(self.cutadapt)
+        self.verticalLayout10.setSpacing(10)
+        self.verticalLayout10.setObjectName(u"verticalLayout10")
+        self.verticalLayout10.setProperty(u"leftmargin", 10)
+        self.verticalLayout10.setProperty(u"topmargin", 10)
+        self.verticalLayout10.setProperty(u"rightmargin", 10)
+        self.verticalLayout10.setProperty(u"bottommargin", 10)
+        self.grid4 = QFrame(self.cutadapt)
+        self.grid4.setObjectName(u"grid4")
+        self.grid4.setProperty(u"minimumsize", QSize(0, 70))
+        self.grid4.setProperty(u"maximumsize", QSize(16777215, 70))
+        self.gridLayout5 = QGridLayout(self.grid4)
+        self.gridLayout5.setSpacing(0)
+        self.gridLayout5.setObjectName(u"gridLayout5")
+        self.r1PairFilterComboBox = QComboBox(self.grid4)
+        self.r1PairFilterComboBox.addItem("")
+        self.r1PairFilterComboBox.addItem("")
+        self.r1PairFilterComboBox.addItem("")
+        self.r1PairFilterComboBox.setObjectName(u"r1PairFilterComboBox")
+
+        self.gridLayout5.addWidget(self.r1PairFilterComboBox, 7, 3, 1, 1)
+
+        self.r2AnchoredLabel = QLabel(self.grid4)
+        self.r2AnchoredLabel.setObjectName(u"r2AnchoredLabel")
+
+        self.gridLayout5.addWidget(self.r2AnchoredLabel, 5, 5, 1, 1)
+
+        self.r1MinLengthInput = QLineEdit(self.grid4)
+        self.r1MinLengthInput.setObjectName(u"r1MinLengthInput")
+
+        self.gridLayout5.addWidget(self.r1MinLengthInput, 6, 3, 1, 1)
+
+        self.r1SequenceLabel = QLabel(self.grid4)
+        self.r1SequenceLabel.setObjectName(u"r1SequenceLabel")
+
+        self.gridLayout5.addWidget(self.r1SequenceLabel, 1, 0, 1, 1)
+
+        self.r2SequenceInput = QLineEdit(self.grid4)
+        self.r2SequenceInput.setObjectName(u"r2SequenceInput")
+
+        self.gridLayout5.addWidget(self.r2SequenceInput, 1, 6, 1, 1)
+
+        self.r1ErrorRateLabel = QLabel(self.grid4)
+        self.r1ErrorRateLabel.setObjectName(u"r1ErrorRateLabel")
+
+        self.gridLayout5.addWidget(self.r1ErrorRateLabel, 2, 0, 1, 1)
+
+        self.r2AnchoredCheckbox = QCheckBox(self.grid4)
+        self.r2AnchoredCheckbox.setObjectName(u"r2AnchoredCheckbox")
+
+        self.gridLayout5.addWidget(self.r2AnchoredCheckbox, 5, 6, 1, 1)
+
+        self.r1SequenceInput = QLineEdit(self.grid4)
+        self.r1SequenceInput.setObjectName(u"r1SequenceInput")
+
+        self.gridLayout5.addWidget(self.r1SequenceInput, 1, 3, 1, 1)
+
+        self.r2SequenceLabel = QLabel(self.grid4)
+        self.r2SequenceLabel.setObjectName(u"r2SequenceLabel")
+
+        self.gridLayout5.addWidget(self.r2SequenceLabel, 1, 5, 1, 1)
+
+        self.r2ErrorRateLabel = QLabel(self.grid4)
+        self.r2ErrorRateLabel.setObjectName(u"r2ErrorRateLabel")
+
+        self.gridLayout5.addWidget(self.r2ErrorRateLabel, 2, 5, 1, 1)
+
+        self.r1AnchoredCheckbox = QCheckBox(self.grid4)
+        self.r1AnchoredCheckbox.setObjectName(u"r1AnchoredCheckbox")
+
+        self.gridLayout5.addWidget(self.r1AnchoredCheckbox, 5, 3, 1, 1)
+
+        self.r2MinLengthInput = QLineEdit(self.grid4)
+        self.r2MinLengthInput.setObjectName(u"r2MinLengthInput")
+
+        self.gridLayout5.addWidget(self.r2MinLengthInput, 6, 6, 1, 1)
+
+        self.r1MinOverlapLabel = QLabel(self.grid4)
+        self.r1MinOverlapLabel.setObjectName(u"r1MinOverlapLabel")
+
+        self.gridLayout5.addWidget(self.r1MinOverlapLabel, 4, 0, 1, 1)
+
+        self.r2TrimLeadingInput = QLineEdit(self.grid4)
+        self.r2TrimLeadingInput.setObjectName(u"r2TrimLeadingInput")
+
+        self.gridLayout5.addWidget(self.r2TrimLeadingInput, 3, 6, 1, 1)
+
+        self.r2MinLengthLabel = QLabel(self.grid4)
+        self.r2MinLengthLabel.setObjectName(u"r2MinLengthLabel")
+
+        self.gridLayout5.addWidget(self.r2MinLengthLabel, 6, 5, 1, 1)
+
+        self.r2PairFilterComboBox = QComboBox(self.grid4)
+        self.r2PairFilterComboBox.addItem("")
+        self.r2PairFilterComboBox.addItem("")
+        self.r2PairFilterComboBox.addItem("")
+        self.r2PairFilterComboBox.setObjectName(u"r2PairFilterComboBox")
+
+        self.gridLayout5.addWidget(self.r2PairFilterComboBox, 7, 6, 1, 1)
+
+        self.r2PairFilterLabel = QLabel(self.grid4)
+        self.r2PairFilterLabel.setObjectName(u"r2PairFilterLabel")
+
+        self.gridLayout5.addWidget(self.r2PairFilterLabel, 7, 5, 1, 1)
+
+        self.r1TrimLeadingInput = QLineEdit(self.grid4)
+        self.r1TrimLeadingInput.setObjectName(u"r1TrimLeadingInput")
+
+        self.gridLayout5.addWidget(self.r1TrimLeadingInput, 3, 3, 1, 1)
+
+        self.r2TrimLeadingLabel = QLabel(self.grid4)
+        self.r2TrimLeadingLabel.setObjectName(u"r2TrimLeadingLabel")
+
+        self.gridLayout5.addWidget(self.r2TrimLeadingLabel, 3, 5, 1, 1)
+
+        self.r1AnchoredLabel = QLabel(self.grid4)
+        self.r1AnchoredLabel.setObjectName(u"r1AnchoredLabel")
+
+        self.gridLayout5.addWidget(self.r1AnchoredLabel, 5, 0, 1, 1)
+
+        self.r1MinLengthLabel = QLabel(self.grid4)
+        self.r1MinLengthLabel.setObjectName(u"r1MinLengthLabel")
+
+        self.gridLayout5.addWidget(self.r1MinLengthLabel, 6, 0, 1, 1)
+
+        self.r2MinOverlapLabel = QLabel(self.grid4)
+        self.r2MinOverlapLabel.setObjectName(u"r2MinOverlapLabel")
+
+        self.gridLayout5.addWidget(self.r2MinOverlapLabel, 4, 5, 1, 1)
+
+        self.r1PairFilterLabel = QLabel(self.grid4)
+        self.r1PairFilterLabel.setObjectName(u"r1PairFilterLabel")
+
+        self.gridLayout5.addWidget(self.r1PairFilterLabel, 7, 0, 1, 1)
+
+        self.horizontalSpacer_21 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout5.addItem(self.horizontalSpacer_21, 1, 7, 7, 1)
+
+        self.useCutadaptCheckbox = QCheckBox(self.grid4)
+        self.useCutadaptCheckbox.setObjectName(u"useCutadaptCheckbox")
+        self.useCutadaptCheckbox.setChecked(True)
+
+        self.gridLayout5.addWidget(self.useCutadaptCheckbox, 0, 0, 1, 8)
+
+        self.r1TrimLeadingLabel = QLabel(self.grid4)
+        self.r1TrimLeadingLabel.setObjectName(u"r1TrimLeadingLabel")
+
+        self.gridLayout5.addWidget(self.r1TrimLeadingLabel, 3, 0, 1, 1)
+
+        self.r2MinOverlapInput = QLineEdit(self.grid4)
+        self.r2MinOverlapInput.setObjectName(u"r2MinOverlapInput")
+
+        self.gridLayout5.addWidget(self.r2MinOverlapInput, 4, 6, 1, 1)
+
+        self.horizontalSpacer_20 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout5.addItem(self.horizontalSpacer_20, 1, 4, 7, 1)
+
+        self.r1MinOverlapInput = QLineEdit(self.grid4)
+        self.r1MinOverlapInput.setObjectName(u"r1MinOverlapInput")
+
+        self.gridLayout5.addWidget(self.r1MinOverlapInput, 4, 3, 1, 1)
+
+        self.r1ErrorRateSlider = QSlider(self.grid4)
+        self.r1ErrorRateSlider.setObjectName(u"r1ErrorRateSlider")
+        self.r1ErrorRateSlider.setValue(30)
+        self.r1ErrorRateSlider.setOrientation(Qt.Orientation.Horizontal)
+
+        self.gridLayout5.addWidget(self.r1ErrorRateSlider, 2, 3, 1, 1)
+
+        self.r2ErrorRateSlider = QSlider(self.grid4)
+        self.r2ErrorRateSlider.setObjectName(u"r2ErrorRateSlider")
+        self.r2ErrorRateSlider.setValue(10)
+        self.r2ErrorRateSlider.setOrientation(Qt.Orientation.Horizontal)
+
+        self.gridLayout5.addWidget(self.r2ErrorRateSlider, 2, 6, 1, 1)
+
+
+        self.verticalLayout10.addWidget(self.grid4)
+
+        self.trimmingTabs.addTab(self.cutadapt, "")
+        self.fastp = QWidget()
+        self.fastp.setObjectName(u"fastp")
+        self.verticalLayout11 = QVBoxLayout(self.fastp)
+        self.verticalLayout11.setSpacing(10)
+        self.verticalLayout11.setObjectName(u"verticalLayout11")
+        self.verticalLayout11.setProperty(u"leftmargin", 10)
+        self.verticalLayout11.setProperty(u"topmargin", 10)
+        self.verticalLayout11.setProperty(u"rightmargin", 10)
+        self.verticalLayout11.setProperty(u"bottommargin", 10)
+        self.grid5 = QFrame(self.fastp)
+        self.grid5.setObjectName(u"grid5")
+        self.grid5.setProperty(u"minimumsize", QSize(0, 70))
+        self.grid5.setProperty(u"maximumsize", QSize(16777215, 70))
+        self.gridLayout6 = QGridLayout(self.grid5)
+        self.gridLayout6.setSpacing(0)
+        self.gridLayout6.setObjectName(u"gridLayout6")
+        self.horizontalSpacer_22 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout6.addItem(self.horizontalSpacer_22, 1, 0, 1, 1)
+
+        self.horizontalSpacer_23 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout6.addItem(self.horizontalSpacer_23, 1, 2, 1, 1)
+
+        self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout6.addItem(self.verticalSpacer_6, 0, 1, 1, 1)
+
+        self.label = QLabel(self.grid5)
+        self.label.setObjectName(u"label")
+
+        self.gridLayout6.addWidget(self.label, 1, 1, 1, 1)
+
+        self.verticalSpacer_25 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout6.addItem(self.verticalSpacer_25, 2, 1, 1, 1)
+
+
+        self.verticalLayout11.addWidget(self.grid5)
+
+        self.trimmingTabs.addTab(self.fastp, "")
+        self.umi_tools = QWidget()
+        self.umi_tools.setObjectName(u"umi_tools")
+        self.verticalLayout12 = QVBoxLayout(self.umi_tools)
+        self.verticalLayout12.setSpacing(10)
+        self.verticalLayout12.setObjectName(u"verticalLayout12")
+        self.verticalLayout12.setProperty(u"leftmargin", 10)
+        self.verticalLayout12.setProperty(u"topmargin", 10)
+        self.verticalLayout12.setProperty(u"rightmargin", 10)
+        self.verticalLayout12.setProperty(u"bottommargin", 10)
+        self.grid6 = QFrame(self.umi_tools)
+        self.grid6.setObjectName(u"grid6")
+        self.grid6.setProperty(u"minimumsize", QSize(0, 70))
+        self.grid6.setProperty(u"maximumsize", QSize(16777215, 70))
+        self.gridLayout7 = QGridLayout(self.grid6)
+        self.gridLayout7.setSpacing(0)
+        self.gridLayout7.setObjectName(u"gridLayout7")
+        self.horizontalSpacer_25 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout7.addItem(self.horizontalSpacer_25, 1, 2, 1, 1)
+
+        self.horizontalSpacer_24 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout7.addItem(self.horizontalSpacer_24, 1, 0, 1, 1)
+
+        self.verticalSpacer_26 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout7.addItem(self.verticalSpacer_26, 2, 1, 1, 1)
+
+        self.label_2 = QLabel(self.grid6)
+        self.label_2.setObjectName(u"label_2")
+
+        self.gridLayout7.addWidget(self.label_2, 1, 1, 1, 1)
+
+        self.verticalSpacer_27 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout7.addItem(self.verticalSpacer_27, 0, 1, 1, 1)
+
+
+        self.verticalLayout12.addWidget(self.grid6)
+
+        self.trimmingTabs.addTab(self.umi_tools, "")
+
+        self.verticalLayout9.addWidget(self.trimmingTabs)
+
+
+        self.verticalLayout8.addWidget(self.row_5)
+
+        self.row_4 = QFrame(self.trimming)
+        self.row_4.setObjectName(u"row_4")
+        self.row_4.setProperty(u"minimumsize", QSize(0, 70))
+        self.row_4.setProperty(u"maximumsize", QSize(16777215, 70))
+        self.verticalLayout13 = QVBoxLayout(self.row_4)
+        self.verticalLayout13.setSpacing(0)
+        self.verticalLayout13.setObjectName(u"verticalLayout13")
+        self.verticalLayout13.setProperty(u"leftmargin", 0)
+        self.verticalLayout13.setProperty(u"topmargin", 0)
+        self.verticalLayout13.setProperty(u"rightmargin", 0)
+        self.verticalLayout13.setProperty(u"bottommargin", 0)
+        self.gridLayout_3 = QGridLayout()
+        self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.readLenCheckbox = QCheckBox(self.row_4)
+        self.readLenCheckbox.setObjectName(u"readLenCheckbox")
+        self.readLenCheckbox.setChecked(True)
+
+        self.gridLayout_3.addWidget(self.readLenCheckbox, 0, 5, 2, 1)
+
+        self.qualityControlLabel = QLabel(self.row_4)
+        self.qualityControlLabel.setObjectName(u"qualityControlLabel")
+
+        self.gridLayout_3.addWidget(self.qualityControlLabel, 0, 0, 2, 1)
+
+        self.qcAfterCheckbox = QCheckBox(self.row_4)
+        self.qcAfterCheckbox.setObjectName(u"qcAfterCheckbox")
+        self.qcAfterCheckbox.setChecked(True)
+
+        self.gridLayout_3.addWidget(self.qcAfterCheckbox, 0, 3, 2, 2)
+
+        self.qcBeforeCheckbox = QCheckBox(self.row_4)
+        self.qcBeforeCheckbox.setObjectName(u"qcBeforeCheckbox")
+        self.qcBeforeCheckbox.setChecked(True)
+
+        self.gridLayout_3.addWidget(self.qcBeforeCheckbox, 0, 1, 2, 2)
+
+
+        self.verticalLayout13.addLayout(self.gridLayout_3)
+
+
+        self.verticalLayout8.addWidget(self.row_4)
+
+        self.configStackedWidget.addWidget(self.trimming)
+        self.ref_genome = QWidget()
+        self.ref_genome.setObjectName(u"ref_genome")
+        self.verticalLayout14 = QVBoxLayout(self.ref_genome)
+        self.verticalLayout14.setSpacing(10)
+        self.verticalLayout14.setObjectName(u"verticalLayout14")
+        self.verticalLayout14.setProperty(u"leftmargin", 10)
+        self.verticalLayout14.setProperty(u"topmargin", 10)
+        self.verticalLayout14.setProperty(u"rightmargin", 10)
+        self.verticalLayout14.setProperty(u"bottommargin", 10)
+        self.row_12 = QFrame(self.ref_genome)
         self.row_12.setObjectName(u"row_12")
         self.row_12.setProperty(u"minimumsize", QSize(0, 70))
         self.row_12.setProperty(u"maximumsize", QSize(16777215, 70))
-        self.verticalLayout9 = QVBoxLayout(self.row_12)
-        self.verticalLayout9.setSpacing(0)
-        self.verticalLayout9.setObjectName(u"verticalLayout9")
-        self.verticalLayout9.setProperty(u"leftmargin", 0)
-        self.verticalLayout9.setProperty(u"topmargin", 0)
-        self.verticalLayout9.setProperty(u"rightmargin", 0)
-        self.verticalLayout9.setProperty(u"bottommargin", 0)
+        self.verticalLayout15 = QVBoxLayout(self.row_12)
+        self.verticalLayout15.setSpacing(0)
+        self.verticalLayout15.setObjectName(u"verticalLayout15")
+        self.verticalLayout15.setProperty(u"leftmargin", 0)
+        self.verticalLayout15.setProperty(u"topmargin", 0)
+        self.verticalLayout15.setProperty(u"rightmargin", 0)
+        self.verticalLayout15.setProperty(u"bottommargin", 0)
 
-        self.verticalLayout8.addWidget(self.row_12)
+        self.verticalLayout14.addWidget(self.row_12)
 
-        self.row_22 = QFrame(self.trimming)
+        self.row_22 = QFrame(self.ref_genome)
         self.row_22.setObjectName(u"row_22")
         self.row_22.setProperty(u"minimumsize", QSize(0, 150))
-        self.verticalLayout10 = QVBoxLayout(self.row_22)
-        self.verticalLayout10.setObjectName(u"verticalLayout10")
+        self.verticalLayout16 = QVBoxLayout(self.row_22)
+        self.verticalLayout16.setObjectName(u"verticalLayout16")
 
-        self.verticalLayout8.addWidget(self.row_22)
+        self.verticalLayout14.addWidget(self.row_22)
 
-        self.row_31 = QFrame(self.trimming)
+        self.row_31 = QFrame(self.ref_genome)
         self.row_31.setObjectName(u"row_31")
         self.row_31.setProperty(u"minimumsize", QSize(0, 50))
         self.horizontalLayout1 = QVBoxLayout(self.row_31)
@@ -1657,41 +2103,41 @@ class Ui_MainWindow(object):
         self.horizontalLayout1.setProperty(u"rightmargin", 0)
         self.horizontalLayout1.setProperty(u"bottommargin", 0)
 
-        self.verticalLayout8.addWidget(self.row_31)
+        self.verticalLayout14.addWidget(self.row_31)
 
-        self.configStackedWidget.addWidget(self.trimming)
-        self.ref_genome = QWidget()
-        self.ref_genome.setObjectName(u"ref_genome")
-        self.verticalLayout11 = QVBoxLayout(self.ref_genome)
-        self.verticalLayout11.setSpacing(10)
-        self.verticalLayout11.setObjectName(u"verticalLayout11")
-        self.verticalLayout11.setProperty(u"leftmargin", 10)
-        self.verticalLayout11.setProperty(u"topmargin", 10)
-        self.verticalLayout11.setProperty(u"rightmargin", 10)
-        self.verticalLayout11.setProperty(u"bottommargin", 10)
-        self.row_13 = QFrame(self.ref_genome)
+        self.configStackedWidget.addWidget(self.ref_genome)
+        self.read_mapping = QWidget()
+        self.read_mapping.setObjectName(u"read_mapping")
+        self.verticalLayout17 = QVBoxLayout(self.read_mapping)
+        self.verticalLayout17.setSpacing(10)
+        self.verticalLayout17.setObjectName(u"verticalLayout17")
+        self.verticalLayout17.setProperty(u"leftmargin", 10)
+        self.verticalLayout17.setProperty(u"topmargin", 10)
+        self.verticalLayout17.setProperty(u"rightmargin", 10)
+        self.verticalLayout17.setProperty(u"bottommargin", 10)
+        self.row_13 = QFrame(self.read_mapping)
         self.row_13.setObjectName(u"row_13")
         self.row_13.setProperty(u"minimumsize", QSize(0, 70))
         self.row_13.setProperty(u"maximumsize", QSize(16777215, 70))
-        self.verticalLayout12 = QVBoxLayout(self.row_13)
-        self.verticalLayout12.setSpacing(0)
-        self.verticalLayout12.setObjectName(u"verticalLayout12")
-        self.verticalLayout12.setProperty(u"leftmargin", 0)
-        self.verticalLayout12.setProperty(u"topmargin", 0)
-        self.verticalLayout12.setProperty(u"rightmargin", 0)
-        self.verticalLayout12.setProperty(u"bottommargin", 0)
+        self.verticalLayout18 = QVBoxLayout(self.row_13)
+        self.verticalLayout18.setSpacing(0)
+        self.verticalLayout18.setObjectName(u"verticalLayout18")
+        self.verticalLayout18.setProperty(u"leftmargin", 0)
+        self.verticalLayout18.setProperty(u"topmargin", 0)
+        self.verticalLayout18.setProperty(u"rightmargin", 0)
+        self.verticalLayout18.setProperty(u"bottommargin", 0)
 
-        self.verticalLayout11.addWidget(self.row_13)
+        self.verticalLayout17.addWidget(self.row_13)
 
-        self.row_23 = QFrame(self.ref_genome)
+        self.row_23 = QFrame(self.read_mapping)
         self.row_23.setObjectName(u"row_23")
         self.row_23.setProperty(u"minimumsize", QSize(0, 150))
-        self.verticalLayout13 = QVBoxLayout(self.row_23)
-        self.verticalLayout13.setObjectName(u"verticalLayout13")
+        self.verticalLayout19 = QVBoxLayout(self.row_23)
+        self.verticalLayout19.setObjectName(u"verticalLayout19")
 
-        self.verticalLayout11.addWidget(self.row_23)
+        self.verticalLayout17.addWidget(self.row_23)
 
-        self.row_32 = QFrame(self.ref_genome)
+        self.row_32 = QFrame(self.read_mapping)
         self.row_32.setObjectName(u"row_32")
         self.row_32.setProperty(u"minimumsize", QSize(0, 50))
         self.horizontalLayout2 = QVBoxLayout(self.row_32)
@@ -1702,41 +2148,41 @@ class Ui_MainWindow(object):
         self.horizontalLayout2.setProperty(u"rightmargin", 0)
         self.horizontalLayout2.setProperty(u"bottommargin", 0)
 
-        self.verticalLayout11.addWidget(self.row_32)
+        self.verticalLayout17.addWidget(self.row_32)
 
-        self.configStackedWidget.addWidget(self.ref_genome)
-        self.read_mapping = QWidget()
-        self.read_mapping.setObjectName(u"read_mapping")
-        self.verticalLayout14 = QVBoxLayout(self.read_mapping)
-        self.verticalLayout14.setSpacing(10)
-        self.verticalLayout14.setObjectName(u"verticalLayout14")
-        self.verticalLayout14.setProperty(u"leftmargin", 10)
-        self.verticalLayout14.setProperty(u"topmargin", 10)
-        self.verticalLayout14.setProperty(u"rightmargin", 10)
-        self.verticalLayout14.setProperty(u"bottommargin", 10)
-        self.row_14 = QFrame(self.read_mapping)
+        self.configStackedWidget.addWidget(self.read_mapping)
+        self.site_analysis = QWidget()
+        self.site_analysis.setObjectName(u"site_analysis")
+        self.verticalLayout20 = QVBoxLayout(self.site_analysis)
+        self.verticalLayout20.setSpacing(10)
+        self.verticalLayout20.setObjectName(u"verticalLayout20")
+        self.verticalLayout20.setProperty(u"leftmargin", 10)
+        self.verticalLayout20.setProperty(u"topmargin", 10)
+        self.verticalLayout20.setProperty(u"rightmargin", 10)
+        self.verticalLayout20.setProperty(u"bottommargin", 10)
+        self.row_14 = QFrame(self.site_analysis)
         self.row_14.setObjectName(u"row_14")
         self.row_14.setProperty(u"minimumsize", QSize(0, 70))
         self.row_14.setProperty(u"maximumsize", QSize(16777215, 70))
-        self.verticalLayout15 = QVBoxLayout(self.row_14)
-        self.verticalLayout15.setSpacing(0)
-        self.verticalLayout15.setObjectName(u"verticalLayout15")
-        self.verticalLayout15.setProperty(u"leftmargin", 0)
-        self.verticalLayout15.setProperty(u"topmargin", 0)
-        self.verticalLayout15.setProperty(u"rightmargin", 0)
-        self.verticalLayout15.setProperty(u"bottommargin", 0)
+        self.verticalLayout21 = QVBoxLayout(self.row_14)
+        self.verticalLayout21.setSpacing(0)
+        self.verticalLayout21.setObjectName(u"verticalLayout21")
+        self.verticalLayout21.setProperty(u"leftmargin", 0)
+        self.verticalLayout21.setProperty(u"topmargin", 0)
+        self.verticalLayout21.setProperty(u"rightmargin", 0)
+        self.verticalLayout21.setProperty(u"bottommargin", 0)
 
-        self.verticalLayout14.addWidget(self.row_14)
+        self.verticalLayout20.addWidget(self.row_14)
 
-        self.row_24 = QFrame(self.read_mapping)
+        self.row_24 = QFrame(self.site_analysis)
         self.row_24.setObjectName(u"row_24")
         self.row_24.setProperty(u"minimumsize", QSize(0, 150))
-        self.verticalLayout16 = QVBoxLayout(self.row_24)
-        self.verticalLayout16.setObjectName(u"verticalLayout16")
+        self.verticalLayout22 = QVBoxLayout(self.row_24)
+        self.verticalLayout22.setObjectName(u"verticalLayout22")
 
-        self.verticalLayout14.addWidget(self.row_24)
+        self.verticalLayout20.addWidget(self.row_24)
 
-        self.row_33 = QFrame(self.read_mapping)
+        self.row_33 = QFrame(self.site_analysis)
         self.row_33.setObjectName(u"row_33")
         self.row_33.setProperty(u"minimumsize", QSize(0, 50))
         self.horizontalLayout3 = QVBoxLayout(self.row_33)
@@ -1747,132 +2193,11 @@ class Ui_MainWindow(object):
         self.horizontalLayout3.setProperty(u"rightmargin", 0)
         self.horizontalLayout3.setProperty(u"bottommargin", 0)
 
-        self.verticalLayout14.addWidget(self.row_33)
-
-        self.configStackedWidget.addWidget(self.read_mapping)
-        self.site_analysis = QWidget()
-        self.site_analysis.setObjectName(u"site_analysis")
-        self.verticalLayout17 = QVBoxLayout(self.site_analysis)
-        self.verticalLayout17.setSpacing(10)
-        self.verticalLayout17.setObjectName(u"verticalLayout17")
-        self.verticalLayout17.setProperty(u"leftmargin", 10)
-        self.verticalLayout17.setProperty(u"topmargin", 10)
-        self.verticalLayout17.setProperty(u"rightmargin", 10)
-        self.verticalLayout17.setProperty(u"bottommargin", 10)
-        self.row_15 = QFrame(self.site_analysis)
-        self.row_15.setObjectName(u"row_15")
-        self.row_15.setProperty(u"minimumsize", QSize(0, 70))
-        self.row_15.setProperty(u"maximumsize", QSize(16777215, 70))
-        self.verticalLayout18 = QVBoxLayout(self.row_15)
-        self.verticalLayout18.setSpacing(0)
-        self.verticalLayout18.setObjectName(u"verticalLayout18")
-        self.verticalLayout18.setProperty(u"leftmargin", 0)
-        self.verticalLayout18.setProperty(u"topmargin", 0)
-        self.verticalLayout18.setProperty(u"rightmargin", 0)
-        self.verticalLayout18.setProperty(u"bottommargin", 0)
-
-        self.verticalLayout17.addWidget(self.row_15)
-
-        self.row_25 = QFrame(self.site_analysis)
-        self.row_25.setObjectName(u"row_25")
-        self.row_25.setProperty(u"minimumsize", QSize(0, 150))
-        self.verticalLayout19 = QVBoxLayout(self.row_25)
-        self.verticalLayout19.setObjectName(u"verticalLayout19")
-
-        self.verticalLayout17.addWidget(self.row_25)
-
-        self.row_34 = QFrame(self.site_analysis)
-        self.row_34.setObjectName(u"row_34")
-        self.row_34.setProperty(u"minimumsize", QSize(0, 50))
-        self.horizontalLayout4 = QVBoxLayout(self.row_34)
-        self.horizontalLayout4.setSpacing(0)
-        self.horizontalLayout4.setObjectName(u"horizontalLayout4")
-        self.horizontalLayout4.setProperty(u"leftmargin", 0)
-        self.horizontalLayout4.setProperty(u"topmargin", 0)
-        self.horizontalLayout4.setProperty(u"rightmargin", 0)
-        self.horizontalLayout4.setProperty(u"bottommargin", 0)
-
-        self.verticalLayout17.addWidget(self.row_34)
+        self.verticalLayout20.addWidget(self.row_33)
 
         self.configStackedWidget.addWidget(self.site_analysis)
 
-        self.gridLayout_2.addWidget(self.configStackedWidget, 0, 2, 23, 7)
-
-        self.configStepsLabel = QLabel(self.runConfigurationTab)
-        self.configStepsLabel.setObjectName(u"configStepsLabel")
-
-        self.gridLayout_2.addWidget(self.configStepsLabel, 8, 0, 1, 2)
-
-        self.resetButton = QPushButton(self.runConfigurationTab)
-        self.resetButton.setObjectName(u"resetButton")
-        self.resetButton.setMinimumSize(QSize(50, 30))
-        self.resetButton.setFont(font)
-        self.resetButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.resetButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon16 = QIcon()
-        icon16.addFile(u":/icons/images/icons/cil-fire.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.resetButton.setIcon(icon16)
-
-        self.gridLayout_2.addWidget(self.resetButton, 23, 0, 1, 1)
-
-        self.trimmingConfig = QPushButton(self.runConfigurationTab)
-        self.trimmingConfig.setObjectName(u"trimmingConfig")
-        self.trimmingConfig.setMinimumSize(QSize(50, 30))
-        self.trimmingConfig.setFont(font)
-        self.trimmingConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.trimmingConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon17 = QIcon()
-        icon17.addFile(u":/icons/images/icons/cil-cut.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.trimmingConfig.setIcon(icon17)
-
-        self.gridLayout_2.addWidget(self.trimmingConfig, 11, 0, 1, 2)
-
-        self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_2.addItem(self.verticalSpacer_5, 12, 0, 1, 2)
-
-        self.saveButton = QPushButton(self.runConfigurationTab)
-        self.saveButton.setObjectName(u"saveButton")
-        self.saveButton.setMinimumSize(QSize(50, 30))
-        self.saveButton.setFont(font)
-        self.saveButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.saveButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon18 = QIcon()
-        icon18.addFile(u":/icons/images/icons/cil-save.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.saveButton.setIcon(icon18)
-
-        self.gridLayout_2.addWidget(self.saveButton, 23, 7, 1, 1)
-
-        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_2.addItem(self.horizontalSpacer_9, 23, 4, 1, 1)
-
-        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_2.addItem(self.verticalSpacer_4, 4, 0, 1, 2)
-
-        self.R2Label = QLabel(self.runConfigurationTab)
-        self.R2Label.setObjectName(u"R2Label")
-
-        self.gridLayout_2.addWidget(self.R2Label, 3, 0, 1, 1)
-
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_2.addItem(self.verticalSpacer_2, 2, 0, 1, 2)
-
-        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_2.addItem(self.horizontalSpacer_6, 23, 2, 1, 1)
-
-        self.r1InputButton = QPushButton(self.runConfigurationTab)
-        self.r1InputButton.setObjectName(u"r1InputButton")
-        self.r1InputButton.setMinimumSize(QSize(50, 30))
-        self.r1InputButton.setFont(font)
-        self.r1InputButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.r1InputButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        self.r1InputButton.setIcon(icon9)
-
-        self.gridLayout_2.addWidget(self.r1InputButton, 0, 1, 2, 1)
+        self.gridLayout_2.addWidget(self.configStackedWidget, 0, 4, 21, 7)
 
         self.r2InputButton = QPushButton(self.runConfigurationTab)
         self.r2InputButton.setObjectName(u"r2InputButton")
@@ -1882,7 +2207,142 @@ class Ui_MainWindow(object):
         self.r2InputButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.r2InputButton.setIcon(icon9)
 
-        self.gridLayout_2.addWidget(self.r2InputButton, 3, 1, 1, 1)
+        self.gridLayout_2.addWidget(self.r2InputButton, 3, 3, 1, 1)
+
+        self.umiCheckbox = QCheckBox(self.runConfigurationTab)
+        self.umiCheckbox.setObjectName(u"umiCheckbox")
+
+        self.gridLayout_2.addWidget(self.umiCheckbox, 5, 0, 1, 2)
+
+        self.configStepsLabel = QLabel(self.runConfigurationTab)
+        self.configStepsLabel.setObjectName(u"configStepsLabel")
+
+        self.gridLayout_2.addWidget(self.configStepsLabel, 8, 0, 1, 4)
+
+        self.verticalSpacer_11 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_11, 7, 0, 1, 4)
+
+        self.verticalSpacer_10 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_10, 6, 0, 1, 4)
+
+        self.dockerConfig = QPushButton(self.runConfigurationTab)
+        self.dockerConfig.setObjectName(u"dockerConfig")
+        self.dockerConfig.setMinimumSize(QSize(50, 30))
+        self.dockerConfig.setFont(font)
+        self.dockerConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.dockerConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon15 = QIcon()
+        icon15.addFile(u":/icons/images/icons/cil-docker.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.dockerConfig.setIcon(icon15)
+
+        self.gridLayout_2.addWidget(self.dockerConfig, 9, 0, 1, 4)
+
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_3, 10, 0, 1, 4)
+
+        self.trimmingConfig = QPushButton(self.runConfigurationTab)
+        self.trimmingConfig.setObjectName(u"trimmingConfig")
+        self.trimmingConfig.setMinimumSize(QSize(50, 30))
+        self.trimmingConfig.setFont(font)
+        self.trimmingConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.trimmingConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon16 = QIcon()
+        icon16.addFile(u":/icons/images/icons/cil-cut.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.trimmingConfig.setIcon(icon16)
+
+        self.gridLayout_2.addWidget(self.trimmingConfig, 11, 0, 1, 4)
+
+        self.readMappingConfig = QPushButton(self.runConfigurationTab)
+        self.readMappingConfig.setObjectName(u"readMappingConfig")
+        self.readMappingConfig.setMinimumSize(QSize(50, 30))
+        self.readMappingConfig.setFont(font)
+        self.readMappingConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.readMappingConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.readMappingConfig.setIcon(icon9)
+
+        self.gridLayout_2.addWidget(self.readMappingConfig, 13, 0, 1, 4)
+
+        self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_5, 12, 0, 1, 4)
+
+        self.verticalSpacer_7 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_7, 14, 0, 1, 4)
+
+        self.siteAnalysisConfig = QPushButton(self.runConfigurationTab)
+        self.siteAnalysisConfig.setObjectName(u"siteAnalysisConfig")
+        self.siteAnalysisConfig.setMinimumSize(QSize(50, 30))
+        self.siteAnalysisConfig.setFont(font)
+        self.siteAnalysisConfig.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.siteAnalysisConfig.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.siteAnalysisConfig.setIcon(icon9)
+
+        self.gridLayout_2.addWidget(self.siteAnalysisConfig, 15, 0, 3, 4)
+
+        self.verticalSpacer_8 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_8, 18, 0, 3, 4)
+
+        self.resetButton = QPushButton(self.runConfigurationTab)
+        self.resetButton.setObjectName(u"resetButton")
+        self.resetButton.setMinimumSize(QSize(50, 30))
+        self.resetButton.setFont(font)
+        self.resetButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.resetButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon17 = QIcon()
+        icon17.addFile(u":/icons/images/icons/cil-fire.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.resetButton.setIcon(icon17)
+
+        self.gridLayout_2.addWidget(self.resetButton, 21, 0, 1, 1)
+
+        self.restoreDefaultsButton = QPushButton(self.runConfigurationTab)
+        self.restoreDefaultsButton.setObjectName(u"restoreDefaultsButton")
+        self.restoreDefaultsButton.setMinimumSize(QSize(50, 30))
+        self.restoreDefaultsButton.setFont(font)
+        self.restoreDefaultsButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.restoreDefaultsButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon18 = QIcon()
+        icon18.addFile(u":/icons/images/icons/cil-file.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.restoreDefaultsButton.setIcon(icon18)
+
+        self.gridLayout_2.addWidget(self.restoreDefaultsButton, 21, 1, 1, 3)
+
+        self.umiInput = QLineEdit(self.runConfigurationTab)
+        self.umiInput.setObjectName(u"umiInput")
+
+        self.gridLayout_2.addWidget(self.umiInput, 5, 2, 1, 2)
+
+        self.R1Label = QLabel(self.runConfigurationTab)
+        self.R1Label.setObjectName(u"R1Label")
+
+        self.gridLayout_2.addWidget(self.R1Label, 0, 0, 2, 1)
+
+        self.R2Label = QLabel(self.runConfigurationTab)
+        self.R2Label.setObjectName(u"R2Label")
+
+        self.gridLayout_2.addWidget(self.R2Label, 3, 0, 1, 1)
+
+        self.r2Input = QLineEdit(self.runConfigurationTab)
+        self.r2Input.setObjectName(u"r2Input")
+
+        self.gridLayout_2.addWidget(self.r2Input, 3, 1, 1, 2)
+
+        self.r1Input = QLineEdit(self.runConfigurationTab)
+        self.r1Input.setObjectName(u"r1Input")
+
+        self.gridLayout_2.addWidget(self.r1Input, 0, 1, 2, 2)
+
+        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_4, 4, 0, 1, 4)
+
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+
+        self.gridLayout_2.addItem(self.verticalSpacer_2, 2, 0, 1, 4)
 
 
         self.verticalLayout1.addLayout(self.gridLayout_2)
@@ -1891,104 +2351,104 @@ class Ui_MainWindow(object):
         self.runAnalysisTab = QWidget()
         self.runAnalysisTab.setObjectName(u"runAnalysisTab")
         self.runAnalysisTab.setStyleSheet(u"")
-        self.verticalLayout20 = QVBoxLayout(self.runAnalysisTab)
-        self.verticalLayout20.setSpacing(10)
-        self.verticalLayout20.setObjectName(u"verticalLayout20")
-        self.verticalLayout20.setContentsMargins(10, 10, 10, 10)
-        self.row_16 = QFrame(self.runAnalysisTab)
-        self.row_16.setObjectName(u"row_16")
-        self.row_16.setMinimumSize(QSize(0, 50))
-        self.row_16.setMaximumSize(QSize(16777215, 50))
-        self.row_16.setFrameShape(QFrame.Shape.StyledPanel)
-        self.row_16.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout_161 = QVBoxLayout(self.row_16)
+        self.verticalLayout23 = QVBoxLayout(self.runAnalysisTab)
+        self.verticalLayout23.setSpacing(10)
+        self.verticalLayout23.setObjectName(u"verticalLayout23")
+        self.verticalLayout23.setContentsMargins(10, 10, 10, 10)
+        self.row_15 = QFrame(self.runAnalysisTab)
+        self.row_15.setObjectName(u"row_15")
+        self.row_15.setMinimumSize(QSize(0, 50))
+        self.row_15.setMaximumSize(QSize(16777215, 50))
+        self.row_15.setFrameShape(QFrame.Shape.StyledPanel)
+        self.row_15.setFrameShadow(QFrame.Shadow.Raised)
+        self.verticalLayout_161 = QVBoxLayout(self.row_15)
         self.verticalLayout_161.setSpacing(0)
         self.verticalLayout_161.setObjectName(u"verticalLayout_161")
         self.verticalLayout_161.setContentsMargins(0, 0, 0, 0)
 
-        self.verticalLayout20.addWidget(self.row_16)
+        self.verticalLayout23.addWidget(self.row_15)
 
-        self.row_26 = QFrame(self.runAnalysisTab)
-        self.row_26.setObjectName(u"row_26")
-        self.row_26.setMinimumSize(QSize(0, 150))
-        self.row_26.setFrameShape(QFrame.Shape.StyledPanel)
-        self.row_26.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout_191 = QVBoxLayout(self.row_26)
+        self.row_25 = QFrame(self.runAnalysisTab)
+        self.row_25.setObjectName(u"row_25")
+        self.row_25.setMinimumSize(QSize(0, 150))
+        self.row_25.setFrameShape(QFrame.Shape.StyledPanel)
+        self.row_25.setFrameShadow(QFrame.Shadow.Raised)
+        self.verticalLayout_191 = QVBoxLayout(self.row_25)
         self.verticalLayout_191.setObjectName(u"verticalLayout_191")
-        self.label_4 = QLabel(self.row_26)
+        self.label_4 = QLabel(self.row_25)
         self.label_4.setObjectName(u"label_4")
 
         self.verticalLayout_191.addWidget(self.label_4)
 
 
-        self.verticalLayout20.addWidget(self.row_26)
+        self.verticalLayout23.addWidget(self.row_25)
 
-        self.row_35 = QFrame(self.runAnalysisTab)
-        self.row_35.setObjectName(u"row_35")
-        self.row_35.setMinimumSize(QSize(0, 70))
-        self.row_35.setFrameShape(QFrame.Shape.StyledPanel)
-        self.row_35.setFrameShadow(QFrame.Shadow.Raised)
-        self.horizontalLayout_121 = QHBoxLayout(self.row_35)
+        self.row_34 = QFrame(self.runAnalysisTab)
+        self.row_34.setObjectName(u"row_34")
+        self.row_34.setMinimumSize(QSize(0, 70))
+        self.row_34.setFrameShape(QFrame.Shape.StyledPanel)
+        self.row_34.setFrameShadow(QFrame.Shadow.Raised)
+        self.horizontalLayout_121 = QHBoxLayout(self.row_34)
         self.horizontalLayout_121.setSpacing(0)
         self.horizontalLayout_121.setObjectName(u"horizontalLayout_121")
         self.horizontalLayout_121.setContentsMargins(0, 0, 0, 0)
 
-        self.verticalLayout20.addWidget(self.row_35)
+        self.verticalLayout23.addWidget(self.row_34)
 
         self.stackedWidget.addWidget(self.runAnalysisTab)
         self.runProgressTab = QWidget()
         self.runProgressTab.setObjectName(u"runProgressTab")
         self.runProgressTab.setStyleSheet(u"")
-        self.verticalLayout21 = QVBoxLayout(self.runProgressTab)
-        self.verticalLayout21.setSpacing(10)
-        self.verticalLayout21.setObjectName(u"verticalLayout21")
-        self.verticalLayout21.setContentsMargins(10, 10, 10, 10)
-        self.row_17 = QFrame(self.runProgressTab)
-        self.row_17.setObjectName(u"row_17")
-        self.row_17.setMinimumSize(QSize(0, 70))
-        self.row_17.setMaximumSize(QSize(16777215, 70))
-        self.row_17.setFrameShape(QFrame.Shape.StyledPanel)
-        self.row_17.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout_162 = QVBoxLayout(self.row_17)
+        self.verticalLayout24 = QVBoxLayout(self.runProgressTab)
+        self.verticalLayout24.setSpacing(10)
+        self.verticalLayout24.setObjectName(u"verticalLayout24")
+        self.verticalLayout24.setContentsMargins(10, 10, 10, 10)
+        self.row_16 = QFrame(self.runProgressTab)
+        self.row_16.setObjectName(u"row_16")
+        self.row_16.setMinimumSize(QSize(0, 70))
+        self.row_16.setMaximumSize(QSize(16777215, 70))
+        self.row_16.setFrameShape(QFrame.Shape.StyledPanel)
+        self.row_16.setFrameShadow(QFrame.Shadow.Raised)
+        self.verticalLayout_162 = QVBoxLayout(self.row_16)
         self.verticalLayout_162.setSpacing(0)
         self.verticalLayout_162.setObjectName(u"verticalLayout_162")
         self.verticalLayout_162.setContentsMargins(0, 0, 0, 0)
 
-        self.verticalLayout21.addWidget(self.row_17)
+        self.verticalLayout24.addWidget(self.row_16)
 
-        self.row_27 = QFrame(self.runProgressTab)
-        self.row_27.setObjectName(u"row_27")
-        self.row_27.setMinimumSize(QSize(0, 150))
-        self.row_27.setFrameShape(QFrame.Shape.StyledPanel)
-        self.row_27.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout_192 = QVBoxLayout(self.row_27)
+        self.row_26 = QFrame(self.runProgressTab)
+        self.row_26.setObjectName(u"row_26")
+        self.row_26.setMinimumSize(QSize(0, 150))
+        self.row_26.setFrameShape(QFrame.Shape.StyledPanel)
+        self.row_26.setFrameShadow(QFrame.Shadow.Raised)
+        self.verticalLayout_192 = QVBoxLayout(self.row_26)
         self.verticalLayout_192.setObjectName(u"verticalLayout_192")
-        self.stdOut = QTextBrowser(self.row_27)
+        self.stdOut = QTextBrowser(self.row_26)
         self.stdOut.setObjectName(u"stdOut")
 
         self.verticalLayout_192.addWidget(self.stdOut)
 
 
-        self.verticalLayout21.addWidget(self.row_27)
+        self.verticalLayout24.addWidget(self.row_26)
 
-        self.row_36 = QFrame(self.runProgressTab)
-        self.row_36.setObjectName(u"row_36")
-        self.row_36.setMinimumSize(QSize(0, 50))
-        self.row_36.setFrameShape(QFrame.Shape.StyledPanel)
-        self.row_36.setFrameShadow(QFrame.Shadow.Raised)
-        self.horizontalLayout_122 = QHBoxLayout(self.row_36)
+        self.row_35 = QFrame(self.runProgressTab)
+        self.row_35.setObjectName(u"row_35")
+        self.row_35.setMinimumSize(QSize(0, 50))
+        self.row_35.setFrameShape(QFrame.Shape.StyledPanel)
+        self.row_35.setFrameShadow(QFrame.Shadow.Raised)
+        self.horizontalLayout_122 = QHBoxLayout(self.row_35)
         self.horizontalLayout_122.setSpacing(0)
         self.horizontalLayout_122.setObjectName(u"horizontalLayout_122")
         self.horizontalLayout_122.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_6 = QHBoxLayout()
         self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
-        self.cleanButton = QPushButton(self.row_36)
+        self.cleanButton = QPushButton(self.row_35)
         self.cleanButton.setObjectName(u"cleanButton")
         self.cleanButton.setMinimumSize(QSize(50, 30))
         self.cleanButton.setFont(font)
         self.cleanButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.cleanButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        self.cleanButton.setIcon(icon16)
+        self.cleanButton.setIcon(icon17)
 
         self.horizontalLayout_6.addWidget(self.cleanButton)
 
@@ -1996,7 +2456,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_6.addItem(self.horizontalSpacer_10)
 
-        self.pauseButton = QPushButton(self.row_36)
+        self.pauseButton = QPushButton(self.row_35)
         self.pauseButton.setObjectName(u"pauseButton")
         self.pauseButton.setMinimumSize(QSize(50, 30))
         self.pauseButton.setFont(font)
@@ -2008,7 +2468,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_6.addWidget(self.pauseButton)
 
-        self.resumeButton = QPushButton(self.row_36)
+        self.resumeButton = QPushButton(self.row_35)
         self.resumeButton.setObjectName(u"resumeButton")
         self.resumeButton.setMinimumSize(QSize(50, 30))
         self.resumeButton.setFont(font)
@@ -2020,7 +2480,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_6.addWidget(self.resumeButton)
 
-        self.runButton = QPushButton(self.row_36)
+        self.runButton = QPushButton(self.row_35)
         self.runButton.setObjectName(u"runButton")
         self.runButton.setMinimumSize(QSize(50, 30))
         self.runButton.setFont(font)
@@ -2034,7 +2494,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_122.addLayout(self.horizontalLayout_6)
 
 
-        self.verticalLayout21.addWidget(self.row_36)
+        self.verticalLayout24.addWidget(self.row_35)
 
         self.stackedWidget.addWidget(self.runProgressTab)
 
@@ -2177,11 +2637,9 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.styleSheet)
         QWidget.setTabOrder(self.umiInput, self.umiCheckbox)
         QWidget.setTabOrder(self.umiCheckbox, self.trimmingConfig)
-        QWidget.setTabOrder(self.trimmingConfig, self.refGenomeConfig)
-        QWidget.setTabOrder(self.refGenomeConfig, self.readMappingConfig)
+        QWidget.setTabOrder(self.trimmingConfig, self.readMappingConfig)
         QWidget.setTabOrder(self.readMappingConfig, self.siteAnalysisConfig)
-        QWidget.setTabOrder(self.siteAnalysisConfig, self.resetButton)
-        QWidget.setTabOrder(self.resetButton, self.restoreDefaultsButton)
+        QWidget.setTabOrder(self.siteAnalysisConfig, self.restoreDefaultsButton)
         QWidget.setTabOrder(self.restoreDefaultsButton, self.saveButton)
         QWidget.setTabOrder(self.saveButton, self.helpButton)
         QWidget.setTabOrder(self.helpButton, self.createRunButton)
@@ -2217,6 +2675,7 @@ class Ui_MainWindow(object):
         self.configStackedWidget.setCurrentIndex(1)
         self.dockerStackedWidget.setCurrentIndex(1)
         self.isInstalledStackedWidget.setCurrentIndex(1)
+        self.trimmingTabs.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -2281,14 +2740,9 @@ class Ui_MainWindow(object):
         self.openFolderLocationButton.setText(QCoreApplication.translate("MainWindow", u"Open Folder Location", None))
         self.exportRunButton.setText(QCoreApplication.translate("MainWindow", u"Export", None))
         self.renameRunButton.setText(QCoreApplication.translate("MainWindow", u"Rename Run", None))
+        self.saveButton.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.r1InputButton.setText(QCoreApplication.translate("MainWindow", u"Select", None))
         self.helpButton.setText(QCoreApplication.translate("MainWindow", u"Help", None))
-        self.R1Label.setText(QCoreApplication.translate("MainWindow", u"Read 1", None))
-        self.umiCheckbox.setText(QCoreApplication.translate("MainWindow", u"Unique Molecular Identifier?", None))
-        self.refGenomeConfig.setText(QCoreApplication.translate("MainWindow", u"Reference genome", None))
-        self.dockerConfig.setText(QCoreApplication.translate("MainWindow", u"Docker configuration", None))
-        self.restoreDefaultsButton.setText(QCoreApplication.translate("MainWindow", u"Restore Defaults", None))
-        self.readMappingConfig.setText(QCoreApplication.translate("MainWindow", u"Read mapping", None))
-        self.siteAnalysisConfig.setText(QCoreApplication.translate("MainWindow", u"Site analysis", None))
         self.localRadio.setText(QCoreApplication.translate("MainWindow", u"Local", None))
         self.remoteRadio.setText(QCoreApplication.translate("MainWindow", u"Remote", None))
         self.dockerLabel.setText(QCoreApplication.translate("MainWindow", u"Do you want to run the qsLAM PCR pipeline locally or on a remote server? You can do some trial runs on our public test server.", None))
@@ -2305,13 +2759,60 @@ class Ui_MainWindow(object):
         self.portLabel.setText(QCoreApplication.translate("MainWindow", u"Port", None))
         self.protocolLabel.setText(QCoreApplication.translate("MainWindow", u"Protocol", None))
         self.httpsRadio.setText(QCoreApplication.translate("MainWindow", u"Https", None))
+        self.r1PairFilterComboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"Both", None))
+        self.r1PairFilterComboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Any", None))
+        self.r1PairFilterComboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"First", None))
+
+        self.r2AnchoredLabel.setText(QCoreApplication.translate("MainWindow", u"R2 Anchored: ", None))
+        self.r1MinLengthInput.setText(QCoreApplication.translate("MainWindow", u"30", None))
+        self.r1SequenceLabel.setText(QCoreApplication.translate("MainWindow", u"R1 Sequence: ", None))
+        self.r1ErrorRateLabel.setText(QCoreApplication.translate("MainWindow", u"R1 Error rate: ", None))
+        self.r2AnchoredCheckbox.setText("")
+        self.r2SequenceLabel.setText(QCoreApplication.translate("MainWindow", u"R2 Sequence: ", None))
+        self.r2ErrorRateLabel.setText(QCoreApplication.translate("MainWindow", u"R2 Error rate: ", None))
+        self.r1AnchoredCheckbox.setText("")
+        self.r2MinLengthInput.setText(QCoreApplication.translate("MainWindow", u"30", None))
+        self.r1MinOverlapLabel.setText(QCoreApplication.translate("MainWindow", u"R1 Min overlap: ", None))
+        self.r2TrimLeadingInput.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.r2MinLengthLabel.setText(QCoreApplication.translate("MainWindow", u"R2 Min length:", None))
+        self.r2PairFilterComboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"Both", None))
+        self.r2PairFilterComboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"Any", None))
+        self.r2PairFilterComboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"First", None))
+
+        self.r2PairFilterLabel.setText(QCoreApplication.translate("MainWindow", u"R2 Pair filter: ", None))
+        self.r1TrimLeadingInput.setText(QCoreApplication.translate("MainWindow", u"0", None))
+        self.r2TrimLeadingLabel.setText(QCoreApplication.translate("MainWindow", u"R2 Trim leading: ", None))
+        self.r1AnchoredLabel.setText(QCoreApplication.translate("MainWindow", u"R1 Anchored: ", None))
+        self.r1MinLengthLabel.setText(QCoreApplication.translate("MainWindow", u"R1 Min length:", None))
+        self.r2MinOverlapLabel.setText(QCoreApplication.translate("MainWindow", u"R2 Min overlap: ", None))
+        self.r1PairFilterLabel.setText(QCoreApplication.translate("MainWindow", u"R1 Pair filter: ", None))
+        self.useCutadaptCheckbox.setText(QCoreApplication.translate("MainWindow", u"Use Cutadapt", None))
+        self.r1TrimLeadingLabel.setText(QCoreApplication.translate("MainWindow", u"R1 Trim leading: ", None))
+        self.r2MinOverlapInput.setText(QCoreApplication.translate("MainWindow", u"10", None))
+        self.r1MinOverlapInput.setText(QCoreApplication.translate("MainWindow", u"5", None))
+        self.trimmingTabs.setTabText(self.trimmingTabs.indexOf(self.cutadapt), QCoreApplication.translate("MainWindow", u"Cutadapt", None))
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Nothing to see here yet :)", None))
+        self.trimmingTabs.setTabText(self.trimmingTabs.indexOf(self.fastp), QCoreApplication.translate("MainWindow", u"Fastp", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Nothing to see here yet :)", None))
+        self.trimmingTabs.setTabText(self.trimmingTabs.indexOf(self.umi_tools), QCoreApplication.translate("MainWindow", u"UMI Tools", None))
+        self.readLenCheckbox.setText(QCoreApplication.translate("MainWindow", u"Read length\n"
+"after trimming", None))
+        self.qualityControlLabel.setText(QCoreApplication.translate("MainWindow", u"Quality control", None))
+        self.qcAfterCheckbox.setText(QCoreApplication.translate("MainWindow", u"Do a quality control\n"
+"check after trimming", None))
+        self.qcBeforeCheckbox.setText(QCoreApplication.translate("MainWindow", u"Do a quality control\n"
+"check before trimming", None))
+        self.r2InputButton.setText(QCoreApplication.translate("MainWindow", u"Select", None))
+        self.umiCheckbox.setText(QCoreApplication.translate("MainWindow", u"Unique Molecular Identifier?", None))
         self.configStepsLabel.setText(QCoreApplication.translate("MainWindow", u"Please complete all configuration steps below:", None))
-        self.resetButton.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
+        self.dockerConfig.setText(QCoreApplication.translate("MainWindow", u"Docker configuration", None))
         self.trimmingConfig.setText(QCoreApplication.translate("MainWindow", u"Adapter and primer trimming", None))
-        self.saveButton.setText(QCoreApplication.translate("MainWindow", u"Save", None))
+        self.readMappingConfig.setText(QCoreApplication.translate("MainWindow", u"Read mapping", None))
+        self.siteAnalysisConfig.setText(QCoreApplication.translate("MainWindow", u"Site analysis", None))
+        self.resetButton.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
+        self.restoreDefaultsButton.setText(QCoreApplication.translate("MainWindow", u"Restore Defaults", None))
+        self.R1Label.setText(QCoreApplication.translate("MainWindow", u"Read 1", None))
         self.R2Label.setText(QCoreApplication.translate("MainWindow", u"Read 2", None))
-        self.r1InputButton.setText(QCoreApplication.translate("MainWindow", u"Open", None))
-        self.r2InputButton.setText(QCoreApplication.translate("MainWindow", u"Open", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Charts here and stuff after run is complete...", None))
         self.stdOut.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"

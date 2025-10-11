@@ -11,6 +11,8 @@ from PySide6.QtWidgets import *
 import random
 import string
 
+from widgets.custom_context_menu.custom_context_menu import CustomContextMenu
+
 class RunConfiguration:
     def __init__(self, main_window):
         self.main_window = main_window
@@ -22,15 +24,15 @@ class RunConfiguration:
 
         self.widgets.dockerConfig.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.docker, self.widgets.dockerConfig))
         self.widgets.trimmingConfig.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.trimming, self.widgets.trimmingConfig))
-        self.widgets.refGenomeConfig.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.ref_genome, self.widgets.refGenomeConfig))
         self.widgets.readMappingConfig.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.read_mapping, self.widgets.readMappingConfig))
         self.widgets.siteAnalysisConfig.clicked.connect(lambda: self.on_configure_button_clicked(self.widgets.site_analysis, self.widgets.siteAnalysisConfig))
-        self.r1 = None
-        self.r2 = None
+        self.on_configure_button_clicked(self.widgets.docker, self.widgets.dockerConfig)
+        self.widgets.r1Input.setReadOnly(True)
+        self.widgets.r2Input.setReadOnly(True)
+        CustomContextMenu(self.widgets.r1Input)
+        CustomContextMenu(self.widgets.r2Input)
         self.widgets.r1InputButton.clicked.connect(lambda: self.select_read(1))
         self.widgets.r2InputButton.clicked.connect(lambda: self.select_read(2))
-        self.update_read_borders()
-        self.on_configure_button_clicked(self.widgets.docker, self.widgets.dockerConfig)
 
         self.widgets.saveButton.clicked.connect(self.save_to_metadata)
         self.widgets.restoreDefaultsButton.clicked.connect(self.restore_defaults)
@@ -49,15 +51,7 @@ class RunConfiguration:
         self.widgets.checkAgainButton.clicked.connect(self.check_and_save_docker_path)
         self.widgets.usePublicServerButton.clicked.connect(self.use_public_test_server)
         self.widgets.testConnectionButton.clicked.connect(self.test_connection)
-        self.update_docker_stack()
         self.check_and_save_docker_path()
-
-    def update_read_borders(self):
-        r1_style = "border: 1px solid green; border-radius: 6px;" if self.r1 else "border: 1px solid red; border-radius: 6px;"
-        r2_style = "border: 1px solid green; border-radius: 6px;" if self.r2 else "border: 1px solid red; border-radius: 6px;"
-
-        self.widgets.r1InputButton.setStyleSheet(r1_style)
-        self.widgets.r2InputButton.setStyleSheet(r2_style)
 
     def select_read(self, num):
         file, _ = QFileDialog.getOpenFileName(
@@ -67,10 +61,9 @@ class RunConfiguration:
         )
         if file:
             if num == 1:
-                self.r1 = file
+                self.widgets.r1Input.setText(file)
             elif num == 2:
-                self.r2 = file
-        self.update_read_borders()
+                self.widgets.r2Input.setText(file)
 
     def update_docker_stack(self):
         if self.widgets.localRadio.isChecked():
@@ -108,29 +101,26 @@ class RunConfiguration:
 
         self.widgets.remoteRadio.setChecked(True)
         self.update_docker_stack()
-
+    
     def load_from_metadata(self):
-        self.r1 = Settings.METADATA.get("r1", None)
-        self.r2 = Settings.METADATA.get("r2", None)
-        self.update_read_borders()
+        # --- GENERAL ---
+        self.widgets.r1Input.setText(Settings.METADATA.get("r1", ""))
+        self.widgets.r2Input.setText(Settings.METADATA.get("r2", ""))
         umi_enabled = Settings.METADATA.get("umi_enabled", False)
         self.widgets.umiCheckbox.setCheckState(Qt.CheckState.Checked if umi_enabled else Qt.CheckState.Unchecked)
-
         self.widgets.umiInput.setText(Settings.METADATA.get("umi_input", ""))
         self.on_umi_checkbox_state_changed(self.widgets.umiCheckbox.checkState())
 
-        # --- Load Docker mode ---
+        # --- DOCKER ---
         docker_mode = Settings.METADATA.get("docker_mode", "remote")
         if docker_mode == "local":
             self.widgets.localRadio.setChecked(True)
         else:
             self.widgets.remoteRadio.setChecked(True)
 
-        # --- Load Docker Path ---
         docker_path = self.settings.get("DOCKER_PATH", "docker")
         self.widgets.dockerPathInput.setText(docker_path)
 
-        # --- Load Remote Config ---
         self.widgets.ipAddressInput.setText(Settings.METADATA.get("docker_ip", ""))
         self.widgets.portInput.setText(Settings.METADATA.get("docker_port", ""))
         self.widgets.authTokenInput.setText(Settings.METADATA.get("docker_auth_token", ""))
@@ -141,30 +131,70 @@ class RunConfiguration:
         else:
             self.widgets.httpRadio.setChecked(True)
 
-        # Update widgets
+        # --- CUTADAPT ---
+        self.widgets.useCutadaptCheckbox.setChecked(Settings.METADATA.get("cutadapt_use", True))
+        self.widgets.r1SequenceInput.setText(Settings.METADATA.get("cutadapt_r1_sequence", ""))
+        self.widgets.r1ErrorRateSlider.setValue(int(Settings.METADATA.get("cutadapt_r1_error_rate", "30")))
+        self.widgets.r1TrimLeadingInput.setText(Settings.METADATA.get("cutadapt_r1_trim_leading", "0"))
+        self.widgets.r1MinOverlapInput.setText(Settings.METADATA.get("cutadapt_r1_min_overlap", "5"))
+        self.widgets.r1AnchoredCheckbox.setChecked(Settings.METADATA.get("cutadapt_r1_anchored", False))
+        self.widgets.r1MinLengthInput.setText(Settings.METADATA.get("cutadapt_r1_min_length", "30"))
+        self.widgets.r1PairFilterComboBox.setCurrentIndex(Settings.METADATA.get("cutadapt_r1_pair_filter", 0))
+
+        self.widgets.r2SequenceInput.setText(Settings.METADATA.get("cutadapt_r2_sequence", ""))
+        self.widgets.r2ErrorRateSlider.setValue(int(Settings.METADATA.get("cutadapt_r2_error_rate", "10")))
+        self.widgets.r2TrimLeadingInput.setText(Settings.METADATA.get("cutadapt_r2_trim_leading", "0"))
+        self.widgets.r2MinOverlapInput.setText(Settings.METADATA.get("cutadapt_r2_min_overlap", "10"))
+        self.widgets.r2AnchoredCheckbox.setChecked(Settings.METADATA.get("cutadapt_r2_anchored", False))
+        self.widgets.r2MinLengthInput.setText(Settings.METADATA.get("cutadapt_r2_min_length", "30"))
+        self.widgets.r2PairFilterComboBox.setCurrentIndex(Settings.METADATA.get("cutadapt_r2_pair_filter", 0))
+
+        # --- TRIMMING ---
+        self.widgets.qcAfterCheckbox.setChecked(Settings.METADATA.get("qc_after", True))
+        self.widgets.qcBeforeCheckbox.setChecked(Settings.METADATA.get("qc_before", True))
+        self.widgets.readLenCheckbox.setChecked(Settings.METADATA.get("read_len", True))
+
+        # --- FINAL UPDATES ---
         self.update_docker_stack()
         self.check_and_save_docker_path()
 
     def save_to_metadata(self):
-        Settings.METADATA.set("r1", self.r1)
-        Settings.METADATA.set("r2", self.r2)
+        # --- GENERAL ---
+        Settings.METADATA.set("r1", self.widgets.r1Input.text())
+        Settings.METADATA.set("r2", self.widgets.r2Input.text())
         Settings.METADATA.set("umi_enabled", self.widgets.umiCheckbox.checkState() == Qt.CheckState.Checked)
         Settings.METADATA.set("umi_input", self.widgets.umiInput.text())
 
-        # --- Save Docker mode ---
+        # --- DOCKER ---
         docker_mode = "local" if self.widgets.localRadio.isChecked() else "remote"
         Settings.METADATA.set("docker_mode", docker_mode)
-
-        # --- Save Docker path ---
-        Settings.METADATA.set("docker_path", self.widgets.dockerPathInput.text())
-
-        # --- Save Remote Config ---
         Settings.METADATA.set("docker_ip", self.widgets.ipAddressInput.text().strip())
         Settings.METADATA.set("docker_port", self.widgets.portInput.text().strip())
         Settings.METADATA.set("docker_auth_token", self.widgets.authTokenInput.text().strip())
-
         protocol = "https" if self.widgets.httpsRadio.isChecked() else "http"
         Settings.METADATA.set("docker_protocol", protocol)
+
+        # --- CUTADAPT ---
+        Settings.METADATA.set("cutadapt_use", self.widgets.useCutadaptCheckbox.isChecked())
+        Settings.METADATA.set("cutadapt_r1_sequence", self.widgets.r1SequenceInput.text())
+        Settings.METADATA.set("cutadapt_r1_error_rate", self.widgets.r1ErrorRateSlider.value())
+        Settings.METADATA.set("cutadapt_r1_trim_leading", self.widgets.r1TrimLeadingInput.text())
+        Settings.METADATA.set("cutadapt_r1_min_overlap", self.widgets.r1MinOverlapInput.text())
+        Settings.METADATA.set("cutadapt_r1_anchored", self.widgets.r1AnchoredCheckbox.isChecked())
+        Settings.METADATA.set("cutadapt_r1_min_length", self.widgets.r1MinLengthInput.text())
+        Settings.METADATA.set("cutadapt_r1_pair_filter", self.widgets.r1PairFilterComboBox.currentIndex())
+        Settings.METADATA.set("cutadapt_r2_sequence", self.widgets.r2SequenceInput.text())
+        Settings.METADATA.set("cutadapt_r2_error_rate", self.widgets.r2ErrorRateSlider.value())
+        Settings.METADATA.set("cutadapt_r2_trim_leading", self.widgets.r2TrimLeadingInput.text())
+        Settings.METADATA.set("cutadapt_r2_min_overlap", self.widgets.r2MinOverlapInput.text())
+        Settings.METADATA.set("cutadapt_r2_anchored", self.widgets.r2AnchoredCheckbox.isChecked())
+        Settings.METADATA.set("cutadapt_r2_min_length", self.widgets.r2MinLengthInput.text())
+        Settings.METADATA.set("cutadapt_r2_pair_filter", self.widgets.r2PairFilterComboBox.currentIndex())
+
+        # --- TRIMMING ---
+        Settings.METADATA.set("qc_after", self.widgets.qcAfterCheckbox.isChecked())
+        Settings.METADATA.set("qc_before", self.widgets.qcBeforeCheckbox.isChecked())
+        Settings.METADATA.set("read_len", self.widgets.readLenCheckbox.isChecked())
 
     def on_configure_button_clicked(self, page, button):
         if(self.selectedButton == button): return
@@ -227,16 +257,57 @@ class RunConfiguration:
         )
 
         if button == QMessageBox.Yes:
+            # --- GENERAL ---
             self.widgets.umiCheckbox.setCheckState(Qt.CheckState.Unchecked)
             self.widgets.umiInput.clear()
+            self.widgets.r1Input.clear()
+            self.widgets.r2Input.clear()
+
+            # --- DOCKER ---
+            self.widgets.localRadio.setChecked(False)
+            self.widgets.remoteRadio.setChecked(True)
+            self.widgets.ipAddressInput.clear()
+            self.widgets.portInput.clear()
+            self.widgets.authTokenInput.clear()
+            self.widgets.httpRadio.setChecked(True)
+            self.widgets.httpsRadio.setChecked(False)
+
+            # --- CUTADAPT (defaults from load_from_metadata) ---
+            self.widgets.useCutadaptCheckbox.setChecked(True)
+            self.widgets.r1SequenceInput.clear()
+            self.widgets.r1ErrorRateSlider.setValue(30)
+            self.widgets.r1TrimLeadingInput.setText("0")
+            self.widgets.r1MinOverlapInput.setText("5")
+            self.widgets.r1AnchoredCheckbox.setChecked(False)
+            self.widgets.r1MinLengthInput.setText("30")
+            self.widgets.r1PairFilterComboBox.setCurrentIndex(0)
+
+            self.widgets.r2SequenceInput.clear()
+            self.widgets.r2ErrorRateSlider.setValue(10)
+            self.widgets.r2TrimLeadingInput.setText("0")
+            self.widgets.r2MinOverlapInput.setText("10")
+            self.widgets.r2AnchoredCheckbox.setChecked(False)
+            self.widgets.r2MinLengthInput.setText("30")
+            self.widgets.r2PairFilterComboBox.setCurrentIndex(0)
+
+            # --- TRIMMING ---
+            self.widgets.qcAfterCheckbox.setChecked(True)
+            self.widgets.qcBeforeCheckbox.setChecked(True)
+            self.widgets.readLenCheckbox.setChecked(True)
+
+            # --- Update dependent logic ---
             self.on_umi_checkbox_state_changed(self.widgets.umiCheckbox.checkState())
+
+            # --- Save state ---
             self.save_to_metadata()
 
     def on_umi_checkbox_state_changed(self, state):
         if state == Qt.CheckState.Checked:
             self.widgets.umiInput.show()
+            self.widgets.trimmingTabs.setTabEnabled(2, True)
         else:
             self.widgets.umiInput.hide()
+            self.widgets.trimmingTabs.setTabEnabled(2, False)
 
     def get_nc_folder_contents(self, manager: QNetworkAccessManager, share_token: str):
         base_url = "https://nc.liam-w.com"

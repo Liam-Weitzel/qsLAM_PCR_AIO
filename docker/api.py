@@ -148,13 +148,13 @@ def cutadapt():
       -H "Content-Type: application/json" \
       -d '{
         "r1_seq": "ATCCCTCAGACCCTTTTAGTCAGTGTGGAAAATCTC",
-        "r2_seq": "GACTGCGTATCAGT",
         "r1_error_rate": 0.3,
         "r1_trim_leading_trailing": 0,
         "r1_anchored": false,
         "r1_min_overlap": 5,
         "r1_pair_filter": "both",
         "r1_minimum_length_of_read": 30,
+        "r2_seq": "GACTGCGTATCAGT",
         "r2_error_rate": 0.1,
         "r2_trim_leading_trailing": 0,
         "r2_anchored": false,
