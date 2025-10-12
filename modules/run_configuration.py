@@ -95,13 +95,13 @@ class RunConfiguration:
 
         if self.is_docker_installed(docker_path):
             self.settings.set("DOCKER_PATH", docker_path)
-            self.widgets.dockerPathInput.setText(docker_path)
-            self.widgets.dockerPathInput_2.setText(docker_path)
+            self.main_window.run_progress.load_from_metadata()
             self.widgets.isInstalledStackedWidget.setCurrentIndex(0)
         else:
-            self.widgets.dockerPathInput.setText(docker_path)
-            self.widgets.dockerPathInput_2.setText(docker_path)
             self.widgets.isInstalledStackedWidget.setCurrentIndex(1)
+        docker_path = self.settings.get("DOCKER_PATH", "docker")
+        self.widgets.dockerPathInput.setText(docker_path)
+        self.widgets.dockerPathInput_2.setText(docker_path)
 
     def test_connection(self):
         # DUMMY FUNC

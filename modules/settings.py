@@ -1,14 +1,6 @@
 import json
 import os
 
-# NOTE: Usage Example
-# settings = Settings()
-# # Read dynamic setting ENABLE_CUSTOM_TITLE_BAR
-# use_custom_title = settings.get("ENABLE_CUSTOM_TITLE_BAR")
-# print("Custom title bar enabled?", use_custom_title)
-# # Change it and save
-# settings.set("ENABLE_CUSTOM_TITLE_BAR", True)
-
 class Settings:
     MENU_WIDTH = 240
     LEFT_BOX_WIDTH = 240
@@ -53,11 +45,9 @@ class Settings:
         else:
             self._data = {}
 
-        # Set default values for dynamic settings if missing
-        if "ENABLE_CUSTOM_TITLE_BAR" not in self._data:
-            self._data["ENABLE_CUSTOM_TITLE_BAR"] = False
-        if "FIRST_START" not in self._data:
-            self._data["FIRST_START"] = True
+        # Default dynamic settings
+        self._data.setdefault("ENABLE_CUSTOM_TITLE_BAR", False)
+        self._data.setdefault("FIRST_START", True)
 
         self.save()
 
@@ -68,9 +58,29 @@ class Settings:
         except Exception as e:
             print(f"[Settings] Failed to save settings: {e}")
 
+    # Instance-based
     def get(self, key, default=None):
         return self._data.get(key, default)
 
     def set(self, key, value):
         self._data[key] = value
         self.save()
+
+    # Singleton helper
+    @classmethod
+    def _ensure_instance(cls):
+        if cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
+
+    # Class-level accessors (no self)
+    @classmethod
+    def get_noself(cls, key, default=None):
+        inst = cls._ensure_instance()
+        return inst._data.get(key, default)
+
+    @classmethod
+    def set_noself(cls, key, value):
+        inst = cls._ensure_instance()
+        inst._data[key] = value
+        inst.save()

@@ -1460,19 +1460,6 @@ class Ui_MainWindow(object):
         self.gridLayout2 = QGridLayout(self.grid1)
         self.gridLayout2.setSpacing(0)
         self.gridLayout2.setObjectName(u"gridLayout2")
-        self.horizontalSpacer_32 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout2.addItem(self.horizontalSpacer_32, 1, 0, 1, 1)
-
-        self.verticalSpacer_20 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout2.addItem(self.verticalSpacer_20, 6, 1, 1, 2)
-
-        self.dockerPathInput_2 = QLineEdit(self.grid1)
-        self.dockerPathInput_2.setObjectName(u"dockerPathInput_2")
-
-        self.gridLayout2.addWidget(self.dockerPathInput_2, 4, 1, 1, 2)
-
         self.checkAgainButton_2 = QPushButton(self.grid1)
         self.checkAgainButton_2.setObjectName(u"checkAgainButton_2")
         self.checkAgainButton_2.setMinimumSize(QSize(50, 30))
@@ -1481,7 +1468,17 @@ class Ui_MainWindow(object):
         self.checkAgainButton_2.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.checkAgainButton_2.setIcon(icon6)
 
-        self.gridLayout2.addWidget(self.checkAgainButton_2, 4, 3, 1, 1)
+        self.gridLayout2.addWidget(self.checkAgainButton_2, 4, 5, 1, 1)
+
+        self.dockerFoundLabel = QLabel(self.grid1)
+        self.dockerFoundLabel.setObjectName(u"dockerFoundLabel")
+        self.dockerFoundLabel.setStyleSheet(u"color: green; font-weight: bold;")
+
+        self.gridLayout2.addWidget(self.dockerFoundLabel, 1, 3, 1, 1)
+
+        self.horizontalSpacer_15 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout2.addItem(self.horizontalSpacer_15, 1, 1, 1, 1)
 
         self.dockerSuccessIcon = QFrame(self.grid1)
         self.dockerSuccessIcon.setObjectName(u"dockerSuccessIcon")
@@ -1492,30 +1489,49 @@ class Ui_MainWindow(object):
 "						    background-repeat: no-repeat;\n"
 "						   ")
 
-        self.gridLayout2.addWidget(self.dockerSuccessIcon, 1, 1, 1, 1)
+        self.gridLayout2.addWidget(self.dockerSuccessIcon, 1, 2, 1, 1)
 
-        self.horizontalSpacer_15 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.verticalSpacer_20 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout2.addItem(self.horizontalSpacer_15, 1, 3, 1, 1)
+        self.gridLayout2.addItem(self.verticalSpacer_20, 2, 3, 1, 1)
 
         self.verticalSpacer_21 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
-        self.gridLayout2.addItem(self.verticalSpacer_21, 0, 1, 1, 2)
+        self.gridLayout2.addItem(self.verticalSpacer_21, 0, 3, 1, 1)
 
-        self.dockerFoundLabel = QLabel(self.grid1)
-        self.dockerFoundLabel.setObjectName(u"dockerFoundLabel")
-        self.dockerFoundLabel.setStyleSheet(u"color: green; font-weight: bold;")
+        self.horizontalSpacer_39 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout2.addWidget(self.dockerFoundLabel, 1, 2, 1, 1)
+        self.gridLayout2.addItem(self.horizontalSpacer_39, 1, 0, 1, 1)
 
-        self.verticalSpacer_34 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.horizontalSpacer_40 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
-        self.gridLayout2.addItem(self.verticalSpacer_34, 2, 0, 1, 4)
+        self.gridLayout2.addItem(self.horizontalSpacer_40, 1, 5, 1, 1)
+
+        self.horizontalSpacer_41 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout2.addItem(self.horizontalSpacer_41, 3, 0, 1, 2)
+
+        self.horizontalSpacer_38 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout2.addItem(self.horizontalSpacer_38, 3, 4, 1, 2)
+
+        self.horizontalSpacer_32 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout2.addItem(self.horizontalSpacer_32, 1, 4, 1, 1)
+
+        self.horizontalSpacer_37 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+
+        self.gridLayout2.addItem(self.horizontalSpacer_37, 4, 4, 1, 1)
 
         self.dockerPathLabel_2 = QLabel(self.grid1)
         self.dockerPathLabel_2.setObjectName(u"dockerPathLabel_2")
 
-        self.gridLayout2.addWidget(self.dockerPathLabel_2, 3, 1, 1, 2)
+        self.gridLayout2.addWidget(self.dockerPathLabel_2, 3, 2, 1, 2)
+
+        self.dockerPathInput_2 = QLineEdit(self.grid1)
+        self.dockerPathInput_2.setObjectName(u"dockerPathInput_2")
+
+        self.gridLayout2.addWidget(self.dockerPathInput_2, 4, 2, 1, 2)
 
 
         self.verticalLayout5.addWidget(self.grid1)
@@ -2695,7 +2711,7 @@ class Ui_MainWindow(object):
 
         self.stackedWidget.setCurrentIndex(1)
         self.configStackedWidget.setCurrentIndex(0)
-        self.dockerStackedWidget.setCurrentIndex(1)
+        self.dockerStackedWidget.setCurrentIndex(0)
         self.isInstalledStackedWidget.setCurrentIndex(0)
         self.trimmingTabs.setCurrentIndex(0)
 
