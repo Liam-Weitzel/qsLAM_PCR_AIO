@@ -1282,7 +1282,15 @@ hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;lorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsum&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;We are Erasmus MC. Every day our staff, volunteers, and students work with dedication and commitment and are passionate about everything that we stand for.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Patient care&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;At Erasmus MC we work on top-clinical care for patients with complex care needs, rare diseases, or acute needs for care and treatment.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Education&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;We work on distinctive, high-quality education that appeals to ambitious, inquisitive, and talented students and addresses the healthcare issues of tomorrow.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Research&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;We also work on cutting-edge, world class international medical research that helps to understand, predict, treat, and prevent diseases and health conditions.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Valorization&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Like every university medical center, our three core tasks at Erasmus MC are: patient care, education, and research. Valorization, which is the social or economic use of knowledge gained through research, is generally regarded as a fourth core task.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                  </widget>
                 </item>
@@ -2778,7 +2786,8 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                 <item row="1" column="0" colspan="2">
                                  <widget class="QLabel" name="dockerLabel">
                                   <property name="text">
-                                   <string>Do you want to run the qsLAM PCR pipeline locally or on a remote server? You can do some trial runs on our public test server.</string>
+                                   <string>Do you want to run the qsLAM PCR pipeline locally or on a remote server?
+You can do some trial runs on our public test server.</string>
                                   </property>
                                  </widget>
                                 </item>
@@ -2863,7 +2872,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                        <item row="0" column="0">
                                         <widget class="QStackedWidget" name="isInstalledStackedWidget">
                                          <property name="currentIndex">
-                                          <number>1</number>
+                                          <number>0</number>
                                          </property>
                                          <widget class="QWidget" name="isInstalled">
                                           <layout class="QVBoxLayout" name="verticalLayout">
@@ -2900,13 +2909,63 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                               <property name="spacing">
                                                <number>0</number>
                                               </property>
-                                              <item row="1" column="2">
-                                               <widget class="QLabel" name="dockerFoundLabel">
+                                              <item row="1" column="0">
+                                               <spacer name="horizontalSpacer_32">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>40</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="6" column="1" colspan="2">
+                                               <spacer name="verticalSpacer_20">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Vertical</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>20</width>
+                                                  <height>40</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="4" column="1" colspan="2">
+                                               <widget class="QLineEdit" name="dockerPathInput_2"/>
+                                              </item>
+                                              <item row="4" column="3">
+                                               <widget class="QPushButton" name="checkAgainButton_2">
+                                                <property name="minimumSize">
+                                                 <size>
+                                                  <width>50</width>
+                                                  <height>30</height>
+                                                 </size>
+                                                </property>
+                                                <property name="font">
+                                                 <font>
+                                                  <family>Segoe UI</family>
+                                                  <pointsize>10</pointsize>
+                                                  <italic>false</italic>
+                                                  <bold>false</bold>
+                                                 </font>
+                                                </property>
+                                                <property name="cursor">
+                                                 <cursorShape>PointingHandCursor</cursorShape>
+                                                </property>
                                                 <property name="styleSheet">
-                                                 <string notr="true">color: green; font-weight: bold;</string>
+                                                 <string notr="true">background-color: rgb(255, 255, 255);</string>
                                                 </property>
                                                 <property name="text">
-                                                 <string>Docker found! We will take care of the rest</string>
+                                                 <string>Check Again</string>
+                                                </property>
+                                                <property name="icon">
+                                                 <iconset resource="resources.qrc">
+                                                  <normaloff>:/icons/images/icons/cil-reload.png</normaloff>:/icons/images/icons/cil-reload.png</iconset>
                                                 </property>
                                                </widget>
                                               </item>
@@ -2927,32 +2986,6 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                                 </property>
                                                </widget>
                                               </item>
-                                              <item row="0" column="1" colspan="2">
-                                               <spacer name="verticalSpacer_21">
-                                                <property name="orientation">
-                                                 <enum>Qt::Orientation::Vertical</enum>
-                                                </property>
-                                                <property name="sizeHint" stdset="0">
-                                                 <size>
-                                                  <width>20</width>
-                                                  <height>40</height>
-                                                 </size>
-                                                </property>
-                                               </spacer>
-                                              </item>
-                                              <item row="2" column="1" colspan="2">
-                                               <spacer name="verticalSpacer_20">
-                                                <property name="orientation">
-                                                 <enum>Qt::Orientation::Vertical</enum>
-                                                </property>
-                                                <property name="sizeHint" stdset="0">
-                                                 <size>
-                                                  <width>20</width>
-                                                  <height>40</height>
-                                                 </size>
-                                                </property>
-                                               </spacer>
-                                              </item>
                                               <item row="1" column="3">
                                                <spacer name="horizontalSpacer_15">
                                                 <property name="orientation">
@@ -2966,18 +2999,48 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                                 </property>
                                                </spacer>
                                               </item>
-                                              <item row="1" column="0">
-                                               <spacer name="horizontalSpacer_32">
+                                              <item row="0" column="1" colspan="2">
+                                               <spacer name="verticalSpacer_21">
                                                 <property name="orientation">
-                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                 <enum>Qt::Orientation::Vertical</enum>
                                                 </property>
                                                 <property name="sizeHint" stdset="0">
                                                  <size>
-                                                  <width>40</width>
-                                                  <height>20</height>
+                                                  <width>20</width>
+                                                  <height>40</height>
                                                  </size>
                                                 </property>
                                                </spacer>
+                                              </item>
+                                              <item row="1" column="2">
+                                               <widget class="QLabel" name="dockerFoundLabel">
+                                                <property name="styleSheet">
+                                                 <string notr="true">color: green; font-weight: bold;</string>
+                                                </property>
+                                                <property name="text">
+                                                 <string>Docker found! We will take it from here</string>
+                                                </property>
+                                               </widget>
+                                              </item>
+                                              <item row="2" column="0" colspan="4">
+                                               <spacer name="verticalSpacer_34">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Vertical</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>20</width>
+                                                  <height>40</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="3" column="1" colspan="2">
+                                               <widget class="QLabel" name="dockerPathLabel_2">
+                                                <property name="text">
+                                                 <string>Do you need to change the docker path?</string>
+                                                </property>
+                                               </widget>
                                               </item>
                                              </layout>
                                             </widget>
@@ -3409,14 +3472,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                        <item row="1" column="0">
                                         <widget class="QLabel" name="ipAddressLabel">
                                          <property name="text">
-                                          <string>IP Address</string>
+                                          <string>IP Address: </string>
                                          </property>
                                         </widget>
                                        </item>
                                        <item row="5" column="0">
                                         <widget class="QLabel" name="authTokenLabel">
                                          <property name="text">
-                                          <string>Authentication Token</string>
+                                          <string>Authentication Token: </string>
                                          </property>
                                         </widget>
                                        </item>
@@ -3436,7 +3499,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                        <item row="3" column="0">
                                         <widget class="QLabel" name="portLabel">
                                          <property name="text">
-                                          <string>Port</string>
+                                          <string>Port: </string>
                                          </property>
                                         </widget>
                                        </item>
@@ -3446,7 +3509,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
                                        <item row="7" column="0">
                                         <widget class="QLabel" name="protocolLabel">
                                          <property name="text">
-                                          <string>Protocol</string>
+                                          <string>Protocol: </string>
                                          </property>
                                         </widget>
                                        </item>
@@ -4147,7 +4210,7 @@ after trimming</string>
                                   <item row="0" column="0" rowspan="2">
                                    <widget class="QLabel" name="qualityControlLabel">
                                     <property name="text">
-                                     <string>Quality control</string>
+                                     <string>Quality control: </string>
                                     </property>
                                    </widget>
                                   </item>
@@ -4716,14 +4779,14 @@ check before trimming</string>
                          <item row="0" column="0" rowspan="2">
                           <widget class="QLabel" name="R1Label">
                            <property name="text">
-                            <string>Read 1</string>
+                            <string>Read 1: </string>
                            </property>
                           </widget>
                          </item>
                          <item row="3" column="0">
                           <widget class="QLabel" name="R2Label">
                            <property name="text">
-                            <string>Read 2</string>
+                            <string>Read 2: </string>
                            </property>
                           </widget>
                          </item>

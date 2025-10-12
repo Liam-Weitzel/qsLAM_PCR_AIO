@@ -2669,11 +2669,11 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
-        self.configStackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
+        self.configStackedWidget.setCurrentIndex(0)
         self.dockerStackedWidget.setCurrentIndex(1)
         self.isInstalledStackedWidget.setCurrentIndex(1)
-        self.trimmingTabs.setCurrentIndex(1)
+        self.trimmingTabs.setCurrentIndex(2)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -2701,8 +2701,17 @@ class Ui_MainWindow(object):
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">lorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum "
-                        "lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsumlorem ipsum lorem ipsum</p></body></html>", None))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">We are Erasmus MC. Every day our staff, volunteers, and students work with dedication and commitment and are passionate about everything that we stand for.</p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Patient care</p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-i"
+                        "ndent:0; text-indent:0px;\">At Erasmus MC we work on top-clinical care for patients with complex care needs, rare diseases, or acute needs for care and treatment.</p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Education</p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">We work on distinctive, high-quality education that appeals to ambitious, inquisitive, and talented students and addresses the healthcare issues of tomorrow.</p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Research</p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">We also work on cutting-edge, world class international medical research that helps to understand, predict, treat, and prevent diseases and health conditions.</p"
+                        ">\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Valorization</p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Like every university medical center, our three core tasks at Erasmus MC are: patient care, education, and research. Valorization, which is the social or economic use of knowledge gained through research, is generally regarded as a fourth core task.</p></body></html>", None))
         self.moreButton.setText(QCoreApplication.translate("MainWindow", u"More", None))
         self.currentlySelectedText.setText(QCoreApplication.translate("MainWindow", u"Currently Selected Run: ", None))
         self.currentlySelected.setText(QCoreApplication.translate("MainWindow", u"None", None))
@@ -2743,7 +2752,8 @@ class Ui_MainWindow(object):
         self.helpButton.setText(QCoreApplication.translate("MainWindow", u"Help", None))
         self.localRadio.setText(QCoreApplication.translate("MainWindow", u"Local", None))
         self.remoteRadio.setText(QCoreApplication.translate("MainWindow", u"Remote", None))
-        self.dockerLabel.setText(QCoreApplication.translate("MainWindow", u"Do you want to run the qsLAM PCR pipeline locally or on a remote server? You can do some trial runs on our public test server.", None))
+        self.dockerLabel.setText(QCoreApplication.translate("MainWindow", u"Do you want to run the qsLAM PCR pipeline locally or on a remote server?\n"
+"You can do some trial runs on our public test server.", None))
         self.dockerFoundLabel.setText(QCoreApplication.translate("MainWindow", u"Docker found! We will take care of the rest", None))
         self.checkAgainButton.setText(QCoreApplication.translate("MainWindow", u"Check Again", None))
         self.dockerPathInput.setText(QCoreApplication.translate("MainWindow", u"docker", None))
@@ -2752,10 +2762,10 @@ class Ui_MainWindow(object):
         self.httpRadio.setText(QCoreApplication.translate("MainWindow", u"Http", None))
         self.usePublicServerButton.setText(QCoreApplication.translate("MainWindow", u"Want to use our public test server instead?", None))
         self.testConnectionButton.setText(QCoreApplication.translate("MainWindow", u"Test Connection", None))
-        self.ipAddressLabel.setText(QCoreApplication.translate("MainWindow", u"IP Address", None))
-        self.authTokenLabel.setText(QCoreApplication.translate("MainWindow", u"Authentication Token", None))
-        self.portLabel.setText(QCoreApplication.translate("MainWindow", u"Port", None))
-        self.protocolLabel.setText(QCoreApplication.translate("MainWindow", u"Protocol", None))
+        self.ipAddressLabel.setText(QCoreApplication.translate("MainWindow", u"IP Address: ", None))
+        self.authTokenLabel.setText(QCoreApplication.translate("MainWindow", u"Authentication Token: ", None))
+        self.portLabel.setText(QCoreApplication.translate("MainWindow", u"Port: ", None))
+        self.protocolLabel.setText(QCoreApplication.translate("MainWindow", u"Protocol: ", None))
         self.httpsRadio.setText(QCoreApplication.translate("MainWindow", u"Https", None))
         self.r1TrimLeadingInput.setText(QCoreApplication.translate("MainWindow", u"0", None))
         self.r2TrimLeadingLabel.setText(QCoreApplication.translate("MainWindow", u"R2 Trim leading: ", None))
@@ -2797,7 +2807,7 @@ class Ui_MainWindow(object):
         self.trimmingTabs.setTabText(self.trimmingTabs.indexOf(self.umi_tools), QCoreApplication.translate("MainWindow", u"UMI Tools", None))
         self.readLenCheckbox.setText(QCoreApplication.translate("MainWindow", u"Read length\n"
 "after trimming", None))
-        self.qualityControlLabel.setText(QCoreApplication.translate("MainWindow", u"Quality control", None))
+        self.qualityControlLabel.setText(QCoreApplication.translate("MainWindow", u"Quality control: ", None))
         self.qcAfterCheckbox.setText(QCoreApplication.translate("MainWindow", u"Do a quality control\n"
 "check after trimming", None))
         self.qcBeforeCheckbox.setText(QCoreApplication.translate("MainWindow", u"Do a quality control\n"
@@ -2813,8 +2823,8 @@ class Ui_MainWindow(object):
         self.siteAnalysisConfig.setText(QCoreApplication.translate("MainWindow", u"Site analysis", None))
         self.resetButton.setText(QCoreApplication.translate("MainWindow", u"Reset", None))
         self.restoreDefaultsButton.setText(QCoreApplication.translate("MainWindow", u"Restore Defaults", None))
-        self.R1Label.setText(QCoreApplication.translate("MainWindow", u"Read 1", None))
-        self.R2Label.setText(QCoreApplication.translate("MainWindow", u"Read 2", None))
+        self.R1Label.setText(QCoreApplication.translate("MainWindow", u"Read 1: ", None))
+        self.R2Label.setText(QCoreApplication.translate("MainWindow", u"Read 2: ", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Nothing to see here yet :)", None))
         self.stdOut.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"

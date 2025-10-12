@@ -73,6 +73,7 @@ class MainWindow(QMainWindow):
 
         # EXTRA RIGHT BOX
         widgets.settingsTopButton.clicked.connect(lambda: UIFunctions.toggleRightBox(self, True))
+        widgets.moreButton.clicked.connect(lambda: QDesktopServices.openUrl(QUrl("https://www.erasmusmc.nl/en/pages/about-erasmusmc")))
 
         # SHOW APP
         # ///////////////////////////////////////////////////////////////
