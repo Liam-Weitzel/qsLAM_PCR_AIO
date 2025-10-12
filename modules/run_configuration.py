@@ -45,11 +45,13 @@ class RunConfiguration:
         # DOCKER CONFIG SETUP
         docker_path = self.settings.get("DOCKER_PATH", "docker")
         self.widgets.dockerPathInput.setText(docker_path)
+        self.widgets.dockerPathInput_2.setText(docker_path)
         self.widgets.remoteRadio.setChecked(True)
         self.widgets.localRadio.setChecked(False)
         self.widgets.localRadio.toggled.connect(self.update_docker_stack)
         self.widgets.remoteRadio.toggled.connect(self.update_docker_stack)
         self.widgets.checkAgainButton.clicked.connect(self.check_and_save_docker_path)
+        self.widgets.checkAgainButton_2.clicked.connect(self.check_and_save_docker_path)
         self.widgets.usePublicServerButton.clicked.connect(self.use_public_test_server)
         self.widgets.testConnectionButton.clicked.connect(self.test_connection)
         self.check_and_save_docker_path()
@@ -86,11 +88,19 @@ class RunConfiguration:
             self.widgets.dockerStackedWidget.setCurrentIndex(1)
 
     def check_and_save_docker_path(self):
-        docker_path = self.widgets.dockerPathInput.text() or "docker"
+        if(self.widgets.isInstalledStackedWidget.currentIndex() == 1):
+            docker_path = self.widgets.dockerPathInput.text() or "docker"
+        else:
+            docker_path = self.widgets.dockerPathInput_2.text() or "docker"
+
         if self.is_docker_installed(docker_path):
             self.settings.set("DOCKER_PATH", docker_path)
+            self.widgets.dockerPathInput.setText(docker_path)
+            self.widgets.dockerPathInput_2.setText(docker_path)
             self.widgets.isInstalledStackedWidget.setCurrentIndex(0)
         else:
+            self.widgets.dockerPathInput.setText(docker_path)
+            self.widgets.dockerPathInput_2.setText(docker_path)
             self.widgets.isInstalledStackedWidget.setCurrentIndex(1)
 
     def test_connection(self):
@@ -134,6 +144,7 @@ class RunConfiguration:
 
         docker_path = self.settings.get("DOCKER_PATH", "docker")
         self.widgets.dockerPathInput.setText(docker_path)
+        self.widgets.dockerPathInput_2.setText(docker_path)
 
         self.widgets.ipAddressInput.setText(Settings.METADATA.get("docker_ip", ""))
         self.widgets.portInput.setText(Settings.METADATA.get("docker_port", ""))

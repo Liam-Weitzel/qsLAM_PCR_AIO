@@ -2832,7 +2832,7 @@ You can do some trial runs on our public test server.</string>
                                 <item>
                                  <widget class="QStackedWidget" name="dockerStackedWidget">
                                   <property name="currentIndex">
-                                   <number>1</number>
+                                   <number>0</number>
                                   </property>
                                   <widget class="QWidget" name="local">
                                    <layout class="QVBoxLayout" name="verticalLayout">
@@ -2909,36 +2909,7 @@ You can do some trial runs on our public test server.</string>
                                               <property name="spacing">
                                                <number>0</number>
                                               </property>
-                                              <item row="1" column="0">
-                                               <spacer name="horizontalSpacer_32">
-                                                <property name="orientation">
-                                                 <enum>Qt::Orientation::Horizontal</enum>
-                                                </property>
-                                                <property name="sizeHint" stdset="0">
-                                                 <size>
-                                                  <width>40</width>
-                                                  <height>20</height>
-                                                 </size>
-                                                </property>
-                                               </spacer>
-                                              </item>
-                                              <item row="6" column="1" colspan="2">
-                                               <spacer name="verticalSpacer_20">
-                                                <property name="orientation">
-                                                 <enum>Qt::Orientation::Vertical</enum>
-                                                </property>
-                                                <property name="sizeHint" stdset="0">
-                                                 <size>
-                                                  <width>20</width>
-                                                  <height>40</height>
-                                                 </size>
-                                                </property>
-                                               </spacer>
-                                              </item>
-                                              <item row="4" column="1" colspan="2">
-                                               <widget class="QLineEdit" name="dockerPathInput_2"/>
-                                              </item>
-                                              <item row="4" column="3">
+                                              <item row="4" column="5">
                                                <widget class="QPushButton" name="checkAgainButton_2">
                                                 <property name="minimumSize">
                                                  <size>
@@ -2969,7 +2940,30 @@ You can do some trial runs on our public test server.</string>
                                                 </property>
                                                </widget>
                                               </item>
+                                              <item row="1" column="3">
+                                               <widget class="QLabel" name="dockerFoundLabel">
+                                                <property name="styleSheet">
+                                                 <string notr="true">color: green; font-weight: bold;</string>
+                                                </property>
+                                                <property name="text">
+                                                 <string>Docker found! We will take it from here</string>
+                                                </property>
+                                               </widget>
+                                              </item>
                                               <item row="1" column="1">
+                                               <spacer name="horizontalSpacer_15">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>40</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="1" column="2">
                                                <widget class="QFrame" name="dockerSuccessIcon">
                                                 <property name="minimumSize">
                                                  <size>
@@ -2986,20 +2980,20 @@ You can do some trial runs on our public test server.</string>
                                                 </property>
                                                </widget>
                                               </item>
-                                              <item row="1" column="3">
-                                               <spacer name="horizontalSpacer_15">
+                                              <item row="2" column="3">
+                                               <spacer name="verticalSpacer_20">
                                                 <property name="orientation">
-                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                 <enum>Qt::Orientation::Vertical</enum>
                                                 </property>
                                                 <property name="sizeHint" stdset="0">
                                                  <size>
-                                                  <width>40</width>
-                                                  <height>20</height>
+                                                  <width>20</width>
+                                                  <height>40</height>
                                                  </size>
                                                 </property>
                                                </spacer>
                                               </item>
-                                              <item row="0" column="1" colspan="2">
+                                              <item row="0" column="3">
                                                <spacer name="verticalSpacer_21">
                                                 <property name="orientation">
                                                  <enum>Qt::Orientation::Vertical</enum>
@@ -3012,35 +3006,93 @@ You can do some trial runs on our public test server.</string>
                                                 </property>
                                                </spacer>
                                               </item>
-                                              <item row="1" column="2">
-                                               <widget class="QLabel" name="dockerFoundLabel">
-                                                <property name="styleSheet">
-                                                 <string notr="true">color: green; font-weight: bold;</string>
-                                                </property>
-                                                <property name="text">
-                                                 <string>Docker found! We will take it from here</string>
-                                                </property>
-                                               </widget>
-                                              </item>
-                                              <item row="2" column="0" colspan="4">
-                                               <spacer name="verticalSpacer_34">
+                                              <item row="1" column="0">
+                                               <spacer name="horizontalSpacer_39">
                                                 <property name="orientation">
-                                                 <enum>Qt::Orientation::Vertical</enum>
+                                                 <enum>Qt::Orientation::Horizontal</enum>
                                                 </property>
                                                 <property name="sizeHint" stdset="0">
                                                  <size>
-                                                  <width>20</width>
-                                                  <height>40</height>
+                                                  <width>40</width>
+                                                  <height>20</height>
                                                  </size>
                                                 </property>
                                                </spacer>
                                               </item>
-                                              <item row="3" column="1" colspan="2">
+                                              <item row="1" column="5">
+                                               <spacer name="horizontalSpacer_40">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>40</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="3" column="0" colspan="2">
+                                               <spacer name="horizontalSpacer_41">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>40</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="3" column="4" colspan="2">
+                                               <spacer name="horizontalSpacer_38">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>40</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="1" column="4">
+                                               <spacer name="horizontalSpacer_32">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>40</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="4" column="4">
+                                               <spacer name="horizontalSpacer_37">
+                                                <property name="orientation">
+                                                 <enum>Qt::Orientation::Horizontal</enum>
+                                                </property>
+                                                <property name="sizeHint" stdset="0">
+                                                 <size>
+                                                  <width>40</width>
+                                                  <height>20</height>
+                                                 </size>
+                                                </property>
+                                               </spacer>
+                                              </item>
+                                              <item row="3" column="2" colspan="2">
                                                <widget class="QLabel" name="dockerPathLabel_2">
                                                 <property name="text">
                                                  <string>Do you need to change the docker path?</string>
                                                 </property>
                                                </widget>
+                                              </item>
+                                              <item row="4" column="2" colspan="2">
+                                               <widget class="QLineEdit" name="dockerPathInput_2"/>
                                               </item>
                                              </layout>
                                             </widget>
