@@ -3,6 +3,8 @@ from widgets.custom_progress_bar.custom_progress_bar import CustomProgressBar, S
 from widgets.custom_context_menu.custom_context_menu import CustomContextMenu
 from .docker_worker import AsyncDockerWorker, DockerManager
 from .settings import Settings
+from .api_caller import APICaller
+from PySide6.QtCore import QFile
 
 class RunProgress:
     def __init__(self, main_window):
@@ -19,22 +21,94 @@ class RunProgress:
         self.row_1 = self.widgets.runProgressTab.layout().itemAt(0).widget()
         self.progressbar = CustomProgressBar()
         self.progressbar.set_labels([
-            {"label": "Setup Docker", "actions": [("(Re)Start", self.start_local_docker), ("Stop", self.stop_local_docker)]},
-            {"label": "Upload R1 & R2", "actions": [("Run", self.clean_run)]},
-            {"label": "QC 1", "actions": [("Run", self.clean_run)]},
-            {"label": "UMI", "actions": [("Run", self.clean_run)]},
-            {"label": "Cutadapt", "actions": [("Run", self.clean_run)]},
-            {"label": "Fastp", "actions": [("Run", self.clean_run)]},
-            {"label": "QC 2", "actions": [("Run QC", self.resume_run), ("Skip", lambda: print("Skipped QC2"))]},
-            {"label": "Readlenst", "actions": [("Run QC", self.resume_run), ("Skip", lambda: print("Skipped Readlenst"))]},
-            {"label": "Upload reference genome", "actions": [("Run QC", self.resume_run), ("Skip", lambda: print("Skipped Ref"))]},
-            {"label": "Read mapping", "actions": [("Run QC", self.resume_run), ("Skip", lambda: print("Skipped Mapping"))]},
-            {"label": "Site analysis", "actions": [("Run QC", self.resume_run), ("Skip", lambda: print("Skipped Site"))]},
+            {"label": "Setup Docker", "actions": [("(Re)start docker", self.start_local_docker), ("Stop", self.stop_local_docker)]},
+            {"label": "Upload R1 & R2", "actions": [("(Re)upload R1 & R2", self.upload_r1_and_r2)]},
+            {"label": "QC 1", "actions": [("(Re)run quality control check 1", self.run_qc_one)]},
+            {"label": "UMI Tools", "actions": [("(Re)run UMI Tools", self.run_umi)]},
+            {"label": "Cutadapt", "actions": [("(Re)run Cutadapt", self.run_cutadapt)]},
+            {"label": "Fastp", "actions": [("(Re)run Fastp", self.run_fastp)]},
+            {"label": "QC 2", "actions": [("(Re)run quality control check 2", self.run_qc_two)]},
+            {"label": "Read length", "actions": [("(Re)read length", self.read_length)]},
+            {"label": "Read mapping", "actions": [("(Re)read mapping", self.read_mapping)]},
+            {"label": "Site analysis", "actions": [("(Re)run site analysis", self.run_site_analysis)]}
         ])
         self.row_1.layout().addWidget(self.progressbar)
 
+        self.api_caller = APICaller(self.widgets.stdOut)
         self.load_from_metadata()
+
+    def upload_r1_and_r2(self):
+        r1_path = Settings.METADATA.get("r1", "")
+        r2_path = Settings.METADATA.get("r2", "")
+
+        r1_file = QFile(r1_path)
+        r2_file = QFile(r2_path)
+
+        if not r1_file.open(QFile.ReadOnly):
+            self.widgets.stdOut.append(f"[ERROR] Failed to open {r1_path}")
+            return
+        if not r2_file.open(QFile.ReadOnly):
+            self.widgets.stdOut.append(f"[ERROR] Failed to open {r2_path}")
+            r1_file.close()
+            return
+
+        files = {"R1": r1_file, "R2": r2_file}
+        self.api_caller.stream_api("upload_r1_r2", method="POST", files=files)
+
+    def run_qc_one(self):
+        payload = {"stage": "before"}
+        self.api_caller.stream_api("qc", method="POST", json_data=payload)
     
+    def run_umi(self):
+        self.api_caller.stream_api("umi", method="GET")
+
+    def run_cutadapt(self):
+        payload = {
+            "r1_seq": Settings.METADATA.get("cutadapt_r1_sequence", ""),
+            "r1_error_rate": float(Settings.METADATA.get("cutadapt_r1_error_rate", 0.3)),
+            "r1_trim_leading_trailing": int(Settings.METADATA.get("cutadapt_r1_trim_leading", 0)),
+            "r1_anchored": Settings.METADATA.get("cutadapt_r1_anchored", False),
+            "r1_min_overlap": int(Settings.METADATA.get("cutadapt_r1_min_overlap", 5)),
+            "r1_pair_filter": "both",
+            "r1_minimum_length_of_read": int(Settings.METADATA.get("cutadapt_r1_min_length", 30)),
+            "r2_seq": Settings.METADATA.get("cutadapt_r2_sequence", ""),
+            "r2_error_rate": float(Settings.METADATA.get("cutadapt_r2_error_rate", 0.1)),
+            "r2_trim_leading_trailing": int(Settings.METADATA.get("cutadapt_r2_trim_leading", 0)),
+            "r2_anchored": Settings.METADATA.get("cutadapt_r2_anchored", False),
+            "r2_min_overlap": int(Settings.METADATA.get("cutadapt_r2_min_overlap", 10)),
+            "r2_pair_filter": "both",
+            "r2_minimum_length_of_read": int(Settings.METADATA.get("cutadapt_r2_min_length", 30)),
+        }
+        self.api_caller.stream_api("cutadapt", method="POST", json_data=payload)
+
+    def run_fastp(self):
+        self.api_caller.stream_api("fastp", method="GET")
+
+    def run_qc_two(self):
+        payload = {"stage": "after"}
+        self.api_caller.stream_api("qc", method="POST", json_data=payload)
+
+    def read_length(self):
+        self.api_caller.stream_api("readlen", method="GET")
+
+    def read_mapping(self):
+        genome = Settings.METADATA.get("reference_genome", "")
+        tar_url = Settings.METADATA.get("reference_genome_url", None)
+
+        payload = {"genome": genome, "tar_url": tar_url}
+
+        self.api_caller.stream_api("read_mapping", method="POST", json_data=payload)
+
+    def run_site_analysis(self):
+        payload = {
+            "genome": Settings.METADATA.get("reference_genome", ""),
+            "promoter.left": Settings.METADATA.get("promoter.left", "5000"),
+            "promoter.right": Settings.METADATA.get("promoter.right", "2000"),
+            "enhancer.left": Settings.METADATA.get("enhancer.left", "50000")
+        }
+
+        self.api_caller.stream_api("site_analysis", method="POST", json_data=payload)
+
     def _update_docker_step_status(self):
         if Settings.METADATA:
             container_id = Settings.METADATA.get("docker_container_id", None)
@@ -84,7 +158,8 @@ class RunProgress:
             return
         Settings.METADATA.delete("docker_container_id")
         Settings.METADATA.delete("docker_host_port")
-        self.progressbar.set_step_state_by_label("Setup Docker", StepState.INACTIVE)
+        self.progressbar.reset()
+        self.load_from_metadata()
 
     def stop_local_docker(self):
         self.progressbar.set_step_state_by_label("Setup Docker", StepState.RUNNING)
@@ -176,8 +251,12 @@ class RunProgress:
 
         if reply == QMessageBox.Yes:
             Settings.METADATA.set("isRunning", False)
-            self.progressbar.reset()
-            self.load_from_metadata()
+            self.docker_worker = AsyncDockerWorker(
+                DockerManager.clean_container,
+                Settings.METADATA.get("docker_container_id", "")
+            )
+            self.docker_worker.finished.connect(self._on_docker_cleaned)
+            self.docker_worker.start()
 
     def run_all(self):
         Settings.METADATA.set("isRunning", True)
