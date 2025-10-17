@@ -33,11 +33,11 @@ class RunProgress:
             {"label": "Site analysis", "actions": [("(Re)run site analysis", self.run_site_analysis)]}
         ])
         self.row_1.layout().addWidget(self.progressbar)
-
-        self.api_caller = APICaller(self.widgets.stdOut)
-        self.load_from_metadata()
+        self.api_caller = APICaller()
 
     def upload_r1_and_r2(self):
+        self.progressbar.set_step_state_by_label("Upload R1 & R2", StepState.RUNNING)
+
         r1_path = Settings.METADATA.get("r1", "")
         r2_path = Settings.METADATA.get("r2", "")
 
@@ -56,13 +56,17 @@ class RunProgress:
         self.api_caller.stream_api("upload_r1_r2", method="POST", files=files)
 
     def run_qc_one(self):
+        self.progressbar.set_step_state_by_label("QC 1", StepState.RUNNING)
         payload = {"stage": "before"}
+        Settings.METADATA.set("stage", "before")
         self.api_caller.stream_api("qc", method="POST", json_data=payload)
-    
+
     def run_umi(self):
+        self.progressbar.set_step_state_by_label("UMI Tools", StepState.RUNNING)
         self.api_caller.stream_api("umi", method="GET")
 
     def run_cutadapt(self):
+        self.progressbar.set_step_state_by_label("Cutadapt", StepState.RUNNING)
         payload = {
             "r1_seq": Settings.METADATA.get("cutadapt_r1_sequence", ""),
             "r1_error_rate": float(Settings.METADATA.get("cutadapt_r1_error_rate", 0.3)),
@@ -82,31 +86,34 @@ class RunProgress:
         self.api_caller.stream_api("cutadapt", method="POST", json_data=payload)
 
     def run_fastp(self):
+        self.progressbar.set_step_state_by_label("Fastp", StepState.RUNNING)
         self.api_caller.stream_api("fastp", method="GET")
 
     def run_qc_two(self):
+        self.progressbar.set_step_state_by_label("QC 2", StepState.RUNNING)
         payload = {"stage": "after"}
+        Settings.METADATA.set("stage", "after")
         self.api_caller.stream_api("qc", method="POST", json_data=payload)
 
     def read_length(self):
+        self.progressbar.set_step_state_by_label("Read length", StepState.RUNNING)
         self.api_caller.stream_api("readlen", method="GET")
 
     def read_mapping(self):
+        self.progressbar.set_step_state_by_label("Read mapping", StepState.RUNNING)
         genome = Settings.METADATA.get("reference_genome", "")
         tar_url = Settings.METADATA.get("reference_genome_url", None)
-
         payload = {"genome": genome, "tar_url": tar_url}
-
         self.api_caller.stream_api("read_mapping", method="POST", json_data=payload)
 
     def run_site_analysis(self):
+        self.progressbar.set_step_state_by_label("Site analysis", StepState.RUNNING)
         payload = {
             "genome": Settings.METADATA.get("reference_genome", ""),
             "promoter.left": Settings.METADATA.get("promoter.left", "5000"),
             "promoter.right": Settings.METADATA.get("promoter.right", "2000"),
             "enhancer.left": Settings.METADATA.get("enhancer.left", "50000")
         }
-
         self.api_caller.stream_api("site_analysis", method="POST", json_data=payload)
 
     def _update_docker_step_status(self):
@@ -159,6 +166,7 @@ class RunProgress:
         Settings.METADATA.delete("docker_container_id")
         Settings.METADATA.delete("docker_host_port")
         self.progressbar.reset()
+        self.api_caller.cleanup_run()
         self.load_from_metadata()
 
     def stop_local_docker(self):
@@ -267,17 +275,28 @@ class RunProgress:
         self.load_from_metadata()
 
     def load_from_metadata(self):
-        if(Settings.METADATA):
-            is_running = Settings.METADATA.get("isRunning", False)
-            is_paused = Settings.METADATA.get("isPaused", False)
-        else:
-            is_running = False
-            is_paused = False
+        if not Settings.METADATA:
+            return
 
+        is_running = Settings.METADATA.get("isRunning", False)
+        is_paused = Settings.METADATA.get("isPaused", False)
         self.widgets.runButton.setVisible(not is_running)
         self.widgets.cleanButton.setVisible(is_running)
         self.widgets.pauseButton.setVisible(is_running and not is_paused)
         self.widgets.resumeButton.setVisible(is_running and is_paused)
 
-        # Always refresh Docker step status
+        # Refresh Docker step status
         self._update_docker_step_status()
+
+        selected_run = Settings.SELECTED_RUN
+        if selected_run:
+            # Clear previous stdout
+            self.widgets.stdOut.clear()
+            # Attach APICaller to current run dynamically
+            self.api_caller.attach_run(
+                run=selected_run,
+                std_out_widget=self.widgets.stdOut,
+                main_window=self.main_window
+            )
+        else:
+            print("⚠️ No selected_run in metadata — skipping APICaller attach")

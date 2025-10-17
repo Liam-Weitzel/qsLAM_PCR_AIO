@@ -21,6 +21,7 @@ class Settings:
 
     RUNS_DIR = "./runs/"
     SELECTED_RUN = None
+    LOG_FILE = "log.txt"
     METADATA_FILE = "metadata.json"
     METADATA = None
     REF_RENOMES_SHARE_TOKEN = "abXeB3WtcWdm63f"
