@@ -40,6 +40,8 @@ class RunProgress:
         ])
         # Connect progress bar state changes to metadata persistence
         self.progressbar.stepStateChangedForRun.connect(self._save_step_state_to_metadata)
+        # Connect progress bar state changes to button state refresh
+        self.progressbar.stepStateChangedForRun.connect(self._on_step_state_changed_for_run)
 
         self.row_1.layout().addWidget(self.progressbar)
         self.api_caller = APICaller()
@@ -90,6 +92,12 @@ class RunProgress:
         except Exception as e:
             print(f"[ERROR] Failed to save step state for run {run_name}: {e}")
 
+    def _on_step_state_changed_for_run(self, run_name: str, step_label: str, state_name: str):
+        """Handle step state changes and refresh UI button states if this is the current run."""
+        # Only refresh button states if this state change is for the currently selected run
+        if run_name == Settings.SELECTED_RUN:
+            self._update_button_states()
+
     def _get_current_run_and_metadata(self):
         """Helper to get current run and its metadata. Returns (run_name, metadata) or (None, None) on error."""
         current_run = Settings.SELECTED_RUN
@@ -102,6 +110,25 @@ class RunProgress:
         except Exception as e:
             print(f"[ERROR] Failed to load metadata for run {current_run}: {e}")
             return None, None
+
+    def _has_any_step_executed(self, metadata):
+        """Check if any step has been executed (not INACTIVE)."""
+        step_states = metadata.get("step_states", {})
+        for step_label, _ in self._pipeline_steps:
+            state = step_states.get(step_label, "INACTIVE")
+            if state != "INACTIVE":
+                return True
+        return False
+
+    def _is_docker_step_running(self):
+        """Check if the Setup Docker step is currently RUNNING."""
+        current_run, metadata = self._get_current_run_and_metadata()
+        if not current_run:
+            return False
+
+        step_states = metadata.get("step_states", {})
+        docker_state = step_states.get("Setup Docker", "INACTIVE")
+        return docker_state == "RUNNING"
 
     def _get_step_label_for_endpoint(self, endpoint: str, run_name: str) -> str:
         """Get the progress bar step label for an API endpoint."""
@@ -121,6 +148,21 @@ class RunProgress:
 
     def _on_step_completed(self, run_name: str, endpoint: str, success: bool, error_msg: str):
         """Handle completion of an API step."""
+        # Race condition protection: Check if the run still has a valid Docker container
+        # If clean was called, the container info will be cleared from metadata
+        try:
+            metadata = Metadata(run_name)
+            container_id = metadata.get("docker_container_id", None)
+            container_owner = metadata.get("docker_container_owner", None)
+
+            # If no container or container ownership changed, ignore this completion callback
+            if not container_id or container_owner != run_name:
+                print(f"[INFO] Step completion for {run_name}/{endpoint} ignored - container state invalid")
+                return
+        except Exception as e:
+            print(f"[ERROR] Failed to validate container state for {run_name}: {e}")
+            return
+
         step_label = self._get_step_label_for_endpoint(endpoint, run_name)
 
         if success:
@@ -247,13 +289,16 @@ class RunProgress:
         is_running = metadata.get("isRunning", False)
         is_paused = metadata.get("isPaused", False)
         is_auto_run = metadata.get("isAutoRun", False)
+        has_executed_steps = self._has_any_step_executed(metadata)
 
         # Update button states only
         self.widgets.runButton.setVisible(not is_running)
         self.widgets.pauseButton.setVisible(is_running and is_auto_run and not is_paused)
         self.widgets.resumeButton.setVisible(is_running and is_auto_run and is_paused)
-        self.widgets.cleanButton.setVisible(is_running)
-        self.widgets.cleanButton.setEnabled(not is_auto_run or is_paused)
+        # Show clean button if any steps have been executed (not just when isRunning)
+        self.widgets.cleanButton.setVisible(has_executed_steps)
+        # Disable clean button only when Docker step is RUNNING (since clean requires stopping Docker)
+        self.widgets.cleanButton.setEnabled(not self._is_docker_step_running())
 
     def upload_r1_and_r2(self):
         current_run, metadata = self._get_current_run_and_metadata()
@@ -559,15 +604,19 @@ class RunProgress:
         self.ping_worker.start()
 
     def _on_docker_ping(self, success: bool, container_id: str, host_port: str, run_name: str):
-        # Validate that this run still owns the container before updating state
+        # Race condition protection: Validate that this run still owns the container before updating state
+        # If clean was called, the container info will be cleared from metadata
         try:
             metadata = Metadata(run_name)
+            current_container_id = metadata.get("docker_container_id", None)
             container_owner = metadata.get("docker_container_owner", None)
-            if container_owner != run_name:
-                print(f"[INFO] Ping callback for {run_name} ignored - container ownership changed")
+
+            # If no container, container ID changed, or ownership changed, ignore this callback
+            if not current_container_id or current_container_id != container_id or container_owner != run_name:
+                print(f"[INFO] Ping callback for {run_name} ignored - container state invalid")
                 return
         except Exception as e:
-            print(f"[ERROR] Failed to validate container ownership for {run_name}: {e}")
+            print(f"[ERROR] Failed to validate container state for {run_name}: {e}")
             return
 
         if success:
@@ -704,15 +753,17 @@ class RunProgress:
         is_running = metadata.get("isRunning", False)
         is_paused = metadata.get("isPaused", False)
         is_auto_run = metadata.get("isAutoRun", False)
+        has_executed_steps = self._has_any_step_executed(metadata)
 
         # Button visibility based on state
         self.widgets.runButton.setVisible(not is_running)
         self.widgets.pauseButton.setVisible(is_running and is_auto_run and not is_paused)
         self.widgets.resumeButton.setVisible(is_running and is_auto_run and is_paused)
 
-        # Grey out clean button during auto-run mode
-        self.widgets.cleanButton.setVisible(is_running)
-        self.widgets.cleanButton.setEnabled(not is_auto_run or is_paused)
+        # Show clean button if any steps have been executed (not just when isRunning)
+        self.widgets.cleanButton.setVisible(has_executed_steps)
+        # Disable clean button only when Docker step is RUNNING (since clean requires stopping Docker)
+        self.widgets.cleanButton.setEnabled(not self._is_docker_step_running())
 
         # Load progress bar state from metadata
         self.progressbar.load_run_state(current_run, metadata.to_dict())
