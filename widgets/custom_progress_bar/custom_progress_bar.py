@@ -13,6 +13,7 @@ class StepState(Enum):
 class CustomProgressBar(QWidget):
     stepsChanged = Signal(list)
     stateChanged = Signal(int, StepState)
+    stepStateChangedForRun = Signal(str, str, str)  # run_name, step_label, state_name
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -20,6 +21,7 @@ class CustomProgressBar(QWidget):
         self._steps: list[dict] = []
         self._states: list[StepState] = []
         self._step_rects: list[QRect] = []
+        self._current_run = None  # Track which run this progress bar is currently showing
 
         # animated width of the blue fill
         self._fill_width = 0.0
@@ -81,6 +83,12 @@ class CustomProgressBar(QWidget):
         if 0 <= index < len(self._states):
             self._states[index] = state
             self.stateChanged.emit(index, state)
+
+            # Emit run-specific state change signal for persistence
+            if self._current_run and 0 <= index < len(self._steps):
+                step_label = self._steps[index]["label"]
+                self.stepStateChangedForRun.emit(self._current_run, step_label, state.name)
+
             self._update_animation()
             self.update()
 
@@ -287,3 +295,34 @@ class CustomProgressBar(QWidget):
         """)
 
         menu.exec(global_pos)
+
+    # ---------------- Run Management ----------------
+    def set_step_state_for_run(self, run_name: str, label: str, state: StepState):
+        """Set step state for a specific run. Only updates UI if it's the current run."""
+        if self._current_run == run_name:
+            self.set_step_state_by_label(label, state)
+        # Always emit the signal for persistence
+        self.stepStateChangedForRun.emit(run_name, label, state.name)
+
+    def load_run_state(self, run_name: str, metadata_dict: dict):
+        """Load progress bar state from metadata for a specific run."""
+        self._current_run = run_name
+        step_states = metadata_dict.get("step_states", {})
+
+        for i, step in enumerate(self._steps):
+            label = step["label"]
+            if label in step_states:
+                try:
+                    state = StepState[step_states[label]]
+                    self._states[i] = state
+                except (KeyError, ValueError):
+                    self._states[i] = StepState.INACTIVE
+            else:
+                self._states[i] = StepState.INACTIVE
+
+        self._update_animation()
+        self.update()
+
+    def get_current_run(self) -> str:
+        """Get the currently displayed run name."""
+        return self._current_run
