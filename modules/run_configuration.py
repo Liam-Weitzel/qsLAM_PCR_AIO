@@ -228,6 +228,10 @@ class RunConfiguration:
         Settings.METADATA.set("reference_genome", self.widgets.referenceGenomeComboBox.currentText())
         Settings.METADATA.set("reference_genome_url", self.reference_genomes[self.widgets.referenceGenomeComboBox.currentText()])
 
+        # --- UPDATE PROGRESS TAB ---
+        # Refresh the run progress tab to reflect configuration changes immediately
+        self.main_window.run_progress.load_from_metadata()
+
     def on_configure_button_clicked(self, page, button):
         if(self.selectedButton == button): return
         self.widgets.configStackedWidget.setCurrentWidget(page)

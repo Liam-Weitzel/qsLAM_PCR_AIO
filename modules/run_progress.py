@@ -26,18 +26,8 @@ class RunProgress:
         CustomContextMenu(self.widgets.stdOut)
         self.row_1 = self.widgets.runProgressTab.layout().itemAt(0).widget()
         self.progressbar = CustomProgressBar()
-        self.progressbar.set_labels([
-            {"label": "Setup Docker", "actions": [("(Re)start docker", self.start_local_docker), ("Stop", self.stop_local_docker)]},
-            {"label": "Upload R1 & R2", "actions": [("(Re)upload R1 & R2", self.upload_r1_and_r2)]},
-            {"label": "QC 1", "actions": [("(Re)run quality control check 1", self.run_qc_one)]},
-            {"label": "UMI Tools", "actions": [("(Re)run UMI Tools", self.run_umi)]},
-            {"label": "Cutadapt", "actions": [("(Re)run Cutadapt", self.run_cutadapt)]},
-            {"label": "Fastp", "actions": [("(Re)run Fastp", self.run_fastp)]},
-            {"label": "QC 2", "actions": [("(Re)run quality control check 2", self.run_qc_two)]},
-            {"label": "Read length", "actions": [("(Re)read length", self.read_length)]},
-            {"label": "Read mapping", "actions": [("(Re)read mapping", self.read_mapping)]},
-            {"label": "Site analysis", "actions": [("(Re)run site analysis", self.run_site_analysis)]}
-        ])
+        # Initialize with default steps - will be updated when metadata loads
+        self._update_pipeline_steps()
         # Connect progress bar state changes to metadata persistence
         self.progressbar.stepStateChangedForRun.connect(self._save_step_state_to_metadata)
         # Connect progress bar state changes to button state refresh
@@ -49,19 +39,8 @@ class RunProgress:
         # Connect to API completion signals
         self.api_caller.run_step_completed.connect(self._on_step_completed)
 
-        # Pipeline auto-run state
-        self._pipeline_steps = [
-            ("Setup Docker", self.start_local_docker),
-            ("Upload R1 & R2", self.upload_r1_and_r2),
-            ("QC 1", self.run_qc_one),
-            ("UMI Tools", self.run_umi),
-            ("Cutadapt", self.run_cutadapt),
-            ("Fastp", self.run_fastp),
-            ("QC 2", self.run_qc_two),
-            ("Read length", self.read_length),
-            ("Read mapping", self.read_mapping),
-            ("Site analysis", self.run_site_analysis)
-        ]
+        # Pipeline auto-run state - will be populated by _update_pipeline_steps()
+        self._pipeline_steps = []
 
         # Mapping from API endpoints to progress bar step labels
         self.endpoint_to_step = {
@@ -97,6 +76,121 @@ class RunProgress:
         # Only refresh button states if this state change is for the currently selected run
         if run_name == Settings.SELECTED_RUN:
             self._update_button_states()
+
+    def _get_enabled_pipeline_steps(self, metadata=None):
+        """Get the list of enabled pipeline steps based on configuration flags.
+        Returns list of dicts with label and actions for progress bar.
+        """
+        # All possible steps with their configuration flags
+        all_steps = [
+            {
+                "label": "Setup Docker",
+                "actions": [("(Re)start docker", self.start_local_docker), ("Stop", self.stop_local_docker)],
+                "always_enabled": True
+            },
+            {
+                "label": "Upload R1 & R2",
+                "actions": [("(Re)upload R1 & R2", self.upload_r1_and_r2)],
+                "always_enabled": True
+            },
+            {
+                "label": "QC 1",
+                "actions": [("(Re)run quality control check 1", self.run_qc_one)],
+                "config_flag": "qc_before"
+            },
+            {
+                "label": "UMI Tools",
+                "actions": [("(Re)run UMI Tools", self.run_umi)],
+                "config_flag": "umi_enabled"
+            },
+            {
+                "label": "Cutadapt",
+                "actions": [("(Re)run Cutadapt", self.run_cutadapt)],
+                "config_flag": "cutadapt_use"
+            },
+            {
+                "label": "Fastp",
+                "actions": [("(Re)run Fastp", self.run_fastp)],
+                "always_enabled": True
+            },
+            {
+                "label": "QC 2",
+                "actions": [("(Re)run quality control check 2", self.run_qc_two)],
+                "config_flag": "qc_after"
+            },
+            {
+                "label": "Read length",
+                "actions": [("(Re)read length", self.read_length)],
+                "config_flag": "read_len"
+            },
+            {
+                "label": "Read mapping",
+                "actions": [("(Re)read mapping", self.read_mapping)],
+                "always_enabled": True
+            },
+            {
+                "label": "Site analysis",
+                "actions": [("(Re)run site analysis", self.run_site_analysis)],
+                "always_enabled": True
+            }
+        ]
+
+        enabled_steps = []
+
+        for step in all_steps:
+            # Always include steps that are always enabled
+            if step.get("always_enabled", False):
+                enabled_steps.append({"label": step["label"], "actions": step["actions"]})
+            elif "config_flag" in step and metadata:
+                # Include optional steps if they're enabled in configuration
+                if metadata.get(step["config_flag"], False):
+                    enabled_steps.append({"label": step["label"], "actions": step["actions"]})
+            elif not metadata:
+                # If no metadata available, include all steps (fallback behavior)
+                enabled_steps.append({"label": step["label"], "actions": step["actions"]})
+
+        return enabled_steps
+
+    def _get_enabled_pipeline_step_functions(self, metadata=None):
+        """Get the list of enabled pipeline step functions for auto-run navigation.
+        Returns list of tuples (label, function).
+        """
+        # All possible steps with their functions
+        all_step_functions = [
+            ("Setup Docker", self.start_local_docker, True),  # always_enabled
+            ("Upload R1 & R2", self.upload_r1_and_r2, True),  # always_enabled
+            ("QC 1", self.run_qc_one, "qc_before"),
+            ("UMI Tools", self.run_umi, "umi_enabled"),
+            ("Cutadapt", self.run_cutadapt, "cutadapt_use"),
+            ("Fastp", self.run_fastp, True),  # always_enabled
+            ("QC 2", self.run_qc_two, "qc_after"),
+            ("Read length", self.read_length, "read_len"),
+            ("Read mapping", self.read_mapping, True),  # always_enabled
+            ("Site analysis", self.run_site_analysis, True)  # always_enabled
+        ]
+
+        enabled_step_functions = []
+
+        for label, func, config_flag in all_step_functions:
+            if config_flag is True:  # Always enabled
+                enabled_step_functions.append((label, func))
+            elif isinstance(config_flag, str) and metadata:
+                # Include optional steps if they're enabled in configuration
+                if metadata.get(config_flag, False):
+                    enabled_step_functions.append((label, func))
+            elif not metadata:
+                # If no metadata available, include all steps (fallback behavior)
+                enabled_step_functions.append((label, func))
+
+        return enabled_step_functions
+
+    def _update_pipeline_steps(self, metadata=None):
+        """Update both progress bar steps and internal pipeline steps based on configuration."""
+        enabled_steps = self._get_enabled_pipeline_steps(metadata)
+        self.progressbar.set_labels(enabled_steps)
+
+        # Update internal pipeline steps for auto-run navigation
+        self._pipeline_steps = self._get_enabled_pipeline_step_functions(metadata)
 
     def _get_current_run_and_metadata(self):
         """Helper to get current run and its metadata. Returns (run_name, metadata) or (None, None) on error."""
@@ -137,14 +231,27 @@ class RunProgress:
             try:
                 metadata = Metadata(run_name)
                 stage = metadata.get("stage", "before")
-                return "QC 1" if stage == "before" else "QC 2"
+                step_label = "QC 1" if stage == "before" else "QC 2"
+
+                # Verify the step is currently enabled
+                current_steps = [step["label"] for step in self._get_enabled_pipeline_steps(metadata)]
+                return step_label if step_label in current_steps else None
             except Exception:
                 return "QC 1"  # fallback
 
         step_mapping = self.endpoint_to_step.get(endpoint)
         if callable(step_mapping):
-            return step_mapping()
-        return step_mapping or endpoint
+            step_label = step_mapping()
+        else:
+            step_label = step_mapping or endpoint
+
+        # Verify the step is currently enabled for this run
+        try:
+            metadata = Metadata(run_name)
+            current_steps = [step["label"] for step in self._get_enabled_pipeline_steps(metadata)]
+            return step_label if step_label in current_steps else None
+        except Exception:
+            return step_label  # fallback if metadata can't be loaded
 
     def _on_step_completed(self, run_name: str, endpoint: str, success: bool, error_msg: str):
         """Handle completion of an API step."""
@@ -164,6 +271,11 @@ class RunProgress:
             return
 
         step_label = self._get_step_label_for_endpoint(endpoint, run_name)
+
+        # If step is no longer enabled/visible, ignore the completion callback
+        if step_label is None:
+            print(f"[INFO] Step completion for {run_name}/{endpoint} ignored - step not currently enabled")
+            return
 
         if success:
             self.progressbar.set_step_state_for_run(run_name, step_label, StepState.COMPLETED)
@@ -764,6 +876,9 @@ class RunProgress:
         self.widgets.cleanButton.setVisible(has_executed_steps)
         # Disable clean button only when Docker step is RUNNING (since clean requires stopping Docker)
         self.widgets.cleanButton.setEnabled(not self._is_docker_step_running())
+
+        # Update pipeline steps based on current metadata configuration
+        self._update_pipeline_steps(metadata)
 
         # Load progress bar state from metadata
         self.progressbar.load_run_state(current_run, metadata.to_dict())
