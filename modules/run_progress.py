@@ -51,7 +51,8 @@ class RunProgress:
             "fastp": "Fastp",
             "readlen": "Read length",
             "read_mapping": "Read mapping",
-            "site_analysis": "Site analysis"
+            "site_analysis": "Site analysis",
+            "get_results": "Download results"
         }
 
     def __del__(self):
@@ -132,6 +133,11 @@ class RunProgress:
                 "label": "Site analysis",
                 "actions": [("(Re)run site analysis", self.run_site_analysis)],
                 "always_enabled": True
+            },
+            {
+                "label": "Download results",
+                "actions": [("(Re)download results", self.download_results)],
+                "always_enabled": True
             }
         ]
 
@@ -166,7 +172,8 @@ class RunProgress:
             ("QC 2", self.run_qc_two, "qc_after"),
             ("Read length", self.read_length, "read_len"),
             ("Read mapping", self.read_mapping, True),  # always_enabled
-            ("Site analysis", self.run_site_analysis, True)  # always_enabled
+            ("Site analysis", self.run_site_analysis, True),  # always_enabled
+            ("Download results", self.download_results, True)  # always_enabled
         ]
 
         enabled_step_functions = []
@@ -550,6 +557,14 @@ class RunProgress:
             "enhancer.left": metadata.get("enhancer.left", "50000")
         }
         self.api_caller.stream_api_for_run(current_run, "site_analysis", method="POST", json_data=payload)
+
+    def download_results(self):
+        current_run, metadata = self._get_current_run_and_metadata()
+        if not current_run:
+            return
+
+        self.progressbar.set_step_state_for_run(current_run, "Download results", StepState.RUNNING)
+        self.api_caller.download_results_for_run(current_run, "get_results")
 
     def _update_docker_step_status(self):
         current_run, metadata = self._get_current_run_and_metadata()

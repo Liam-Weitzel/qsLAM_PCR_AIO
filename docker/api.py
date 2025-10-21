@@ -3,6 +3,8 @@ import os, subprocess, multiprocessing
 import json
 import traceback
 import sys
+import base64
+import mimetypes
 
 app = Flask(__name__)
 
@@ -519,6 +521,96 @@ def site_analysis():
         yield "✅ Peak annotation complete!\n"
 
     return Response(safe_stream(gen, "site_analysis"), mimetype="text/plain")
+
+@app.route('/get_results', methods=['GET'])
+def get_results():
+    """
+    curl http://127.0.0.1:32768/get_results
+
+    Returns all contents from bed2peak/, fastqc/, and readlen.pdf
+    """
+    results = {
+        "bed2peak": {},
+        "fastqc": {},
+        "readlen_pdf": None
+    }
+
+    # Get bed2peak contents
+    if os.path.exists(BED2PEAK_DIR):
+        for filename in os.listdir(BED2PEAK_DIR):
+            filepath = os.path.join(BED2PEAK_DIR, filename)
+            if os.path.isfile(filepath):
+                try:
+                    mime_type, _ = mimetypes.guess_type(filepath)
+                    if mime_type and mime_type.startswith('text'):
+                        # Text files - read as text
+                        with open(filepath, 'r', encoding='utf-8') as f:
+                            results["bed2peak"][filename] = {
+                                "type": "text",
+                                "content": f.read()
+                            }
+                    else:
+                        # Binary files - encode as base64
+                        with open(filepath, 'rb') as f:
+                            results["bed2peak"][filename] = {
+                                "type": "binary",
+                                "content": base64.b64encode(f.read()).decode('utf-8'),
+                                "mime_type": mime_type
+                            }
+                except Exception as e:
+                    results["bed2peak"][filename] = {
+                        "type": "error",
+                        "error": str(e)
+                    }
+
+    # Get fastqc contents
+    for fastqc_dir in [FASTQC_BEFORE_OUT, FASTQC_AFTER_OUT]:
+        if os.path.exists(fastqc_dir):
+            dir_name = os.path.basename(fastqc_dir)
+            results["fastqc"][dir_name] = {}
+            for filename in os.listdir(fastqc_dir):
+                filepath = os.path.join(fastqc_dir, filename)
+                if os.path.isfile(filepath):
+                    try:
+                        mime_type, _ = mimetypes.guess_type(filepath)
+                        if mime_type and mime_type.startswith('text'):
+                            # Text files - read as text
+                            with open(filepath, 'r', encoding='utf-8') as f:
+                                results["fastqc"][dir_name][filename] = {
+                                    "type": "text",
+                                    "content": f.read()
+                                }
+                        else:
+                            # Binary files - encode as base64
+                            with open(filepath, 'rb') as f:
+                                results["fastqc"][dir_name][filename] = {
+                                    "type": "binary",
+                                    "content": base64.b64encode(f.read()).decode('utf-8'),
+                                    "mime_type": mime_type
+                                }
+                    except Exception as e:
+                        results["fastqc"][dir_name][filename] = {
+                            "type": "error",
+                            "error": str(e)
+                        }
+
+    # Get readlen.pdf
+    readlen_pdf_path = "readLen.pdf"
+    if os.path.exists(readlen_pdf_path):
+        try:
+            with open(readlen_pdf_path, 'rb') as f:
+                results["readlen_pdf"] = {
+                    "type": "binary",
+                    "content": base64.b64encode(f.read()).decode('utf-8'),
+                    "mime_type": "application/pdf"
+                }
+        except Exception as e:
+            results["readlen_pdf"] = {
+                "type": "error",
+                "error": str(e)
+            }
+
+    return jsonify(results)
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)

@@ -1,11 +1,12 @@
 library(GenomicRanges)
 library(ChIPpeakAnno)
-library(TxDb.Hsapiens.UCSC.hg19.knownGene)
-library(TxDb.Mmusculus.UCSC.mm9.knownGene)
-library(TxDb.Mmusculus.UCSC.mm10.knownGene)
-library(TxDb.Hsapiens.UCSC.hg18.knownGene)
 library(TxDb.Hsapiens.UCSC.hg38.knownGene)
+library(TxDb.Hsapiens.UCSC.hg19.knownGene)
+library(TxDb.Mmusculus.UCSC.mm39.knownGene)
+library(TxDb.Mmusculus.UCSC.mm10.knownGene)
+library(TxDb.Mmusculus.UCSC.mm9.knownGene)
 library(org.Hs.eg.db)
+library(org.Mm.eg.db)
 library(dplyr)
 
 # convert entrez gene id to gene symbol
@@ -20,35 +21,27 @@ entrez2symbol <- function(entrez_ids, orgAnn){
 
 # output: peak_id, tss distances, nearest gene, gene region
 target_gene_prediction <- function(inputBed, genome, promoter.left, promoter.right, enhancer.left){
-  if(genome=="mm9"){
+  if(genome=="MGSCv37"){
     gregions <- genes(TxDb.Mmusculus.UCSC.mm9.knownGene)
     orgAnn <- org.Mm.egSYMBOL
-  }
-  if(genome=="mm10"){
+  } else if(genome=="GRCm38"){
     gregions <- genes(TxDb.Mmusculus.UCSC.mm10.knownGene)
     orgAnn <- org.Mm.egSYMBOL
-  }
-  if(genome=="hg19"){
-    UCSC.hg19=TxDb.Hsapiens.UCSC.hg19.knownGene
-    c=seqlevels(UCSC.hg19)
-	d=c[!grepl("hap", c)]
-    
-    seqlevels(UCSC.hg19)=d
-    #print(d)
-    
+  } else if(genome=="GRCm39"){
+    gregions <- genes(TxDb.Mmusculus.UCSC.mm39.knownGene)
+    orgAnn <- org.Mm.egSYMBOL
+  } else if(genome=="GRCh37"){
+    UCSC.hg19 <- TxDb.Hsapiens.UCSC.hg19.knownGene
+    seqlevels(UCSC.hg19) <- seqlevels(UCSC.hg19)[!grepl("hap", seqlevels(UCSC.hg19))]
     gregions <- genes(UCSC.hg19)
-    #print(gregions)
     orgAnn <- org.Hs.egSYMBOL
-    
-  }
-  if(genome=="hg18"){
-    gregions <- genes(TxDb.Hsapiens.UCSC.hg18.knownGene)
-    orgAnn <- org.Hs.egSYMBOL
-  }
-  if(genome=="hg38"){
+  } else if(genome=="GRCh38"){
     gregions <- genes(TxDb.Hsapiens.UCSC.hg38.knownGene)
     orgAnn <- org.Hs.egSYMBOL
+  } else {
+    stop("Unsupported genome. Choose MGSCv37, GRCm38, GRCm39, GRCh37 or GRCh38")
   }
+
   bed.anno <- annotatePeakInBatch(toGRanges(inputBed, format="BED"), 
                                   AnnotationData=gregions, 
                                   output="both", 

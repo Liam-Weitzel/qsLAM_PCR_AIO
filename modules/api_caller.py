@@ -4,7 +4,7 @@ from PySide6.QtNetwork import (
 from PySide6.QtCore import QUrl, QByteArray, QIODevice, Signal, QObject, QTimer
 from PySide6.QtWidgets import QMessageBox
 from PySide6.QtGui import QTextCursor
-import os, json
+import os, json, base64
 from .settings import Settings
 
 class APICaller(QObject):
@@ -163,6 +163,37 @@ class APICaller(QObject):
         reply.readyRead.connect(lambda rid=rid, r=reply: self._on_ready_read(rid, r, endpoint, run_log_file))
         reply.finished.connect(lambda rid=rid, r=reply: self._on_finished(rid, r, endpoint, run_log_file))
 
+    def download_results_for_run(self, run_name: str, endpoint):
+        """Download results from the API and save files to the run directory."""
+        from .metadata import Metadata
+
+        try:
+            metadata = Metadata(run_name)
+            port = metadata.get("docker_host_port", None)
+            if not port:
+                raise RuntimeError(f"docker_host_port is not set in metadata for run {run_name}!")
+        except Exception as e:
+            raise RuntimeError(f"Failed to get metadata for run {run_name}: {e}")
+
+        # Get run-specific log file
+        run_log_path = os.path.join(Settings.RUNS_DIR, run_name, "log.txt")
+        os.makedirs(os.path.dirname(run_log_path), exist_ok=True)
+        run_log_file = open(run_log_path, "a", encoding="utf-8")
+
+        self._active_logs.add(run_log_file)
+        self._write_to_log(run_log_file, f"[RUNNING] {endpoint}...")
+
+        url = QUrl(f"http://127.0.0.1:{port}/{endpoint}")
+        request = QNetworkRequest(url)
+        reply = self.manager.get(request)
+
+        rid = id(reply)
+        self._buffers[rid] = ""
+        self._request_contexts[rid] = {"run_name": run_name, "endpoint": endpoint}
+
+        reply.readyRead.connect(lambda rid=rid, r=reply: self._on_download_ready_read(rid, r, endpoint, run_log_file, run_name))
+        reply.finished.connect(lambda rid=rid, r=reply: self._on_download_finished(rid, r, endpoint, run_log_file, run_name))
+
     def _on_ready_read(self, rid, reply, endpoint, log_file):
         buf = self._buffers.setdefault(rid, "")
         chunk = reply.readAll().data().decode(errors="ignore")
@@ -319,3 +350,95 @@ class APICaller(QObject):
 
         except Exception as e:
             self._write_to_log(self.log_file, f"[ERROR] Updating stdout from log: {e}")
+
+    def _on_download_ready_read(self, rid, reply, endpoint, log_file, run_name):
+        """Handle ready read for download requests - accumulate data."""
+        buf = self._buffers.setdefault(rid, "")
+        chunk = reply.readAll().data().decode(errors="ignore")
+        if chunk:
+            buf += chunk
+            self._buffers[rid] = buf
+
+    def _on_download_finished(self, rid, reply, endpoint, log_file, run_name):
+        """Handle finished download requests - parse JSON and save files."""
+        status_code = reply.attribute(QNetworkRequest.HttpStatusCodeAttribute)
+        buf = self._buffers.pop(rid, "").strip()
+        context = self._request_contexts.pop(rid, {})
+
+        reply.deleteLater()
+
+        if status_code != 200:
+            msg = f"{endpoint} returned HTTP {status_code or 'Unknown'}"
+            self._write_to_log(log_file, f"❌ {msg}")
+            self.run_step_completed.emit(run_name, endpoint, False, msg)
+            self._active_logs.discard(log_file)
+            if log_file != self.log_file:
+                log_file.close()
+            return
+
+        try:
+            # Parse JSON response
+            results_data = json.loads(buf)
+
+            # Create run directory path
+            run_dir = os.path.join(Settings.RUNS_DIR, run_name)
+            os.makedirs(run_dir, exist_ok=True)
+
+            files_saved = 0
+
+            # Save bed2peak files
+            if "bed2peak" in results_data:
+                bed2peak_dir = os.path.join(run_dir, "bed2peak")
+                os.makedirs(bed2peak_dir, exist_ok=True)
+                for filename, file_data in results_data["bed2peak"].items():
+                    if file_data.get("type") == "text":
+                        with open(os.path.join(bed2peak_dir, filename), "w", encoding="utf-8") as f:
+                            f.write(file_data["content"])
+                        files_saved += 1
+                    elif file_data.get("type") == "binary":
+                        with open(os.path.join(bed2peak_dir, filename), "wb") as f:
+                            f.write(base64.b64decode(file_data["content"]))
+                        files_saved += 1
+                    self._write_to_log(log_file, f"[SAVED] bed2peak/{filename}")
+
+            # Save fastqc files
+            if "fastqc" in results_data:
+                fastqc_dir = os.path.join(run_dir, "fastqc")
+                os.makedirs(fastqc_dir, exist_ok=True)
+                for subdir_name, subdir_files in results_data["fastqc"].items():
+                    subdir_path = os.path.join(fastqc_dir, subdir_name)
+                    os.makedirs(subdir_path, exist_ok=True)
+                    for filename, file_data in subdir_files.items():
+                        if file_data.get("type") == "text":
+                            with open(os.path.join(subdir_path, filename), "w", encoding="utf-8") as f:
+                                f.write(file_data["content"])
+                            files_saved += 1
+                        elif file_data.get("type") == "binary":
+                            with open(os.path.join(subdir_path, filename), "wb") as f:
+                                f.write(base64.b64decode(file_data["content"]))
+                            files_saved += 1
+                        self._write_to_log(log_file, f"[SAVED] fastqc/{subdir_name}/{filename}")
+
+            # Save readlen.pdf
+            if "readlen_pdf" in results_data and results_data["readlen_pdf"]:
+                pdf_data = results_data["readlen_pdf"]
+                if pdf_data.get("type") == "binary":
+                    with open(os.path.join(run_dir, "readLen.pdf"), "wb") as f:
+                        f.write(base64.b64decode(pdf_data["content"]))
+                    files_saved += 1
+                    self._write_to_log(log_file, f"[SAVED] readLen.pdf")
+
+            self._write_to_log(log_file, f"✅ Download complete - {files_saved} files saved to {run_dir}")
+            self.run_step_completed.emit(run_name, endpoint, True, "")
+
+        except Exception as e:
+            error_msg = f"Failed to save downloaded files: {e}"
+            self._write_to_log(log_file, f"❌ {error_msg}")
+            self.run_step_completed.emit(run_name, endpoint, False, error_msg)
+
+        self._write_to_log(log_file, f"[DONE] {endpoint} request finished.")
+
+        # Remove from active logs; close if it's an old run
+        self._active_logs.discard(log_file)
+        if log_file != self.log_file:
+            log_file.close()
