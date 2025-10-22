@@ -168,7 +168,7 @@ class MainWindow(QMainWindow):
 
         # Set tooltip
         button.setToolTip(QCoreApplication.translate(
-            "MainWindow", u"        Select a run and configure it in order to progress", None))
+            "MainWindow", u"        Please select a run first", None))
 
         # Replace clicked handler
         try:

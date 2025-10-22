@@ -29,6 +29,12 @@ class RunManager:
         self.widgets.stackedWidget.setCurrentWidget(self.widgets.runManagerTab)
         self.widgets.runManagerButton.setStyleSheet(UIFunctions.selectMenu(self.widgets.runManagerButton.styleSheet()))
 
+        # Initially disable run management buttons (will be enabled when a run is selected)
+        self.widgets.deleteRunButton.setEnabled(False)
+        self.widgets.renameRunButton.setEnabled(False)
+        self.widgets.openFolderLocationButton.setEnabled(False)
+        self.widgets.exportRunButton.setEnabled(False)
+
         # Schedule a refresh to fill empty rows once the UI is fully rendered
         QTimer.singleShot(100, self.update_runs_table)
 
@@ -163,9 +169,15 @@ class RunManager:
             Settings.SELECTED_RUN = selected_items[0].text()
             Settings.METADATA = Metadata(Settings.SELECTED_RUN)
             self.widgets.currentlySelected.setText(Settings.SELECTED_RUN)
+            # Enable tab buttons
             self.main_window.enable_button(self.widgets.runProgressButton, lambda: self.main_window.on_menu_button_clicked(self.widgets.runProgressTab, self.widgets.runProgressButton, "runProgressButton"))
             self.main_window.enable_button(self.widgets.runConfigurationButton, lambda: self.main_window.on_menu_button_clicked(self.widgets.runConfigurationTab, self.widgets.runConfigurationButton, "runConfigurationButton"))
             self.main_window.enable_button(self.widgets.resultsOverviewButton, lambda: self.main_window.on_menu_button_clicked(self.widgets.resultsOverviewTab, self.widgets.resultsOverviewButton, "resultsOverviewButton"))
+            # Enable run management buttons
+            self.widgets.deleteRunButton.setEnabled(True)
+            self.widgets.renameRunButton.setEnabled(True)
+            self.widgets.openFolderLocationButton.setEnabled(True)
+            self.widgets.exportRunButton.setEnabled(True)
             self.main_window.run_configuration.load_from_metadata()
             self.main_window.run_progress.load_from_metadata()
             self.main_window.results_overview.load_run_data()
@@ -173,25 +185,44 @@ class RunManager:
             Settings.SELECTED_RUN = None
             Settings.METADATA = None
             self.widgets.currentlySelected.setText("None")
+            # Disable tab buttons
             self.main_window.disable_button(self.widgets.runProgressButton)
             self.main_window.disable_button(self.widgets.runConfigurationButton)
             self.main_window.disable_button(self.widgets.resultsOverviewButton)
+            # Disable run management buttons
+            self.widgets.deleteRunButton.setEnabled(False)
+            self.widgets.renameRunButton.setEnabled(False)
+            self.widgets.openFolderLocationButton.setEnabled(False)
+            self.widgets.exportRunButton.setEnabled(False)
 
     def select_specific_run(self, run):
         Settings.SELECTED_RUN = run
         self.widgets.currentlySelected.setText(run)
         if(run):
+            # Enable tab buttons
             self.main_window.enable_button(self.widgets.runProgressButton, lambda: self.main_window.on_menu_button_clicked(self.widgets.runProgressTab, self.widgets.runProgressButton, "runProgressButton"))
             self.main_window.enable_button(self.widgets.runConfigurationButton, lambda: self.main_window.on_menu_button_clicked(self.widgets.runConfigurationTab, self.widgets.runConfigurationButton, "runConfigurationButton"))
             self.main_window.enable_button(self.widgets.resultsOverviewButton, lambda: self.main_window.on_menu_button_clicked(self.widgets.resultsOverviewTab, self.widgets.resultsOverviewButton, "resultsOverviewButton"))
+            # Enable run management buttons
+            self.widgets.deleteRunButton.setEnabled(True)
+            self.widgets.renameRunButton.setEnabled(True)
+            self.widgets.openFolderLocationButton.setEnabled(True)
+            self.widgets.exportRunButton.setEnabled(True)
             Settings.METADATA = Metadata(Settings.SELECTED_RUN)
             self.main_window.run_configuration.load_from_metadata()
             self.main_window.run_progress.load_from_metadata()
             self.main_window.results_overview.load_run_data()
         else:
             Settings.METADATA = None
+            # Disable tab buttons
             self.main_window.disable_button(self.widgets.runProgressButton)
             self.main_window.disable_button(self.widgets.runConfigurationButton)
+            self.main_window.disable_button(self.widgets.resultsOverviewButton)
+            # Disable run management buttons
+            self.widgets.deleteRunButton.setEnabled(False)
+            self.widgets.renameRunButton.setEnabled(False)
+            self.widgets.openFolderLocationButton.setEnabled(False)
+            self.widgets.exportRunButton.setEnabled(False)
 
     def create_run(self):
         button = QMessageBox.question(
@@ -228,7 +259,7 @@ class RunManager:
                     QMessageBox.warning(self.main_window, "Warning", f"A run with the name '{run_name}' already exists.")
 
     def delete_run(self):
-        """Delete the selected run after user confirmation."""
+        """Delete the selected run after user confirmation and cleaning up Docker containers."""
         if Settings.SELECTED_RUN is None:
             QMessageBox.warning(self.main_window, "No Selection", "No run selected to delete!")
             return
@@ -237,35 +268,116 @@ class RunManager:
         button = QMessageBox.critical(
             self.main_window,
             "Are you sure?",
-            f"Are you sure you want to delete the run '{Settings.SELECTED_RUN}'?",
+            f"Are you sure you want to delete the run '{Settings.SELECTED_RUN}'?\n\nThis will first clean up any Docker containers associated with this run, then delete all run data.",
             buttons=QMessageBox.Yes | QMessageBox.No,
             defaultButton=QMessageBox.No,
         )
 
         if button == QMessageBox.Yes:
-            run_path = os.path.join(Settings.RUNS_DIR, Settings.SELECTED_RUN)
+            self.run_to_delete = Settings.SELECTED_RUN
+            run_path = os.path.join(Settings.RUNS_DIR, self.run_to_delete)
 
             if os.path.exists(run_path):
                 try:
-                    # Recursively delete the directory and its contents
-                    for root, dirs, files in os.walk(run_path, topdown=False):
-                        for name in files:
-                            os.remove(os.path.join(root, name))  # Delete file
-                        for name in dirs:
-                            os.rmdir(os.path.join(root, name))  # Delete empty directory
+                    # First, check if the run has any Docker containers and clean them
+                    metadata = Metadata(self.run_to_delete)
+                    container_id = metadata.get("docker_container_id", None)
 
-                    # Remove the empty directory
-                    os.rmdir(run_path)
-                    self.update_runs_table()
-                    self.select_run()
+                    if container_id:
+                        # Show progress dialog with cancel option
+                        self.progress_dialog = QMessageBox(self.main_window)
+                        self.progress_dialog.setWindowTitle("Cleaning Up Docker Container")
+                        self.progress_dialog.setText(f"Cleaning up Docker container for run '{self.run_to_delete}'...\n\nThis may take a few moments.")
+                        self.progress_dialog.setStandardButtons(QMessageBox.Cancel)
+                        self.progress_dialog.setDefaultButton(QMessageBox.Cancel)
 
-                    QMessageBox.information(self.main_window, "Success", f"Run '{Settings.SELECTED_RUN}' deleted successfully.")
+                        # Start async Docker cleanup
+                        self._start_async_docker_cleanup(self.run_to_delete, container_id)
+
+                        # Show the dialog non-blocking
+                        result = self.progress_dialog.exec()
+                        if result == QMessageBox.Cancel:
+                            # User cancelled, stop the cleanup if possible
+                            if hasattr(self, 'docker_cleanup_worker') and self.docker_cleanup_worker.isRunning():
+                                self.docker_cleanup_worker.terminate()
+                            return
+                    else:
+                        # No Docker container, proceed directly with file deletion
+                        self._delete_run_files()
+
                 except Exception as e:
                     QMessageBox.critical(self.main_window, "Error", f"Failed to delete the run: {e}")
             else:
-                QMessageBox.warning(self.main_window, "Error", f"The run '{Settings.SELECTED_RUN}' does not exist.")
+                QMessageBox.warning(self.main_window, "Error", f"The run '{self.run_to_delete}' does not exist.")
         else:
             print("Deletion cancelled.")
+
+    def _start_async_docker_cleanup(self, run_name: str, container_id: str):
+        """Start asynchronous Docker container cleanup"""
+        from .docker_worker import AsyncDockerWorker, DockerManager
+
+        self.docker_cleanup_worker = AsyncDockerWorker(
+            DockerManager.clean_container,
+            container_id
+        )
+        self.docker_cleanup_worker.finished.connect(
+            lambda success, error, cid: self._on_docker_cleanup_finished(success, error, cid, run_name)
+        )
+        self.docker_cleanup_worker.start()
+
+    def _on_docker_cleanup_finished(self, success: bool, error: str, container_id: str, run_name: str):
+        """Handle completion of Docker cleanup before proceeding with file deletion"""
+        # Close the progress dialog
+        if hasattr(self, 'progress_dialog'):
+            self.progress_dialog.close()
+
+        if success:
+            # Update metadata to remove Docker references
+            try:
+                metadata = Metadata(run_name)
+                metadata.delete("docker_container_id")
+                metadata.delete("docker_host_port")
+                metadata.delete("docker_container_owner")
+                print(f"Successfully cleaned Docker container {container_id} for run {run_name}")
+            except Exception as e:
+                print(f"Error updating metadata after Docker cleanup: {e}")
+
+            # Now proceed with file deletion
+            self._delete_run_files()
+        else:
+            # Docker cleanup failed, ask user if they want to proceed anyway
+            reply = QMessageBox.question(
+                self.main_window,
+                "Docker Cleanup Failed",
+                f"Failed to clean up Docker container:\n{error}\n\nDo you want to proceed with deleting the run files anyway?",
+                QMessageBox.Yes | QMessageBox.No,
+                QMessageBox.No
+            )
+            if reply == QMessageBox.Yes:
+                self._delete_run_files()
+
+    def _delete_run_files(self):
+        """Delete the run directory and files"""
+        try:
+            run_path = os.path.join(Settings.RUNS_DIR, self.run_to_delete)
+
+            # Recursively delete the directory and its contents
+            for root, dirs, files in os.walk(run_path, topdown=False):
+                for name in files:
+                    os.remove(os.path.join(root, name))  # Delete file
+                for name in dirs:
+                    os.rmdir(os.path.join(root, name))  # Delete empty directory
+
+            # Remove the empty directory
+            os.rmdir(run_path)
+
+            # Update the UI
+            self.update_runs_table()
+            self.select_run()
+
+            QMessageBox.information(self.main_window, "Success", f"Run '{self.run_to_delete}' has been deleted successfully.")
+        except Exception as e:
+            QMessageBox.critical(self.main_window, "Error", f"Failed to delete the run files: {e}")
 
     def import_run(self):
         """Allow the user to import one or more .zip files into the 'runs' directory."""
