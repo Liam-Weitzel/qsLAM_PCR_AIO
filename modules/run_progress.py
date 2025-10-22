@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from PySide6.QtWidgets import QMessageBox
 from widgets.custom_progress_bar.custom_progress_bar import CustomProgressBar, StepState
 from widgets.custom_context_menu.custom_context_menu import CustomContextMenu
@@ -286,6 +287,14 @@ class RunProgress:
 
         if success:
             self.progressbar.set_step_state_for_run(run_name, step_label, StepState.COMPLETED)
+
+            # Update last run timestamp for successful steps
+            try:
+                metadata = Metadata(run_name)
+                current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                metadata.set("last_run_timestamp", current_time)
+            except Exception as e:
+                print(f"[ERROR] Failed to update last_run_timestamp for {run_name}: {e}")
 
             # Continue auto-run if this is the current run and we're in auto-run mode
             if run_name == Settings.SELECTED_RUN:

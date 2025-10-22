@@ -57,6 +57,7 @@ class MainWindow(QMainWindow):
         self.run_manager = RunManager(self)
         self.run_progress = RunProgress(self)
         self.run_configuration = RunConfiguration(self)
+        self.results_overview = ResultsOverview(self)
 
         # BUTTONS CLICK - CONNECT EACH TO ITS OWN HANDLER
         # ///////////////////////////////////////////////////////////////
@@ -65,7 +66,7 @@ class MainWindow(QMainWindow):
         widgets.runManagerButton.clicked.connect(lambda: self.on_menu_button_clicked(widgets.runManagerTab, widgets.runManagerButton, "runManagerButton"))
         widgets.runConfigurationButton.clicked.connect(lambda: self.on_menu_button_clicked(widgets.runConfigurationTab, widgets.runConfigurationButton, "runConfigurationButton"))
         widgets.runProgressButton.clicked.connect(lambda: self.on_menu_button_clicked(widgets.runProgressTab, widgets.runProgressButton, "runProgressButton"))
-        widgets.runAnalysisButton.clicked.connect(lambda: self.on_menu_button_clicked(widgets.runAnalysisTab, widgets.runAnalysisButton, "runAnalysisButton", show_selected_run=False))
+        widgets.resultsOverviewButton.clicked.connect(lambda: self.on_menu_button_clicked(widgets.resultsOverviewTab, widgets.resultsOverviewButton, "resultsOverviewButton"))
 
         # EXTRA LEFT BOX
         widgets.toggleLeftBox.clicked.connect(lambda: UIFunctions.toggleLeftBox(self, True))
@@ -83,6 +84,7 @@ class MainWindow(QMainWindow):
         # INIT STATE
         self.disable_button(widgets.runProgressButton)
         self.disable_button(widgets.runConfigurationButton)
+        self.disable_button(widgets.resultsOverviewButton)
 
     # HANDLER FOR LEFT MENU BUTTONS
     # ///////////////////////////////////////////////////////////////

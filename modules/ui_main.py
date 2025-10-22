@@ -19,9 +19,10 @@ from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplicat
     QComboBox, QCommandLinkButton, QFrame, QGridLayout,
     QHBoxLayout, QHeaderView, QLabel, QLineEdit,
     QMainWindow, QPushButton, QRadioButton, QSizePolicy,
-    QSlider, QSpacerItem, QStackedWidget, QTabWidget,
-    QTableWidget, QTableWidgetItem, QTextBrowser, QTextEdit,
-    QVBoxLayout, QWidget)
+    QSlider, QSpacerItem, QSplitter, QStackedWidget,
+    QTabWidget, QTableWidget, QTableWidgetItem, QTextBrowser,
+    QTextEdit, QTreeWidget, QTreeWidgetItem, QVBoxLayout,
+    QWidget)
 from .resources_rc import *
 
 class Ui_MainWindow(object):
@@ -267,6 +268,10 @@ class Ui_MainWindow(object):
 "{\n"
 "    border: 1px solid rgb(220, 220, 220);\n"
 "}\n"
+"QTableCornerButton::section\n"
+"{\n"
+"    background-color: #01216D;\n"
+"}\n"
 "\n"
 "/* LineEdit */\n"
 "QLineEdit {\n"
@@ -295,12 +300,12 @@ class Ui_MainWindow(object):
 "QPlainTextEdit  QScrollBar:vertical {\n"
 "    width: 8px;\n"
 " }\n"
-"QPlainTextEdit  QScrollBar:horizontal {\n"
+"QPlainTextEdit  QScr"
+                        "ollBar:horizontal {\n"
 "    height: 8px;\n"
 " }\n"
 "QPlainTextEdit:hover {\n"
-""
-                        "	border: 2px solid #86D2ED;\n"
+"	border: 2px solid #86D2ED;\n"
 "}\n"
 "QPlainTextEdit:focus {\n"
 "	border: 2px solid #86D2ED;\n"
@@ -336,10 +341,10 @@ class Ui_MainWindow(object):
 "    subcontrol-position: left;\n"
 "    subcontrol-origin: margin;\n"
 "}\n"
-"QScrollBar::up-arrow:horizontal, QScrollBar::down-arrow:horizontal\n"
-"{\n"
 ""
-                        "     background: none;\n"
+                        "QScrollBar::up-arrow:horizontal, QScrollBar::down-arrow:horizontal\n"
+"{\n"
+"     background: none;\n"
 "}\n"
 "QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal\n"
 "{\n"
@@ -373,10 +378,10 @@ class Ui_MainWindow(object):
 "    border-top-left-radius: 4px;\n"
 "    border-top-right-radius: 4px;\n"
 "    subcontrol-position: top;\n"
-"    subcontrol-origin: margin;\n"
+"    "
+                        "subcontrol-origin: margin;\n"
 "}\n"
-"QScrollBar::up-arrow:vertical, QScrollBa"
-                        "r::down-arrow:vertical {\n"
+"QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {\n"
 "    background: none;\n"
 "}\n"
 "\n"
@@ -409,11 +414,11 @@ class Ui_MainWindow(object):
 "    border-radius: 7px;\n"
 "    background: rgb(255, 255, 255);\n"
 "}\n"
-"QRadioButton::indicator:hover {\n"
+"QRadioButton::indi"
+                        "cator:hover {\n"
 "    border: 2px solid rgb(134, 210, 237);\n"
 "}\n"
-"QRadioB"
-                        "utton::indicator:checked {\n"
+"QRadioButton::indicator:checked {\n"
 "    background: 2px solid rgb(230, 230, 230);\n"
 "    border: 2px solid rgb(52, 59, 72);\n"
 "    background-image: url(:/icons/images/icons/cil-check-alt.png);\n"
@@ -446,10 +451,10 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QTabBar::tab:selected {\n"
-"    background-color: qlineargradient(\n"
+"    bac"
+                        "kground-color: qlineargradient(\n"
 "        x1:0, y1:0, x2:0, y2:1,\n"
-"     "
-                        "   stop:0 #a0cdee, stop:1 #d0f0f7\n"
+"        stop:0 #a0cdee, stop:1 #d0f0f7\n"
 "    );\n"
 "    color: rgb(0, 0, 0);\n"
 "    font-weight: 500;\n"
@@ -487,12 +492,12 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "/* Focused */\n"
-"QComboBox:focus {\n"
+"QComboBo"
+                        "x:focus {\n"
 "    border: 2px solid #86D2ED;\n"
 "}\n"
 "\n"
-"/* Drop-down arro"
-                        "w button */\n"
+"/* Drop-down arrow button */\n"
 "QComboBox::drop-down {\n"
 "    subcontrol-origin: padding;\n"
 "    subcontrol-position: top right;\n"
@@ -526,10 +531,10 @@ class Ui_MainWindow(object):
 "\n"
 "/* Disabled state */\n"
 "QComboBox:disabled {\n"
-"    background-color: rgb(235, 235, 235);\n"
+"   "
+                        " background-color: rgb(235, 235, 235);\n"
 "    color: rgb(120, 120, 120);\n"
-""
-                        "    border: 2px solid rgb(200, 200, 200);\n"
+"    border: 2px solid rgb(200, 200, 200);\n"
 "}\n"
 "\n"
 "/* QSlider */\n"
@@ -572,12 +577,12 @@ class Ui_MainWindow(object):
 "    border: none;\n"
 "    width: 6px;\n"
 "    background: rgb(204, 204, 204);\n"
-"    border-radius: 3px;\n"
+"  "
+                        "  border-radius: 3px;\n"
 "}\n"
 "\n"
 "QSlider::groove:vertical:hover {\n"
-"    "
-                        "background: rgb(180, 220, 240);\n"
+"    background: rgb(180, 220, 240);\n"
 "}\n"
 "\n"
 "QSlider::handle:vertical {\n"
@@ -737,13 +742,13 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addWidget(self.runProgressButton)
 
-        self.runAnalysisButton = QPushButton(self.topMenu)
-        self.runAnalysisButton.setObjectName(u"runAnalysisButton")
-        self.runAnalysisButton.setMinimumSize(QSize(0, 45))
-        self.runAnalysisButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
-        self.runAnalysisButton.setStyleSheet(u"background-image: url(:/icons/images/icons/cil-chart.png);")
+        self.resultsOverviewButton = QPushButton(self.topMenu)
+        self.resultsOverviewButton.setObjectName(u"resultsOverviewButton")
+        self.resultsOverviewButton.setMinimumSize(QSize(0, 45))
+        self.resultsOverviewButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.resultsOverviewButton.setStyleSheet(u"margin-left: -5px; background-image: url(:/icons/images/icons/cil-chart.png);")
 
-        self.verticalLayout_8.addWidget(self.runAnalysisButton)
+        self.verticalLayout_8.addWidget(self.resultsOverviewButton)
 
 
         self.verticalMenuLayout.addWidget(self.topMenu, 0, Qt.AlignmentFlag.AlignTop)
@@ -2387,53 +2392,83 @@ class Ui_MainWindow(object):
         self.verticalLayout1.addLayout(self.gridLayout_2)
 
         self.stackedWidget.addWidget(self.runConfigurationTab)
-        self.runAnalysisTab = QWidget()
-        self.runAnalysisTab.setObjectName(u"runAnalysisTab")
-        self.runAnalysisTab.setStyleSheet(u"")
-        self.verticalLayout18 = QVBoxLayout(self.runAnalysisTab)
+        self.resultsOverviewTab = QWidget()
+        self.resultsOverviewTab.setObjectName(u"resultsOverviewTab")
+        self.resultsOverviewTab.setStyleSheet(u"")
+        self.verticalLayout18 = QVBoxLayout(self.resultsOverviewTab)
         self.verticalLayout18.setSpacing(10)
         self.verticalLayout18.setObjectName(u"verticalLayout18")
         self.verticalLayout18.setContentsMargins(10, 10, 10, 10)
-        self.row_13 = QFrame(self.runAnalysisTab)
-        self.row_13.setObjectName(u"row_13")
-        self.row_13.setMinimumSize(QSize(0, 50))
-        self.row_13.setMaximumSize(QSize(16777215, 16777215))
-        self.row_13.setFrameShape(QFrame.Shape.StyledPanel)
-        self.row_13.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout_161 = QVBoxLayout(self.row_13)
-        self.verticalLayout_161.setSpacing(0)
-        self.verticalLayout_161.setObjectName(u"verticalLayout_161")
-        self.verticalLayout_161.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout_6 = QGridLayout()
-        self.gridLayout_6.setObjectName(u"gridLayout_6")
-        self.label_4 = QLabel(self.row_13)
-        self.label_4.setObjectName(u"label_4")
+        self.resultsSplitter = QSplitter(self.resultsOverviewTab)
+        self.resultsSplitter.setObjectName(u"resultsSplitter")
+        self.resultsSplitter.setOrientation(Qt.Orientation.Horizontal)
+        self.leftPaneWidget = QWidget(self.resultsSplitter)
+        self.leftPaneWidget.setObjectName(u"leftPaneWidget")
+        self.leftPaneLayout = QVBoxLayout(self.leftPaneWidget)
+        self.leftPaneLayout.setSpacing(5)
+        self.leftPaneLayout.setObjectName(u"leftPaneLayout")
+        self.leftPaneLayout.setContentsMargins(0, 0, 5, 0)
+        self.fileTreeWidget = QTreeWidget(self.leftPaneWidget)
+        self.fileTreeWidget.setObjectName(u"fileTreeWidget")
+        self.fileTreeWidget.setHeaderHidden(True)
 
-        self.gridLayout_6.addWidget(self.label_4, 1, 1, 1, 1)
+        self.leftPaneLayout.addWidget(self.fileTreeWidget)
 
-        self.verticalSpacer_32 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        self.buttonLayout = QHBoxLayout()
+        self.buttonLayout.setSpacing(5)
+        self.buttonLayout.setObjectName(u"buttonLayout")
+        self.openFileButton = QPushButton(self.leftPaneWidget)
+        self.openFileButton.setObjectName(u"openFileButton")
+        self.openFileButton.setMinimumSize(QSize(50, 30))
+        self.openFileButton.setFont(font)
+        self.openFileButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.openFileButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        icon21 = QIcon()
+        icon21.addFile(u":/icons/images/icons/cil-external-link.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.openFileButton.setIcon(icon21)
 
-        self.gridLayout_6.addItem(self.verticalSpacer_32, 2, 1, 1, 1)
+        self.buttonLayout.addWidget(self.openFileButton)
 
-        self.horizontalSpacer_36 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        self.openDirectoryButton = QPushButton(self.leftPaneWidget)
+        self.openDirectoryButton.setObjectName(u"openDirectoryButton")
+        self.openDirectoryButton.setMinimumSize(QSize(50, 30))
+        self.openDirectoryButton.setFont(font)
+        self.openDirectoryButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
+        self.openDirectoryButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.openDirectoryButton.setIcon(icon9)
 
-        self.gridLayout_6.addItem(self.horizontalSpacer_36, 1, 2, 1, 1)
-
-        self.verticalSpacer_33 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
-
-        self.gridLayout_6.addItem(self.verticalSpacer_33, 0, 1, 1, 1)
-
-        self.horizontalSpacer_35 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
-
-        self.gridLayout_6.addItem(self.horizontalSpacer_35, 1, 0, 1, 1)
+        self.buttonLayout.addWidget(self.openDirectoryButton)
 
 
-        self.verticalLayout_161.addLayout(self.gridLayout_6)
+        self.leftPaneLayout.addLayout(self.buttonLayout)
 
+        self.resultsSplitter.addWidget(self.leftPaneWidget)
+        self.rightPaneWidget = QWidget(self.resultsSplitter)
+        self.rightPaneWidget.setObjectName(u"rightPaneWidget")
+        self.rightPaneLayout = QVBoxLayout(self.rightPaneWidget)
+        self.rightPaneLayout.setSpacing(5)
+        self.rightPaneLayout.setObjectName(u"rightPaneLayout")
+        self.rightPaneLayout.setContentsMargins(5, 0, 0, 0)
+        self.fileContentTable = QTableWidget(self.rightPaneWidget)
+        self.fileContentTable.setObjectName(u"fileContentTable")
+        self.fileContentTable.setAlternatingRowColors(True)
+        self.fileContentTable.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
+        self.fileContentTable.setGridStyle(Qt.PenStyle.SolidLine)
 
-        self.verticalLayout18.addWidget(self.row_13)
+        self.rightPaneLayout.addWidget(self.fileContentTable)
 
-        self.stackedWidget.addWidget(self.runAnalysisTab)
+        self.fileStatusLabel = QLabel(self.rightPaneWidget)
+        self.fileStatusLabel.setObjectName(u"fileStatusLabel")
+        self.fileStatusLabel.setStyleSheet(u"color: rgb(100, 100, 100); font-style: italic;")
+        self.fileStatusLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.rightPaneLayout.addWidget(self.fileStatusLabel)
+
+        self.resultsSplitter.addWidget(self.rightPaneWidget)
+
+        self.verticalLayout18.addWidget(self.resultsSplitter)
+
+        self.stackedWidget.addWidget(self.resultsOverviewTab)
         self.runProgressTab = QWidget()
         self.runProgressTab.setObjectName(u"runProgressTab")
         self.runProgressTab.setStyleSheet(u"")
@@ -2441,18 +2476,18 @@ class Ui_MainWindow(object):
         self.verticalLayout19.setSpacing(10)
         self.verticalLayout19.setObjectName(u"verticalLayout19")
         self.verticalLayout19.setContentsMargins(10, 10, 10, 10)
-        self.row_14 = QFrame(self.runProgressTab)
-        self.row_14.setObjectName(u"row_14")
-        self.row_14.setMinimumSize(QSize(0, 70))
-        self.row_14.setMaximumSize(QSize(16777215, 70))
-        self.row_14.setFrameShape(QFrame.Shape.StyledPanel)
-        self.row_14.setFrameShadow(QFrame.Shadow.Raised)
-        self.verticalLayout_162 = QVBoxLayout(self.row_14)
-        self.verticalLayout_162.setSpacing(0)
-        self.verticalLayout_162.setObjectName(u"verticalLayout_162")
-        self.verticalLayout_162.setContentsMargins(0, 0, 0, 0)
+        self.row_13 = QFrame(self.runProgressTab)
+        self.row_13.setObjectName(u"row_13")
+        self.row_13.setMinimumSize(QSize(0, 70))
+        self.row_13.setMaximumSize(QSize(16777215, 70))
+        self.row_13.setFrameShape(QFrame.Shape.StyledPanel)
+        self.row_13.setFrameShadow(QFrame.Shadow.Raised)
+        self.verticalLayout_161 = QVBoxLayout(self.row_13)
+        self.verticalLayout_161.setSpacing(0)
+        self.verticalLayout_161.setObjectName(u"verticalLayout_161")
+        self.verticalLayout_161.setContentsMargins(0, 0, 0, 0)
 
-        self.verticalLayout19.addWidget(self.row_14)
+        self.verticalLayout19.addWidget(self.row_13)
 
         self.row_22 = QFrame(self.runProgressTab)
         self.row_22.setObjectName(u"row_22")
@@ -2500,9 +2535,9 @@ class Ui_MainWindow(object):
         self.pauseButton.setFont(font)
         self.pauseButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.pauseButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon21 = QIcon()
-        icon21.addFile(u":/icons/images/icons/cil-media-stop.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.pauseButton.setIcon(icon21)
+        icon22 = QIcon()
+        icon22.addFile(u":/icons/images/icons/cil-media-stop.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.pauseButton.setIcon(icon22)
 
         self.horizontalLayout_6.addWidget(self.pauseButton)
 
@@ -2512,9 +2547,9 @@ class Ui_MainWindow(object):
         self.resumeButton.setFont(font)
         self.resumeButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.resumeButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        icon22 = QIcon()
-        icon22.addFile(u":/icons/images/icons/cil-media-play.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        self.resumeButton.setIcon(icon22)
+        icon23 = QIcon()
+        icon23.addFile(u":/icons/images/icons/cil-media-play.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        self.resumeButton.setIcon(icon23)
 
         self.horizontalLayout_6.addWidget(self.resumeButton)
 
@@ -2524,7 +2559,7 @@ class Ui_MainWindow(object):
         self.runButton.setFont(font)
         self.runButton.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         self.runButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
-        self.runButton.setIcon(icon22)
+        self.runButton.setIcon(icon23)
 
         self.horizontalLayout_6.addWidget(self.runButton)
 
@@ -2695,8 +2730,8 @@ class Ui_MainWindow(object):
         QWidget.setTabOrder(self.runManagerButton, self.minimizeAppButton)
         QWidget.setTabOrder(self.minimizeAppButton, self.runConfigurationButton)
         QWidget.setTabOrder(self.runConfigurationButton, self.runProgressButton)
-        QWidget.setTabOrder(self.runProgressButton, self.runAnalysisButton)
-        QWidget.setTabOrder(self.runAnalysisButton, self.toggleLeftBox)
+        QWidget.setTabOrder(self.runProgressButton, self.resultsOverviewButton)
+        QWidget.setTabOrder(self.resultsOverviewButton, self.toggleLeftBox)
         QWidget.setTabOrder(self.toggleLeftBox, self.extraCloseColumnButton)
         QWidget.setTabOrder(self.extraCloseColumnButton, self.aboutText)
         QWidget.setTabOrder(self.aboutText, self.closeAppButton)
@@ -2709,7 +2744,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(1)
+        self.stackedWidget.setCurrentIndex(0)
         self.configStackedWidget.setCurrentIndex(0)
         self.dockerStackedWidget.setCurrentIndex(0)
         self.isInstalledStackedWidget.setCurrentIndex(0)
@@ -2727,7 +2762,7 @@ class Ui_MainWindow(object):
         self.runManagerButton.setText(QCoreApplication.translate("MainWindow", u"Manage Runs", None))
         self.runConfigurationButton.setText(QCoreApplication.translate("MainWindow", u"Edit Run Configuration", None))
         self.runProgressButton.setText(QCoreApplication.translate("MainWindow", u"Run Progress", None))
-        self.runAnalysisButton.setText(QCoreApplication.translate("MainWindow", u"Analyze Runs", None))
+        self.resultsOverviewButton.setText(QCoreApplication.translate("MainWindow", u"Results Overview", None))
         self.toggleLeftBox.setText(QCoreApplication.translate("MainWindow", u"About", None))
 #if QT_CONFIG(tooltip)
         self.extraCloseColumnButton.setToolTip(QCoreApplication.translate("MainWindow", u"Close about", None))
@@ -2867,7 +2902,11 @@ class Ui_MainWindow(object):
         self.restoreDefaultsButton.setText(QCoreApplication.translate("MainWindow", u"Restore Defaults", None))
         self.R1Label.setText(QCoreApplication.translate("MainWindow", u"Read 1: ", None))
         self.R2Label.setText(QCoreApplication.translate("MainWindow", u"Read 2: ", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Nothing to see here yet :)", None))
+        ___qtreewidgetitem = self.fileTreeWidget.headerItem()
+        ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"Name", None));
+        self.openFileButton.setText(QCoreApplication.translate("MainWindow", u"Open in Default App", None))
+        self.openDirectoryButton.setText(QCoreApplication.translate("MainWindow", u"Open Run Directory", None))
+        self.fileStatusLabel.setText(QCoreApplication.translate("MainWindow", u"Select a file to view its contents", None))
         self.stdOut.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -2875,7 +2914,7 @@ class Ui_MainWindow(object):
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p></body></html>", None))
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
         self.cleanButton.setText(QCoreApplication.translate("MainWindow", u"Clean", None))
         self.pauseButton.setText(QCoreApplication.translate("MainWindow", u"Pause", None))
         self.resumeButton.setText(QCoreApplication.translate("MainWindow", u"Resume", None))

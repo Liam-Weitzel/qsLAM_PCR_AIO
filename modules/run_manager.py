@@ -58,13 +58,82 @@ class RunManager:
             # Set the first column with the subdirectory name (run)
             self.widgets.runsTable.setItem(row_position, 0, QTableWidgetItem(subdir_name))
 
-            metadata_fields = ['creation_timestamp', 'progress', 'last_run_timestamp']
-            for col_idx, field in enumerate(metadata_fields, start=1):
-                field_value = metadata.get(field, 'N/A')
-                self.widgets.runsTable.setItem(row_position, col_idx, QTableWidgetItem(str(field_value)))
+            # Column 1: Creation Timestamp (directly from metadata)
+            creation_timestamp = metadata.get('creation_timestamp', 'N/A')
+            self.widgets.runsTable.setItem(row_position, 1, QTableWidgetItem(str(creation_timestamp)))
+
+            # Column 2: Progress (calculated from step_states)
+            progress_status = self.get_progress_status(metadata)
+            self.widgets.runsTable.setItem(row_position, 2, QTableWidgetItem(progress_status))
+
+            # Column 3: Last Run Timestamp (calculated from metadata)
+            last_run_timestamp = self.get_last_run_timestamp(metadata)
+            self.widgets.runsTable.setItem(row_position, 3, QTableWidgetItem(last_run_timestamp))
 
         # Fill empty rows to match table's height
         self.fill_empty_rows()
+
+    def get_progress_status(self, metadata):
+        """Calculate progress status from step_states"""
+        step_states = metadata.get('step_states', {})
+        is_running = metadata.get('isRunning', False)
+        is_paused = metadata.get('isPaused', False)
+
+        if not step_states:
+            return "No steps configured"
+
+        # Count step states
+        completed_steps = sum(1 for state in step_states.values() if state == "COMPLETED")
+        running_steps = sum(1 for state in step_states.values() if state == "RUNNING")
+        total_steps = len(step_states)
+
+        # Determine status
+        if is_running and running_steps > 0:
+            if is_paused:
+                # Find the currently running step
+                running_step = next((step for step, state in step_states.items() if state == "RUNNING"), "Unknown")
+                return f"Paused on: {running_step}"
+            else:
+                # Find the currently running step
+                running_step = next((step for step, state in step_states.items() if state == "RUNNING"), "Unknown")
+                return f"Running: {running_step}"
+        elif completed_steps == total_steps:
+            return "Completed"
+        elif completed_steps == 0:
+            return "Not started"
+        else:
+            # Find the last completed step
+            step_order = list(step_states.keys())
+            last_completed_step = "None"
+            for step in reversed(step_order):
+                if step_states[step] == "COMPLETED":
+                    last_completed_step = step
+                    break
+            return f"Last completed: {last_completed_step}"
+
+    def get_last_run_timestamp(self, metadata):
+        """Calculate last run timestamp"""
+        # Check if run is currently running AND not paused
+        is_running = metadata.get('isRunning', False)
+        is_paused = metadata.get('isPaused', False)
+
+        if is_running and not is_paused:
+            return "Currently running"
+
+        # Check for actual last_run_timestamp first
+        last_run_timestamp = metadata.get('last_run_timestamp')
+        if last_run_timestamp:
+            return last_run_timestamp
+
+        # Fallback: Check if any steps have been completed
+        step_states = metadata.get('step_states', {})
+        completed_steps = sum(1 for state in step_states.values() if state == "COMPLETED")
+
+        if completed_steps > 0:
+            # If steps are completed but no timestamp recorded, show creation time
+            return metadata.get('creation_timestamp', 'N/A')
+        else:
+            return "Never run"
 
     def fill_empty_rows(self):
         """Ensure the table is filled with empty rows to match the table's current height."""
@@ -96,14 +165,17 @@ class RunManager:
             self.widgets.currentlySelected.setText(Settings.SELECTED_RUN)
             self.main_window.enable_button(self.widgets.runProgressButton, lambda: self.main_window.on_menu_button_clicked(self.widgets.runProgressTab, self.widgets.runProgressButton, "runProgressButton"))
             self.main_window.enable_button(self.widgets.runConfigurationButton, lambda: self.main_window.on_menu_button_clicked(self.widgets.runConfigurationTab, self.widgets.runConfigurationButton, "runConfigurationButton"))
+            self.main_window.enable_button(self.widgets.resultsOverviewButton, lambda: self.main_window.on_menu_button_clicked(self.widgets.resultsOverviewTab, self.widgets.resultsOverviewButton, "resultsOverviewButton"))
             self.main_window.run_configuration.load_from_metadata()
             self.main_window.run_progress.load_from_metadata()
+            self.main_window.results_overview.load_run_data()
         else:
             Settings.SELECTED_RUN = None
             Settings.METADATA = None
             self.widgets.currentlySelected.setText("None")
             self.main_window.disable_button(self.widgets.runProgressButton)
             self.main_window.disable_button(self.widgets.runConfigurationButton)
+            self.main_window.disable_button(self.widgets.resultsOverviewButton)
 
     def select_specific_run(self, run):
         Settings.SELECTED_RUN = run
@@ -111,9 +183,11 @@ class RunManager:
         if(run):
             self.main_window.enable_button(self.widgets.runProgressButton, lambda: self.main_window.on_menu_button_clicked(self.widgets.runProgressTab, self.widgets.runProgressButton, "runProgressButton"))
             self.main_window.enable_button(self.widgets.runConfigurationButton, lambda: self.main_window.on_menu_button_clicked(self.widgets.runConfigurationTab, self.widgets.runConfigurationButton, "runConfigurationButton"))
+            self.main_window.enable_button(self.widgets.resultsOverviewButton, lambda: self.main_window.on_menu_button_clicked(self.widgets.resultsOverviewTab, self.widgets.resultsOverviewButton, "resultsOverviewButton"))
             Settings.METADATA = Metadata(Settings.SELECTED_RUN)
             self.main_window.run_configuration.load_from_metadata()
             self.main_window.run_progress.load_from_metadata()
+            self.main_window.results_overview.load_run_data()
         else:
             Settings.METADATA = None
             self.main_window.disable_button(self.widgets.runProgressButton)
@@ -256,11 +330,11 @@ class RunManager:
         if Settings.SELECTED_RUN:
             filepath += '/' + Settings.SELECTED_RUN
         if platform.system() == 'Darwin':       # macOS
-            subprocess.call(('open', filepath))
+            subprocess.Popen(['open', filepath])
         elif platform.system() == 'Windows':    # Windows
             os.startfile(filepath)
         else:                                   # linux variants
-            subprocess.call(('xdg-open', filepath))
+            subprocess.Popen(['xdg-open', filepath])
 
     def rename_run(self):
         if not Settings.SELECTED_RUN:
