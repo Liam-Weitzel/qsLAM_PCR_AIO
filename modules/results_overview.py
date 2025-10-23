@@ -1,6 +1,8 @@
 import os
 import subprocess
 import platform
+import zipfile2
+import xml.etree.ElementTree as ET
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
@@ -151,10 +153,13 @@ class ResultsOverview:
         else:
             self.open_file_button.setEnabled(False)
 
-        if os.path.isfile(file_path) and file_path.endswith('.txt'):
-            # If it's a text file, try to load it
+        if os.path.isfile(file_path) and (file_path.endswith('.txt') or file_path.endswith('.xlsx')):
+            # If it's a text or Excel file, try to load it
             try:
-                data, headers = self.read_txt_file(file_path)
+                if file_path.endswith('.xlsx'):
+                    data, headers = self.read_xlsx_file(file_path)
+                else:
+                    data, headers = self.read_txt_file(file_path)
 
                 # Set up table
                 self.data_table.setRowCount(len(data))
@@ -288,3 +293,102 @@ class ResultsOverview:
                 "Error",
                 f"Could not open directory: {str(e)}"
             )
+
+    def read_xlsx_file(self, file_path):
+        """Read Excel (.xlsx) file using built-in libraries"""
+        try:
+            with zipfile2.ZipFile(file_path, 'r') as zip_file:
+                # Read shared strings
+                shared_strings = []
+                try:
+                    shared_strings_xml = zip_file.read('xl/sharedStrings.xml')
+                    shared_strings_root = ET.fromstring(shared_strings_xml)
+                    for si in shared_strings_root.findall('.//{http://schemas.openxmlformats.org/spreadsheetml/2006/main}si'):
+                        t_elem = si.find('.//{http://schemas.openxmlformats.org/spreadsheetml/2006/main}t')
+                        if t_elem is not None:
+                            shared_strings.append(t_elem.text or '')
+                        else:
+                            shared_strings.append('')
+                except KeyError:
+                    # No shared strings file
+                    pass
+
+                # Read the first worksheet
+                sheet_xml = zip_file.read('xl/worksheets/sheet1.xml')
+                sheet_root = ET.fromstring(sheet_xml)
+
+                # Parse rows and cells
+                rows = []
+                for row_elem in sheet_root.findall('.//{http://schemas.openxmlformats.org/spreadsheetml/2006/main}row'):
+                    row_data = []
+                    cells = row_elem.findall('.//{http://schemas.openxmlformats.org/spreadsheetml/2006/main}c')
+
+                    # Sort cells by their reference (A1, B1, C1, etc.)
+                    cells.sort(key=lambda c: self._excel_col_to_num(c.get('r', 'A1')))
+
+                    current_col = 0
+                    for cell in cells:
+                        cell_ref = cell.get('r', 'A1')
+                        col_num = self._excel_col_to_num(cell_ref)
+
+                        # Fill in missing columns with empty strings
+                        while current_col < col_num:
+                            row_data.append('')
+                            current_col += 1
+
+                        cell_type = cell.get('t', '')
+                        value_elem = cell.find('.//{http://schemas.openxmlformats.org/spreadsheetml/2006/main}v')
+
+                        if value_elem is not None:
+                            value = value_elem.text or ''
+                            if cell_type == 's':  # Shared string
+                                try:
+                                    value = shared_strings[int(value)]
+                                except (IndexError, ValueError):
+                                    pass
+                        else:
+                            value = ''
+
+                        row_data.append(value)
+                        current_col += 1
+
+                    if row_data:  # Only add non-empty rows
+                        rows.append(row_data)
+
+                if not rows:
+                    return [], []
+
+                # Use first row as headers if it contains non-numeric data
+                first_row = rows[0]
+                if any(not str(cell).replace('.', '').replace('-', '').isdigit() for cell in first_row if cell):
+                    headers = [str(cell) for cell in first_row]
+                    data = rows[1:]
+                else:
+                    # Create generic headers
+                    max_cols = max(len(row) for row in rows) if rows else 0
+                    headers = [f'Column_{i+1}' for i in range(max_cols)]
+                    data = rows
+
+                # Ensure all rows have the same number of columns
+                for row in data:
+                    while len(row) < len(headers):
+                        row.append('')
+
+                return data, headers
+
+        except Exception as e:
+            raise Exception(f"Error reading Excel file: {str(e)}")
+
+    def _excel_col_to_num(self, cell_ref):
+        """Convert Excel cell reference (like 'B1') to column number (0-based)"""
+        col_str = ''
+        for char in cell_ref:
+            if char.isalpha():
+                col_str += char
+            else:
+                break
+
+        result = 0
+        for char in col_str:
+            result = result * 26 + (ord(char.upper()) - ord('A') + 1)
+        return result - 1
