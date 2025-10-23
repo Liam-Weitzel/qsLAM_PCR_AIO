@@ -76,6 +76,11 @@ class MainWindow(QMainWindow):
         widgets.settingsTopButton.clicked.connect(lambda: UIFunctions.toggleRightBox(self, True))
         widgets.moreButton.clicked.connect(lambda: QDesktopServices.openUrl(QUrl("https://www.erasmusmc.nl/en/pages/about-erasmusmc")))
 
+        # SETTINGS FUNCTIONALITY
+        self.setup_settings_ui()
+        widgets.emailButton.clicked.connect(self.open_email)
+        widgets.issueButton.clicked.connect(self.open_issue_page)
+
         # SHOW APP
         # ///////////////////////////////////////////////////////////////
         self.show()
@@ -85,6 +90,31 @@ class MainWindow(QMainWindow):
         self.disable_button(widgets.runProgressButton)
         self.disable_button(widgets.runConfigurationButton)
         self.disable_button(widgets.resultsOverviewButton)
+
+    # SETTINGS UI SETUP AND HANDLERS
+    # ///////////////////////////////////////////////////////////////
+    def setup_settings_ui(self):
+        # Set checkbox states from settings
+        widgets.enableCustomTitleBarCheckBox.setChecked(self.settings.get("ENABLE_CUSTOM_TITLE_BAR", False))
+        widgets.firstStartCheckBox.setChecked(self.settings.get("FIRST_START", True))
+
+        # Connect checkbox signals to save settings
+        widgets.enableCustomTitleBarCheckBox.stateChanged.connect(self.on_custom_title_bar_changed)
+        widgets.firstStartCheckBox.stateChanged.connect(self.on_first_start_changed)
+
+    def on_custom_title_bar_changed(self, state):
+        self.settings.set("ENABLE_CUSTOM_TITLE_BAR", state == Qt.CheckState.Checked.value)
+
+    def on_first_start_changed(self, state):
+        self.settings.set("FIRST_START", state == Qt.CheckState.Checked.value)
+
+    def open_email(self):
+        email_url = "mailto:liam.weitzel2@gmail.com?subject=qsLAM_PCR_AIO%20Support"
+        QDesktopServices.openUrl(QUrl(email_url))
+
+    def open_issue_page(self):
+        issue_url = "https://github.com/Liam-Weitzel/qsLAM_PCR_AIO/issues"
+        QDesktopServices.openUrl(QUrl(issue_url))
 
     # HANDLER FOR LEFT MENU BUTTONS
     # ///////////////////////////////////////////////////////////////
@@ -115,8 +145,12 @@ class MainWindow(QMainWindow):
     # PRE START POPUPS
     # ///////////////////////////////////////////////////////////////
     def show_first_time_dialog(self):
+        # Check if user wants to see the welcome dialog
         if self.settings.get("FIRST_START"):
-            self.settings.set("FIRST_START", False)
+            # Only disable auto-show if it's the true first start (not manually enabled)
+            first_run_ever = self.settings.get("FIRST_RUN_EVER", True)
+            if first_run_ever:
+                self.settings.set("FIRST_RUN_EVER", False)
 
             dlg = QDialog(self)
             dlg.setWindowTitle("Welcome to qsLAM_PCR_AIO")
@@ -138,12 +172,26 @@ class MainWindow(QMainWindow):
             doc_link.setOpenExternalLinks(True)
             layout.addWidget(doc_link)
 
+            # Add checkbox to control future showing
+            checkbox_layout = QHBoxLayout()
+            show_again_checkbox = QCheckBox("Show this dialog on startup")
+            show_again_checkbox.setChecked(True)
+            checkbox_layout.addWidget(show_again_checkbox)
+            layout.addLayout(checkbox_layout)
+
             ok_button = QPushButton("Get Started")
-            ok_button.clicked.connect(dlg.accept)
+            ok_button.clicked.connect(lambda: self.on_welcome_dialog_close(dlg, show_again_checkbox.isChecked()))
             layout.addWidget(ok_button)
 
             dlg.setLayout(layout)
             dlg.exec()
+
+    def on_welcome_dialog_close(self, dialog, show_again):
+        # Update the setting based on the checkbox state
+        self.settings.set("FIRST_START", show_again)
+        # Update the UI checkbox to reflect the change
+        widgets.firstStartCheckBox.setChecked(show_again)
+        dialog.accept()
     
     # DISABLE BUTTONS
     # ///////////////////////////////////////////////////////////////

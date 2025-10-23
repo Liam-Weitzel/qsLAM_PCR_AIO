@@ -49,6 +49,7 @@ class Settings:
         # Default dynamic settings
         self._data.setdefault("ENABLE_CUSTOM_TITLE_BAR", False)
         self._data.setdefault("FIRST_START", True)
+        self._data.setdefault("FIRST_RUN_EVER", True)
 
         self.save()
 
