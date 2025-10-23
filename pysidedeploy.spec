@@ -67,8 +67,7 @@ macos.permissions =
 mode = onefile
 
 # specify any extra nuitka arguments
-extra_args = --quiet --noinclude-qt-translations
-
+extra_args = --quiet --noinclude-qt-translations --nofollow-import-to=fitz,PyMuPDF --include-package=fitz --include-package-data=fitz --assume-yes-for-downloads --lto=no
 
 [buildozer]
 
