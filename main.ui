@@ -5085,19 +5085,207 @@ check before trimming</string>
                             <number>0</number>
                            </property>
                            <item>
-                            <widget class="QTableWidget" name="fileContentTable">
-                             <property name="alternatingRowColors">
-                              <bool>true</bool>
+                            <widget class="QStackedWidget" name="fileContentStack">
+                             <property name="currentIndex">
+                              <number>0</number>
                              </property>
-                             <property name="selectionBehavior">
-                              <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
-                             </property>
-                             <property name="editTriggers">
-                              <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
-                             </property>
-                             <property name="gridStyle">
-                              <enum>Qt::PenStyle::SolidLine</enum>
-                             </property>
+                             <widget class="QWidget" name="tableViewPage">
+                              <layout class="QVBoxLayout" name="tableViewLayout">
+                               <property name="spacing">
+                                <number>0</number>
+                               </property>
+                               <property name="leftMargin">
+                                <number>0</number>
+                               </property>
+                               <property name="topMargin">
+                                <number>0</number>
+                               </property>
+                               <property name="rightMargin">
+                                <number>0</number>
+                               </property>
+                               <property name="bottomMargin">
+                                <number>0</number>
+                               </property>
+                               <item>
+                                <widget class="QTableWidget" name="fileContentTable">
+                                 <property name="alternatingRowColors">
+                                  <bool>true</bool>
+                                 </property>
+                                 <property name="selectionBehavior">
+                                  <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+                                 </property>
+                                 <property name="editTriggers">
+                                  <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+                                 </property>
+                                 <property name="gridStyle">
+                                  <enum>Qt::PenStyle::SolidLine</enum>
+                                 </property>
+                                 <property name="frameShape">
+                                  <enum>QFrame::Shape::StyledPanel</enum>
+                                 </property>
+                                 <property name="frameShadow">
+                                  <enum>QFrame::Shadow::Sunken</enum>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">QTableWidget { background-color: white; color: black; border: 1px solid #c0c0c0; border-radius: 5px; }</string>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
+                             </widget>
+                             <widget class="QWidget" name="webViewPage">
+                              <layout class="QVBoxLayout" name="webViewLayout">
+                               <property name="spacing">
+                                <number>0</number>
+                               </property>
+                               <property name="leftMargin">
+                                <number>0</number>
+                               </property>
+                               <property name="topMargin">
+                                <number>0</number>
+                               </property>
+                               <property name="rightMargin">
+                                <number>0</number>
+                               </property>
+                               <property name="bottomMargin">
+                                <number>0</number>
+                               </property>
+                               <item>
+                                <widget class="QTextBrowser" name="webContentBrowser">
+                                 <property name="openExternalLinks">
+                                  <bool>true</bool>
+                                 </property>
+                                 <property name="frameShape">
+                                  <enum>QFrame::Shape::StyledPanel</enum>
+                                 </property>
+                                 <property name="frameShadow">
+                                  <enum>QFrame::Shadow::Sunken</enum>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">QTextBrowser { background-color: white; color: black; border: 1px solid #c0c0c0; border-radius: 5px; }</string>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
+                             </widget>
+                             <widget class="QWidget" name="textViewPage">
+                              <layout class="QVBoxLayout" name="textViewLayout">
+                               <property name="spacing">
+                                <number>0</number>
+                               </property>
+                               <property name="leftMargin">
+                                <number>0</number>
+                               </property>
+                               <property name="topMargin">
+                                <number>0</number>
+                               </property>
+                               <property name="rightMargin">
+                                <number>0</number>
+                               </property>
+                               <property name="bottomMargin">
+                                <number>0</number>
+                               </property>
+                               <item>
+                                <widget class="QTextEdit" name="textContentEditor">
+                                 <property name="readOnly">
+                                  <bool>true</bool>
+                                 </property>
+                                 <property name="font">
+                                  <font>
+                                   <family>Monaco, Consolas, Courier New, monospace</family>
+                                  </font>
+                                 </property>
+                                 <property name="frameShape">
+                                  <enum>QFrame::Shape::StyledPanel</enum>
+                                 </property>
+                                 <property name="frameShadow">
+                                  <enum>QFrame::Shadow::Sunken</enum>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">QTextEdit { background-color: white; color: black; border: 1px solid #c0c0c0; border-radius: 5px; }</string>
+                                 </property>
+                                </widget>
+                               </item>
+                              </layout>
+                             </widget>
+                             <widget class="QWidget" name="imageViewPage">
+                              <layout class="QVBoxLayout" name="imageViewLayout">
+                               <property name="spacing">
+                                <number>0</number>
+                               </property>
+                               <property name="leftMargin">
+                                <number>0</number>
+                               </property>
+                               <property name="topMargin">
+                                <number>0</number>
+                               </property>
+                               <property name="rightMargin">
+                                <number>0</number>
+                               </property>
+                               <property name="bottomMargin">
+                                <number>0</number>
+                               </property>
+                               <item>
+                                <widget class="QScrollArea" name="imageScrollArea">
+                                 <property name="frameShape">
+                                  <enum>QFrame::Shape::StyledPanel</enum>
+                                 </property>
+                                 <property name="frameShadow">
+                                  <enum>QFrame::Shadow::Sunken</enum>
+                                 </property>
+                                 <property name="styleSheet">
+                                  <string notr="true">QScrollArea { background-color: white; border: 1px solid #c0c0c0; border-radius: 5px; }</string>
+                                 </property>
+                                 <property name="widgetResizable">
+                                  <bool>true</bool>
+                                 </property>
+                                 <widget class="QWidget" name="scrollAreaWidgetContents">
+                                  <property name="geometry">
+                                   <rect>
+                                    <x>0</x>
+                                    <y>0</y>
+                                    <width>69</width>
+                                    <height>69</height>
+                                   </rect>
+                                  </property>
+                                  <layout class="QVBoxLayout" name="scrollAreaLayout">
+                                   <property name="spacing">
+                                    <number>0</number>
+                                   </property>
+                                   <property name="leftMargin">
+                                    <number>0</number>
+                                   </property>
+                                   <property name="topMargin">
+                                    <number>0</number>
+                                   </property>
+                                   <property name="rightMargin">
+                                    <number>0</number>
+                                   </property>
+                                   <property name="bottomMargin">
+                                    <number>0</number>
+                                   </property>
+                                   <item>
+                                    <widget class="QLabel" name="imagePreviewLabel">
+                                     <property name="alignment">
+                                      <set>Qt::AlignmentFlag::AlignCenter</set>
+                                     </property>
+                                     <property name="text">
+                                      <string>No image loaded</string>
+                                     </property>
+                                     <property name="styleSheet">
+                                      <string notr="true">QLabel { background-color: #f5f5f5; color: #666; }</string>
+                                     </property>
+                                     <property name="scaledContents">
+                                      <bool>false</bool>
+                                     </property>
+                                    </widget>
+                                   </item>
+                                  </layout>
+                                 </widget>
+                                </widget>
+                               </item>
+                              </layout>
+                             </widget>
                             </widget>
                            </item>
                            <item>

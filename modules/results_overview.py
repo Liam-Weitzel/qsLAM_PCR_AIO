@@ -3,6 +3,7 @@ import subprocess
 import platform
 import zipfile2
 import xml.etree.ElementTree as ET
+import json
 from PySide6.QtCore import *
 from PySide6.QtGui import *
 from PySide6.QtWidgets import *
@@ -21,7 +22,12 @@ class ResultsOverview:
     def setup_ui(self):
         # Use the UI-defined widgets instead of creating them programmatically
         self.folder_tree = self.widgets.fileTreeWidget
+        self.content_stack = self.widgets.fileContentStack
         self.data_table = self.widgets.fileContentTable
+        self.web_browser = self.widgets.webContentBrowser
+        self.text_editor = self.widgets.textContentEditor
+        self.image_preview = self.widgets.imagePreviewLabel
+        self.image_scroll_area = self.widgets.imageScrollArea
         self.status_label = self.widgets.fileStatusLabel
         self.open_file_button = self.widgets.openFileButton
         self.open_directory_button = self.widgets.openDirectoryButton
@@ -39,6 +45,9 @@ class ResultsOverview:
 
         # Set splitter proportions (30% left, 70% right)
         self.widgets.resultsSplitter.setSizes([300, 700])
+
+        # Set default stack page to table view
+        self.content_stack.setCurrentIndex(0)
 
     def load_run_data(self):
         """Load data when a run is selected"""
@@ -107,19 +116,29 @@ class ResultsOverview:
             self.status_label.setText("No bed2peak directory found")
             self.data_table.setRowCount(0)
             self.data_table.setColumnCount(0)
+            self.content_stack.setCurrentIndex(0)
             return
 
-        # Look for the first peak text file (aligned.d0.peak.merge.txt)
-        peak_file = os.path.join(bed2peak_path, "aligned.d0.peak.merge.txt")
+        # Look for the peak Excel file first, then fall back to txt file
+        peak_excel_file = os.path.join(bed2peak_path, "aligned.d0.peak.merge.xlsx")
+        peak_txt_file = os.path.join(bed2peak_path, "aligned.d0.peak.merge.txt")
 
-        if not os.path.exists(peak_file):
-            self.status_label.setText("No aligned.d0.peak.merge.txt file found")
+        if os.path.exists(peak_excel_file):
+            peak_file = peak_excel_file
+        elif os.path.exists(peak_txt_file):
+            peak_file = peak_txt_file
+        else:
+            self.status_label.setText("No aligned.d0.peak.merge file found (.xlsx or .txt)")
             self.data_table.setRowCount(0)
             self.data_table.setColumnCount(0)
+            self.content_stack.setCurrentIndex(0)
             return
 
         try:
-            data, headers = self.read_txt_file(peak_file)
+            if peak_file.endswith('.xlsx'):
+                data, headers = self.read_xlsx_file(peak_file)
+            else:
+                data, headers = self.read_txt_file(peak_file)
 
             # Set up table
             self.data_table.setRowCount(len(data))
@@ -135,12 +154,14 @@ class ResultsOverview:
             # Resize columns to content
             self.data_table.resizeColumnsToContents()
 
-            self.status_label.setText(f"Loaded {len(data)} peaks from aligned.d0.peak.merge.txt")
+            file_name = os.path.basename(peak_file)
+            self.status_label.setText(f"Loaded {len(data)} peaks from {file_name}")
 
         except Exception as e:
             self.status_label.setText(f"Error loading text file: {str(e)}")
             self.data_table.setRowCount(0)
             self.data_table.setColumnCount(0)
+            self.content_stack.setCurrentIndex(0)
 
     def on_file_selected(self, item, column):
         """Handle file selection in tree"""
@@ -150,49 +171,333 @@ class ResultsOverview:
         # Enable button only for files
         if os.path.isfile(file_path):
             self.open_file_button.setEnabled(True)
+            self.load_file_content(file_path)
         else:
             self.open_file_button.setEnabled(False)
+            file_name = os.path.basename(file_path)
+            self.status_label.setText(f"Selected: {file_name}")
+            # Switch to table view and clear it
+            self.content_stack.setCurrentIndex(0)
+            self.data_table.setRowCount(0)
+            self.data_table.setColumnCount(0)
 
-        if os.path.isfile(file_path) and (file_path.endswith('.txt') or file_path.endswith('.xlsx')):
-            # If it's a text or Excel file, try to load it
+    def load_file_content(self, file_path):
+        """Load and display file content based on file type"""
+        file_name = os.path.basename(file_path)
+        file_ext = os.path.splitext(file_path)[1].lower()
+
+        try:
+            if file_ext in ['.txt', '.xlsx']:
+                # Show tabular data
+                self.content_stack.setCurrentIndex(0)
+                self.load_tabular_file(file_path)
+            elif file_ext in ['.html', '.htm']:
+                # Show HTML content
+                self.content_stack.setCurrentIndex(1)
+                self.load_html_file(file_path)
+            elif file_ext == '.pdf':
+                # Show PDF preview as image
+                self.content_stack.setCurrentIndex(3)
+                self.load_pdf_file(file_path)
+            elif file_ext in ['.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tiff', '.tif', '.ico']:
+                # Show image files
+                self.content_stack.setCurrentIndex(3)
+                self.load_image_file(file_path)
+            elif file_ext == '.json':
+                # Show JSON content with formatting
+                self.content_stack.setCurrentIndex(2)
+                self.load_json_file(file_path)
+            elif file_ext in ['.zip', '.tar', '.gz', '.rar', '.7z']:
+                # Show message for compressed files
+                self.content_stack.setCurrentIndex(1)
+                self.show_unsupported_file_message(file_path, "compressed archive")
+            elif file_ext in ['.exe', '.bin', '.dll', '.so']:
+                # Show message for binary files
+                self.content_stack.setCurrentIndex(1)
+                self.show_unsupported_file_message(file_path, "binary")
+            elif file_ext == '.svg':
+                # Show message for SVG files (require special handling)
+                self.content_stack.setCurrentIndex(1)
+                self.show_unsupported_file_message(file_path, "SVG image")
+            else:
+                # Try to show as plain text
+                self.content_stack.setCurrentIndex(2)
+                self.load_text_file(file_path)
+        except Exception as e:
+            self.status_label.setText(f"Error loading {file_name}: {str(e)}")
+            # Switch to table view and clear it
+            self.content_stack.setCurrentIndex(0)
+            self.data_table.setRowCount(0)
+            self.data_table.setColumnCount(0)
+
+    def load_tabular_file(self, file_path):
+        """Load txt or xlsx files into table view"""
+        try:
+            if file_path.endswith('.xlsx'):
+                data, headers = self.read_xlsx_file(file_path)
+            else:
+                data, headers = self.read_txt_file(file_path)
+
+            # Set up table
+            self.data_table.setRowCount(len(data))
+            self.data_table.setColumnCount(len(headers))
+            self.data_table.setHorizontalHeaderLabels(headers)
+
+            # Populate table
+            for row_idx, row_data in enumerate(data):
+                for col_idx, value in enumerate(row_data):
+                    item_widget = QTableWidgetItem(str(value))
+                    self.data_table.setItem(row_idx, col_idx, item_widget)
+
+            # Resize columns to content
+            self.data_table.resizeColumnsToContents()
+
+            file_name = os.path.basename(file_path)
+            self.status_label.setText(f"Loaded {len(data)} rows from {file_name}")
+
+        except Exception as e:
+            raise Exception(f"Error loading tabular file: {str(e)}")
+
+    def load_html_file(self, file_path):
+        """Load HTML file into web browser"""
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+
+            # Set HTML content to the browser
+            self.web_browser.setHtml(content)
+
+            file_name = os.path.basename(file_path)
+            self.status_label.setText(f"Displaying HTML: {file_name}")
+
+        except Exception as e:
+            raise Exception(f"Error loading HTML file: {str(e)}")
+
+    def load_pdf_file(self, file_path):
+        """Load PDF file and show all pages as image previews"""
+        try:
+            file_name = os.path.basename(file_path)
+
+            # Try to convert PDF pages to images
             try:
-                if file_path.endswith('.xlsx'):
-                    data, headers = self.read_xlsx_file(file_path)
+                import fitz  # PyMuPDF
+
+                # Open PDF document
+                doc = fitz.open(file_path)
+                if len(doc) > 0:
+                    page_count = len(doc)
+                    self.display_pdf_pages(doc, file_name)
+                    doc.close()
+                    self.status_label.setText(f"PDF preview: {file_name} ({page_count} pages) - Click 'Open in Default App' for full view")
+                    return
                 else:
-                    data, headers = self.read_txt_file(file_path)
+                    doc.close()
+                    raise Exception("PDF has no pages")
 
-                # Set up table
-                self.data_table.setRowCount(len(data))
-                self.data_table.setColumnCount(len(headers))
-                self.data_table.setHorizontalHeaderLabels(headers)
+            except ImportError:
+                # PyMuPDF not available, fall back to message
+                pass
+            except Exception as pdf_error:
+                print(f"PDF preview error: {pdf_error}")
 
-                # Populate table
-                for row_idx, row_data in enumerate(data):
-                    for col_idx, value in enumerate(row_data):
-                        item_widget = QTableWidgetItem(str(value))
-                        self.data_table.setItem(row_idx, col_idx, item_widget)
+            # Fallback: show message that PDF preview is not available
+            self.show_pdf_fallback_message(file_name, file_path)
 
-                # Resize columns to content
-                self.data_table.resizeColumnsToContents()
+        except Exception as e:
+            raise Exception(f"Error loading PDF file: {str(e)}")
 
-                file_name = os.path.basename(file_path)
-                self.status_label.setText(f"Loaded {len(data)} rows from {file_name}")
+    def display_pdf_pages(self, doc, file_name):
+        """Display all PDF pages in a scrollable layout"""
+        import fitz  # Import here since it's needed in this method
+
+        # Clear the current scroll area content
+        scroll_widget = QWidget()
+        scroll_layout = QVBoxLayout(scroll_widget)
+        scroll_layout.setSpacing(10)
+        scroll_layout.setContentsMargins(10, 10, 10, 10)
+
+        max_width = 600  # Reasonable width for PDF pages
+
+        # Process each page
+        for page_num in range(len(doc)):
+            try:
+                page = doc[page_num]
+                # Render page to pixmap with good quality
+                mat = fitz.Matrix(1.5, 1.5)  # 1.5x zoom for good quality but manageable size
+                pix = page.get_pixmap(matrix=mat)
+                img_data = pix.tobytes("png")
+
+                # Create QPixmap from the image data
+                pixmap = QPixmap()
+                if pixmap.loadFromData(img_data):
+                    # Scale to reasonable width while maintaining aspect ratio
+                    if pixmap.width() > max_width:
+                        scaled_pixmap = pixmap.scaledToWidth(max_width, Qt.TransformationMode.SmoothTransformation)
+                    else:
+                        scaled_pixmap = pixmap
+
+                    # Create label for this page
+                    page_label = QLabel()
+                    page_label.setPixmap(scaled_pixmap)
+                    page_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+                    page_label.setStyleSheet("QLabel { border: 1px solid #ccc; background: white; margin: 5px; }")
+
+                    # Add page number label
+                    page_number_label = QLabel(f"Page {page_num + 1}")
+                    page_number_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+                    page_number_label.setStyleSheet("QLabel { font-weight: bold; color: #666; margin: 2px; }")
+
+                    scroll_layout.addWidget(page_number_label)
+                    scroll_layout.addWidget(page_label)
 
             except Exception as e:
-                self.status_label.setText(f"Error loading {os.path.basename(file_path)}: {str(e)}")
-        else:
-            # For other file types, clear table and show message
-            file_name = os.path.basename(file_path)
-            if os.path.isfile(file_path):
-                # Clear the table
-                self.data_table.setRowCount(0)
-                self.data_table.setColumnCount(0)
+                # If a page fails, add an error message
+                error_label = QLabel(f"Error loading page {page_num + 1}: {str(e)}")
+                error_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+                error_label.setStyleSheet("QLabel { color: red; margin: 5px; }")
+                scroll_layout.addWidget(error_label)
 
-                # Show message that file can't be displayed
-                self.status_label.setText(f"Selected: {file_name} - This file type cannot be displayed in the table")
-            else:
-                # For directories, just show selection
-                self.status_label.setText(f"Selected: {file_name}")
+        # Add stretch at the end
+        scroll_layout.addStretch()
+
+        # Set the widget to the scroll area
+        self.image_scroll_area.setWidget(scroll_widget)
+
+    def show_pdf_fallback_message(self, file_name, file_path):
+        """Show fallback message when PDF preview is not available"""
+        # Switch to web browser view for the message
+        self.content_stack.setCurrentIndex(1)
+
+        html_content = f"""
+        <html>
+        <head><title>PDF Viewer</title></head>
+        <body style="font-family: Arial, sans-serif; padding: 20px;">
+            <h2>PDF File: {file_name}</h2>
+            <p><strong>Note:</strong> PDF preview is not available.</p>
+            <p>To view the PDF, click the "Open in Default App" button to open it in your default PDF viewer.</p>
+            <p><strong>File Location:</strong> {file_path}</p>
+            <hr>
+            <p style="color: #666; font-style: italic;">
+                PDF preview requires PyMuPDF library. Install with: pip install PyMuPDF
+            </p>
+        </body>
+        </html>
+        """
+
+        self.web_browser.setHtml(html_content)
+        self.status_label.setText(f"PDF file selected: {file_name} - Click 'Open in Default App' to view")
+
+    def load_image_file(self, file_path):
+        """Load and display image files"""
+        try:
+            file_name = os.path.basename(file_path)
+
+            # Load image using QPixmap
+            pixmap = QPixmap(file_path)
+
+            if pixmap.isNull():
+                raise Exception("Could not load image file")
+
+            self.display_image(pixmap, f"Image: {file_name}")
+            self.status_label.setText(f"Displaying image: {file_name}")
+
+        except Exception as e:
+            raise Exception(f"Error loading image file: {str(e)}")
+
+    def display_image(self, pixmap, title):
+        """Display a QPixmap in the image preview widget"""
+        # Create a new widget for the scroll area
+        scroll_widget = QWidget()
+        scroll_layout = QVBoxLayout(scroll_widget)
+        scroll_layout.setContentsMargins(10, 10, 10, 10)
+        scroll_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        # Calculate appropriate size for display
+        max_width = 800
+        max_height = 600
+
+        # Scale image if it's too large, maintaining aspect ratio
+        if pixmap.width() > max_width or pixmap.height() > max_height:
+            scaled_pixmap = pixmap.scaled(max_width, max_height,
+                                        Qt.AspectRatioMode.KeepAspectRatio,
+                                        Qt.TransformationMode.SmoothTransformation)
+        else:
+            scaled_pixmap = pixmap
+
+        # Create a label for the image
+        image_label = QLabel()
+        image_label.setPixmap(scaled_pixmap)
+        image_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        scroll_layout.addWidget(image_label)
+
+        # Set the widget to the scroll area
+        self.image_scroll_area.setWidget(scroll_widget)
+
+    def show_unsupported_file_message(self, file_path, file_type):
+        """Show message for unsupported file types"""
+        file_name = os.path.basename(file_path)
+
+        # Show a nice HTML message about unsupported file types
+        html_content = f"""
+        <html>
+        <head><title>Unsupported File</title></head>
+        <body style="font-family: Arial, sans-serif; padding: 20px;">
+            <h2>File: {file_name}</h2>
+            <p><strong>Note:</strong> This {file_type} file cannot be displayed in the preview.</p>
+            <p>To view the file, click the "Open in Default App" button to open it with your system's default application.</p>
+            <p><strong>File Location:</strong> {file_path}</p>
+            <hr>
+            <p style="color: #666; font-style: italic;">
+                Some file types require specialized applications to view their content properly.
+            </p>
+        </body>
+        </html>
+        """
+
+        # Switch to web browser view to show the HTML content
+        self.content_stack.setCurrentIndex(1)
+        self.web_browser.setHtml(html_content)
+        self.status_label.setText(f"Cannot preview {file_type} file: {file_name} - Click 'Open in Default App' to view")
+
+    def load_json_file(self, file_path):
+        """Load and format JSON file"""
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                json_data = json.load(f)
+
+            # Pretty print the JSON
+            formatted_json = json.dumps(json_data, indent=2, ensure_ascii=False)
+            self.text_editor.setPlainText(formatted_json)
+
+            file_name = os.path.basename(file_path)
+            self.status_label.setText(f"Displaying JSON: {file_name}")
+
+        except Exception as e:
+            raise Exception(f"Error loading JSON file: {str(e)}")
+
+    def load_text_file(self, file_path):
+        """Load plain text file"""
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+
+            self.text_editor.setPlainText(content)
+
+            file_name = os.path.basename(file_path)
+            self.status_label.setText(f"Displaying text file: {file_name}")
+
+        except Exception as e:
+            # Try with different encoding
+            try:
+                with open(file_path, 'r', encoding='latin-1') as f:
+                    content = f.read()
+                self.text_editor.setPlainText(content)
+
+                file_name = os.path.basename(file_path)
+                self.status_label.setText(f"Displaying text file: {file_name} (latin-1 encoding)")
+            except Exception:
+                raise Exception(f"Error loading text file: {str(e)}")
 
     def read_txt_file(self, file_path):
         """Read tab-delimited text file"""

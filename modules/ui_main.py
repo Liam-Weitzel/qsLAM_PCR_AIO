@@ -18,11 +18,11 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QAbstractItemView, QAbstractScrollArea, QApplication, QCheckBox,
     QComboBox, QCommandLinkButton, QFrame, QGridLayout,
     QHBoxLayout, QHeaderView, QLabel, QLineEdit,
-    QMainWindow, QPushButton, QRadioButton, QSizePolicy,
-    QSlider, QSpacerItem, QSplitter, QStackedWidget,
-    QTabWidget, QTableWidget, QTableWidgetItem, QTextBrowser,
-    QTextEdit, QTreeWidget, QTreeWidgetItem, QVBoxLayout,
-    QWidget)
+    QMainWindow, QPushButton, QRadioButton, QScrollArea,
+    QSizePolicy, QSlider, QSpacerItem, QSplitter,
+    QStackedWidget, QTabWidget, QTableWidget, QTableWidgetItem,
+    QTextBrowser, QTextEdit, QTreeWidget, QTreeWidgetItem,
+    QVBoxLayout, QWidget)
 from .resources_rc import *
 
 class Ui_MainWindow(object):
@@ -255,14 +255,14 @@ class Ui_MainWindow(object):
 "QHeaderView::section{\n"
 "	background-color: #86D2ED;\n"
 "	max-width: 30px;\n"
-"	border: 1px solid rgb(204, 204, 204);\n"
+"	border: 1p"
+                        "x solid rgb(204, 204, 204);\n"
 "	border-style: none;\n"
 "    border-bottom: 1px solid rgb(220, 220, 220);\n"
 "    border-right: 1px solid rgb(220, 220, 220);\n"
 "}\n"
 "QTableWidget::horizontalHeader {	\n"
-"	background-colo"
-                        "r: rgb(245, 245, 245);\n"
+"	background-color: rgb(245, 245, 245);\n"
 "}\n"
 "QHeaderView::section:horizontal\n"
 "{\n"
@@ -298,7 +298,8 @@ class Ui_MainWindow(object):
 "/* PlainTextEdit */\n"
 "QPlainTextEdit {\n"
 "	background-color: rgb(255, 255, 255);\n"
-"	border-radius: 5px;\n"
+"	b"
+                        "order-radius: 5px;\n"
 "	padding: 10px;\n"
 "	selection-color: rgb(255, 255, 255);\n"
 "	selection-background-color: #86D2ED;\n"
@@ -306,8 +307,7 @@ class Ui_MainWindow(object):
 "QPlainTextEdit  QScrollBar:vertical {\n"
 "    width: 8px;\n"
 " }\n"
-"QPlainTextEdit  QScr"
-                        "ollBar:horizontal {\n"
+"QPlainTextEdit  QScrollBar:horizontal {\n"
 "    height: 8px;\n"
 " }\n"
 "QPlainTextEdit:hover {\n"
@@ -339,7 +339,8 @@ class Ui_MainWindow(object):
 "    subcontrol-origin: margin;\n"
 "}\n"
 "QScrollBar::sub-line:horizontal {\n"
-"    border: none;\n"
+"    borde"
+                        "r: none;\n"
 "    background: rgb(170, 170, 170);\n"
 "    width: 20px;\n"
 "	border-top-left-radius: 4px;\n"
@@ -347,8 +348,7 @@ class Ui_MainWindow(object):
 "    subcontrol-position: left;\n"
 "    subcontrol-origin: margin;\n"
 "}\n"
-""
-                        "QScrollBar::up-arrow:horizontal, QScrollBar::down-arrow:horizontal\n"
+"QScrollBar::up-arrow:horizontal, QScrollBar::down-arrow:horizontal\n"
 "{\n"
 "     background: none;\n"
 "}\n"
@@ -377,15 +377,15 @@ class Ui_MainWindow(object):
 "    subcontrol-position: bottom;\n"
 "    subcontrol-origin: margin;\n"
 "}\n"
-"QScrollBar::sub-line:vertical {\n"
+"QScrollBa"
+                        "r::sub-line:vertical {\n"
 "    border: none;\n"
 "    background: rgb(170, 170, 170);\n"
 "    height: 20px;\n"
 "    border-top-left-radius: 4px;\n"
 "    border-top-right-radius: 4px;\n"
 "    subcontrol-position: top;\n"
-"    "
-                        "subcontrol-origin: margin;\n"
+"    subcontrol-origin: margin;\n"
 "}\n"
 "QScrollBar::up-arrow:vertical, QScrollBar::down-arrow:vertical {\n"
 "    background: none;\n"
@@ -411,7 +411,8 @@ class Ui_MainWindow(object):
 "    background-image: url(:/icons/images/icons/cil-check-alt.png);\n"
 "}\n"
 "QCheckBox::indicator:checked:hover {\n"
-"    border: 2px solid rgb(134, 210, 237);\n"
+"    border: 2px solid rgb(134, 210, "
+                        "237);\n"
 "}\n"
 "QRadioButton::indicator {\n"
 "    border: 2px solid rgb(52, 59, 72);\n"
@@ -420,8 +421,7 @@ class Ui_MainWindow(object):
 "    border-radius: 7px;\n"
 "    background: rgb(255, 255, 255);\n"
 "}\n"
-"QRadioButton::indi"
-                        "cator:hover {\n"
+"QRadioButton::indicator:hover {\n"
 "    border: 2px solid rgb(134, 210, 237);\n"
 "}\n"
 "QRadioButton::indicator:checked {\n"
@@ -448,7 +448,8 @@ class Ui_MainWindow(object):
 "/* Tab Bar */\n"
 "QTabBar::tab {\n"
 "    background-color: rgb(240, 240, 240);\n"
-"    color: rgb(30, 30, 30);\n"
+"    color"
+                        ": rgb(30, 30, 30);\n"
 "    padding: 6px 14px;\n"
 "    margin-right: 1px;\n"
 "    border-top-left-radius: 3px;\n"
@@ -457,8 +458,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "QTabBar::tab:selected {\n"
-"    bac"
-                        "kground-color: qlineargradient(\n"
+"    background-color: qlineargradient(\n"
 "        x1:0, y1:0, x2:0, y2:1,\n"
 "        stop:0 #a0cdee, stop:1 #d0f0f7\n"
 "    );\n"
@@ -486,7 +486,8 @@ class Ui_MainWindow(object):
 "QComboBox {\n"
 "    background-color: rgb(255, 255, 255);\n"
 "    border: 2px solid rgb(204, 204, 204);\n"
-"    border-radius: 5px;\n"
+"    border-radiu"
+                        "s: 5px;\n"
 "    padding: 4px 8px;\n"
 "    font: 10pt \"Segoe UI\";\n"
 "    color: rgb(30, 30, 30);\n"
@@ -498,8 +499,7 @@ class Ui_MainWindow(object):
 "}\n"
 "\n"
 "/* Focused */\n"
-"QComboBo"
-                        "x:focus {\n"
+"QComboBox:focus {\n"
 "    border: 2px solid #86D2ED;\n"
 "}\n"
 "\n"
@@ -528,7 +528,8 @@ class Ui_MainWindow(object):
 "\n"
 "/* Popup (the list that opens) */\n"
 "QComboBox QAbstractItemView {\n"
-"    border: 1px solid rgb(204, 204, 204);\n"
+"    border: 1px solid rgb(204, 204, "
+                        "204);\n"
 "    background-color: rgb(255, 255, 255);\n"
 "    selection-background-color: #86D2ED;\n"
 "    selection-color: rgb(0, 0, 0);\n"
@@ -537,8 +538,7 @@ class Ui_MainWindow(object):
 "\n"
 "/* Disabled state */\n"
 "QComboBox:disabled {\n"
-"   "
-                        " background-color: rgb(235, 235, 235);\n"
+"    background-color: rgb(235, 235, 235);\n"
 "    color: rgb(120, 120, 120);\n"
 "    border: 2px solid rgb(200, 200, 200);\n"
 "}\n"
@@ -573,7 +573,8 @@ class Ui_MainWindow(object):
 "    border-radius: 3px;\n"
 "}\n"
 "\n"
-"QSlider::sub-page:horizontal {\n"
+"QSlider::sub-page:ho"
+                        "rizontal {\n"
 "    background: #86D2ED;\n"
 "    border-radius: 3px;\n"
 "}\n"
@@ -583,8 +584,7 @@ class Ui_MainWindow(object):
 "    border: none;\n"
 "    width: 6px;\n"
 "    background: rgb(204, 204, 204);\n"
-"  "
-                        "  border-radius: 3px;\n"
+"    border-radius: 3px;\n"
 "}\n"
 "\n"
 "QSlider::groove:vertical:hover {\n"
@@ -619,7 +619,8 @@ class Ui_MainWindow(object):
 "    background-color: rgb(255, 255, 255);\n"
 "    color: rgb(30, 30, 30);\n"
 "    border: 2px solid rgb(204, 204, 204);\n"
-"    border-radius: 5px;\n"
+"    border"
+                        "-radius: 5px;\n"
 "    padding: 8px;\n"
 "    selection-background-color: #86D2ED;\n"
 "    selection-color: rgb(0, 0, 0);\n"
@@ -660,7 +661,8 @@ class Ui_MainWindow(object):
 "    background-color: rgb(204, 204, 204);\n"
 "}\n"
 "\n"
-"QSplitter::handle:horizontal {\n"
+"QSplit"
+                        "ter::handle:horizontal {\n"
 "    width: 3px;\n"
 "}\n"
 "\n"
@@ -2509,14 +2511,96 @@ class Ui_MainWindow(object):
         self.rightPaneLayout.setSpacing(5)
         self.rightPaneLayout.setObjectName(u"rightPaneLayout")
         self.rightPaneLayout.setContentsMargins(5, 0, 0, 0)
-        self.fileContentTable = QTableWidget(self.rightPaneWidget)
+        self.fileContentStack = QStackedWidget(self.rightPaneWidget)
+        self.fileContentStack.setObjectName(u"fileContentStack")
+        self.tableViewPage = QWidget()
+        self.tableViewPage.setObjectName(u"tableViewPage")
+        self.tableViewLayout = QVBoxLayout(self.tableViewPage)
+        self.tableViewLayout.setSpacing(0)
+        self.tableViewLayout.setObjectName(u"tableViewLayout")
+        self.tableViewLayout.setContentsMargins(0, 0, 0, 0)
+        self.fileContentTable = QTableWidget(self.tableViewPage)
         self.fileContentTable.setObjectName(u"fileContentTable")
         self.fileContentTable.setAlternatingRowColors(True)
         self.fileContentTable.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
         self.fileContentTable.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
         self.fileContentTable.setGridStyle(Qt.PenStyle.SolidLine)
+        self.fileContentTable.setFrameShape(QFrame.Shape.StyledPanel)
+        self.fileContentTable.setFrameShadow(QFrame.Shadow.Sunken)
+        self.fileContentTable.setStyleSheet(u"QTableWidget { background-color: white; color: black; border: 1px solid #c0c0c0; border-radius: 5px; }")
 
-        self.rightPaneLayout.addWidget(self.fileContentTable)
+        self.tableViewLayout.addWidget(self.fileContentTable)
+
+        self.fileContentStack.addWidget(self.tableViewPage)
+        self.webViewPage = QWidget()
+        self.webViewPage.setObjectName(u"webViewPage")
+        self.webViewLayout = QVBoxLayout(self.webViewPage)
+        self.webViewLayout.setSpacing(0)
+        self.webViewLayout.setObjectName(u"webViewLayout")
+        self.webViewLayout.setContentsMargins(0, 0, 0, 0)
+        self.webContentBrowser = QTextBrowser(self.webViewPage)
+        self.webContentBrowser.setObjectName(u"webContentBrowser")
+        self.webContentBrowser.setOpenExternalLinks(True)
+        self.webContentBrowser.setFrameShape(QFrame.Shape.StyledPanel)
+        self.webContentBrowser.setFrameShadow(QFrame.Shadow.Sunken)
+        self.webContentBrowser.setStyleSheet(u"QTextBrowser { background-color: white; color: black; border: 1px solid #c0c0c0; border-radius: 5px; }")
+
+        self.webViewLayout.addWidget(self.webContentBrowser)
+
+        self.fileContentStack.addWidget(self.webViewPage)
+        self.textViewPage = QWidget()
+        self.textViewPage.setObjectName(u"textViewPage")
+        self.textViewLayout = QVBoxLayout(self.textViewPage)
+        self.textViewLayout.setSpacing(0)
+        self.textViewLayout.setObjectName(u"textViewLayout")
+        self.textViewLayout.setContentsMargins(0, 0, 0, 0)
+        self.textContentEditor = QTextEdit(self.textViewPage)
+        self.textContentEditor.setObjectName(u"textContentEditor")
+        self.textContentEditor.setReadOnly(True)
+        font4 = QFont()
+        font4.setFamilies([u"Monaco, Consolas, Courier New, monospace"])
+        self.textContentEditor.setFont(font4)
+        self.textContentEditor.setFrameShape(QFrame.Shape.StyledPanel)
+        self.textContentEditor.setFrameShadow(QFrame.Shadow.Sunken)
+        self.textContentEditor.setStyleSheet(u"QTextEdit { background-color: white; color: black; border: 1px solid #c0c0c0; border-radius: 5px; }")
+
+        self.textViewLayout.addWidget(self.textContentEditor)
+
+        self.fileContentStack.addWidget(self.textViewPage)
+        self.imageViewPage = QWidget()
+        self.imageViewPage.setObjectName(u"imageViewPage")
+        self.imageViewLayout = QVBoxLayout(self.imageViewPage)
+        self.imageViewLayout.setSpacing(0)
+        self.imageViewLayout.setObjectName(u"imageViewLayout")
+        self.imageViewLayout.setContentsMargins(0, 0, 0, 0)
+        self.imageScrollArea = QScrollArea(self.imageViewPage)
+        self.imageScrollArea.setObjectName(u"imageScrollArea")
+        self.imageScrollArea.setFrameShape(QFrame.Shape.StyledPanel)
+        self.imageScrollArea.setFrameShadow(QFrame.Shadow.Sunken)
+        self.imageScrollArea.setStyleSheet(u"QScrollArea { background-color: white; border: 1px solid #c0c0c0; border-radius: 5px; }")
+        self.imageScrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 69, 69))
+        self.scrollAreaLayout = QVBoxLayout(self.scrollAreaWidgetContents)
+        self.scrollAreaLayout.setSpacing(0)
+        self.scrollAreaLayout.setObjectName(u"scrollAreaLayout")
+        self.scrollAreaLayout.setContentsMargins(0, 0, 0, 0)
+        self.imagePreviewLabel = QLabel(self.scrollAreaWidgetContents)
+        self.imagePreviewLabel.setObjectName(u"imagePreviewLabel")
+        self.imagePreviewLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.imagePreviewLabel.setStyleSheet(u"QLabel { background-color: #f5f5f5; color: #666; }")
+        self.imagePreviewLabel.setScaledContents(False)
+
+        self.scrollAreaLayout.addWidget(self.imagePreviewLabel)
+
+        self.imageScrollArea.setWidget(self.scrollAreaWidgetContents)
+
+        self.imageViewLayout.addWidget(self.imageScrollArea)
+
+        self.fileContentStack.addWidget(self.imageViewPage)
+
+        self.rightPaneLayout.addWidget(self.fileContentStack)
 
         self.fileStatusLabel = QLabel(self.rightPaneWidget)
         self.fileStatusLabel.setObjectName(u"fileStatusLabel")
@@ -2674,12 +2758,12 @@ class Ui_MainWindow(object):
         self.settingsLabel = QLabel(self.topMenus)
         self.settingsLabel.setObjectName(u"settingsLabel")
         self.settingsLabel.setMinimumSize(QSize(0, 30))
-        font4 = QFont()
-        font4.setFamilies([u"Segoe UI"])
-        font4.setPointSize(12)
-        font4.setBold(True)
-        font4.setItalic(False)
-        self.settingsLabel.setFont(font4)
+        font5 = QFont()
+        font5.setFamilies([u"Segoe UI"])
+        font5.setPointSize(12)
+        font5.setBold(True)
+        font5.setItalic(False)
+        self.settingsLabel.setFont(font5)
         self.settingsLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_14.addWidget(self.settingsLabel)
@@ -2687,12 +2771,12 @@ class Ui_MainWindow(object):
         self.restartNoticeLabel = QLabel(self.topMenus)
         self.restartNoticeLabel.setObjectName(u"restartNoticeLabel")
         self.restartNoticeLabel.setMinimumSize(QSize(0, 20))
-        font5 = QFont()
-        font5.setFamilies([u"Segoe UI"])
-        font5.setPointSize(8)
-        font5.setBold(False)
-        font5.setItalic(True)
-        self.restartNoticeLabel.setFont(font5)
+        font6 = QFont()
+        font6.setFamilies([u"Segoe UI"])
+        font6.setPointSize(8)
+        font6.setBold(False)
+        font6.setItalic(True)
+        self.restartNoticeLabel.setFont(font6)
         self.restartNoticeLabel.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.restartNoticeLabel.setStyleSheet(u"color: #888888;")
 
@@ -2795,11 +2879,11 @@ class Ui_MainWindow(object):
         self.creditsLabel = QLabel(self.bottomBar)
         self.creditsLabel.setObjectName(u"creditsLabel")
         self.creditsLabel.setMaximumSize(QSize(16777215, 16))
-        font6 = QFont()
-        font6.setFamilies([u"Segoe UI"])
-        font6.setBold(False)
-        font6.setItalic(False)
-        self.creditsLabel.setFont(font6)
+        font7 = QFont()
+        font7.setFamilies([u"Segoe UI"])
+        font7.setBold(False)
+        font7.setItalic(False)
+        self.creditsLabel.setFont(font7)
         self.creditsLabel.setAlignment(Qt.AlignmentFlag.AlignLeading|Qt.AlignmentFlag.AlignLeft|Qt.AlignmentFlag.AlignVCenter)
 
         self.horizontalLayout_5.addWidget(self.creditsLabel)
@@ -2874,6 +2958,7 @@ class Ui_MainWindow(object):
         self.dockerStackedWidget.setCurrentIndex(0)
         self.isInstalledStackedWidget.setCurrentIndex(0)
         self.trimmingTabs.setCurrentIndex(0)
+        self.fileContentStack.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -3031,6 +3116,7 @@ class Ui_MainWindow(object):
         ___qtreewidgetitem.setText(0, QCoreApplication.translate("MainWindow", u"Name", None));
         self.openFileButton.setText(QCoreApplication.translate("MainWindow", u"Open in Default App", None))
         self.openDirectoryButton.setText(QCoreApplication.translate("MainWindow", u"Open Run Directory", None))
+        self.imagePreviewLabel.setText(QCoreApplication.translate("MainWindow", u"No image loaded", None))
         self.fileStatusLabel.setText(QCoreApplication.translate("MainWindow", u"Select a file to view its contents", None))
         self.stdOut.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
