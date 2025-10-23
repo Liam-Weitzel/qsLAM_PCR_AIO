@@ -214,13 +214,19 @@ background-position: left center;
 	color: rgb(255, 255, 255);
 }
 
+/* Specific styling for R1 and R2 pair filter combo boxes */
+#r1PairFilterComboBox, #r2PairFilterComboBox {
+	background-color: rgb(255, 255, 255);
+}
+
 /* QTableWidget */
-QTableWidget {	
+QTableWidget {
 	background-color: transparent;
 	padding: 10px;
 	border-radius: 5px;
 	gridline-color: rgb(204, 204, 204);
 	border-bottom: 1px solid rgb(220, 220, 220);
+	alternate-background-color: rgb(248, 248, 248);
 }
 QTableWidget::item{
 	border-color: rgb(220, 220, 220);
@@ -583,6 +589,60 @@ QSlider::add-page:vertical {
 QSlider::sub-page:vertical {
     background: #86D2ED;
     border-radius: 3px;
+}
+
+/* QTextBrowser - Light theme styling */
+QTextBrowser {
+    background-color: rgb(255, 255, 255);
+    color: rgb(30, 30, 30);
+    border: 2px solid rgb(204, 204, 204);
+    border-radius: 5px;
+    padding: 8px;
+    selection-background-color: #86D2ED;
+    selection-color: rgb(0, 0, 0);
+}
+
+/* QTreeWidget - Light theme styling */
+QTreeWidget {
+    background-color: rgb(255, 255, 255);
+    color: rgb(30, 30, 30);
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 5px;
+    alternate-background-color: rgb(248, 248, 248);
+    selection-background-color: #86D2ED;
+    selection-color: rgb(0, 0, 0);
+}
+
+QTreeWidget::item {
+    background-color: transparent;
+    color: rgb(30, 30, 30);
+    padding: 2px;
+}
+
+QTreeWidget::item:selected {
+    background-color: #86D2ED;
+    color: rgb(0, 0, 0);
+}
+
+QTreeWidget::item:hover {
+    background-color: rgb(224, 247, 247);
+}
+
+/* QSplitter - Light theme styling */
+QSplitter {
+    background-color: rgb(255, 255, 255);
+}
+
+QSplitter::handle {
+    background-color: rgb(204, 204, 204);
+}
+
+QSplitter::handle:horizontal {
+    width: 3px;
+}
+
+QSplitter::handle:vertical {
+    height: 3px;
 }
 </string>
    </property>
@@ -5031,6 +5091,9 @@ check before trimming</string>
                              </property>
                              <property name="selectionBehavior">
                               <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+                             </property>
+                             <property name="editTriggers">
+                              <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
                              </property>
                              <property name="gridStyle">
                               <enum>Qt::PenStyle::SolidLine</enum>
