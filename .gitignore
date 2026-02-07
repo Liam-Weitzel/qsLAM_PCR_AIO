@@ -14,3 +14,4 @@ main.spec
 .venv/
 runs/
 settings.json
+.planning/

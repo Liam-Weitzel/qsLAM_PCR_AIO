@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "qsLAM_PCR_AIO",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
