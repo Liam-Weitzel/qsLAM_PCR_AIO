@@ -69,10 +69,7 @@ def init_database():
                 -- Site analysis configuration
                 promoter_left INTEGER DEFAULT 5000,
                 promoter_right INTEGER DEFAULT 2000,
-                enhancer_left INTEGER DEFAULT 50000,
-
-                -- QC configuration
-                qc_stage TEXT DEFAULT 'before'
+                enhancer_left INTEGER DEFAULT 50000
             )
         """)
 

@@ -5,7 +5,7 @@ meta {
 }
 
 post {
-  url: {{base_url}}/runs/import
+  url: http://localhost:5000/runs/import
   body: json
 }
 
@@ -13,9 +13,9 @@ body:json {
   {
     "name": "Imported Experiment",
     "description": "Configuration imported from another server",
-    "genome": "{{test_genome}}",
-    "r1_seq": "{{r1_seq}}",
-    "r2_seq": "{{r2_seq}}",
+    "genome": "GRCh38",
+    "r1_seq": "ATCCCTCAGACCCTTTTAGTCAGTGTGGAAAATCTC",
+    "r2_seq": "GACTGCGTATCAGT",
     "r1_error_rate": 0.3,
     "r2_error_rate": 0.1,
     "promoter_left": 5000,

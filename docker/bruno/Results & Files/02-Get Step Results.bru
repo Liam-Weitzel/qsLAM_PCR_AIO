@@ -5,13 +5,14 @@ meta {
 }
 
 get {
-  url: {{base_url}}/runs/{{run_id}}/results/{{step_name}}
+  url: http://localhost:5000/runs/CHANGE_ME/results/qc
 }
 
 docs {
   Returns results for a specific pipeline step.
 
-  Set the step_name environment variable to the target step. Common values:
+  Replace CHANGE_ME with your run UUID and change "qc" to the target step.
+  Common values:
   - qc: FastQC HTML reports and zip files
   - readlen: Read length PDF plot
   - site_analysis: BED files, peak files, annotated Excel spreadsheets
@@ -21,7 +22,6 @@ docs {
   Prerequisites:
   - Run must exist
   - The specified step must have completed
-  - Set run_id and step_name environment variables
 
   Expected response: 200 OK with step-specific file listings.
 }

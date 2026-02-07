@@ -87,7 +87,6 @@ def index():
     return {
         "name": "qsLAM PCR Pipeline API",
         "version": "2.0.0",
-        "architecture": "multi-run",
         "status": "running"
     }
 
@@ -225,10 +224,6 @@ def create_run():
             value = request.form.get(field)
             if value is not None:
                 config[field] = int(value)
-
-        # QC configuration
-        if request.form.get('qc_stage'):
-            config['qc_stage'] = request.form.get('qc_stage')
 
         # Create run in database
         run_id = db.create_run(name=name, created_by=created_by, description=description, **config)
@@ -413,22 +408,24 @@ def start_pipeline_step(run_id: str, step_name: str, command_builder_func):
 @app.route('/runs/<run_id>/qc', methods=['POST'])
 def start_qc(run_id: str):
     """Start FastQC quality control step."""
+    # Get stage from query parameter
+    stage = request.args.get('stage', 'before')
+    if stage not in ('before', 'after'):
+        return {"error": f"Invalid QC stage: '{stage}'. Must be 'before' or 'after'"}, 400
+
     def build_qc_command(run_id: str, run_data: dict):
         workspace = run_utils.RunWorkspace(run_id)
-        qc_stage = run_data.get('qc_stage', 'before')
 
-        if qc_stage == 'before':
+        if stage == 'before':
             r1, r2 = workspace.get_rawdata_files()
             outdir = workspace.get_fastqc_output_dir('before')
-        elif qc_stage == 'after':
+        else:
             r1, r2 = workspace.get_cutadapt_files()
             outdir = workspace.get_fastqc_output_dir('after')
-        else:
-            raise ValueError(f"Invalid QC stage: {qc_stage}")
 
         # Ensure both input files exist
         if not (os.path.exists(r1) and os.path.exists(r2)):
-            raise ValueError(f"Input files not found for QC stage: {qc_stage}")
+            raise ValueError(f"Input files not found for QC stage: {stage}")
 
         return [
             'bash', '-c',
@@ -915,10 +912,10 @@ def system_dependencies():
         return handle_error(e, "system_dependencies")
 
 
-if __name__ == '__main__':
-    # Initialize the application
-    init_app()
+# Initialize the application, needs to be here in order for it to work with flask & gunicorn
+init_app()
 
+if __name__ == '__main__':
     # Run the Flask development server
     print("Starting Flask development server...")
     app.run(host="0.0.0.0", port=5000, debug=True)

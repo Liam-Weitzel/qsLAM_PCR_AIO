@@ -5,7 +5,7 @@ meta {
 }
 
 delete {
-  url: {{base_url}}/runs/{{run_id}}/clean
+  url: http://localhost:5000/runs/CHANGE_ME/clean
 }
 
 docs {
@@ -17,7 +17,7 @@ docs {
   Any running jobs are killed automatically before cleanup.
 
   Prerequisites:
-  - Set the run_id environment variable to the target run UUID
+  - Replace CHANGE_ME in the URL with your actual run UUID
 
   Expected response: 200 OK
   {

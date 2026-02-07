@@ -5,7 +5,7 @@ meta {
 }
 
 post {
-  url: {{base_url}}/runs/{{run_id}}/read_mapping
+  url: http://localhost:5000/runs/CHANGE_ME/read_mapping
 }
 
 docs {
@@ -17,7 +17,7 @@ docs {
 
   Prerequisites:
   - Cutadapt must have been run first (uses trimmed files from cutPrimer/)
-  - Set run_id environment variable to the target run
+  - Replace CHANGE_ME in the URL with your actual run UUID
 
   Expected response: 200 OK
   {

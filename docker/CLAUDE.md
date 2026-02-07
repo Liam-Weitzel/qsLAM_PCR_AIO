@@ -57,10 +57,7 @@ CREATE TABLE runs (
     -- Site analysis configuration
     promoter_left INTEGER DEFAULT 5000,
     promoter_right INTEGER DEFAULT 2000,
-    enhancer_left INTEGER DEFAULT 50000,
-
-    -- QC configuration
-    qc_stage TEXT DEFAULT 'before'    -- before, after, both
+    enhancer_left INTEGER DEFAULT 50000
 );
 
 -- Job execution history (allows multiple attempts per step)
@@ -171,7 +168,7 @@ Response: {"logs": "log content..."}
 ```
 
 **Complete Pipeline Steps:**
-- `qc` (FastQC quality control)
+- `qc` (FastQC quality control, accepts `?stage=before` or `?stage=after` query parameter)
 - `umi` (UMI processing)
 - `cutadapt` (adapter trimming)
 - `fastp` (alternative quality processing)
@@ -341,8 +338,7 @@ curl -X POST http://localhost:5000/runs \
   -F "genome=GRCh38" \
   -F "promoter_left=5000" \
   -F "promoter_right=2000" \
-  -F "enhancer_left=50000" \
-  -F "qc_stage=before"
+  -F "enhancer_left=50000"
 ```
 
 **Benefits of normalized schema:**

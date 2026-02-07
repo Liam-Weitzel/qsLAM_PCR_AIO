@@ -5,7 +5,7 @@ meta {
 }
 
 get {
-  url: {{base_url}}/runs/{{run_id}}/results
+  url: http://localhost:5000/runs/CHANGE_ME/results
 }
 
 docs {
@@ -18,7 +18,7 @@ docs {
   Prerequisites:
   - Run must exist
   - At least one pipeline step must have completed
-  - Set run_id environment variable to the target run
+  - Replace CHANGE_ME in the URL with your actual run UUID
 
   Expected response: 200 OK
   {

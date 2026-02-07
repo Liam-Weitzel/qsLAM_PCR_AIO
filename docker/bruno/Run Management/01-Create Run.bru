@@ -5,7 +5,7 @@ meta {
 }
 
 post {
-  url: {{base_url}}/runs
+  url: http://localhost:5000/runs
   body: multipartForm
 }
 
@@ -13,25 +13,24 @@ body:multipart-form {
   name: My Experiment
   description: Test run created via Bruno
   created_by: researcher
-  genome: {{test_genome}}
-  r1_seq: {{r1_seq}}
-  r1_error_rate: {{r1_error_rate}}
-  r1_trim_leading_trailing: {{r1_trim_leading_trailing}}
-  r1_anchored: {{r1_anchored}}
-  r1_min_overlap: {{r1_min_overlap}}
-  r1_pair_filter: {{r1_pair_filter}}
-  r1_minimum_length_of_read: {{r1_minimum_length_of_read}}
-  r2_seq: {{r2_seq}}
-  r2_error_rate: {{r2_error_rate}}
-  r2_trim_leading_trailing: {{r2_trim_leading_trailing}}
-  r2_anchored: {{r2_anchored}}
-  r2_min_overlap: {{r2_min_overlap}}
-  r2_pair_filter: {{r2_pair_filter}}
-  r2_minimum_length_of_read: {{r2_minimum_length_of_read}}
-  promoter_left: {{promoter_left}}
-  promoter_right: {{promoter_right}}
-  enhancer_left: {{enhancer_left}}
-  qc_stage: {{qc_stage}}
+  genome: GRCh38
+  r1_seq: ATCCCTCAGACCCTTTTAGTCAGTGTGGAAAATCTC
+  r1_error_rate: 0.3
+  r1_trim_leading_trailing: 0
+  r1_anchored: false
+  r1_min_overlap: 5
+  r1_pair_filter: both
+  r1_minimum_length_of_read: 30
+  r2_seq: GACTGCGTATCAGT
+  r2_error_rate: 0.1
+  r2_trim_leading_trailing: 0
+  r2_anchored: false
+  r2_min_overlap: 10
+  r2_pair_filter: both
+  r2_minimum_length_of_read: 30
+  promoter_left: 5000
+  promoter_right: 2000
+  enhancer_left: 50000
   R1: @file(test_R1.fastq.gz)
   R2: @file(test_R2.fastq.gz)
 }
@@ -43,14 +42,13 @@ docs {
   R1 and R2 FASTQ files. The @file() paths shown are placeholders -- Bruno
   does not support variable interpolation inside @file() paths.
 
-  All configuration parameters are pulled from environment variables.
-  Modify them in the 'local' environment to change pipeline settings.
+  All configuration parameters are hardcoded with sensible defaults.
+  Modify them in the Bruno UI body editor to change pipeline settings.
 
   After executing:
   1. Copy the run_id from the response
-  2. Go to the 'local' environment settings
-  3. Paste the run_id into the run_id variable
-  4. Use subsequent requests to manage and run pipeline steps
+  2. Use it in subsequent requests (replace CHANGE_ME placeholders)
+  3. Use subsequent requests to manage and run pipeline steps
 
   Expected response: 201 Created
   {

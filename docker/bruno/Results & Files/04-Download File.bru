@@ -5,7 +5,7 @@ meta {
 }
 
 get {
-  url: {{base_url}}/runs/{{run_id}}/files/readlen/readlen.pdf
+  url: http://localhost:5000/runs/CHANGE_ME/files/readlen/readlen.pdf
 }
 
 docs {
@@ -23,7 +23,7 @@ docs {
   Prerequisites:
   - Run must exist
   - The target file must exist (run the relevant pipeline step first)
-  - Set run_id environment variable to the target run
+  - Replace CHANGE_ME in the URL with your actual run UUID
 
   Expected response: File download (binary content).
   The Content-Disposition header will contain the filename.

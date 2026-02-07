@@ -108,12 +108,6 @@ Supported genomes: GRCh38, GRCh37, GRCm39, GRCm38, MGSCv37.
 | `promoter_right` | `2000` | Bases downstream of TSS for promoter region |
 | `enhancer_left` | `50000` | Bases upstream for enhancer region search |
 
-### QC Configuration
-
-| Variable | Default | Purpose |
-|----------|---------|---------|
-| `qc_stage` | `before` | When to run FastQC: `before` (on raw reads) or `after` (on trimmed reads) |
-
 ## Manual Workflow
 
 The collection is designed for step-by-step manual execution. Here is the
@@ -139,9 +133,9 @@ into the `run_id` variable field. All subsequent requests use this variable.
 
 Open the **Pipeline Steps** folder and execute steps in order:
 
-1. Start QC (before trimming)
+1. Start QC Before (runs QC on raw uploaded reads)
 2. Start Cutadapt (adapter trimming)
-3. Start QC (after trimming, if desired -- requires `qc_stage=after` at run creation)
+3. Start QC After (runs QC on trimmed reads)
 4. Start Read Mapping
 5. Start Site Analysis
 
@@ -171,11 +165,9 @@ results after steps complete.
 - Pipeline steps run in the background and may take minutes to hours with
   real data. Use the status and logs endpoints to monitor progress.
 
-- The QC step behavior (before vs after trimming) depends on the `qc_stage`
-  value stored in the run at creation time, not on anything in the QC
-  request itself. To run QC on both stages, create two separate runs with
-  different `qc_stage` values or update the run configuration between QC
-  executions.
+- The QC step accepts a `?stage=before` or `?stage=after` query parameter
+  to control whether it runs on raw reads or cutadapt-trimmed reads. You can
+  call QC twice on the same run with different stages.
 
 - Runs are not automatically deleted. Use the Delete Run or Clean Run
   Workspace requests when you are done inspecting results.

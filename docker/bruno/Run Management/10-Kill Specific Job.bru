@@ -5,7 +5,7 @@ meta {
 }
 
 delete {
-  url: {{base_url}}/jobs/{{job_id}}/kill
+  url: http://localhost:5000/jobs/1/kill
 }
 
 docs {
@@ -16,7 +16,7 @@ docs {
   check or run details response.
 
   Prerequisites:
-  - Set the job_id environment variable to the target job ID (integer)
+  - Replace the job ID (1) in the URL with your actual job ID (integer)
   - Get job IDs from "Get Run Details" or "Get Step Status" responses
 
   Expected response: 200 OK

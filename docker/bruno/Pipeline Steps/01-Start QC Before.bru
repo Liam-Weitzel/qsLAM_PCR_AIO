@@ -5,20 +5,19 @@ meta {
 }
 
 post {
-  url: {{base_url}}/runs/{{run_id}}/qc
+  url: http://localhost:5000/runs/CHANGE_ME/qc?stage=before
 }
 
 docs {
   Starts FastQC quality control on raw input files (before cutadapt trimming).
 
-  IMPORTANT: The QC stage (before/after) is determined by the run's qc_stage
-  config set during run creation, NOT by this request. To run QC on "before"
-  stage data, create the run with qc_stage=before (the default).
+  The QC stage is specified via the ?stage= query parameter:
+  - ?stage=before (default) -- runs QC on raw uploaded FASTQ files
+  - ?stage=after -- runs QC on cutadapt-trimmed files
 
   Prerequisites:
   - Run must exist with uploaded FASTQ files
-  - Run must have been created with qc_stage=before (or left as default)
-  - Set run_id environment variable to the target run
+  - Replace CHANGE_ME in the URL with your actual run UUID
 
   Expected response: 200 OK
   {

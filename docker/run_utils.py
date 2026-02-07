@@ -387,10 +387,7 @@ def export_run_config(run_id: str, run_data: Dict[str, Any]) -> Dict[str, Any]:
                 "promoter_left": run_data.get("promoter_left"),
                 "promoter_right": run_data.get("promoter_right"),
                 "enhancer_left": run_data.get("enhancer_left")
-            },
-
-            # QC configuration
-            "qc_stage": run_data.get("qc_stage")
+            }
         }
     }
 
@@ -449,9 +446,6 @@ def import_run_config(import_data: Dict[str, Any]) -> tuple[str, Dict[str, Any]]
         "promoter_right": site_analysis_config.get("promoter_right"),
         "enhancer_left": site_analysis_config.get("enhancer_left")
     })
-
-    # Add QC config
-    run_config["qc_stage"] = config.get("qc_stage")
 
     return new_run_id, run_config
 

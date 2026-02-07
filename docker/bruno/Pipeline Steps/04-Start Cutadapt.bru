@@ -5,7 +5,7 @@ meta {
 }
 
 post {
-  url: {{base_url}}/runs/{{run_id}}/cutadapt
+  url: http://localhost:5000/runs/CHANGE_ME/cutadapt
 }
 
 docs {
@@ -18,7 +18,7 @@ docs {
 
   Prerequisites:
   - Run must exist with uploaded FASTQ files (run Create Run first)
-  - Set run_id environment variable to the target run
+  - Replace CHANGE_ME in the URL with your actual run UUID
 
   Expected response: 200 OK
   {

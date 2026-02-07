@@ -5,7 +5,7 @@ meta {
 }
 
 delete {
-  url: {{base_url}}/runs/{{run_id}}
+  url: http://localhost:5000/runs/CHANGE_ME
 }
 
 docs {
@@ -18,7 +18,7 @@ docs {
   want to remove files but keep the database record.
 
   Prerequisites:
-  - Set the run_id environment variable to the target run UUID
+  - Replace CHANGE_ME in the URL with your actual run UUID
 
   Expected response: 200 OK
   {

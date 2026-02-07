@@ -5,7 +5,7 @@ meta {
 }
 
 get {
-  url: {{base_url}}/runs/{{run_id}}/export
+  url: http://localhost:5000/runs/CHANGE_ME/export
 }
 
 docs {
@@ -15,7 +15,7 @@ docs {
   genome, site analysis params) but does NOT include data files (FASTQ).
 
   Prerequisites:
-  - Set the run_id environment variable to the target run UUID
+  - Replace CHANGE_ME in the URL with your actual run UUID
 
   Expected response: 200 OK
   {

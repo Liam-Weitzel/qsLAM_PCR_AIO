@@ -5,13 +5,13 @@ meta {
 }
 
 get {
-  url: {{base_url}}/runs/{{run_id}}/{{step_name}}/logs
+  url: http://localhost:5000/runs/CHANGE_ME/qc/logs
 }
 
 docs {
   Gets the log output for the specified pipeline step.
 
-  Set the step_name environment variable to the target step.
+  Replace CHANGE_ME with your run UUID and change "qc" to the target step.
   Valid step names: qc, umi, cutadapt, fastp, readlen, read_mapping,
   site_analysis.
 
