@@ -1,0 +1,39 @@
+meta {
+  name: Start Site Analysis
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{base_url}}/runs/{{run_id}}/site_analysis
+}
+
+docs {
+  Starts the complete site analysis pipeline.
+
+  This is a multi-stage process that runs:
+  1. BAM-to-BED conversion
+  2. Deduplication (rmdup) at multiple depth thresholds (d=0..10)
+  3. Peak detection using MACS2
+  4. Peak merging across depth levels
+  5. Gene annotation using R scripts
+  6. Excel export of annotated results
+
+  Uses the genome, promoter_left, promoter_right, and enhancer_left
+  parameters configured during run creation.
+
+  Prerequisites:
+  - Read mapping must have been run first (uses sorted BAM from bwa/)
+  - Set run_id environment variable to the target run
+
+  Expected response: 200 OK
+  {
+    "job_id": 123,
+    "status": "started",
+    "message": "Started site_analysis for run <run_id>"
+  }
+
+  Timing: Several minutes depending on data size.
+  Check status with "Get Step Status" using step_name=site_analysis.
+  Results include BED files, peak files, and annotated Excel spreadsheets.
+}

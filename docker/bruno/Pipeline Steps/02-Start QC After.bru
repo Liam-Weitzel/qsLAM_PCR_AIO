@@ -1,0 +1,36 @@
+meta {
+  name: Start QC After
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/runs/{{run_id}}/qc
+}
+
+docs {
+  Starts FastQC quality control on trimmed files (after cutadapt).
+
+  IMPORTANT: This request is identical to "Start QC Before" -- the difference
+  is that the run must have been created with qc_stage=after. The QC endpoint
+  reads the qc_stage from the run's database record, not from this request.
+
+  To run QC on post-cutadapt data, either:
+  1. Create a separate run with qc_stage=after, or
+  2. Update the qc_stage environment variable and create a new run
+
+  Prerequisites:
+  - Run must exist with qc_stage=after set at creation time
+  - Cutadapt must have been run first so trimmed files exist
+  - Set run_id environment variable to the target run
+
+  Expected response: 200 OK
+  {
+    "job_id": 123,
+    "status": "started",
+    "message": "Started qc for run <run_id>"
+  }
+
+  Timing: A few minutes for small FASTQ files.
+  Check status with "Get Step Status" using step_name=qc.
+}

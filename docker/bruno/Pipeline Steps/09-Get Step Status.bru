@@ -1,0 +1,29 @@
+meta {
+  name: Get Step Status
+  type: http
+  seq: 9
+}
+
+get {
+  url: {{base_url}}/runs/{{run_id}}/{{step_name}}/status
+}
+
+docs {
+  Gets the status of the most recent job for the specified pipeline step.
+
+  Set the step_name environment variable to the step you want to check.
+  Valid step names: qc, umi, cutadapt, fastp, readlen, read_mapping,
+  site_analysis.
+
+  Expected response: 200 OK
+  {
+    "job_id": 123,
+    "status": "completed",
+    "started_at": "2024-01-15T10:30:00",
+    "completed_at": "2024-01-15T10:35:00",
+    "error_message": null
+  }
+
+  Possible status values: pending, running, completed, failed, killed.
+  If the step has never been run, returns 404.
+}

@@ -1,0 +1,31 @@
+meta {
+  name: Start Fastp
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{base_url}}/runs/{{run_id}}/fastp
+}
+
+docs {
+  Starts fastp quality processing as an alternative to cutadapt.
+
+  Fastp processes the raw FASTQ files and produces filtered output files.
+  This is an alternative quality processing step -- you would typically
+  use either cutadapt or fastp, not both.
+
+  Prerequisites:
+  - Run must exist with uploaded FASTQ files
+  - Set run_id environment variable to the target run
+
+  Expected response: 200 OK
+  {
+    "job_id": 123,
+    "status": "started",
+    "message": "Started fastp for run <run_id>"
+  }
+
+  Timing: Minutes depending on FASTQ file size.
+  Check status with "Get Step Status" using step_name=fastp.
+}

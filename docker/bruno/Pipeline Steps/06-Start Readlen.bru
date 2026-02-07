@@ -1,0 +1,32 @@
+meta {
+  name: Start Readlen
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{base_url}}/runs/{{run_id}}/readlen
+}
+
+docs {
+  Starts read length distribution analysis.
+
+  Produces a PDF plot (readlen/readlen.pdf) showing the distribution of
+  read lengths in the trimmed FASTQ files. Uses an R script for analysis
+  and plotting.
+
+  Prerequisites:
+  - Cutadapt must have been run first (uses trimmed files from cutPrimer/)
+  - Set run_id environment variable to the target run
+
+  Expected response: 200 OK
+  {
+    "job_id": 123,
+    "status": "started",
+    "message": "Started readlen for run <run_id>"
+  }
+
+  Timing: Usually completes in under a minute.
+  Check status with "Get Step Status" using step_name=readlen.
+  Download the PDF with "Download File" using path readlen/readlen.pdf.
+}

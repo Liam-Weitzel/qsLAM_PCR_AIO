@@ -1,0 +1,32 @@
+meta {
+  name: Start Cutadapt
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{base_url}}/runs/{{run_id}}/cutadapt
+}
+
+docs {
+  Starts adapter trimming with cutadapt using the R1/R2 sequences and
+  parameters configured during run creation.
+
+  Cutadapt runs a 2-step process: first trimming R1 adapters, then R2
+  adapters. Configuration (r1_seq, r2_seq, error rates, anchoring, overlap,
+  pair filter, minimum read length) is read from the run's database record.
+
+  Prerequisites:
+  - Run must exist with uploaded FASTQ files (run Create Run first)
+  - Set run_id environment variable to the target run
+
+  Expected response: 200 OK
+  {
+    "job_id": 123,
+    "status": "started",
+    "message": "Started cutadapt for run <run_id>"
+  }
+
+  Timing: Minutes to tens of minutes depending on FASTQ file size.
+  Check status with "Get Step Status" using step_name=cutadapt.
+}

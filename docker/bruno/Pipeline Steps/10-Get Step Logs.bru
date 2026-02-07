@@ -1,0 +1,27 @@
+meta {
+  name: Get Step Logs
+  type: http
+  seq: 10
+}
+
+get {
+  url: {{base_url}}/runs/{{run_id}}/{{step_name}}/logs
+}
+
+docs {
+  Gets the log output for the specified pipeline step.
+
+  Set the step_name environment variable to the target step.
+  Valid step names: qc, umi, cutadapt, fastp, readlen, read_mapping,
+  site_analysis.
+
+  Returns the contents of the step's log file, which includes stdout
+  and stderr from the background process.
+
+  Expected response: 200 OK
+  {
+    "logs": "log content..."
+  }
+
+  Useful for debugging failed steps or monitoring progress of running steps.
+}

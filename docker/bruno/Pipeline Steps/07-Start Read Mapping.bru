@@ -1,0 +1,32 @@
+meta {
+  name: Start Read Mapping
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{base_url}}/runs/{{run_id}}/read_mapping
+}
+
+docs {
+  Starts BWA-MEM2 alignment against the genome configured during run creation.
+
+  Will automatically download the genome reference if not already cached in
+  the shared reference directory. The pipeline runs: bwa-mem2 mem, samtools
+  view, samtools sort, samtools index, and samtools flagstat.
+
+  Prerequisites:
+  - Cutadapt must have been run first (uses trimmed files from cutPrimer/)
+  - Set run_id environment variable to the target run
+
+  Expected response: 200 OK
+  {
+    "job_id": 123,
+    "status": "started",
+    "message": "Started read_mapping for run <run_id>"
+  }
+
+  Timing: This is typically the longest step. Can take 30+ minutes for large
+  files. First run with a new genome will also include download time.
+  Check status with "Get Step Status" using step_name=read_mapping.
+}

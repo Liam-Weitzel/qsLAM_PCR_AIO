@@ -1,0 +1,28 @@
+meta {
+  name: Start UMI
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/runs/{{run_id}}/umi
+}
+
+docs {
+  Starts UMI (Unique Molecular Identifier) processing.
+
+  NOTE: UMI processing is not yet implemented in the pipeline. This endpoint
+  exists as a placeholder and will return a job that completes immediately
+  with an "UMI processing not yet implemented" message.
+
+  Prerequisites:
+  - Run must exist
+  - Set run_id environment variable to the target run
+
+  Expected response: 200 OK
+  {
+    "job_id": 123,
+    "status": "started",
+    "message": "Started umi for run <run_id>"
+  }
+}
