@@ -65,7 +65,6 @@ def init_database():
 
                 -- Read mapping configuration
                 genome TEXT,
-                genome_tar_url TEXT,
 
                 -- Site analysis configuration
                 promoter_left INTEGER DEFAULT 5000,
@@ -127,11 +126,6 @@ def create_run(name: str, created_by: str = None, description: str = None, **con
             from pipeline_constants import SUPPORTED_GENOMES
             supported = ", ".join(SUPPORTED_GENOMES.keys())
             raise ValueError(f"Unsupported genome '{genome}'. Supported genomes: {supported}")
-
-        # Set default genome_tar_url if not provided
-        if not config.get('genome_tar_url'):
-            from run_utils import get_default_genome_tar_url
-            config['genome_tar_url'] = get_default_genome_tar_url(genome)
 
     with get_db_connection() as conn:
         # Build the INSERT statement dynamically based on provided config
