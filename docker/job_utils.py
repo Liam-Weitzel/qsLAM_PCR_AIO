@@ -102,7 +102,20 @@ def _monitor_job_completion(job_id: int, run_id: str, process: subprocess.Popen,
 
         # Update job status based on return code
         success = (return_code == 0)
-        error_message = None if success else f"Process exited with code {return_code}"
+        error_message = None
+
+        if not success:
+            # Read tail of log file to capture actual error output
+            try:
+                with open(log_file, 'r') as f:
+                    lines = f.readlines()
+                    # Get last lines before the [MONITOR] marker, excluding monitor's own output
+                    tail_lines = [l for l in lines[-20:] if not l.startswith('[MONITOR]')]
+                    error_message = ''.join(tail_lines[-10:]).strip()
+                    if not error_message:
+                        error_message = f"Process exited with code {return_code}"
+            except Exception:
+                error_message = f"Process exited with code {return_code}"
 
         db.complete_job(job_id, success=success, error_message=error_message)
 
