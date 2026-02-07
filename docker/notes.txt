@@ -1,0 +1,30 @@
+Exporting run loses R1 and R2 files... how do we fix this?
+
+I need an easy way to add new parameters into this whole system.
+
+Standardize what I get back on result fetching, pointers to files or contents of files???
+  I saw with qc i get the HTML in the response, but on cutadapt i get pointers to files
+
+We need to make sure that the pipeline works as intended. If we run fastp, are we using fastps raw data now or not?
+What if the user decides not to run fastp, what are we using then? We need to go over all of this again with Miro
+Is readlen supposed to use the output of cutadapt even if fastp was run?
+  Cutadapt + fastp > cutadapt > fastp > rawdata
+  we need to check if these steps ran in the DB AND the files actually exist. So beware of run cleaning as this can cause errors here.
+
+Current step and status is misleading and confusing at times. 
+After 'running' it should go back to pending if completed. If failed, the status of the whole run should be failed.
+There should also be a 'not started' status
+All of these statuses should be in the run statuses constants (cleaned is for sure not!)
+also validate_run_status and validate_job_status are NEVER used...
+
+download_genome_if_needed is a bit messy currently, clean this up. it should use has_bwa_mem2_index and this can then directly be used in start_read_mapping
+
+job_utils run_command_sync is useless, never used...
+
+we have a couple too many 'system' endpoints that do more or less the same... redesign this a little bit
+
+FASTP.json and FASTP.html NOT IN RUN DIRECTORY RESULTS?!??!
+
+We need to also do some more automated E2E/ unhappy path testing and validation...
+
+Perhaps also some unit tests...

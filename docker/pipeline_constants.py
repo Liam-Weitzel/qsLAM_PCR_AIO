@@ -18,9 +18,6 @@ PIPELINE_STEPS = [
 # Valid step names for validation
 VALID_STEP_NAMES = set(PIPELINE_STEPS)
 
-# QC stages
-QC_STAGES = ['before', 'after', 'both']
-
 # Run status values
 RUN_STATUSES = [
     'pending',      # Run created but no steps started
