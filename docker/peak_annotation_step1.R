@@ -13,8 +13,9 @@ promoter.right <- as.numeric(args[5])
 enhancer.left <- as.numeric(args[6])
 
 tryCatch({
-  # Load target gene prediction function
-  source("target_gene_prediction.R")
+  # Resolve script directory from Rscript --file= argument
+  .script_dir <- dirname(sub("--file=", "", grep("--file=", commandArgs(trailingOnly = FALSE), value = TRUE)))
+  source(file.path(.script_dir, "target_gene_prediction.R"))
 
   # Read input data
   inputBed <- read.table(input_file,
