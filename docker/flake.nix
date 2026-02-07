@@ -25,9 +25,6 @@
       };
     in pkgs.mkShell {
       packages = [
-        #DEBUGGING PACKAGES
-        pkgs.neovim
-
         pkgs.util-linux
         pkgs.fastqc
         pkgs.samtools
@@ -40,6 +37,7 @@
         pkgs.fastp
         pkgs.python312
         pkgs.python312Packages.flask
+        pkgs.sqlite
         pkgs.pipx
         pkgs.R
         pkgs.rPackages.ggplot2
