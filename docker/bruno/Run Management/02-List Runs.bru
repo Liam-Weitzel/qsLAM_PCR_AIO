@@ -1,0 +1,30 @@
+meta {
+  name: List Runs
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/runs
+}
+
+docs {
+  Lists all runs in the database.
+
+  Optional query parameters (add manually via the Params tab if needed):
+  - created_by: Filter runs by creator (e.g., "researcher")
+  - limit: Maximum number of runs to return
+
+  Expected response: 200 OK
+  {
+    "runs": [
+      {
+        "id": "uuid",
+        "name": "My Experiment",
+        "status": "pending",
+        "created_at": "2025-01-15T...",
+        "created_by": "researcher"
+      }
+    ]
+  }
+}

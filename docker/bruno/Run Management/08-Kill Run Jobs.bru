@@ -1,0 +1,29 @@
+meta {
+  name: Kill Run Jobs
+  type: http
+  seq: 8
+}
+
+delete {
+  url: {{base_url}}/runs/{{run_id}}/kill
+}
+
+docs {
+  Kills all currently running jobs for a specific run without deleting
+  the run itself.
+
+  Use this when a pipeline step is taking too long or appears stuck.
+  The run record and any completed results are preserved. You can
+  re-run the failed step afterward.
+
+  Prerequisites:
+  - Set the run_id environment variable to the target run UUID
+
+  Expected response: 200 OK
+  {
+    "message": "Killed N jobs for run <run_id>",
+    "killed_jobs": 1
+  }
+
+  If no jobs are currently running, killed_jobs will be 0.
+}

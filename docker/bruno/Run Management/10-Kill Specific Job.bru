@@ -1,0 +1,31 @@
+meta {
+  name: Kill Specific Job
+  type: http
+  seq: 10
+}
+
+delete {
+  url: {{base_url}}/jobs/{{job_id}}/kill
+}
+
+docs {
+  Kills a specific job by its job ID.
+
+  Unlike "Kill Run Jobs" which kills all jobs for a run, this targets
+  a single job. Useful when you know the exact job_id from a status
+  check or run details response.
+
+  Prerequisites:
+  - Set the job_id environment variable to the target job ID (integer)
+  - Get job IDs from "Get Run Details" or "Get Step Status" responses
+
+  Expected response: 200 OK
+  {
+    "message": "Job <job_id> killed successfully",
+    "job_id": 123,
+    "run_id": "uuid-of-parent-run"
+  }
+
+  If the job is not currently running, the kill may have no effect
+  (job already completed or failed).
+}

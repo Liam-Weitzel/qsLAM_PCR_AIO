@@ -1,0 +1,33 @@
+meta {
+  name: Get Run Status
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/runs/{{run_id}}/status
+}
+
+docs {
+  Gets the current status of a run with step execution history.
+
+  This is a lighter-weight alternative to Get Run Details when you only
+  need to check what state the run is in and what steps have been executed.
+
+  Prerequisites:
+  - Set the run_id environment variable to the target run UUID
+
+  Expected response: 200 OK
+  {
+    "run_id": "uuid",
+    "status": "running",
+    "current_step": "cutadapt",
+    "step_history": [
+      {"step_name": "qc", "status": "completed", "started_at": "..."},
+      {"step_name": "cutadapt", "status": "running", "started_at": "..."}
+    ]
+  }
+
+  The step_history array shows all job attempts, including re-runs of the
+  same step. This is useful for debugging and auditing.
+}

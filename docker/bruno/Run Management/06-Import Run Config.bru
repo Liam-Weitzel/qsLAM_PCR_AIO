@@ -1,0 +1,52 @@
+meta {
+  name: Import Run Config
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{base_url}}/runs/import
+  body: json
+}
+
+body:json {
+  {
+    "name": "Imported Experiment",
+    "description": "Configuration imported from another server",
+    "genome": "{{test_genome}}",
+    "r1_seq": "{{r1_seq}}",
+    "r2_seq": "{{r2_seq}}",
+    "r1_error_rate": 0.3,
+    "r2_error_rate": 0.1,
+    "promoter_left": 5000,
+    "promoter_right": 2000,
+    "enhancer_left": 50000
+  }
+}
+
+headers {
+  Content-Type: application/json
+}
+
+docs {
+  Imports a run configuration exported from another server.
+
+  Workflow:
+  1. Export a run config using "Export Run Config" on the source server
+  2. Copy the full JSON response
+  3. Paste it as this request's body (replacing the example below)
+  4. Execute this request to create a new run with that configuration
+
+  The imported run will NOT have data files -- FASTQ files must be uploaded
+  separately by creating a new run with the same configuration.
+
+  The example body shown is a minimal valid configuration. Replace it with
+  a real exported config for actual use.
+
+  Expected response: 201 Created
+  {
+    "run_id": "new-uuid",
+    "message": "Run configuration imported successfully",
+    "note": "Data files must be uploaded separately"
+  }
+}

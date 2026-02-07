@@ -1,0 +1,31 @@
+meta {
+  name: Clean Run Workspace
+  type: http
+  seq: 9
+}
+
+delete {
+  url: {{base_url}}/runs/{{run_id}}/clean
+}
+
+docs {
+  Removes all workspace files for a run but keeps the database record.
+
+  This is useful for freeing disk space after inspecting results while
+  preserving the run's configuration and job history in the database.
+
+  Any running jobs are killed automatically before cleanup.
+
+  Prerequisites:
+  - Set the run_id environment variable to the target run UUID
+
+  Expected response: 200 OK
+  {
+    "message": "Cleaned workspace for run <run_id>",
+    "files_deleted": true,
+    "jobs_killed": 0
+  }
+
+  After cleaning, pipeline steps cannot be re-run until new FASTQ files
+  are provided.
+}

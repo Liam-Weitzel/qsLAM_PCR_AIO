@@ -1,0 +1,32 @@
+meta {
+  name: Export Run Config
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{base_url}}/runs/{{run_id}}/export
+}
+
+docs {
+  Exports the run configuration as JSON for import on another server.
+
+  The exported config includes all pipeline parameters (cutadapt settings,
+  genome, site analysis params) but does NOT include data files (FASTQ).
+
+  Prerequisites:
+  - Set the run_id environment variable to the target run UUID
+
+  Expected response: 200 OK
+  {
+    "name": "My Experiment",
+    "description": "...",
+    "genome": "GRCh38",
+    "r1_seq": "ATCCCTC...",
+    "r2_seq": "GACTGC...",
+    ...
+  }
+
+  To import this config on another server, copy the response JSON and
+  paste it into the Import Run Config request body.
+}

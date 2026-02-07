@@ -1,0 +1,28 @@
+meta {
+  name: Delete Run
+  type: http
+  seq: 7
+}
+
+delete {
+  url: {{base_url}}/runs/{{run_id}}
+}
+
+docs {
+  Deletes a run completely -- removes the database record and all workspace
+  files (rawdata, results, logs, etc.).
+
+  Any running jobs for this run are killed automatically before deletion.
+
+  This action is irreversible. Use "Clean Run Workspace" instead if you
+  want to remove files but keep the database record.
+
+  Prerequisites:
+  - Set the run_id environment variable to the target run UUID
+
+  Expected response: 200 OK
+  {
+    "message": "Run <run_id> deleted successfully",
+    "killed_jobs": 0
+  }
+}
