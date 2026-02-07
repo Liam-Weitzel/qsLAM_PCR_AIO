@@ -42,6 +42,7 @@ RUN_SUBDIRS = [
     "fastqc/afterCutAdapt",
     "bam2bed",
     "bed2peak",
+    "readlen",
     "logs"
 ]
 
@@ -158,7 +159,7 @@ def get_run_paths(run_id: str) -> Dict[str, str]:
         "sorted_bam": bwa_files["sorted_bam"],
         "bam_index": bwa_files["index"],
         "bwa_stats": bwa_files["stats"],
-        "readlen_pdf": workspace.get_path("readLen.pdf")
+        "readlen_pdf": workspace.get_path("readlen", "readlen.pdf")
     }
 
 
@@ -255,7 +256,7 @@ def get_run_results(run_id: str) -> Dict[str, Any]:
                 results["fastqc"][stage_dir] = _get_directory_contents(stage_path)
 
     # Get readlen PDF if it exists
-    readlen_pdf = workspace.get_path("readLen.pdf")
+    readlen_pdf = workspace.get_path("readlen", "readlen.pdf")
     if os.path.exists(readlen_pdf):
         results["readlen_pdf"] = _encode_binary_file(readlen_pdf)
 
@@ -301,7 +302,7 @@ def get_step_results(run_id: str, step: str) -> Dict[str, Any]:
         return {}
 
     elif step == "readlen":
-        readlen_pdf = workspace.get_path("readLen.pdf")
+        readlen_pdf = workspace.get_path("readlen", "readlen.pdf")
         if os.path.exists(readlen_pdf):
             return {"pdf": _encode_binary_file(readlen_pdf)}
         return {}

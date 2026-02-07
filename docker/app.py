@@ -546,8 +546,9 @@ def start_readlen(run_id: str):
         if not (os.path.exists(r1) and os.path.exists(r2)):
             raise ValueError("Cutadapt output files not found. Run cutadapt first.")
 
+        output_pdf = workspace.get_path('readlen', 'readlen.pdf')
         return [
-            'Rscript', 'readlen_analysis.R', r1, r2
+            'Rscript', 'readlen_analysis.R', r1, r2, output_pdf
         ]
 
     return start_pipeline_step(run_id, 'readlen', build_readlen_command)

@@ -1,14 +1,16 @@
 #!/usr/bin/env Rscript
 args <- commandArgs(trailingOnly = TRUE)
-if (length(args) == 0) {
-  stop("Please supply one or more .fastq.gz files as arguments")
+if (length(args) < 2) {
+  stop("Usage: readlen_analysis.R <fastq1> [fastq2 ...] <output.pdf>")
 }
+output_pdf <- args[length(args)]
+fastq_files <- args[-length(args)]
 
 library(ggplot2)
 
-pdf("readLen.pdf", width = 8, height = 6)
+pdf(output_pdf, width = 8, height = 6)
 
-for (fq in args) {
+for (fq in fastq_files) {
   title_str <- basename(fq)
   cat("📎 Processing", title_str, "...\n")
   con <- gzfile(fq, "rt")
