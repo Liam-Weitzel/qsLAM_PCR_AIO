@@ -156,6 +156,13 @@ def system_info():
     }
 
 
+@app.route('/system/genomes', methods=['GET'])
+def list_genomes():
+    """List supported genomes for frontend dropdown."""
+    from pipeline_constants import SUPPORTED_GENOMES
+    return {"genomes": list(SUPPORTED_GENOMES.keys())}
+
+
 # ===============================
 # RUN MANAGEMENT
 # ===============================
@@ -203,11 +210,15 @@ def create_run():
                 else:
                     config[field] = value
 
-        # Read mapping configuration
-        if request.form.get('genome'):
-            config['genome'] = request.form.get('genome')
-        if request.form.get('genome_tar_url'):
-            config['genome_tar_url'] = request.form.get('genome_tar_url')
+        # Read mapping configuration - genome is required
+        genome = request.form.get('genome')
+        if not genome:
+            return {"error": "genome is required"}, 400
+        if not validate_genome(genome):
+            from pipeline_constants import SUPPORTED_GENOMES
+            supported = ", ".join(SUPPORTED_GENOMES.keys())
+            return {"error": f"Unsupported genome: '{genome}'. Supported genomes: {supported}"}, 400
+        config['genome'] = genome
 
         # Site analysis configuration
         for field in ['promoter_left', 'promoter_right', 'enhancer_left']:
@@ -571,16 +582,10 @@ def start_read_mapping(run_id: str):
         if not genome:
             raise ValueError("Genome is required for read mapping")
 
-        # Check if genome is available or download it
+        # Check if genome is available or needs downloading
         if not run_utils.has_bwa_mem2_index(genome):
-            genome_tar_url = run_data.get('genome_tar_url')
-            if not genome_tar_url:
-                genome_tar_url = run_utils.get_default_genome_tar_url(genome)
-
-            if not genome_tar_url:
-                raise ValueError(f"Genome {genome} not available and no download URL provided")
-
-            # Download genome (this should be done as part of the command)
+            from pipeline_constants import SUPPORTED_GENOMES
+            genome_tar_url = SUPPORTED_GENOMES[genome]["tar_url"]
             print(f"Genome {genome} not found, will download from {genome_tar_url}")
 
         # Get path to genome index
@@ -592,7 +597,7 @@ def start_read_mapping(run_id: str):
         {{
             if [ ! -f "{genome_fa}.0123" ]; then
                 echo "Downloading genome {genome}..."
-                python3 -c "import run_utils; run_utils.download_genome_if_needed('{genome}', '{run_data.get('genome_tar_url', '')}')"
+                python3 -c "import run_utils; run_utils.download_genome_if_needed('{genome}')"
             fi
         }} &&
         bwa-mem2 mem -t {os.cpu_count()} {genome_fa} {r1} {r2} -o {bwa_files["sam"]} &&

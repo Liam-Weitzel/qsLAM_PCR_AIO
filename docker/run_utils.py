@@ -366,8 +366,7 @@ def export_run_config(run_id: str, run_data: Dict[str, Any]) -> Dict[str, Any]:
 
             # Read mapping configuration
             "read_mapping": {
-                "genome": run_data.get("genome"),
-                "genome_tar_url": run_data.get("genome_tar_url")
+                "genome": run_data.get("genome")
             },
 
             # Site analysis configuration
@@ -427,8 +426,7 @@ def import_run_config(import_data: Dict[str, Any]) -> tuple[str, Dict[str, Any]]
     # Add read mapping config
     read_mapping_config = config.get("read_mapping", {})
     run_config.update({
-        "genome": read_mapping_config.get("genome"),
-        "genome_tar_url": read_mapping_config.get("genome_tar_url")
+        "genome": read_mapping_config.get("genome")
     })
 
     # Add site analysis config
@@ -520,7 +518,7 @@ def check_genome_available(genome: str) -> bool:
     return has_bwa_mem2_index(genome)
 
 
-def download_genome_if_needed(genome: str, tar_url: str) -> str:
+def download_genome_if_needed(genome: str) -> str:
     """Download and extract genome reference to shared directory if needed."""
     import subprocess
     import tarfile
@@ -528,6 +526,8 @@ def download_genome_if_needed(genome: str, tar_url: str) -> str:
 
     if genome not in SUPPORTED_GENOMES:
         raise ValueError(f"Unsupported genome: {genome}. Supported: {list(SUPPORTED_GENOMES.keys())}")
+
+    tar_url = SUPPORTED_GENOMES[genome]["tar_url"]
 
     # Create shared reference directory if it doesn't exist
     os.makedirs(SHARED_REFERENCE_DIR, exist_ok=True)
@@ -598,12 +598,6 @@ def get_supported_genome_list() -> List[str]:
     """Get list of all supported genome names."""
     return list(SUPPORTED_GENOMES.keys())
 
-
-def get_default_genome_tar_url(genome: str) -> Optional[str]:
-    """Get default download URL for a genome."""
-    if genome in SUPPORTED_GENOMES:
-        return SUPPORTED_GENOMES[genome]["tar_url"]
-    return None
 
 
 

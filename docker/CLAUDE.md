@@ -52,8 +52,7 @@ CREATE TABLE runs (
     r2_minimum_length_of_read INTEGER DEFAULT 30,
 
     -- Read mapping configuration
-    genome TEXT,                      -- hg38, mm10, etc.
-    genome_tar_url TEXT,              -- Download URL for genome index
+    genome TEXT,                      -- GRCh38, GRCm39, etc.
 
     -- Site analysis configuration
     promoter_left INTEGER DEFAULT 5000,
@@ -339,8 +338,7 @@ curl -X POST http://localhost:5000/runs \
   -F "r1_anchored=false" \
   -F "r2_seq=GACTGCGTATCAGT" \
   -F "r2_error_rate=0.1" \
-  -F "genome=hg38" \
-  -F "genome_tar_url=https://example.com/hg38.tar.gz" \
+  -F "genome=GRCh38" \
   -F "promoter_left=5000" \
   -F "promoter_right=2000" \
   -F "enhancer_left=50000" \
