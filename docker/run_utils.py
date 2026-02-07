@@ -247,6 +247,17 @@ def get_run_results(run_id: str) -> Dict[str, Any]:
     if os.path.exists(bed2peak_dir):
         results["bed2peak"] = _get_directory_contents(bed2peak_dir)
 
+    # Site analysis Excel results
+    site_analysis_results = []
+    if os.path.exists(bed2peak_dir):
+        for f in sorted(os.listdir(bed2peak_dir)):
+            if f.endswith('.xlsx'):
+                site_analysis_results.append({
+                    "name": f,
+                    "path": f"bed2peak/{f}"
+                })
+    results["site_analysis"] = site_analysis_results
+
     # Get FastQC results
     fastqc_dir = workspace.get_path("fastqc")
     if os.path.exists(fastqc_dir):
@@ -322,6 +333,8 @@ def get_step_results(run_id: str, step: str) -> Dict[str, Any]:
         results = {}
         bed2peak_dir = workspace.get_path("bed2peak")
         if os.path.exists(bed2peak_dir):
+            xlsx_files = sorted([f for f in os.listdir(bed2peak_dir) if f.endswith('.xlsx')])
+            results["excel_files"] = [{"name": f, "path": f"bed2peak/{f}"} for f in xlsx_files]
             results["bed2peak"] = _get_directory_contents(bed2peak_dir)
 
         bam2bed_dir = workspace.get_path("bam2bed")

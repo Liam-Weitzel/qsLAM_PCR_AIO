@@ -619,7 +619,7 @@ def start_site_analysis(run_id: str):
         workspace = run_utils.RunWorkspace(run_id)
         bwa_files = workspace.get_bwa_files()
 
-        # Ensure BWA outputs exist
+        # Ensure BWA outputs exist (prerequisite validation for immediate 400 response)
         if not os.path.exists(bwa_files["sorted_bam"]):
             raise ValueError("BWA output files not found. Run read_mapping first.")
 
@@ -632,20 +632,19 @@ def start_site_analysis(run_id: str):
         if not genome:
             raise ValueError("Genome is required for site analysis")
 
-        # This is a very complex multi-step process, using our extracted scripts
-        bam2bed_dir = workspace.get_path("bam2bed")
-        bed2peak_dir = workspace.get_path("bed2peak")
+        # Resolve absolute paths for script execution
+        workspace_abs = os.path.abspath(workspace.base_path)
+        script_dir = os.path.abspath(os.path.dirname(__file__) or '.')
 
-        command = f'''
-        mkdir -p {bam2bed_dir} {bed2peak_dir} &&
-        cd {workspace.base_path} &&
-        # Site analysis processing will go here - this is complex and needs the extracted bash scripts
-        echo "Site analysis started for run {run_id}" &&
-        # TODO: Implement the full site analysis pipeline using extracted scripts
-        echo "Site analysis placeholder completed"
-        '''
-
-        return ['bash', '-c', command.strip()]
+        return [
+            'bash', os.path.join(script_dir, 'site_analysis.sh'),
+            workspace_abs,
+            script_dir,
+            genome,
+            str(promoter_left),
+            str(promoter_right),
+            str(enhancer_left)
+        ]
 
     return start_pipeline_step(run_id, 'site_analysis', build_site_analysis_command)
 
