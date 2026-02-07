@@ -1,0 +1,33 @@
+meta {
+  name: List Run Files
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/runs/{{run_id}}/files
+}
+
+docs {
+  Lists all files in the run's workspace directory, organized by subdirectory.
+
+  Subdirectories include: rawdata, cutPrimer, bwa, fastqc, bam2bed,
+  bed2peak, readlen, logs. Each file entry includes name, relative path,
+  size in bytes, and modification timestamp.
+
+  Prerequisites:
+  - Run must exist with a workspace directory
+  - Set run_id environment variable to the target run
+
+  Expected response: 200 OK
+  {
+    "files": {
+      "rawdata": [{"name": "R1.fastq.gz", "path": "rawdata/R1.fastq.gz", "size": 12345, "modified": 1705000000}],
+      "cutPrimer": [...],
+      "bwa": [...]
+    }
+  }
+
+  Use the "path" values from this response with "Download File" to
+  retrieve specific files.
+}

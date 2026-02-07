@@ -1,0 +1,26 @@
+meta {
+  name: System Info
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/system/info
+}
+
+docs {
+  Returns server metadata including name, version, deployment mode,
+  supported genome list, and pipeline step names.
+
+  Useful for frontend configuration -- the supported_genomes and
+  pipeline_steps arrays can populate dropdown menus and step selectors.
+
+  Expected response: 200 OK
+  {
+    "name": "qsLAM PCR Server",
+    "version": "2.0.0",
+    "deployment_mode": "local",
+    "supported_genomes": ["GRCh38", "GRCh37", "GRCm39", "GRCm38", "MGSCv37"],
+    "pipeline_steps": ["qc", "umi", "cutadapt", "fastp", "readlen", "read_mapping", "site_analysis"]
+  }
+}

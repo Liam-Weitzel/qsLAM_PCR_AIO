@@ -1,0 +1,32 @@
+meta {
+  name: Get All Results
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/runs/{{run_id}}/results
+}
+
+docs {
+  Returns all available results for the run, organized by pipeline step.
+
+  Includes FastQC reports, readlen PDF, BED files, peak files, and
+  annotated Excel spreadsheets. Only shows results for steps that have
+  been completed -- steps that haven't run yet will not appear.
+
+  Prerequisites:
+  - Run must exist
+  - At least one pipeline step must have completed
+  - Set run_id environment variable to the target run
+
+  Expected response: 200 OK
+  {
+    "fastqc": {"files": [...]},
+    "readlen_pdf": "/runs/<run_id>/files/readlen/readlen.pdf",
+    "bed2peak": {"files": [...]},
+    "site_analysis": {"excel_files": [...]}
+  }
+
+  Note: The exact structure depends on which steps have been completed.
+}

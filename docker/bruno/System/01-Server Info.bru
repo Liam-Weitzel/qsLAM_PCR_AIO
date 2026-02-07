@@ -1,0 +1,24 @@
+meta {
+  name: Server Info
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/
+}
+
+docs {
+  Returns basic server information. No authentication required.
+
+  This is the simplest endpoint -- useful to verify the server is running
+  and reachable before executing other requests.
+
+  Expected response: 200 OK
+  {
+    "name": "qsLAM PCR Pipeline API",
+    "version": "2.0.0",
+    "architecture": "multi-run",
+    "status": "running"
+  }
+}

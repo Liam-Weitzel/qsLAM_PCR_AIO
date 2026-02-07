@@ -1,0 +1,32 @@
+meta {
+  name: Download File
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/runs/{{run_id}}/files/readlen/readlen.pdf
+}
+
+docs {
+  Downloads a specific file from the run workspace.
+
+  The path after /files/ is relative to the run directory. Change the URL
+  path to download different files. Common examples:
+  - readlen/readlen.pdf (read length distribution plot)
+  - bwa/aligned.sorted.bam (aligned reads)
+  - bwa/aligned.sorted.bam.flagstat (alignment statistics)
+  - bed2peak/annotated_peaks.xlsx (annotated peak results)
+  - fastqc/beforeCutAdapt/R1_fastqc.html (FastQC report)
+  - logs/cutadapt.log (step log file)
+
+  Prerequisites:
+  - Run must exist
+  - The target file must exist (run the relevant pipeline step first)
+  - Set run_id environment variable to the target run
+
+  Expected response: File download (binary content).
+  The Content-Disposition header will contain the filename.
+
+  Tip: Use "List Run Files" first to see available files and their paths.
+}

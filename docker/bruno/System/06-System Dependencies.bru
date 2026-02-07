@@ -1,0 +1,35 @@
+meta {
+  name: System Dependencies
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{base_url}}/system/dependencies
+}
+
+docs {
+  Checks availability of all required system tools for the pipeline.
+
+  Tools checked include: bwa-mem2, samtools, fastqc, cutadapt, fastp,
+  macs2, bedtools, Rscript, and other pipeline dependencies.
+
+  Expected response: 200 OK
+  {
+    "dependencies": {
+      "bwa-mem2": true,
+      "samtools": true,
+      "fastqc": true,
+      "cutadapt": true,
+      "fastp": false,
+      "macs2": true,
+      "bedtools": true
+    },
+    "available": ["bwa-mem2", "samtools", "fastqc", "cutadapt", "macs2", "bedtools"],
+    "missing": ["fastp"],
+    "all_available": false
+  }
+
+  If all_available is false, check the missing list. Those pipeline steps
+  will fail until the dependencies are installed.
+}

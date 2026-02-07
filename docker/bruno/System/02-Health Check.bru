@@ -1,0 +1,29 @@
+meta {
+  name: Health Check
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/health
+}
+
+docs {
+  Health check endpoint for monitoring server status.
+
+  Returns database connection status, count of active (running) jobs,
+  total number of runs in the database, and a list of any missing
+  system dependencies.
+
+  Expected response: 200 OK
+  {
+    "status": "healthy",
+    "database": "connected",
+    "active_jobs": 0,
+    "total_runs": 5,
+    "missing_dependencies": []
+  }
+
+  If missing_dependencies is non-empty, some pipeline steps may fail.
+  Use "System Dependencies" for detailed dependency information.
+}

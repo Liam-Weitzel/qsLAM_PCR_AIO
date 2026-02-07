@@ -1,0 +1,38 @@
+meta {
+  name: System Status
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/system/status
+}
+
+docs {
+  Comprehensive system status including database statistics, disk usage,
+  system dependency availability, and cached genome references.
+
+  Expected response: 200 OK
+  {
+    "database": {
+      "total_runs": 5,
+      "active_jobs": 0,
+      "completed_jobs": 12,
+      "failed_jobs": 1
+    },
+    "disk_usage": {
+      "runs_dir": "2.3GB",
+      "reference_dir": "15GB"
+    },
+    "dependencies": {
+      "bwa-mem2": true,
+      "samtools": true,
+      "fastqc": true,
+      "cutadapt": true
+    },
+    "available_genomes": ["GRCh38"]
+  }
+
+  Use this endpoint to get a complete overview of system health before
+  starting new pipeline runs.
+}

@@ -1,0 +1,27 @@
+meta {
+  name: List Genomes
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{base_url}}/system/genomes
+}
+
+docs {
+  Lists all supported genome references for the frontend genome dropdown.
+
+  Currently supported genomes:
+  - GRCh38 (Human, hg38)
+  - GRCh37 (Human, hg19)
+  - GRCm39 (Mouse, mm39)
+  - GRCm38 (Mouse, mm10)
+  - MGSCv37 (Mouse, mm9)
+
+  Expected response: 200 OK
+  {
+    "genomes": ["GRCh38", "GRCh37", "GRCm39", "GRCm38", "MGSCv37"]
+  }
+
+  Use these values when creating a run (genome field in Create Run).
+}

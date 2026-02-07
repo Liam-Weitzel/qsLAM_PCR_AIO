@@ -1,0 +1,39 @@
+meta {
+  name: System Cleanup
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{base_url}}/system/cleanup
+  body: json
+}
+
+body:json {
+  {
+    "days_old": 30
+  }
+}
+
+headers {
+  Content-Type: application/json
+}
+
+docs {
+  Cleans up old completed job records and log files.
+
+  The days_old parameter controls how old items must be before they are
+  cleaned up. Default is 30 days if not specified. Only completed and
+  failed job records older than the threshold are removed.
+
+  Expected response: 200 OK
+  {
+    "message": "System cleanup completed",
+    "jobs_cleaned": 0,
+    "logs_cleaned": 0,
+    "days_old": 30
+  }
+
+  This does NOT delete runs or their workspace files. Use "Delete Run"
+  or "Clean Run Workspace" for per-run cleanup.
+}
